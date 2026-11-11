@@ -13,6 +13,9 @@ const PROFS={
  alchemy:{name:'Alchemy',key:'alc',file:'data/alchemy.json',thing:'potion',things:'potions',raw:'herb',raws:'herbs',
   cats:['All','Potion','Elixir','Flask','Oil','Transmute','Other'],farm:'I farm my herbs',shop:[['Free Action Potion',5]],search:'potion or herb…',pvp:true,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/></svg>'},
+ cooking:{name:'Cooking',key:'ckg',file:'data/cooking.json',thing:'dish',things:'dishes',raw:'fish',raws:'fish',
+  cats:['All','Fish','Meat','Drink','Feast','Other'],farm:'I catch my own fish',shop:[['Smoked Desert Dumplings',10]],search:'dish or fish…',pvp:false,
+  logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h14a0 0 0 0 1 0 0 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M17 12h4"/><path d="M8 7c0-1.5 1-1.5 1-3M12 7c0-1.5 1-1.5 1-3"/></svg>'},
  tailoring:{name:'Tailoring',key:'tlr',file:'data/tailoring.json',thing:'item',things:'items',raw:'cloth',raws:'cloth',
   cats:['All','Bolt','Bag','Shirt','Armor','Other'],farm:'I farm my cloth',shop:[['Bolt of Runecloth',10]],search:'item or cloth…',pvp:false,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5"/><circle cx="17.5" cy="6.5" r="1.6"/><path d="M4 12c3-3 5 3 8 0s5 3 8 0"/></svg>'}};
@@ -22,7 +25,7 @@ const K=k=>P.key+'-'+k;
 const cap=w=>w[0].toUpperCase()+w.slice(1);
 
 let A=null,PR=null,H=null,SRC='';
-const S={tab:load(K('tab'),'top'),skill:load(K('skill'),null),sort:'profit',dir:-1,filters:load(K('filters'),{can:true,profit:true}),cat:'All',q:'',farm:load(K('farm'),false),
+const S={tab:load(K('tab'),'top'),skill:load(K('skill'),null),sort:'profit',dir:-1,filters:load(K('filters'),{can:true,profit:true}),cat:'All',q:'',farm:load(K('farm'),false),make:load(K('make'),false),
  open:null,topSort:'price',bags:load(K('bags'),{}),shop:load(K('shop'),P.shop),bought:load(K('bought'),{})};
 
 /* ---------- prices ---------- */
@@ -39,17 +42,26 @@ const vendor=n=>(PR&&PR.vendor&&PR.vendor[n])||VENDOR_FALLBACK[n]||null;
 const RECIPE={},PRODUCT={};
 const O=r=>r.o||r.n; // what a recipe makes (transmutes are named differently from their bar)
 // cheapest way to get a mat: vendor, AH, or crafting it yourself (e.g. Blackmouth Oil)
+// "I farm my herbs / cloth / fish": set on any profession's page, it counts everywhere
+// (herbs you farm are free in the potions tailoring needs too)
+const farmed=n=>Object.entries(PROFS).some(([id,pf])=>{const on=id===PID?S.farm:load(pf.key+'-farm',false);return on&&(RAWS[id]||[]).includes(n)});
 function matCost(n,depth=0){
- if(S.farm&&A.raw.includes(n))return {c:0,how:'farmed'};
+ if(farmed(n))return {c:0,how:'farmed'};
  const v=vendor(n);if(v!=null)return {c:v,how:'vendor'};
- const ah=sell(n);let best=ah!=null?{c:ah,how:'AH'}:null;
- const r=PRODUCT[n];
- if(r&&depth<2){const cc=recipeCost(r,depth+1);if(cc.c!=null&&(!best||cc.c<best.c))best={c:cc.c,how:'craft it'}}
- return best||{c:null,how:'no price'};
+ const ah=sell(n),r=PRODUCT[n];
+ const cc=r&&depth<3?recipeCost(r,depth+1):null;const made=cc&&cc.c!=null?cc.c/(r.y||1):null;
+ const who=r&&r.prof&&r.prof!==PID?PROFS[r.prof].name.toLowerCase():'';
+ if(S.make&&made!=null)return {c:made,how:'you make it'+(who?' ('+who+')':'')};       // making components yourself
+ if(ah!=null)return {c:ah,how:'AH'};
+ if(made!=null)return {c:made,how:'craft it (none on AH)'+(who?' · '+who:'')};
+ return {c:null,how:'no price'};
 }
+// profit both ways, for the breakdown
+function calcBoth(r){const was=S.make;S.make=false;const buy=calc(r);S.make=true;const make=calc(r);S.make=was;return {buy,make}}
+const RAWS={};
 function recipeCost(r,depth=0){let c=0,known=true;const parts=r.m.map(([q,n])=>{const m=matCost(n,depth);if(m.c==null)known=false;else c+=q*m.c;return {q,n,...m}});
  return {c:known?c:null,parts}}
-function calc(r){const s=sell(O(r)),cost=recipeCost(r);const profit=s!=null&&cost.c!=null?s*AH_CUT-cost.c:null;
+function calc(r){const y=r.y||1,one=sell(O(r)),s=one!=null?one*y:null,cost=recipeCost(r);const profit=s!=null&&cost.c!=null?s*AH_CUT-cost.c:null;
  return {s,cost:cost.c,parts:cost.parts,profit,margin:profit!=null&&cost.c?profit/cost.c*100:null,qty:qtyOf(O(r))}}
 const skill=()=>S.skill??1;
 const canMake=r=>r.sk<=skill();
@@ -124,18 +136,23 @@ function renderProfit(){
   if(open){const mats=x.parts.map(p=>`<div class="mrow"><span>${p.q}× ${esc(p.n)}</span><span class="soft">${p.how}${p.c!=null?' · '+money(p.c)+' each':''}</span><span>${p.c!=null?money(p.c*p.q):'—'}</span></div>`).join('');
    h+=`<tr class="open"><td colspan="6" style="padding:0 10px 12px"><div class="detail"><div><div class="lbl">MATS (CHEAPEST WAY)</div>${mats}</div>
    <div><div class="lbl">THE MATH</div><div style="font-size:13px;line-height:1.7">Sells for <b>${money(x.s)}</b> − 5% AH cut = <b>${money(x.s!=null?x.s*AH_CUT:null)}</b><br>Mats cost <b>${money(x.cost)}</b><br>Profit each: <b class="${pc}">${money(x.profit)}</b>${x.profit!=null?` · a stack of 5 makes <b class="${pc}">${money(x.profit*5)}</b>`:''}</div>
+   ${(()=>{if(!x.parts.some(p=>PRODUCT[p.n]))return '';const b=calcBoth(r);if(b.buy.profit==null&&b.make.profit==null)return '';
+   return `<div class="note" style="margin-top:6px">Buying the components: <b class="${(b.buy.profit||0)>=0?'up':'dn'}">${money(b.buy.profit)}</b> each · making them yourself: <b class="${(b.make.profit||0)>=0?'up':'dn'}">${money(b.make.profit)}</b> each</div>`})()}
+   ${r.y>1?`<div class="note">Makes ${r.y} per craft: the numbers are for one craft.</div>`:''}
    <div class="note">Recipe: ${esc(r.src||'unknown')}</div></div></div></td></tr>`}
   return h}).join('');
  $('[data-p=profit]').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><h2>Profit board</h2><p class="sub">Every ${P.name.toLowerCase()} recipe: sell price vs what the mats cost right now. Tap a row for the breakdown.</p></div>
  <label class="search"><span class="soft" style="font-size:13px">Search</span><input id="q" value="${esc(S.q)}" placeholder="${P.search}"></label></div>
  <div class="chips">${fchip('Can make now','can')}${P.pvp?fchip('PvP potions','pvp'):''}${fchip('Trainer recipes','train')}${fchip('Profitable only','profit')}
  <select id="cat" aria-label="Category">${CATS.map(c=>`<option ${c===S.cat?'selected':''}>${c}</option>`).join('')}</select>
- <span class="r">Mats: <button class="chip" data-farm="0" aria-pressed="${!S.farm}">Buy everything</button><button class="chip" data-farm="1" aria-pressed="${S.farm}">${P.farm}</button></span></div>
+ <span class="r">Raw mats: <button class="chip" data-farm="0" aria-pressed="${!S.farm}">Buy</button><button class="chip" data-farm="1" aria-pressed="${S.farm}">${P.farm}</button>
+ · Components: <button class="chip" data-make="0" aria-pressed="${!S.make}">Buy on AH</button><button class="chip" data-make="1" aria-pressed="${S.make}">I make them</button></span></div>
  <div class="box" style="overflow-x:auto"><table><thead><tr>${th('name',P.thing.toUpperCase())}${th('sell','SELLS FOR',1)}${th('cost','MATS COST',1)}${th('profit','PROFIT EACH',1)}${th('margin','MARGIN',1)}${th('qty','ON THE AH',1)}</tr></thead><tbody>${body||'<tr><td colspan="6" class="soft">Nothing matches those filters.</td></tr>'}</tbody></table></div>
- <div class="note">Sell price = the lowest listing right now. Mat cost uses whichever is cheaper: the AH, the vendor, or crafting it yourself. Red = you'd lose money. ${rows.length} recipes shown.</div>`;
+ <div class="note">Sell price = the lowest listing right now. Mat cost: vendor price, else the AH. With "I make them", anything you can craft (bolts, potions, Goblin Rocket Fuel…) is costed at its own mats instead. Red = you'd lose money. ${rows.length} recipes shown.</div>`;
  const qi=$('#q');qi.oninput=e=>{S.q=e.target.value;renderProfit();const n=$('#q');n.focus();n.setSelectionRange(n.value.length,n.value.length)};
  $('#cat').onchange=e=>{S.cat=e.target.value;renderProfit()};
  document.querySelectorAll('[data-farm]').forEach(b=>b.onclick=()=>{S.farm=b.dataset.farm==='1';store(K('farm'),S.farm);renderAll()});
+ document.querySelectorAll('[data-make]').forEach(b=>b.onclick=()=>{S.make=b.dataset.make==='1';store(K('make'),S.make);renderAll()});
  document.querySelectorAll('th[data-sort]').forEach(t=>t.onclick=()=>{const k=t.dataset.sort;if(S.sort===k)S.dir*=-1;else{S.sort=k;S.dir=k==='name'||k==='skill'||k==='cost'?1:-1}renderProfit()});
  document.querySelectorAll('tr.row').forEach(t=>t.onclick=()=>{S.open=S.open===t.dataset.r?null:t.dataset.r;renderProfit()});
  $('[data-p=profit]').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.filters[b.dataset.f]=!S.filters[b.dataset.f];store(K('filters'),S.filters);renderProfit()});
@@ -149,12 +166,12 @@ function usesRaw(n,h,d=0){const r=d?PRODUCT[n]:(RECIPE[n]||PRODUCT[n]);return !!
 // split a recipe into: how many h it eats, and what everything else costs
 function expand(r,h,d=0){let use=0,other=0,ok=true;
  r.m.forEach(([q,m])=>{if(m===h){use+=q;return}
-  if(d<2&&usesRaw(m,h)){const e=expand(PRODUCT[m],h,d+1);if(!e.ok)ok=false;use+=q*e.use;other+=q*e.other;return}
+  if(d<2&&usesRaw(m,h)){const sub=PRODUCT[m],y=sub.y||1,e=expand(sub,h,d+1);if(!e.ok)ok=false;use+=q*e.use/y;other+=q*e.other/y;return}
   const c=matCost(m);if(c.c==null)ok=false;else other+=q*c.c});
  return {use,other,ok}}
 function rawBest(h){ // best recipe you can make from this raw mat, value per unit
  let best=null;
- A.recipes.forEach(r=>{if(!canMake(r)||!usesRaw(r.n,h))return;const s=sell(O(r));if(s==null)return;
+ A.recipes.forEach(r=>{if(!canMake(r)||!usesRaw(r.n,h))return;const one=sell(O(r));if(one==null)return;const s=one*(r.y||1);
   const e=expand(r,h);if(!e.ok||!e.use)return;
   const per=(s*AH_CUT-e.other)/e.use;if(!best||per>best.per)best={r,per,uses:e.use}});
  return best;
@@ -222,8 +239,12 @@ function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop(
 function showTab(t){S.tab=t;store(K('tab'),t);document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==t)}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
 const getJSON=u=>fetch(u+'?v='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all([getJSON(P.file),getJSON('data/prices.json'),getJSON('data/history.json'),getJSON('data/status.json')]).then(([a,p,h,st])=>{
- A=a;A.raw=A.raw||A.herbs||[];A.recipes.forEach(r=>{RECIPE[r.n]=r;if(!PRODUCT[O(r)])PRODUCT[O(r)]=r});PR=p||syncedPrices();H=h;
+const OTHER=Object.keys(PROFS).filter(k=>k!==PID&&PROFS[k]);
+Promise.all([getJSON(P.file),getJSON('data/prices.json'),getJSON('data/history.json'),getJSON('data/status.json'),...OTHER.map(k=>getJSON(PROFS[k].file))]).then(([a,p,h,st,...others])=>{
+ A=a;A.raw=A.raw||A.herbs||[];RAWS[PID]=A.raw;A.recipes.forEach(r=>{r.prof=PID;RECIPE[r.n]=r;if(!PRODUCT[O(r)])PRODUCT[O(r)]=r});
+ // other professions' recipes: so a potion or bolt used as a component can be "made yourself"
+ others.forEach((d,i)=>{if(!d)return;const id=OTHER[i];RAWS[id]=d.raw||d.herbs||[];d.recipes.forEach(r=>{r.prof=id;if(!PRODUCT[O(r)])PRODUCT[O(r)]=r})});
+ PR=p||syncedPrices();H=h;
  if(S.skill==null){const sync=[...Array(localStorage.length).keys()].map(i=>localStorage.key(i)).filter(k=>/^fg-sync-/.test(k)).map(k=>load(k,null)).filter(Boolean);
   if(!sync.length&&st&&st.sync)sync.push(st.sync); // nothing synced here: use the shared progress
   const al=sync.flatMap(d=>d.prof||[]).find(x=>new RegExp(P.name,'i').test(x.n));S.skill=al?al.r:(PID==='alchemy'?150:1)}

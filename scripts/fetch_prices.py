@@ -1,4 +1,4 @@
-"""Hourly AH price fetch for the Alchemy page (runs in GitHub Actions).
+"""Hourly AH price fetch for the Professions page (alchemy + tailoring) (runs in GitHub Actions).
 
 Source: AHledger price tables (player scans; WoW Forever has no official auction API),
 the same feed the AHledger sync app downloads. Needs repo secret AHLEDGER_KEY (your
@@ -16,7 +16,7 @@ P = lambda f: os.path.join(ROOT, f)
 API = 'https://auctionhouse.fyi/api/v1'
 AHL = 'https://api.ahledger.com'
 UA = 'wow-forever-guide (github.com/chiggiechonga/wow-forever)'
-VIALS = ('Empty Vial', 'Leaded Vial', 'Crystal Vial', 'Imbued Vial')
+PROFS = ('alchemy', 'tailoring')                  # data/<prof>.json
 
 
 def load(f, default):
@@ -77,11 +77,25 @@ def ahledger_table(market):
     return (mid, updated), rows
 
 
+def load_profs():
+    """Union of every item (and vendor item) across the profession data files."""
+    items, vendor = {}, set()
+    for prof in PROFS:
+        d = load(f'{prof}.json', None)
+        if not d:
+            continue
+        for n, i in d['items'].items():
+            items[n] = items.get(n) or i
+        vendor.update(d.get('vendor') or d.get('vials') or [])
+    return {'items': items, 'vendor': sorted(vendor)}
+
+
 def resolve_ids(alch):
     """Fill in item IDs (and vendor prices) for names our recipe data has no ID for."""
     cache = load('item_ids.json', {'ids': {}, 'vendor': {}, 'fetched': 0})
-    missing = [n for n, i in alch['items'].items() if not i and n not in cache['ids']]
-    if missing or not cache['vendor'] or time.time() - cache.get('fetched', 0) > 7 * 86400:
+    tried = set(cache.get('tried', []))              # names already looked up once (found or not)
+    missing = [n for n, i in alch['items'].items() if not i and n not in cache['ids'] and n not in tried]
+    if missing or set(alch['vendor']) - tried or time.time() - cache.get('fetched', 0) > 7 * 86400:
         items = get('/items')['items']
         by_name = {}
         for iid, it in items.items():
@@ -90,10 +104,11 @@ def resolve_ids(alch):
             hit = by_name.get(n.lower())
             if hit and not alch['items'][n]:
                 cache['ids'][n] = hit[0]
-        for v in VIALS:
+        for v in alch['vendor']:
             hit = by_name.get(v.lower())
             if hit and hit[1].get('buy'):
                 cache['vendor'][v] = hit[1]['buy']
+        cache['tried'] = sorted(set(alch['items']) | set(alch['vendor']))
         cache['fetched'] = int(time.time())
         save('item_ids.json', cache)
     ids = {n: (i or cache['ids'].get(n)) for n, i in alch['items'].items()}
@@ -103,8 +118,9 @@ def resolve_ids(alch):
 def main():
     cfg = load('ah-config.json', {})
     market = cfg.get('market', 'forever.pvp.alliance.us')
-    alch = json.load(open(P('alchemy.json')))
+    alch = load_profs()
     ids, vendor = resolve_ids(alch)
+    print('No item ID for:', [n for n, i in ids.items() if not i][:80])
     info, rows = ahledger_table(market)
     if not rows:
         print(f'{market}: no AHledger prices (missing AHLEDGER_KEY or no table), nothing saved.')

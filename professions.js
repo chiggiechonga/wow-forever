@@ -1,5 +1,5 @@
-/* Alchemy page: recipes from data/alchemy.json, hourly AH prices from data/prices.json
-   + data/history.json (written by the "AH prices" GitHub Action). */
+/* Professions page (Alchemy / Tailoring): recipes from data/<prof>.json, hourly AH prices from
+   data/prices.json + data/history.json (written by the "AH prices" GitHub Action). */
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const load=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
@@ -9,10 +9,21 @@ const money=c=>{if(c==null||isNaN(c))return '—';c=Math.round(c);const neg=c<0;
 const AH_CUT=0.95;
 // rough vendor prices, only used until the hourly job has read the real ones
 const VENDOR_FALLBACK={};
+const PROFS={
+ alchemy:{name:'Alchemy',key:'alc',file:'data/alchemy.json',thing:'potion',things:'potions',raw:'herb',raws:'herbs',
+  cats:['All','Potion','Elixir','Flask','Oil','Other'],farm:'I farm my herbs',shop:[['Free Action Potion',5]],search:'potion or herb…',pvp:true,
+  logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/></svg>'},
+ tailoring:{name:'Tailoring',key:'tlr',file:'data/tailoring.json',thing:'item',things:'items',raw:'cloth',raws:'cloth',
+  cats:['All','Bolt','Bag','Shirt','Armor','Other'],farm:'I farm my cloth',shop:[['Bolt of Runecloth',10]],search:'item or cloth…',pvp:false,
+  logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5"/><circle cx="17.5" cy="6.5" r="1.6"/><path d="M4 12c3-3 5 3 8 0s5 3 8 0"/></svg>'}};
+const PID=(new URLSearchParams(location.search).get('p')||(()=>{try{return localStorage.getItem('prof-last')}catch(e){return null}})()||'alchemy').toLowerCase();
+const P=PROFS[PID]||PROFS.alchemy;try{localStorage.setItem('prof-last',PROFS[PID]?PID:'alchemy')}catch(e){}
+const K=k=>P.key+'-'+k;
+const cap=w=>w[0].toUpperCase()+w.slice(1);
 
 let A=null,PR=null,H=null,SRC='';
-const S={tab:load('alc-tab','top'),skill:load('alc-skill',null),sort:'profit',dir:-1,filters:load('alc-filters',{can:true,profit:true}),cat:'All',q:'',farm:load('alc-farm',false),
- open:null,topSort:'price',bags:load('alc-bags',{}),shop:load('alc-shop',[['Free Action Potion',5]]),bought:load('alc-bought',{})};
+const S={tab:load(K('tab'),'top'),skill:load(K('skill'),null),sort:'profit',dir:-1,filters:load(K('filters'),{can:true,profit:true}),cat:'All',q:'',farm:load(K('farm'),false),
+ open:null,topSort:'price',bags:load(K('bags'),{}),shop:load(K('shop'),P.shop),bought:load(K('bought'),{})};
 
 /* ---------- prices ---------- */
 function syncedPrices(){ // fallback: prices from the ForeverGuide addon sync, if any
@@ -28,7 +39,7 @@ const vendor=n=>(PR&&PR.vendor&&PR.vendor[n])||VENDOR_FALLBACK[n]||null;
 const RECIPE={};
 // cheapest way to get a mat: vendor, AH, or crafting it yourself (e.g. Blackmouth Oil)
 function matCost(n,depth=0){
- if(S.farm&&A.herbs.includes(n))return {c:0,how:'farmed'};
+ if(S.farm&&A.raw.includes(n))return {c:0,how:'farmed'};
  const v=vendor(n);if(v!=null)return {c:v,how:'vendor'};
  const ah=sell(n);let best=ah!=null?{c:ah,how:'AH'}:null;
  const r=RECIPE[n];
@@ -39,7 +50,7 @@ function recipeCost(r,depth=0){let c=0,known=true;const parts=r.m.map(([q,n])=>{
  return {c:known?c:null,parts}}
 function calc(r){const s=sell(r.n),cost=recipeCost(r);const profit=s!=null&&cost.c!=null?s*AH_CUT-cost.c:null;
  return {s,cost:cost.c,parts:cost.parts,profit,margin:profit!=null&&cost.c?profit/cost.c*100:null,qty:qtyOf(r.n)}}
-const skill=()=>S.skill??150;
+const skill=()=>S.skill??1;
 const canMake=r=>r.sk<=skill();
 
 /* ---------- history helpers ---------- */
@@ -72,7 +83,7 @@ function jumpSignals(n){
 
 /* ---------- 1. top sellers ---------- */
 function renderTop(){
- const list=A.recipes.map(r=>({r,...calc(r)})).filter(x=>x.s!=null);
+ const list=A.recipes.map(r=>({r,...calc(r)})).filter(x=>x.s!=null&&(!S.filters.topCan||canMake(x.r)));
  const key={price:x=>x.s,listed:x=>x.qty||0,jump:x=>change(x.r.n,24)??-1e9}[S.topSort];
  list.sort((a,b)=>key(b)-key(a));
  const cards=list.slice(0,8).map((x,i)=>{const ch=change(x.r.n,24);const col=ch==null?'#a7a0a5':ch>=0?'#7fd8a8':'#ff8f8f';
@@ -86,72 +97,82 @@ function renderTop(){
   ${spark(hist(x.r.n),'#ffb26b')}<div class="lbl" style="color:var(--soft)">WHY</div><ul style="margin:0;padding-left:18px;font-size:13px">${j.why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
   <div class="note" style="margin-top:2px">Tip: craft or buy now, list when it peaks.</div></div>`).join('');
  const enough=H&&H.t&&H.t.length>=24;
- $('[data-p=top]').innerHTML=`<h2>Top sellers</h2><p class="sub">The priciest potions on your AH right now, and which way they're heading.</p>
- <div class="chips">${chip('Price','topSort','price')}${chip('Most listed','topSort','listed')}${chip('Biggest jump (24h)','topSort','jump')}</div>
+ $('[data-p=top]').innerHTML=`<h2>Top sellers</h2><p class="sub">The priciest ${P.things} on your AH right now, and which way they're heading.</p>
+ <div class="chips">${chip('Price','topSort','price')}${chip('Most listed','topSort','listed')}${chip('Biggest jump (24h)','topSort','jump')}<span class="r">${fchip('Only ones I can make','topCan')}</span></div>
  ${list.length?`<div class="cards">${cards}</div>`:'<div class="callout">No prices yet.</div>'}
  <div class="sec"><div><h3 style="color:var(--warn)">Might jump soon</h3><div class="sub">Guesses, not promises: supply drying up, a price that keeps climbing, or one that spikes on certain days.</div></div><span class="soft" style="font-size:12px">from the last 7 days of hourly prices</span></div>
  ${jc?`<div class="cards three" style="margin-top:12px">${jc}</div>`:`<div class="callout">${enough?'Nothing looks ready to jump right now. Check back after the next few updates.':'Needs about a day of hourly prices before it can spot anything. It fills in on its own.'}</div>`}`;
  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S[b.dataset.k]=b.dataset.v;renderTop()});
+ $('[data-p=top]').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.filters[b.dataset.f]=!S.filters[b.dataset.f];store(K('filters'),S.filters);renderTop()});
 }
 
 /* ---------- 2. profit board ---------- */
-const CATS=['All','Potion','Elixir','Flask','Oil','Other'];
+const CATS=P.cats;
 function renderProfit(){
  let rows=A.recipes.map(r=>({r,...calc(r)}));
  const f=S.filters,q=S.q.trim().toLowerCase();
- rows=rows.filter(x=>(!f.can||canMake(x.r))&&(!f.pvp||x.r.pvp)&&(!f.profit||(x.profit!=null&&x.profit>0))&&(S.cat==='All'||x.r.c===S.cat)
+ rows=rows.filter(x=>(!f.can||canMake(x.r))&&(!f.pvp||x.r.pvp)&&(!f.train||/^(Trainer|Auto)$/.test(x.r.src))&&(!f.profit||(x.profit!=null&&x.profit>0))&&(S.cat==='All'||x.r.c===S.cat)
   &&(!q||x.r.n.toLowerCase().includes(q)||x.r.m.some(([,m])=>m.toLowerCase().includes(q))));
  const key={name:x=>x.r.n,skill:x=>x.r.sk,sell:x=>x.s??-1e12,cost:x=>x.cost??1e12,profit:x=>x.profit??-1e12,margin:x=>x.margin??-1e12,qty:x=>x.qty??-1}[S.sort];
  rows.sort((a,b)=>{const ka=key(a),kb=key(b);return (ka>kb?1:ka<kb?-1:0)*S.dir});
  const th=(k,t,n)=>`<th class="${n?'n':''}" data-sort="${k}">${t}${S.sort===k?(S.dir<0?' ▾':' ▴'):''}</th>`;
  const body=rows.map(x=>{const r=x.r,open=S.open===r.n,pc=x.profit==null?'soft':x.profit>0?'up':'down';
-  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${canMake(r)?'<span class="badge ok">CAN MAKE</span>':`<span class="badge lock">NEEDS ${r.sk}</span>`}</div><div class="psub">Alchemy ${r.sk} · ${r.c}${r.pvp?' · PvP':''}${perDay(r.n)?` · ~${perDay(r.n)} sell a day`:''}</div></td>
+  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${canMake(r)?'<span class="badge ok">CAN MAKE</span>':`<span class="badge lock">NEEDS ${r.sk}</span>`}</div><div class="psub">${P.name} ${r.sk} · ${r.c}${r.pvp?' · PvP':''}${perDay(r.n)?` · ~${perDay(r.n)} sell a day`:''}</div></td>
   <td class="n">${money(x.s)}</td><td class="n soft">${money(x.cost)}</td><td class="n ${pc}" style="font-weight:700">${money(x.profit)}</td><td class="n ${pc}">${x.margin!=null?x.margin.toFixed(0)+'%':'—'}</td><td class="n soft">${x.qty!=null?x.qty+' on AH':'—'}</td></tr>`;
   if(open){const mats=x.parts.map(p=>`<div class="mrow"><span>${p.q}× ${esc(p.n)}</span><span class="soft">${p.how}${p.c!=null?' · '+money(p.c)+' each':''}</span><span>${p.c!=null?money(p.c*p.q):'—'}</span></div>`).join('');
    h+=`<tr class="open"><td colspan="6" style="padding:0 10px 12px"><div class="detail"><div><div class="lbl">MATS (CHEAPEST WAY)</div>${mats}</div>
    <div><div class="lbl">THE MATH</div><div style="font-size:13px;line-height:1.7">Sells for <b>${money(x.s)}</b> − 5% AH cut = <b>${money(x.s!=null?x.s*AH_CUT:null)}</b><br>Mats cost <b>${money(x.cost)}</b><br>Profit each: <b class="${pc}">${money(x.profit)}</b>${x.profit!=null?` · a stack of 5 makes <b class="${pc}">${money(x.profit*5)}</b>`:''}</div>
    <div class="note">Recipe: ${esc(r.src||'unknown')}</div></div></div></td></tr>`}
   return h}).join('');
- $('[data-p=profit]').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><h2>Profit board</h2><p class="sub">Every alchemy recipe: sell price vs what the mats cost right now. Tap a row for the breakdown.</p></div>
- <label class="search"><span class="soft" style="font-size:13px">Search</span><input id="q" value="${esc(S.q)}" placeholder="potion or herb…"></label></div>
- <div class="chips">${fchip('Can make now','can')}${fchip('PvP potions','pvp')}${fchip('Profitable only','profit')}
+ $('[data-p=profit]').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><h2>Profit board</h2><p class="sub">Every ${P.name.toLowerCase()} recipe: sell price vs what the mats cost right now. Tap a row for the breakdown.</p></div>
+ <label class="search"><span class="soft" style="font-size:13px">Search</span><input id="q" value="${esc(S.q)}" placeholder="${P.search}"></label></div>
+ <div class="chips">${fchip('Can make now','can')}${P.pvp?fchip('PvP potions','pvp'):''}${fchip('Trainer recipes','train')}${fchip('Profitable only','profit')}
  <select id="cat" aria-label="Category">${CATS.map(c=>`<option ${c===S.cat?'selected':''}>${c}</option>`).join('')}</select>
- <span class="r">Mats: <button class="chip" data-farm="0" aria-pressed="${!S.farm}">Buy everything</button><button class="chip" data-farm="1" aria-pressed="${S.farm}">I farm my herbs</button></span></div>
- <div class="box" style="overflow-x:auto"><table><thead><tr>${th('name','POTION')}${th('sell','SELLS FOR',1)}${th('cost','MATS COST',1)}${th('profit','PROFIT EACH',1)}${th('margin','MARGIN',1)}${th('qty','ON THE AH',1)}</tr></thead><tbody>${body||'<tr><td colspan="6" class="soft">Nothing matches those filters.</td></tr>'}</tbody></table></div>
+ <span class="r">Mats: <button class="chip" data-farm="0" aria-pressed="${!S.farm}">Buy everything</button><button class="chip" data-farm="1" aria-pressed="${S.farm}">${P.farm}</button></span></div>
+ <div class="box" style="overflow-x:auto"><table><thead><tr>${th('name',P.thing.toUpperCase())}${th('sell','SELLS FOR',1)}${th('cost','MATS COST',1)}${th('profit','PROFIT EACH',1)}${th('margin','MARGIN',1)}${th('qty','ON THE AH',1)}</tr></thead><tbody>${body||'<tr><td colspan="6" class="soft">Nothing matches those filters.</td></tr>'}</tbody></table></div>
  <div class="note">Sell price = the lowest listing right now. Mat cost uses whichever is cheaper: the AH, the vendor, or crafting it yourself. Red = you'd lose money. ${rows.length} recipes shown.</div>`;
  const qi=$('#q');qi.oninput=e=>{S.q=e.target.value;renderProfit();const n=$('#q');n.focus();n.setSelectionRange(n.value.length,n.value.length)};
  $('#cat').onchange=e=>{S.cat=e.target.value;renderProfit()};
- document.querySelectorAll('[data-farm]').forEach(b=>b.onclick=()=>{S.farm=b.dataset.farm==='1';store('alc-farm',S.farm);renderAll()});
+ document.querySelectorAll('[data-farm]').forEach(b=>b.onclick=()=>{S.farm=b.dataset.farm==='1';store(K('farm'),S.farm);renderAll()});
  document.querySelectorAll('th[data-sort]').forEach(t=>t.onclick=()=>{const k=t.dataset.sort;if(S.sort===k)S.dir*=-1;else{S.sort=k;S.dir=k==='name'||k==='skill'||k==='cost'?1:-1}renderProfit()});
  document.querySelectorAll('tr.row').forEach(t=>t.onclick=()=>{S.open=S.open===t.dataset.r?null:t.dataset.r;renderProfit()});
- document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.filters[b.dataset.f]=!S.filters[b.dataset.f];store('alc-filters',S.filters);renderProfit()});
+ $('[data-p=profit]').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.filters[b.dataset.f]=!S.filters[b.dataset.f];store(K('filters'),S.filters);renderProfit()});
 }
 function fchip(t,k){return `<button class="chip" data-f="${k}" aria-pressed="${!!S.filters[k]}">${t}</button>`}
 function chip(t,k,v){return `<button class="chip" data-k="${k}" data-v="${v}" aria-pressed="${S[k]===v}">${t}</button>`}
 
 /* ---------- 3. craft or sell raw ---------- */
-function herbBest(h){ // best recipe you can make that uses this herb, value per herb
+// does making n use raw h, directly or through something you craft first (cloth → bolt → shirt)?
+function usesRaw(n,h,d=0){const r=RECIPE[n];return !!r&&d<3&&r.m.some(([,m])=>m===h||usesRaw(m,h,d+1))}
+// split a recipe into: how many h it eats, and what everything else costs
+function expand(r,h,d=0){let use=0,other=0,ok=true;
+ r.m.forEach(([q,m])=>{if(m===h){use+=q;return}
+  if(d<2&&usesRaw(m,h)){const e=expand(RECIPE[m],h,d+1);if(!e.ok)ok=false;use+=q*e.use;other+=q*e.other;return}
+  const c=matCost(m);if(c.c==null)ok=false;else other+=q*c.c});
+ return {use,other,ok}}
+function rawBest(h){ // best recipe you can make from this raw mat, value per unit
  let best=null;
- A.recipes.forEach(r=>{if(!canMake(r))return;const use=r.m.find(([,m])=>m===h);if(!use)return;const s=sell(r.n);if(s==null)return;
-  let other=0,ok=true;r.m.forEach(([q,m])=>{if(m===h)return;const c=matCost(m);if(c.c==null)ok=false;else other+=q*c.c});if(!ok)return;
-  const per=(s*AH_CUT-other)/use[0];if(!best||per>best.per)best={r,per,uses:use[0]}});
+ A.recipes.forEach(r=>{if(!canMake(r)||!usesRaw(r.n,h))return;const s=sell(r.n);if(s==null)return;
+  const e=expand(r,h);if(!e.ok||!e.use)return;
+  const per=(s*AH_CUT-e.other)/e.use;if(!best||per>best.per)best={r,per,uses:e.use}});
  return best;
 }
 function renderRaw(){
- const herbs=A.herbs.map(h=>({h,raw:sell(h),best:herbBest(h)})).filter(x=>x.raw!=null||x.best);
- const rows=herbs.map(x=>{const craft=x.best&&(x.raw==null||x.best.per>x.raw*AH_CUT);
-  return `<tr><td style="font-size:15px">${esc(x.h)}</td><td class="n">${money(x.raw)}</td><td class="soft">${x.best?esc(x.best.r.n):'none you can make'}</td><td class="n" style="font-weight:700">${x.best?money(x.best.per):'—'}</td>
+ const RAW=cap(P.raw);
+ const list=A.raw.map(h=>({h,raw:sell(h),best:rawBest(h)})).filter(x=>x.raw!=null||x.best);
+ const rows=list.map(x=>{const craft=x.best&&(x.raw==null||x.best.per>x.raw*AH_CUT);
+  return `<tr><td style="font-size:15px">${esc(x.h)}</td><td class="n">${money(x.raw)}</td><td class="soft">${x.best?esc(x.best.r.n)+(x.best.uses%1?'':` <span class="psub">(${x.best.uses} each)</span>`):'none you can make'}</td><td class="n" style="font-weight:700">${x.best?money(x.best.per):'—'}</td>
   <td class="n"><span class="verdict ${craft?'up':'pvp'}" style="border-color:currentColor">${craft?'CRAFT':'SELL RAW'}</span></td></tr>`}).join('');
  let plan=[],craftTotal=0,rawTotal=0;
- Object.entries(S.bags).forEach(([h,n])=>{n=+n||0;if(!n)return;const raw=sell(h),b=herbBest(h);const rv=raw!=null?raw*AH_CUT*n:0;rawTotal+=rv;
+ Object.entries(S.bags).forEach(([h,n])=>{n=+n||0;if(!n||!A.raw.includes(h))return;const raw=sell(h),b=rawBest(h);const rv=raw!=null?raw*AH_CUT*n:0;rawTotal+=rv;
   if(b&&(raw==null||b.per>raw*AH_CUT)){const k=Math.floor(n/b.uses);plan.push(`Craft <b>${k} ${esc(b.r.n)}</b> (uses ${k*b.uses} ${esc(h)})`);craftTotal+=k*b.uses*b.per+(n-k*b.uses)*(raw||0)*AH_CUT}
   else{plan.push(`Sell <b>${n} ${esc(h)}</b> raw`);craftTotal+=rv}});
- $('[data-p=raw]').innerHTML=`<h2>Craft or sell raw?</h2><p class="sub">For each herb: is it worth more sold as-is, or turned into a potion you can make? "Per herb as a potion" = the potion's profit after its other mats, split across the herbs it uses.</p>
- <div class="grid2"><div class="box" style="overflow-x:auto"><table><thead><tr><th>HERB</th><th class="n">SELL RAW</th><th>BEST POTION</th><th class="n">PER HERB AS A POTION</th><th class="n">DO THIS</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="soft">No prices yet.</td></tr>'}</tbody></table></div>
+ $('[data-p=raw]').innerHTML=`<h2>Craft or sell raw?</h2><p class="sub">For each ${P.raw}: is it worth more sold as-is, or turned into ${/^[aeiou]/.test(P.thing)?'an':'a'} ${P.thing} you can make? "Per ${P.raw} crafted" = the ${P.thing}'s profit after its other mats, split across the ${P.raws} it uses${PID==='tailoring'?' (counting the cloth inside any bolts)':''}.</p>
+ <div class="grid2"><div class="box" style="overflow-x:auto"><table><thead><tr><th>${RAW.toUpperCase()}</th><th class="n">SELL RAW</th><th>BEST ${P.thing.toUpperCase()}</th><th class="n">PER ${P.raw.toUpperCase()} CRAFTED</th><th class="n">DO THIS</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="soft">No prices yet.</td></tr>'}</tbody></table></div>
  <div style="display:flex;flex-direction:column;gap:12px"><div class="side hl"><div class="lbl">MY BAGS</div><p class="sub" style="margin-bottom:8px">Type how many of each you're carrying.</p>
-  <div class="bag">${A.herbs.map(h=>`<label for="b-${esc(h)}">${esc(h)}</label><input id="b-${esc(h)}" data-bag="${esc(h)}" type="number" min="0" value="${S.bags[h]||''}" placeholder="0">`).join('')}</div></div>
+  <div class="bag">${A.raw.map(h=>`<label for="b-${esc(h)}">${esc(h)}</label><input id="b-${esc(h)}" data-bag="${esc(h)}" type="number" min="0" value="${S.bags[h]||''}" placeholder="0">`).join('')}</div></div>
   <div class="side" style="font-size:14px;line-height:1.7"><div class="lbl">BEST PLAN FOR THOSE</div>${plan.length?plan.join('<br>')+`<div style="margin-top:6px">Total: <b class="up">${money(craftTotal)}</b> vs <b>${money(rawTotal)}</b> selling everything raw</div>`:'<span class="soft">Fill in your bags above.</span>'}</div></div></div>`;
- document.querySelectorAll('[data-bag]').forEach(i=>i.onchange=()=>{const v=+i.value||0;if(v)S.bags[i.dataset.bag]=v;else delete S.bags[i.dataset.bag];store('alc-bags',S.bags);renderRaw()});
+ document.querySelectorAll('[data-bag]').forEach(i=>i.onchange=()=>{const v=+i.value||0;if(v)S.bags[i.dataset.bag]=v;else delete S.bags[i.dataset.bag];store(K('bags'),S.bags);renderRaw()});
 }
 
 /* ---------- 4. shopping list ---------- */
@@ -166,16 +187,16 @@ function renderShop(){
  <div class="grid2b"><div class="side"><div class="lbl" style="padding-top:2px">I WANT TO CRAFT</div>
  ${picks.map(([n,k],i)=>{const x=calc(RECIPE[n]);return `<div class="pick"><div><div style="font-size:15px">${esc(n)}</div><div class="psub">profit ${money(x.profit)} each</div></div>
   <div class="step"><button data-dq="${i}" data-d="-1" aria-label="Fewer">−</button><span>${k}</span><button data-dq="${i}" data-d="1" aria-label="More">+</button></div><button class="ghostbtn" data-rm="${i}">Remove</button></div>`}).join('')}
- <label class="fld" style="margin-top:12px"><select id="add" style="flex:1"><option value="">+ Add a potion…</option>${opts}</select></label>
+ <label class="fld" style="margin-top:12px"><select id="add" style="flex:1"><option value="">+ Add ${/^[aeiou]/.test(P.thing)?'an':'a'} ${P.thing}…</option>${opts}</select></label>
  <div class="tot"><div><small>MATS COST</small><b>${money(cost)}</b></div><div><small>SELLS FOR</small><b>${money(rev)}</b></div><div class="hl"><small>PROFIT</small><b class="${rev-cost>=0?'up':'down'}">${money(rev-cost)}</b></div></div>
  ${ok?'':'<div class="note">Some prices are missing, so the totals are incomplete.</div>'}</div>
  <div class="side"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span class="lbl">MATS TO BUY</span><button class="btn" id="copy">Copy list</button></div>
- <div class="mats h"><span></span><span>ITEM</span><span style="text-align:right">QTY</span><span style="text-align:right">EACH</span><span style="text-align:right">TOTAL</span></div>${matRows||'<div class="note">Add a potion to see what to buy.</div>'}
+ <div class="mats h"><span></span><span>ITEM</span><span style="text-align:right">QTY</span><span style="text-align:right">EACH</span><span style="text-align:right">TOTAL</span></div>${matRows||`<div class="note">Add ${/^[aeiou]/.test(P.thing)?'an':'a'} ${P.thing} to see what to buy.</div>`}
  <div class="note">Tick things off as you buy them. "Copy list" copies it as text you can paste anywhere.</div></div></div>`;
- document.querySelectorAll('[data-dq]').forEach(b=>b.onclick=()=>{const p=S.shop[+b.dataset.dq];p[1]=Math.max(1,p[1]+ +b.dataset.d);store('alc-shop',S.shop);renderShop()});
- document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{S.shop.splice(+b.dataset.rm,1);store('alc-shop',S.shop);renderShop()});
- $('#add').onchange=e=>{if(e.target.value){S.shop.push([e.target.value,1]);store('alc-shop',S.shop);renderShop()}};
- document.querySelectorAll('[data-bought]').forEach(c=>c.onchange=()=>{if(c.checked)S.bought[c.dataset.bought]=1;else delete S.bought[c.dataset.bought];store('alc-bought',S.bought);renderShop()});
+ document.querySelectorAll('[data-dq]').forEach(b=>b.onclick=()=>{const p=S.shop[+b.dataset.dq];p[1]=Math.max(1,p[1]+ +b.dataset.d);store(K('shop'),S.shop);renderShop()});
+ document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{S.shop.splice(+b.dataset.rm,1);store(K('shop'),S.shop);renderShop()});
+ $('#add').onchange=e=>{if(e.target.value){S.shop.push([e.target.value,1]);store(K('shop'),S.shop);renderShop()}};
+ document.querySelectorAll('[data-bought]').forEach(c=>c.onchange=()=>{if(c.checked)S.bought[c.dataset.bought]=1;else delete S.bought[c.dataset.bought];store(K('bought'),S.bought);renderShop()});
  $('#copy').onclick=()=>{const txt=Object.entries(need).map(([m,q])=>`${m} x${q}`).join('\n');navigator.clipboard&&navigator.clipboard.writeText(txt).then(()=>{$('#copy').textContent='Copied!';setTimeout(()=>{const b=$('#copy');if(b)b.textContent='Copy list'},1200)})};
 }
 
@@ -190,14 +211,19 @@ function header(){
   :`<span class="dot ${age>130?'old':''}"></span>Updated ${ago(PR.updated)} · every hour · ${esc(PR.realm||'')} · <a href="https://ahledger.com/" target="_blank" rel="noopener">Prices from AHledger</a>`;
  w.hidden=!PR.synced;if(PR.synced)w.innerHTML='<b>Using prices from your last addon sync</b> until the hourly prices are set up.';
 }
+function shell(){
+ document.title=P.name+' · Level Guide';$('#plogo').innerHTML=P.logo;$('#skLbl').textContent='My '+P.name.toLowerCase();
+ document.querySelectorAll('[data-prof]').forEach(b=>{b.setAttribute('aria-selected',b.dataset.prof===PID||(!PROFS[PID]&&b.dataset.prof==='alchemy'));b.onclick=()=>{location.search='?p='+b.dataset.prof}});
+}
+shell();
 function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop()}
-function showTab(t){S.tab=t;store('alc-tab',t);document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==t)}
+function showTab(t){S.tab=t;store(K('tab'),t);document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==t)}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
 const getJSON=u=>fetch(u+'?v='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all([getJSON('data/alchemy.json'),getJSON('data/prices.json'),getJSON('data/history.json')]).then(([a,p,h])=>{
- A=a;A.recipes.forEach(r=>RECIPE[r.n]=r);PR=p||syncedPrices();H=h;
+Promise.all([getJSON(P.file),getJSON('data/prices.json'),getJSON('data/history.json')]).then(([a,p,h])=>{
+ A=a;A.raw=A.raw||A.herbs||[];A.recipes.forEach(r=>RECIPE[r.n]=r);PR=p||syncedPrices();H=h;
  if(S.skill==null){const sync=[...Array(localStorage.length).keys()].map(i=>localStorage.key(i)).filter(k=>/^fg-sync-/.test(k)).map(k=>load(k,null)).filter(Boolean);
-  const al=sync.flatMap(d=>d.prof||[]).find(x=>/alchemy/i.test(x.n));S.skill=al?al.r:150}
- const sk=$('#skill');sk.value=S.skill;sk.onchange=()=>{S.skill=+sk.value||1;store('alc-skill',S.skill);renderAll()};
+  const al=sync.flatMap(d=>d.prof||[]).find(x=>new RegExp(P.name,'i').test(x.n));S.skill=al?al.r:(PID==='alchemy'?150:1)}
+ const sk=$('#skill');sk.value=S.skill;sk.onchange=()=>{S.skill=+sk.value||1;store(K('skill'),S.skill);renderAll()};
  renderAll();showTab(S.tab);
 });

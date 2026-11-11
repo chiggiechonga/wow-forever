@@ -65,8 +65,9 @@ def main():
     alch = json.load(open(P('alchemy.json')))
     ids, vendor = resolve_ids(alch)
     snap = get(f'/ah/{market}/snapshot')
-    print('snapshot:', {k: (len(v) if isinstance(v, list) else v) for k, v in snap.items()})
-    print('first rows:', snap.get('rows', [])[:3], 'first days:', str(snap.get('days', [])[:1])[:300])
+    if not snap.get('rows'):
+        print(f'{market}: no scans in this source yet, nothing saved.')
+        return
     rows = {r[0]: r for r in snap.get('rows', [])}          # [item, lowest price, quantity, scan ms]
     days = {d[0]: d[1] for d in snap.get('days', [])}       # item -> [[day, close, qty], ...]
     items = {}

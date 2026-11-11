@@ -194,6 +194,36 @@ function renderRaw(){
  document.querySelectorAll('[data-bag]').forEach(i=>i.onchange=()=>{const v=+i.value||0;if(v)S.bags[i.dataset.bag]=v;else delete S.bags[i.dataset.bag];store(K('bags'),S.bags);renderRaw()});
 }
 
+/* ---------- 5. caster food (cooking page) ----------
+   15-minute Well Fed buffs with spell damage or healing. Buff values from buyboost.com's Forever food list
+   (Spotted Yellowtail: metaforge, Sunrise Omelette: kingboost). Beta numbers, may change. */
+const BUFFFOOD=[
+ ['Baked Salmon','+28 spell damage','sd',28],['Spotted Yellowtail','+22 spell damage','sd',22],['Nightfin Soup','+22 spell damage','sd',22],
+ ['Briny Seafood Stew','+14 spell damage','sd',14],['Sagefish Delight','+7 spell damage','sd',7],['Smoked Sagefish','+4 spell damage','sd',4],['Rainbow Fin Albacore','+1 spell damage','sd',1],
+ ['Sunrise Omelette','+25 spell damage, +55 healing, +10 Stamina','both',25],
+ ["Sage's Tea",'+44 healing','heal',44],['Sunny Tea','+33 healing','heal',33],['Lobster Stew','+28 healing','heal',28],['Triage Tea','+22 healing','heal',22],
+ ['Root Tea','+11 healing','heal',11],['Royal Tea','+7 healing','heal',7],['Peace Tea','+2 healing','heal',2]];
+const VENDOR_ONLY=n=>vendor(n)!=null;
+function foodCost(r,farm){let c=0,ok=true;const farmList=[];
+ r.m.forEach(([q,n])=>{if(farm&&!VENDOR_ONLY(n)){farmList.push(q+'× '+n);return}
+  const v=vendor(n),a=sell(n),one=v!=null?v:a;if(one==null)ok=false;else c+=q*one});
+ const y=r.y||1;return {c:ok?c/y:null,farm:farmList}}
+function renderFood(){
+ const el=$('[data-p=food]');if(!el)return;
+ const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing']];
+ const rows=g=>BUFFFOOD.filter(f=>f[2]===g).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
+  const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
+  return `<tr><td style="font-size:15px">${esc(n)}<div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}${trained(r)?'':' · '+esc(r.src)}</div></td>
+   <td>${esc(buff)}</td>
+   <td class="n">${money(ah)}${qtyOf(n)!=null?`<div class="psub">${qtyOf(n)} on AH</div>`:''}</td>
+   <td class="n">${money(buy.c)}</td>
+   <td class="n" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
+ el.innerHTML=`<h2>Caster food: spell damage &amp; healing</h2>
+ <p class="sub">Every 15-minute Well Fed buff with spell damage or healing (any level), strongest first. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
+ ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
+ <div class="note">One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
+}
+
 /* ---------- 4. shopping list ---------- */
 function renderShop(){
  const picks=S.shop.filter(([n])=>RECIPE[n]);const need={};let cost=0,rev=0,ok=true;
@@ -234,8 +264,9 @@ function shell(){
  document.title=P.name+' · Level Guide';$('#plogo').innerHTML=P.logo;$('#skLbl').textContent='My '+P.name.toLowerCase();
  document.querySelectorAll('[data-prof]').forEach(b=>{b.setAttribute('aria-selected',b.dataset.prof===PID||(!PROFS[PID]&&b.dataset.prof==='alchemy'));b.onclick=()=>{location.search='?p='+b.dataset.prof}});
 }
+{const ft=document.querySelector('.tab[data-t=food]');if(ft)ft.hidden=PID!=='cooking'}
 shell();
-function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop()}
+function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop();if(PID==='cooking')renderFood()}
 function showTab(t){S.tab=t;store(K('tab'),t);document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==t)}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
 const getJSON=u=>fetch(u+'?v='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);

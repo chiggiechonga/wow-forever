@@ -140,3 +140,29 @@ textarea{width:100%;min-height:110px;background:#070708;color:var(--ink);border:
 @media (min-width:861px){
  .side{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;scrollbar-width:thin}
 }
+/* route map */
+.mzones{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.mz{font:600 12.5px Inter,sans-serif;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--soft);cursor:pointer}
+.mz[aria-pressed=true]{border-color:var(--acc);color:var(--acc2);background:var(--sel)}
+.mz small{opacity:.7;margin-left:3px}
+.rmap{position:relative;width:100%;aspect-ratio:3/2;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#d9c8a2}
+.rmap img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
+.rmap.nomap{background:#e9dcbc;background-image:linear-gradient(#cdbb93 1px,transparent 1px),linear-gradient(90deg,#cdbb93 1px,transparent 1px);background-size:10% 10%}
+.rmap svg{position:absolute;inset:0;width:100%;height:100%}
+.rmap polyline{fill:none;stroke:#e9426f;stroke-width:2.5;stroke-dasharray:6 5;vector-effect:non-scaling-stroke;stroke-linejoin:round;filter:drop-shadow(0 0 2px #000)}
+.rmap .nomsg{display:none;position:absolute;left:8px;bottom:6px;font-size:11.5px;color:#5b4a2b}
+.rmap.nomap .nomsg{display:block}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:4px;background:none;border:0;padding:0;cursor:pointer;z-index:2}
+.pin b{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font:700 11.5px Inter,sans-serif;color:#fff;background:#c2185b;border:2px solid #fff;box-shadow:0 1px 4px #000a;flex:none}
+.pin span{flex:none;font:600 11.5px Inter,sans-serif;color:#fff;background:#141014d9;padding:2px 6px;border-radius:5px;white-space:nowrap;max-width:190px;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.pin.p-grab b,.pin.p-hold b{background:#d9a400;color:#1b1400}
+.pin.p-turn b{background:#2f80ed}
+.pin.p-do b{background:#c62828}
+.pin.p-dng b{background:#7b3fe4}
+.pin.pdone{opacity:.45}
+.pin.on{z-index:5}.pin.on span{outline:2px solid var(--acc)}
+.mleg{margin:8px 0 0;padding-left:26px;font-size:13.5px;line-height:1.6;columns:2 320px}
+.mleg li b{color:var(--soft);font-weight:600;margin-right:4px;font-size:12px}
+.mleg li.pdone{opacity:.5;text-decoration:line-through}
+.mleg li.hl{color:var(--acc2)}
+@media (max-width:700px){.pin span{display:none}.pin.on span{display:block;position:absolute;left:24px}}

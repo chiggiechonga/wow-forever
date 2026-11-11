@@ -217,13 +217,14 @@ function detail(){
   <div class="hearth"><span class="chip">⌂ Hearth: <b>${esc(s.hearth)}</b></span><span class="chip ${s.rdiff?'diff':''}">💤 ${esc(s.rest)}</span>${s.hdiff?`<span class="chip diff">❄ ${esc(s.hdiff)}</span>`:''}</div>`;
  h+=goBox(s);
  if(n-1===hereIdx())h+=rightNow(s);
+ h+=mapHtml(s);
  h+=questsHtml(s);
  if(s.gear.length){h+=`<div class="sec">GEAR FROM THIS STOP <small>★ = take this one</small></div><div class="cards">`;
   s.gear.forEach((g,i)=>{h+=`<div class="card ${g[3]?'diff':''}"><h3><span class="num">${i+1}</span>${esc(g[0])}${g[3]?'<span class="mg">❄ MAGE</span>':''}<span class="lvq">Lv ${g[1]}</span></h3>`;
    g[2].forEach(it=>{const w=wearing(it[1]);h+=`<div class="it"><div class="icon">${it[0]}</div><div><div class="nm ${it[2]}">${esc(it[1])}</div><div class="ty">${esc(it[3])}</div></div><span class="pick ${w?'wear':''}">${w?'✓ WEARING':it[4]?'★ PICK':''}</span></div>`});
    h+='</div>'});h+='</div><div class="cnote">Item stats in Forever can differ from classic, so hover the reward before picking.</div>'}
  if(s.note)h+=`<div class="box2"><b>Heads up:</b> ${esc(s.note)}</div>`;
- const d=$('detail');d.innerHTML=h;
+ const d=$('detail');d.innerHTML=h;bindMap(s);
  d.querySelectorAll('.q.pl').forEach(r=>r.onclick=()=>{const k=r.dataset.l;const cur2=k in ov?ov[k]:lineAuto(r.dataset.kind,r.dataset.t);const now=!cur2;
   if(now===lineAuto(r.dataset.kind,r.dataset.t))delete ov[k];else ov[k]=now;store(CFG.ovKey,ov);render()});
  d.querySelectorAll('.q[data-q]').forEach(r=>r.onclick=()=>{const S=STOPS.find(x=>x.id===r.dataset.s),i=+r.dataset.i,k=r.dataset.q;
@@ -331,6 +332,77 @@ $('codeClear').onclick=()=>{C=null;try{localStorage.removeItem(SKEY)}catch(e){};
 if($('onlyDiff'))$('onlyDiff').onchange=render;
 if($('qsearch')){$('qsearch').oninput=e=>{Q=e.target.value;showTab('walk');detail()};$('qsearch').onkeydown=e=>{if(e.key==='Escape'){Q='';e.target.value='';detail()}}}
 $('reset').onclick=()=>{ov={};store(CFG.ovKey,ov);trainedLv=0;store(TKEY,0);cur=null;render()};
+
+/* ---------- route map ----------
+   Pins come from: coordinates written in a row, quest givers / turn-ins (questnpc.js) and the
+   densest mob / drop area for each objective (qobj.js). Drawn over maps/<zone>.jpg, a screenshot
+   of the in-game world map; zones without one get a plain parchment grid. */
+var QO=(typeof QOBJ!=='undefined')?QOBJ:{};
+var zslug=z=>String(z||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+var ZALIAS={elwynn:'elwynn_forest',redridge:'redridge_mountains',stormwind:'stormwind_city',barrens:'the_barrens','the barrens':'the_barrens',stv:'stranglethorn_vale',stranglethorn:'stranglethorn_vale',hillsbrad:'hillsbrad_foothills',alterac:'alterac_mountains',arathi:'arathi_highlands',stonetalon:'stonetalon_mountains',dustwallow:'dustwallow_marsh',hinterlands:'the_hinterlands','the hinterlands':'the_hinterlands',wpl:'western_plaguelands',epl:'eastern_plaguelands',"un'goro":'un_goro_crater',ungoro:'un_goro_crater','un goro':'un_goro_crater',riverglades:'riverglades','the riverglades':'riverglades',swamp:'swamp_of_sorrows','swamp of sorrows':'swamp_of_sorrows',loch:'loch_modan'};
+var ZNAME=z=>z.split('_').map(w=>w==='of'||w==='the'&&0?w:w[0].toUpperCase()+w.slice(1)).join(' ').replace('Un Goro',"Un'Goro");
+function zoneOf(where){const z=String(where||'').split(' · ')[0].trim().toLowerCase();if(!z)return null;
+ if(ZALIAS[z])return ZALIAS[z];const sl=zslug(z);
+ const known=['wetlands','duskwood','westfall','ashenvale','darkshore','desolace','tanaris','feralas','badlands','felwood','azshara','winterspring','ironforge','teldrassil','darnassus','loch_modan','dun_morogh','thousand_needles','searing_gorge','blasted_lands','burning_steppes','silithus','moonglade','western_plaguelands','eastern_plaguelands','stranglethorn_vale','redridge_mountains','elwynn_forest','dustwallow_marsh','hillsbrad_foothills','arathi_highlands','alterac_mountains','stonetalon_mountains','the_hinterlands','the_barrens','un_goro_crater','swamp_of_sorrows','stormwind_city','riverglades'];
+ return known.includes(sl)?sl:(known.find(k=>k.startsWith(sl+'_'))||null)}
+var XY=/\((\d{1,2}(?:\.\d+)?), ?(\d{1,2}(?:\.\d+)?)\)/;
+function planItems(s){ // same order as the plan view: [{row}|{kind,text}]
+ const plan=(typeof PLAN!=='undefined')&&PLAN[s.id];if(!plan)return s.q.map((x,i)=>({row:i}));
+ const used=new Set(),out=[];
+ const find=ref=>{for(const alt of ref.slice(1).split('|')){const i=s.q.findIndex((x,ix)=>!used.has(ix)&&x[1].startsWith(alt.trim()));if(i>=0){used.add(i);return i}}return -1};
+ plan.forEach(p=>p.i.forEach(it=>{if(it.startsWith('@')){const r=find(it);if(r>=0)out.push({row:r})}else out.push({kind:p.k,text:it})}));
+ s.q.forEach((x,i)=>{if(!used.has(i))out.push({row:i})});return out;
+}
+function stopPins(s){
+ const lv=midLv(s),raw=[];
+ const add=(zone,x,y,kind,label,done)=>{if(zone&&x!=null&&y!=null)raw.push({zone,x:+x,y:+y,kind,label,done})};
+ const npcPin=(n,kind,label,done)=>{if(n&&n[2]!=null)add(zslug(n[1]),n[2],n[3],kind,label,done)};
+ const objPins=(name,done)=>{const k=norm(String(name).replace(/,? part \d+/i,''));(QO[k]||[]).filter(o=>!o[4]||Math.abs(o[4]-lv)<=7).forEach(o=>add(o[1],o[2],o[3],'do',o[0],done))};
+ planItems(s).forEach(it=>{
+  if(it.row===undefined){const name=String(it.text).split(' (')[0];const r=(it.kind==='grab'||it.kind==='turn')?qrec(name,lv):null;
+   const m=String(it.text).match(XY);
+   if(r)npcPin(it.kind==='turn'?r[1]:r[0],it.kind,(it.kind==='turn'?'Turn in: ':'Grab: ')+name,false);
+   else if(m)add(zoneOf(it.text)||null,m[1],m[2],it.kind,name,false);return}
+  const i=it.row,x=s.q[i],[t,nm,wh,tip]=x,done=isDoneRow(s,i);
+  if(['skip','bag','train'].includes(t))return;
+  const m=(wh+' '+(tip||'')).match(XY);
+  if(m){add(zoneOf(wh),m[1],m[2],t,nm,done);if(t!=='do')return}
+  const parts=nm.split(/ → | · /).map(p=>p.trim()).filter(Boolean);
+  parts.forEach(p=>{const r=qrec(p,lv);
+   if(t==='turn'){if(r)npcPin(r[1],'turn','Turn in: '+p,done);return}
+   if(t==='hold'||t==='dng'){if(r)npcPin(r[0],'grab','Grab: '+p,done);return}
+   if(t==='do'){objPins(p,done)}});
+ });
+ // a row with coords but no zone in its text: use the stop's busiest zone
+ const cnt={};raw.forEach(p=>{if(p.zone)cnt[p.zone]=(cnt[p.zone]||0)+1});const main=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]||zoneOf(s.zone)||'';
+ raw.forEach(p=>{if(!p.zone)p.zone=main});
+ const pins=[];raw.forEach(p=>{const same=pins.find(q=>q.zone===p.zone&&Math.hypot(q.x-p.x,(q.y-p.y)*0.67)<2.2);
+  if(same){if(!same.labels.includes(p.label))same.labels.push(p.label);same.done=same.done&&p.done;if(same.kind!==p.kind&&same.kind!=='turn')same.kind=p.kind==='turn'?'turn':same.kind}
+  else pins.push({...p,labels:[p.label]})});
+ pins.forEach((p,i)=>p.n=i+1);return pins;
+}
+var mapZone={};
+function mapHtml(s){
+ const pins=stopPins(s);if(!pins.length)return '';
+ const zones=[...new Set(pins.map(p=>p.zone))];const top=zones.slice().sort((a,b)=>pins.filter(p=>p.zone===b).length-pins.filter(p=>p.zone===a).length)[0];
+ const z=zones.includes(mapZone[s.id])?mapZone[s.id]:top;
+ const zp=pins.filter(p=>p.zone===z);
+ const todo=zp.filter(p=>!p.done);const path=(todo.length>1?todo:zp).map(p=>`${p.x},${p.y}`).join(' '); // route only through what's left
+ const ic={grab:'!',hold:'!',turn:'?',do:'⚔',dng:'◆',town:'⌂',hearth:'⌂',book:'📚'};
+ let h=`<div class="sec">MAP <small>numbered in the order of the plan · tap a pin</small></div>`;
+ if(zones.length>1)h+=`<div class="mzones">${zones.map(q=>`<button class="mz" data-mz="${q}" aria-pressed="${q===z}">${esc(ZNAME(q))} <small>${pins.filter(p=>p.zone===q).length}</small></button>`).join('')}</div>`;
+ h+=`<div class="rmap" data-zone="${z}"><img src="maps/${z}.jpg" alt="${esc(ZNAME(z))} map" onerror="this.parentNode.classList.add('nomap');this.remove()">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${path}" /></svg>
+  ${zp.map(p=>`<button class="pin p-${p.kind} ${p.done?'pdone':''}" style="left:${p.x}%;top:${p.y}%" data-pin="${p.n}" title="${esc(p.labels.join(' · '))}"><b>${p.n}</b><span>${esc(ic[p.kind]||'•')} ${esc(p.labels[0].length>26?p.labels[0].slice(0,25)+'…':p.labels[0])}${p.labels.length>1?` +${p.labels.length-1}`:''}</span></button>`).join('')}
+  <div class="nomsg">No ${esc(ZNAME(z))} map picture yet: pins are placed on the zone's coordinate grid.</div></div>
+ <ol class="mleg">${zp.map(p=>`<li class="${p.done?'pdone':''}" data-leg="${p.n}" value="${p.n}"><b>${p.x.toFixed(0)}, ${p.y.toFixed(0)}</b> ${p.labels.map(esc).join(' · ')}</li>`).join('')}</ol>`;
+ return h;
+}
+function bindMap(s){const d=$('detail');
+ d.querySelectorAll('[data-mz]').forEach(b=>b.onclick=()=>{mapZone[s.id]=b.dataset.mz;detail()});
+ d.querySelectorAll('[data-pin]').forEach(b=>b.onclick=()=>{d.querySelectorAll('[data-leg]').forEach(l=>l.classList.toggle('hl',l.dataset.leg===b.dataset.pin));d.querySelectorAll('.pin').forEach(x=>x.classList.toggle('on',x===b))});
+}
+
 
 /* ---------- shared progress ----------
    Your browser (with a GitHub token saved) writes data/status.json every time you sync or tick

@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: '7 * * * *'    # every hour at :07 (their snapshot is written at :01)
   workflow_dispatch:        # "Run workflow" button for a manual update
+    inputs:
+      probe:
+        description: 'Only check price sources (debug)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,7 +28,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Fetch auction house prices
-        run: python scripts/fetch_prices.py
+        run: |
+          if [ "${{ inputs.probe }}" = "true" ]; then python scripts/probe_sources.py; exit 0; fi
+          python scripts/fetch_prices.py
       - name: Save new prices
         run: |
           git config user.name "ah-prices bot"

@@ -8,7 +8,7 @@ const money=c=>{if(c==null||isNaN(c))return '—';c=Math.round(c);const neg=c<0;
  return (neg?'-':'')+(g?g+'g ':'')+(g||s?s+'s':'')+(!g&&cc?(s?' ':'')+cc+'c':'')||'0c'};
 const AH_CUT=0.95;
 // rough vendor prices, only used until the hourly job has read the real ones
-const VENDOR_FALLBACK={'Empty Vial':4,'Leaded Vial':40,'Crystal Vial':400};
+const VENDOR_FALLBACK={};
 
 let A=null,PR=null,H=null,SRC='';
 const S={tab:load('alc-tab','top'),skill:load('alc-skill',null),sort:'profit',dir:-1,filters:load('alc-filters',{can:true,profit:true}),cat:'All',q:'',farm:load('alc-farm',false),
@@ -42,8 +42,8 @@ const skill=()=>S.skill??150;
 const canMake=r=>r.sk<=skill();
 
 /* ---------- history helpers ---------- */
-const hist=n=>(H&&H.p&&H.p[n])||[];
-function change(n,hours){const h=hist(n).filter(v=>v!=null);if(h.length<2)return null;const now=h[h.length-1],then=h[Math.max(0,h.length-1-hours)];return then?(now-then)/then*100:null}
+const hist=n=>{const h=(H&&H.p&&H.p[n])||[];if(h.filter(v=>v!=null).length>=6)return h;const it=PR&&PR.items[n];return it&&it.d?it.d.map(x=>x[1]):h};
+function change(n,hours){const raw=(H&&H.p&&H.p[n])||[];if(raw.filter(v=>v!=null).length<hours/2){const it=PR&&PR.items[n];const d=it&&it.d||[];if(d.length>=2){const a=d[d.length-2][1],b=d[d.length-1][1];return a?(b-a)/a*100:null}return null}const h=raw.filter(v=>v!=null);if(h.length<2)return null;const now=h[h.length-1],then=h[Math.max(0,h.length-1-hours)];return then?(now-then)/then*100:null}
 function spark(vals,col){vals=vals.filter(v=>v!=null);if(vals.length<2)return '<div class="note">trend shows after a few hourly updates</div>';
  const w=150,h=36,mx=Math.max(...vals),mn=Math.min(...vals);
  const pts=vals.map((v,i)=>`${(i*(w/(vals.length-1))).toFixed(1)},${(h-((v-mn)/((mx-mn)||1))*h).toFixed(1)}`).join(' ');
@@ -111,7 +111,7 @@ function renderProfit(){
  <select id="cat" aria-label="Category">${CATS.map(c=>`<option ${c===S.cat?'selected':''}>${c}</option>`).join('')}</select>
  <span class="r">Mats: <button class="chip" data-farm="0" aria-pressed="${!S.farm}">Buy everything</button><button class="chip" data-farm="1" aria-pressed="${S.farm}">I farm my herbs</button></span></div>
  <div class="box" style="overflow-x:auto"><table><thead><tr>${th('name','POTION')}${th('sell','SELLS FOR',1)}${th('cost','MATS COST',1)}${th('profit','PROFIT EACH',1)}${th('margin','MARGIN',1)}${th('qty','ON THE AH',1)}</tr></thead><tbody>${body||'<tr><td colspan="6" class="soft">Nothing matches those filters.</td></tr>'}</tbody></table></div>
- <div class="note">Sell price = typical price of the cheapest listings. Mat cost uses whichever is cheaper: the AH, the vendor, or crafting it yourself. Red = you'd lose money. ${rows.length} recipes shown.</div>`;
+ <div class="note">Sell price = the lowest listing right now. Mat cost uses whichever is cheaper: the AH, the vendor, or crafting it yourself. Red = you'd lose money. ${rows.length} recipes shown.</div>`;
  const qi=$('#q');qi.oninput=e=>{S.q=e.target.value;renderProfit();const n=$('#q');n.focus();n.setSelectionRange(n.value.length,n.value.length)};
  $('#cat').onchange=e=>{S.cat=e.target.value;renderProfit()};
  document.querySelectorAll('[data-farm]').forEach(b=>b.onclick=()=>{S.farm=b.dataset.farm==='1';store('alc-farm',S.farm);renderAll()});
@@ -177,9 +177,10 @@ function ago(t){const m=Math.round((Date.now()/1000-t)/60);return m<1?'just now'
 function header(){
  const f=$('#freshness'),w=$('#waiting');
  if(!PR){f.innerHTML='<span class="dot none"></span>No prices yet';w.hidden=false;
-  w.innerHTML='<b>Waiting for the first hourly price update.</b> Once the Blizzard keys are added to the site, prices fill in every hour on their own. Recipes and mats already work below.';return}
+  w.innerHTML='<b>Waiting for the first hourly price update.</b> Prices fill in every hour on their own. Recipes and mats already work below.';return}
  const age=(Date.now()/1000-PR.updated)/60;
- f.innerHTML=`<span class="dot ${age>130?'old':''}"></span>${PR.synced?'Prices from your addon sync':'Prices updated'} ${ago(PR.updated)}${PR.synced?'':' · every hour'}${PR.realm?' · '+esc(PR.realm)+(PR.faction?' '+esc(PR.faction):''):''}`;
+ f.innerHTML=PR.synced?`<span class="dot ${age>130?'old':''}"></span>Prices from your addon sync ${ago(PR.updated)}`
+  :`<span class="dot ${age>130?'old':''}"></span>Updated ${ago(PR.updated)} · every hour · ${esc(PR.realm||'')} · <a href="https://auctionhouse.fyi/" target="_blank" rel="noopener">Prices from auctionhouse.fyi</a>`;
  w.hidden=!PR.synced;if(PR.synced)w.innerHTML='<b>Using prices from your last addon sync</b> until the hourly prices are set up.';
 }
 function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop()}

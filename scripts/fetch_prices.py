@@ -1,23 +1,19 @@
 """Hourly AH price fetch for the Alchemy page (runs in GitHub Actions).
 
-Needs repo secrets BLIZZARD_CLIENT_ID + BLIZZARD_CLIENT_SECRET (free at develop.battle.net).
-Reads data/ah-config.json and data/alchemy.json, writes:
-  data/prices.json    latest prices for every potion + mat
-  data/history.json   7 days of hourly prices (for trends + "might jump")
-  data/item_ids.json  item IDs looked up by name (cached)
-  data/realms.json    every realm the API knows about, per namespace (to pick yours)
+Source: auctionhouse.fyi's public hourly snapshot (player scans; WoW Forever has no
+official auction API). No key needed. Market comes from data/ah-config.json.
+Writes:
+  data/prices.json    latest price + amount listed for every potion and mat
+  data/history.json   7 days of hourly prices (trends + "might jump")
+  data/item_ids.json  item IDs + vendor prices looked up by name (cached)
 """
-import json, os, sys, time, urllib.parse, urllib.request
-from statistics import median
+import gzip, io, json, os, time, urllib.request
 
 ROOT = os.path.join(os.path.dirname(__file__), '..', 'data')
 P = lambda f: os.path.join(ROOT, f)
-cfg = json.load(open(P('ah-config.json')))
-REGION = cfg.get('region', 'us')
-API = f'https://{REGION}.api.blizzard.com'
-# WoW Forever's namespace isn't documented, so try likely ones in order
-NAMESPACE_GUESSES = [cfg.get('namespace')] + [f'dynamic-{x}{REGION}' for x in
-    ('forever-', 'classicforever-', 'classic1x-', 'classic-', 'classicann-', '')]
+API = 'https://auctionhouse.fyi/api/v1'
+UA = 'wow-forever-guide (github.com/chiggiechonga/wow-forever)'
+VIALS = ('Empty Vial', 'Leaded Vial', 'Crystal Vial', 'Imbued Vial')
 
 
 def load(f, default):
@@ -31,143 +27,62 @@ def save(f, data):
     json.dump(data, open(P(f), 'w'), ensure_ascii=False, separators=(',', ':'))
 
 
-def token():
-    cid, sec = os.environ.get('BLIZZARD_CLIENT_ID'), os.environ.get('BLIZZARD_CLIENT_SECRET')
-    if not cid or not sec:
-        return None
-    req = urllib.request.Request('https://oauth.battle.net/token', data=b'grant_type=client_credentials')
-    import base64
-    req.add_header('Authorization', 'Basic ' + base64.b64encode(f'{cid}:{sec}'.encode()).decode())
-    return json.load(urllib.request.urlopen(req, timeout=30))['access_token']
+def get(path):
+    req = urllib.request.Request(API + path, headers={'User-Agent': UA, 'Accept-Encoding': 'gzip'})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        raw = r.read()
+        if r.headers.get('Content-Encoding') == 'gzip' or raw[:2] == b'\x1f\x8b':
+            raw = gzip.GzipFile(fileobj=io.BytesIO(raw)).read()
+        return json.loads(raw)
 
 
-TOKEN = None
-
-
-def get(path, ns, **params):
-    params.update(namespace=ns, locale='en_US')
-    url = path if path.startswith('http') else API + path
-    url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={'Authorization': f'Bearer {TOKEN}'})
-    try:
-        return json.load(urllib.request.urlopen(req, timeout=60))
-    except urllib.error.HTTPError as e:
-        return {'_error': e.code}
-
-
-def discover():
-    """List every connected realm in each namespace that answers."""
-    out = {}
-    for ns in [n for n in NAMESPACE_GUESSES if n]:
-        idx = get('/data/wow/connected-realm/index', ns)
-        if '_error' in idx:
-            out[ns] = {'error': idx['_error']}
-            continue
-        realms = []
-        for cr in idx.get('connected_realms', [])[:200]:
-            crid = int(cr['href'].split('/connected-realm/')[1].split('?')[0])
-            d = get(f'/data/wow/connected-realm/{crid}', ns)
-            for r in d.get('realms', []):
-                realms.append({'connected_realm': crid, 'name': r.get('name'), 'slug': r.get('slug'),
-                               'type': (r.get('type') or {}).get('name'), 'category': r.get('category')})
-        out[ns] = {'realms': realms}
-        print(f'{ns}: {len(realms)} realms')
-    save('realms.json', out)
-    return out
-
-
-def pick_realm(found):
-    want = (cfg.get('realm') or '').lower()
-    for ns, v in found.items():
-        for r in v.get('realms', []):
-            if want and want in (r['name'] or '').lower() + ' ' + (r['slug'] or ''):
-                return ns, r
-    return None, None
-
-
-def auctions(ns, crid):
-    faction = cfg.get('faction', 'alliance').lower()
-    idx = get(f'/data/wow/connected-realm/{crid}/auctions/index', ns)
-    house = None
-    for h in idx.get('auctions', []):
-        if faction in (h.get('name') or '').lower():
-            house = h['id']
-    data = get(f'/data/wow/connected-realm/{crid}/auctions/{house}', ns) if house else get(f'/data/wow/connected-realm/{crid}/auctions', ns)
-    if '_error' in data:
-        sys.exit(f'Auction data not available ({data["_error"]}) for {ns} realm {crid}.')
-    return data.get('auctions', [])
-
-
-def resolve_ids(alch, ns):
-    """Find item IDs for names QuestieDB didn't have, via the item search API."""
-    cache = load('item_ids.json', {})
-    static = ns.replace('dynamic-', 'static-')
-    for name, iid in alch['items'].items():
-        if iid or name in cache:
-            continue
-        res = get('/data/wow/search/item', static, **{'name.en_US': name, 'orderby': 'id', '_page': 1})
-        hit = None
-        for r in res.get('results', []):
-            if ((r.get('data') or {}).get('name') or {}).get('en_US', '').lower() == name.lower():
-                hit = r['data']['id']
-        cache[name] = hit
-        time.sleep(0.05)
-    save('item_ids.json', cache)
-    return {n: (i or cache.get(n)) for n, i in alch['items'].items()}
-
-
-def vendor_prices(ids, ns):
-    static = ns.replace('dynamic-', 'static-')
-    out = {}
-    for name in ('Empty Vial', 'Leaded Vial', 'Crystal Vial', 'Imbued Vial'):
-        if ids.get(name):
-            d = get(f'/data/wow/item/{ids[name]}', static)
-            if d.get('purchase_price'):
-                out[name] = d['purchase_price'] // max(1, d.get('purchase_quantity', 1))
-    return out
+def resolve_ids(alch):
+    """Fill in item IDs (and vendor prices) for names our recipe data has no ID for."""
+    cache = load('item_ids.json', {'ids': {}, 'vendor': {}, 'fetched': 0})
+    missing = [n for n, i in alch['items'].items() if not i and n not in cache['ids']]
+    if missing or not cache['vendor'] or time.time() - cache.get('fetched', 0) > 7 * 86400:
+        items = get('/items')['items']
+        by_name = {}
+        for iid, it in items.items():
+            by_name.setdefault((it.get('n') or '').lower(), (int(iid), it))
+        for n in alch['items']:
+            hit = by_name.get(n.lower())
+            if hit and not alch['items'][n]:
+                cache['ids'][n] = hit[0]
+        for v in VIALS:
+            hit = by_name.get(v.lower())
+            if hit and hit[1].get('buy'):
+                cache['vendor'][v] = hit[1]['buy']
+        cache['fetched'] = int(time.time())
+        save('item_ids.json', cache)
+    ids = {n: (i or cache['ids'].get(n)) for n, i in alch['items'].items()}
+    return ids, cache['vendor']
 
 
 def main():
-    global TOKEN
-    TOKEN = token()
-    if not TOKEN:
-        print('No Blizzard API keys yet (BLIZZARD_CLIENT_ID / BLIZZARD_CLIENT_SECRET). Skipping.')
-        return
-    # only re-scan the realm list when we can't find the configured realm in the saved one
-    ns, realm = pick_realm(load('realms.json', {}))
-    if not realm:
-        ns, realm = pick_realm(discover())
-    if not realm:
-        print('No realm picked yet. Set "realm" in data/ah-config.json to one listed in data/realms.json.')
-        return
-    print('Using', ns, realm)
+    cfg = load('ah-config.json', {})
+    market = cfg.get('market', 'forever.pvp.alliance.us')
     alch = json.load(open(P('alchemy.json')))
-    ids = resolve_ids(alch, ns)
-    by_id = {}
-    for a in auctions(ns, realm['connected_realm']):
-        iid = a['item']['id']
-        qty = a.get('quantity', 1)
-        unit = a.get('unit_price') or (a.get('buyout') or 0) // max(1, qty)
-        if unit:
-            by_id.setdefault(iid, []).append((unit, qty))
-    items, now = {}, int(time.time())
+    ids, vendor = resolve_ids(alch)
+    snap = get(f'/ah/{market}/snapshot')
+    rows = {r[0]: r for r in snap.get('rows', [])}          # [item, lowest price, quantity, scan ms]
+    days = {d[0]: d[1] for d in snap.get('days', [])}       # item -> [[day, close, qty], ...]
+    items = {}
     for name, iid in ids.items():
-        rows = sorted(by_id.get(iid, []))
-        if not rows:
+        r = rows.get(iid) if iid else None
+        if not r or r[1] is None:
             items[name] = {'id': iid, 'qty': 0}
             continue
-        total = sum(q for _, q in rows)
-        # "market" = median unit price of the cheapest 15% of stock, so one cheap auction doesn't skew it
-        cut, seen, pool = max(1, total * 0.15), 0, []
-        for u, q in rows:
-            pool.append(u); seen += q
-            if seen >= cut:
-                break
-        items[name] = {'id': iid, 'min': rows[0][0], 'mkt': int(median(pool)), 'qty': total, 'n': len(rows)}
-    prices = {'updated': now, 'realm': realm['name'], 'faction': cfg.get('faction'), 'namespace': ns,
-              'vendor': vendor_prices(ids, ns), 'items': items}
-    save('prices.json', prices)
+        d = [[x[0], x[1], x[2]] for x in days.get(iid, []) if x[1] is not None]
+        items[name] = {'id': iid, 'min': r[1], 'mkt': r[1], 'qty': r[2], 'seen': r[3] // 1000, 'd': d[-8:]}
+    now = int(snap.get('at', time.time() * 1000) // 1000)
+    save('prices.json', {'updated': now, 'scan': (snap.get('scan') or {}).get('at') if isinstance(snap.get('scan'), dict) else snap.get('scan'),
+                         'market': market, 'realm': cfg.get('label', 'PvP Alliance US'), 'source': 'auctionhouse.fyi',
+                         'vendor': vendor, 'items': items})
     hist = load('history.json', {'t': [], 'p': {}, 'q': {}})
+    if hist['t'] and hist['t'][-1] == now:            # same hour already saved
+        print('Snapshot for this hour already saved.')
+        return
     hist['t'].append(now)
     pad = [None] * (len(hist['t']) - 1)
     for name, v in items.items():
@@ -179,7 +94,7 @@ def main():
         for name in list(hist[k]):
             hist[k][name] = hist[k][name][-keep:]
     save('history.json', hist)
-    print(f'Saved prices for {sum(1 for v in items.values() if v.get("min"))} items.')
+    print(f'{market}: saved prices for {sum(1 for v in items.values() if v.get("min"))} of {len(items)} items.')
 
 
 if __name__ == '__main__':

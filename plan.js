@@ -100,8 +100,7 @@ s17:[
  {k:'grab',h:'Grab in Theramore',i:['Mudrock Soup and Bugs','Captain Vimes','The Black Shield','Lieutenant Paval Reethe']},
  {k:'do',h:'Do, in this order',i:['@Theramore quests','@Jarl Needs a Blade','@Hungry!','@RwlRwlRwlRwl!','@Stinky\'s Escape']},
  {k:'hold',h:'Hold for later',i:['@I See Alcaz Island']},
- {k:'town',h:'Next time you\'re in a city',i:['@Train Lv 42']},
- {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
+ {k:'town',h:'Next time you\'re in a city',i:['@Train Lv 42']}],
 s18:[
  {k:'do',h:'The Riverglades',i:['@Get there','@Do every quest you see']},
  {k:'dng',h:'Dungeon',i:['@Krol\'Dok']},
@@ -109,8 +108,7 @@ s18:[
 s19:[
  {k:'grab',h:'Grab in the Badlands camps',i:['A Dwarf and His Tools','Find Agmond','Barbecued Buzzard Wings','Pearl Diving']},
  {k:'do',h:'Do, in this order',i:['@A Dwarf and His Tools','@Barbecued Buzzard Wings','@Scrounging','@Pearl Diving','@Mummies']},
- {k:'dng',h:'Dungeon',i:['@Uldaman quests']},
- {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
+ {k:'dng',h:'Dungeon',i:['@Uldaman quests']}],
 s20:[
  {k:'town',h:'In Booty Bay',i:['@Set hearth']},
  {k:'grab',h:'Grab in Booty Bay',i:['The Bloodsail Buccaneers','Akiris by the Bundle','Keep An Eye Out','Stranglethorn Fever']},
@@ -123,8 +121,7 @@ s21:[
  {k:'do',h:'Tanaris, in this order',i:['@Wastewander Justice','@Legends of the Tidesages','@Gahz\'ridian']},
  {k:'dng',h:'Dungeon',i:['@Zul\'Farrak']},
  {k:'do',h:'Feralas',i:['@Feathermoon','@Rescue OOX-22']},
- {k:'dng',h:'Later',i:['@Dire Maul']},
- {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ','@Legacy: ']}],
+ {k:'dng',h:'Later',i:['@Dire Maul']}],
 s22:[
  {k:'town',h:'In Aerie Peak',i:['@Gryphon Master Talonaxe']},
  {k:'do',h:'Do, in this order',i:['@Troll Necklace Bounty','@The Altar of Zul','@Venomous Journeys','@Rescue OOX-09']},
@@ -133,7 +130,8 @@ s22:[
 s23:[
  {k:'do',h:'Searing Gorge',i:['@Searing Gorge quests','@A Mind of Metal']},
  {k:'do',h:'Blasted Lands',i:['@Blasted Lands buff','@Conjurer\'s Codex']},
- {k:'dng',h:'Dungeons',i:['@Sunken Temple','@Sanguine Sorcery','@Blackrock Depths']}],
+ {k:'dng',h:'Dungeons',i:['@Sunken Temple','@Sanguine Sorcery','@Blackrock Depths']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s24:[
  {k:'do',h:'Felwood',i:['@Timbermaw Ally','@Northern Kalimdor','@Cleansing Felwood','@Corrupted plants']},
  {k:'do',h:'Azshara',i:['@Azshara quests','@Everyday Etiquette']},
@@ -150,7 +148,8 @@ s26:[
 s27:[
  {k:'grab',h:'Grab in Marshal\'s Refuge',i:['Crystal Pylons','Bloodpetal Sprouts','Beware of Pterrordax']},
  {k:'do',h:'Do, in this order',i:['@Marshal\'s Refuge quests','@Linken chain','@Collect power crystals']},
- {k:'dng',h:'Dungeon',i:['@Shaper\'s Terrace']}],
+ {k:'dng',h:'Dungeon',i:['@Shaper\'s Terrace']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s28:[
  {k:'grab',h:'Grab in Everlook',i:['Winterfall Firewater','Threat of the Winterfall','Are We There, Yeti?']},
  {k:'do',h:'Do, in this order',i:['@Winterfall Firewater','@Ka-Boom!','@The Ruins of Kel\'Theril','@Strange Sources']},

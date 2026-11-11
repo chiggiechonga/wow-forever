@@ -3,7 +3,7 @@ name: AH prices (hourly)
 # Pulls WoW Forever AH prices from AHledger every hour (needs the AHLEDGER_KEY secret).
 on:
   schedule:
-    - cron: '7 * * * *'    # every hour at :07
+    - cron: '23 * * * *'   # every hour at :23
   workflow_dispatch:        # "Run workflow" button for a manual update
 
 permissions:

@@ -62,7 +62,8 @@ s11:[
  {k:'grab',h:'Grab in Astranaar',i:['Raene\'s Cleansing (Raene Wolfrunner)','Fallen Sky Lake','Answered Questions']},
  {k:'do',h:'Do, in this order',i:['@Raene\'s Cleansing','@Fallen Sky Lake','@The Branch of Cenarius','@Gleaming Crescent','@Ruuzel']},
  {k:'dng',h:'Dungeon',i:['@Blackfathom Deeps']},
- {k:'skip',h:'Stay away',i:['@Horde camps']}],
+ {k:'skip',h:'Stay away',i:['@Horde camps']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s12:[
  {k:'do',h:'The Barrens (heading south)',i:['@Arcanic Systems Manual','@Ride to Ratchet','@Baxtan','@Cozy Sleeping Bag · step 2']},
  {k:'do',h:'Thousand Needles',i:['@Lonebrow\'s Journal','@Shimmering Flats','@Geomancy','@Packaged Pristine Pelts','@Goblin Sponsorship']},
@@ -74,7 +75,8 @@ s13:[
  {k:'town',h:'In Southshore',i:['@Set hearth','@Southshore quests']},
  {k:'do',h:'Alterac Mountains',i:['@Strahnbrad Mystery','@Defensive Magics 101']},
  {k:'dng',h:'Dungeon',i:['@City of Dalaran']},
- {k:'hold',h:'Hold for later',i:['@Hints of a New Plague']}],
+ {k:'hold',h:'Hold for later',i:['@Hints of a New Plague']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s14:[
  {k:'do',h:'North: Rebel Camp',i:['@Rebel Camp quests','@Kurzen\'s Compound','@Return to Corporal Kaleb']},
  {k:'do',h:'Middle: Nesingwary',i:['@Nesingwary\'s Expedition','@Basilisks']},
@@ -91,32 +93,38 @@ s15:[
 s16:[
  {k:'town',h:'In Ironforge',i:['@Train Lv 40','@Dual spec','@Archmage Antonidas']},
  {k:'town',h:'Get your mount',i:['@Riding + your first','@Bind your mount','@Re-import naowh']},
- {k:'do',h:'First ride: sleeping bag run',i:['@Cozy Sleeping Bag · step 5','@Cozy Sleeping Bag · step 6','@A Web of Lies','@Cozy Sleeping Bag · step 7']}],
+ {k:'do',h:'First ride: sleeping bag run',i:['@Cozy Sleeping Bag · step 5','@Cozy Sleeping Bag · step 6','@A Web of Lies','@Cozy Sleeping Bag · step 7']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s17:[
  {k:'town',h:'In Theramore',i:['@Set hearth','@The Missing Diplomat']},
  {k:'grab',h:'Grab in Theramore',i:['Mudrock Soup and Bugs','Captain Vimes','The Black Shield','Lieutenant Paval Reethe']},
  {k:'do',h:'Do, in this order',i:['@Theramore quests','@Jarl Needs a Blade','@Hungry!','@RwlRwlRwlRwl!','@Stinky\'s Escape']},
  {k:'hold',h:'Hold for later',i:['@I See Alcaz Island']},
- {k:'town',h:'Next time you\'re in a city',i:['@Train Lv 42']}],
+ {k:'town',h:'Next time you\'re in a city',i:['@Train Lv 42']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s18:[
  {k:'do',h:'The Riverglades',i:['@Get there','@Do every quest you see']},
- {k:'dng',h:'Dungeon',i:['@Krol\'Dok']}],
+ {k:'dng',h:'Dungeon',i:['@Krol\'Dok']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s19:[
  {k:'grab',h:'Grab in the Badlands camps',i:['A Dwarf and His Tools','Find Agmond','Barbecued Buzzard Wings','Pearl Diving']},
  {k:'do',h:'Do, in this order',i:['@A Dwarf and His Tools','@Barbecued Buzzard Wings','@Scrounging','@Pearl Diving','@Mummies']},
- {k:'dng',h:'Dungeon',i:['@Uldaman quests']}],
+ {k:'dng',h:'Dungeon',i:['@Uldaman quests']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s20:[
  {k:'town',h:'In Booty Bay',i:['@Set hearth']},
  {k:'grab',h:'Grab in Booty Bay',i:['The Bloodsail Buccaneers','Akiris by the Bundle','Keep An Eye Out','Stranglethorn Fever']},
  {k:'do',h:'Do, in this order',i:['@Nesingwary Mastery','@The Bloodsail Buccaneers','@Akiris by the Bundle','@Partial Mystical Notes','@Mai\'Zoth','@The Curse of the Tides','@Green Hills']},
- {k:'dng',h:'Next',i:['@Zul\'Farrak']}],
+ {k:'dng',h:'Next',i:['@Zul\'Farrak']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s21:[
  {k:'town',h:'In Gadgetzan',i:['@Set hearth']},
  {k:'grab',h:'Grab in Gadgetzan',i:['Wastewander Justice','Water Pouch Bounty','Southsea Shakedown','Gahz\'ridian','Tooga\'s Quest','The Dunemaul Compound','Divino-matic Rod (for Zul\'Farrak)']},
  {k:'do',h:'Tanaris, in this order',i:['@Wastewander Justice','@Legends of the Tidesages','@Gahz\'ridian']},
  {k:'dng',h:'Dungeon',i:['@Zul\'Farrak']},
  {k:'do',h:'Feralas',i:['@Feathermoon','@Rescue OOX-22']},
- {k:'dng',h:'Later',i:['@Dire Maul']}],
+ {k:'dng',h:'Later',i:['@Dire Maul']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ','@Legacy: ']}],
 s22:[
  {k:'town',h:'In Aerie Peak',i:['@Gryphon Master Talonaxe']},
  {k:'do',h:'Do, in this order',i:['@Troll Necklace Bounty','@The Altar of Zul','@Venomous Journeys','@Rescue OOX-09']},
@@ -133,7 +141,8 @@ s24:[
 s25:[
  {k:'grab',h:'Grab in Morgan\'s Vigil',i:['Extinguish the Firegut','Ogre Head On A Stick = Party','Gor\'tesh the Brute Lord','Lower Blackrock Spire quests']},
  {k:'do',h:'Do, in this order',i:['@Extinguish the Firegut','@Gor\'tesh','@Libram quests']},
- {k:'dng',h:'Blackrock Mountain',i:['@Magma or Lava','@Lower Blackrock Spire']}],
+ {k:'dng',h:'Blackrock Mountain',i:['@Magma or Lava','@Lower Blackrock Spire']},
+ {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s26:[
  {k:'grab',h:'Grab in Chillwind Camp',i:['The Scourge Cauldrons','Argent Dawn Commission']},
  {k:'do',h:'Do, in this order',i:['@The Scourge Cauldrons','@Undead Potatoes','@Locked Away','@A Matter of Time','@Glyphed Oaken Branch','@Argent Dawn Commission']},

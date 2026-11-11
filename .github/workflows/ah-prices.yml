@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '17 * * * *'   # every hour at :17
   workflow_dispatch:        # "Run workflow" button for a manual update
+    inputs:
+      probe:
+        description: 'Only probe API namespaces (debug)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -25,7 +30,9 @@ jobs:
         env:
           BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
-        run: python scripts/fetch_prices.py
+        run: |
+          if [ "${{ inputs.probe }}" = "true" ]; then python scripts/probe_namespaces.py; exit 0; fi
+          python scripts/fetch_prices.py
       - name: Save new prices
         run: |
           git config user.name "ah-prices bot"

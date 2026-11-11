@@ -1,7 +1,9 @@
 """Hourly AH price fetch for the Alchemy page (runs in GitHub Actions).
 
-Source: auctionhouse.fyi's public hourly snapshot (player scans; WoW Forever has no
-official auction API). No key needed. Market comes from data/ah-config.json.
+Source: AHledger price tables (player scans; WoW Forever has no official auction API),
+the same feed the AHledger sync app downloads. Needs repo secret AHLEDGER_KEY (your
+AHledger key id, ahl_...). Item names/vendor prices: auctionhouse.fyi's public item list.
+Market comes from data/ah-config.json. Prices from AHledger (ahledger.com).
 Writes:
   data/prices.json    latest price + amount listed for every potion and mat
   data/history.json   7 days of hourly prices (trends + "might jump")
@@ -12,6 +14,7 @@ import gzip, io, json, os, time, urllib.request
 ROOT = os.path.join(os.path.dirname(__file__), '..', 'data')
 P = lambda f: os.path.join(ROOT, f)
 API = 'https://auctionhouse.fyi/api/v1'
+AHL = 'https://api.ahledger.com'
 UA = 'wow-forever-guide (github.com/chiggiechonga/wow-forever)'
 VIALS = ('Empty Vial', 'Leaded Vial', 'Crystal Vial', 'Imbued Vial')
 
@@ -27,13 +30,51 @@ def save(f, data):
     json.dump(data, open(P(f), 'w'), ensure_ascii=False, separators=(',', ':'))
 
 
-def get(path):
-    req = urllib.request.Request(API + path, headers={'User-Agent': UA, 'Accept-Encoding': 'gzip'})
+def get(path, base=API, raw_text=False, headers=None):
+    h = {'User-Agent': UA, 'Accept-Encoding': 'gzip'}
+    h.update(headers or {})
+    req = urllib.request.Request(base + path, headers=h)
     with urllib.request.urlopen(req, timeout=120) as r:
         raw = r.read()
         if r.headers.get('Content-Encoding') == 'gzip' or raw[:2] == b'\x1f\x8b':
             raw = gzip.GzipFile(fileobj=io.BytesIO(raw)).read()
-        return json.loads(raw)
+        return raw.decode('utf-8') if raw_text else json.loads(raw)
+
+
+def num(x):
+    return int(x) if x not in ('', None) else None
+
+
+def ahledger_table(market):
+    """Download one market's AHL1 price table: item -> row dict."""
+    key = os.environ.get('AHLEDGER_KEY', '').strip()
+    if not key:
+        return None, None
+    hdr = {'x-ahl-sync-key': key}
+    markets = get('/v1/markets', base=AHL, headers=hdr)['markets']
+    ids = [m['id'] for m in markets if m.get('game') == 'forever']
+    import re
+    target = market.split('.')                      # forever.pvp.alliance.us
+    want = [m for m in ids if re.split(r'[./]', m) == target]
+    if not want:
+        print('Markets AHledger lists:', ids)
+        return None, None
+    mid = want[0]
+    text = get(f'/v1/pricetable/{mid}', base=AHL, raw_text=True, headers=hdr)
+    head, _, body = text.partition('|')
+    parts = text.split('|', 3)
+    if parts[0] != 'AHL1' or len(parts) < 4:
+        print('Unexpected price table format:', text[:200])
+        return None, None
+    updated, rows = int(parts[2] or 0), {}
+    for line in parts[3].replace(';', '\n').splitlines():
+        f = line.strip().split(':')
+        if len(f) < 8 or not f[0].isdigit():
+            continue
+        sold = num(f[8]) if len(f) > 8 else None
+        rows[int(f[0])] = {'median': num(f[1]), 'min': num(f[2]), 'qty': num(f[3]) or 0, 'm7': num(f[4]),
+                           'm30': num(f[5]), 'lo30': num(f[6]), 'hi30': num(f[7]), 'perDay': sold / 10 if sold else None}
+    return (mid, updated), rows
 
 
 def resolve_ids(alch):
@@ -64,23 +105,22 @@ def main():
     market = cfg.get('market', 'forever.pvp.alliance.us')
     alch = json.load(open(P('alchemy.json')))
     ids, vendor = resolve_ids(alch)
-    snap = get(f'/ah/{market}/snapshot')
-    if not snap.get('rows'):
-        print(f'{market}: no scans in this source yet, nothing saved.')
+    info, rows = ahledger_table(market)
+    if not rows:
+        print(f'{market}: no AHledger prices (missing AHLEDGER_KEY or no table), nothing saved.')
         return
-    rows = {r[0]: r for r in snap.get('rows', [])}          # [item, lowest price, quantity, scan ms]
-    days = {d[0]: d[1] for d in snap.get('days', [])}       # item -> [[day, close, qty], ...]
+    (mid, updated) = info
     items = {}
     for name, iid in ids.items():
         r = rows.get(iid) if iid else None
-        if not r or r[1] is None:
+        if not r or (r['median'] is None and r['min'] is None):
             items[name] = {'id': iid, 'qty': 0}
             continue
-        d = [[x[0], x[1], x[2]] for x in days.get(iid, []) if x[1] is not None]
-        items[name] = {'id': iid, 'min': r[1], 'mkt': r[1], 'qty': r[2], 'seen': r[3] // 1000, 'd': d[-8:]}
-    now = int(snap.get('at', time.time() * 1000) // 1000)
-    save('prices.json', {'updated': now, 'scan': (snap.get('scan') or {}).get('at') if isinstance(snap.get('scan'), dict) else snap.get('scan'),
-                         'market': market, 'realm': cfg.get('label', 'PvP Alliance US'), 'source': 'auctionhouse.fyi',
+        items[name] = {'id': iid, 'mkt': r['median'] or r['min'], 'min': r['min'], 'qty': r['qty'], 'm7': r['m7'],
+                       'm30': r['m30'], 'lo30': r['lo30'], 'hi30': r['hi30'], 'perDay': r['perDay']}
+    now = int(time.time()) // 3600 * 3600
+    save('prices.json', {'updated': updated or now, 'fetched': int(time.time()), 'market': mid,
+                         'realm': cfg.get('label', 'PvP Alliance US'), 'source': 'AHledger',
                          'vendor': vendor, 'items': items})
     hist = load('history.json', {'t': [], 'p': {}, 'q': {}})
     if hist['t'] and hist['t'][-1] == now:            # same hour already saved

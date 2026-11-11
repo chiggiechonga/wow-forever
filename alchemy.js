@@ -23,6 +23,7 @@ function syncedPrices(){ // fallback: prices from the ForeverGuide addon sync, i
 }
 const sell=n=>{const it=PR&&PR.items[n];return it?(it.mkt||it.min||null):null};
 const qtyOf=n=>{const it=PR&&PR.items[n];return it?it.qty:null};
+const perDay=n=>{const it=PR&&PR.items[n];return it&&it.perDay?Math.round(it.perDay):null};
 const vendor=n=>(PR&&PR.vendor&&PR.vendor[n])||VENDOR_FALLBACK[n]||null;
 const RECIPE={};
 // cheapest way to get a mat: vendor, AH, or crafting it yourself (e.g. Blackmouth Oil)
@@ -50,8 +51,14 @@ function spark(vals,col){vals=vals.filter(v=>v!=null);if(vals.length<2)return '<
  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="price trend"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`}
 // "might jump": supply drying up, steady climb, or a weekday spike
 function jumpSignals(n){
- if(!H||!H.t||H.t.length<24)return null;
- const p=hist(n),q=(H.q&&H.q[n])||[],why=[];
+ const it=PR&&PR.items[n],why=[];
+ if(it&&it.mkt){
+  if(it.m30&&it.mkt<it.m30*0.8)why.push(`${Math.round((1-it.mkt/it.m30)*100)}% under its 30-day median (${money(it.m30)})`);
+  if(it.perDay&&it.qty!=null&&it.perDay>=2&&it.qty<it.perDay*1.5)why.push(`Only ${it.qty} listed but ~${Math.round(it.perDay)} sell a day`);
+  if(it.m7&&it.m30&&it.m7>it.m30*1.1)why.push('Price trending up this week');
+ }
+ if(!H||!H.t||H.t.length<24)return why.length?{why,high:it.hi30||it.mkt}:null;
+ const p=hist(n),q=(H.q&&H.q[n])||[];
  const qs=q.filter(v=>v!=null),qNow=qs[qs.length-1],qAvg=qs.reduce((a,b)=>a+b,0)/(qs.length||1);
  if(qs.length>=24&&qAvg>=5&&qNow<qAvg*0.5)why.push(`Only ${qNow} on the AH (usually ~${Math.round(qAvg)})`);
  const days=[];for(let i=p.length;i>0;i-=24){const d=p.slice(Math.max(0,i-24),i).filter(v=>v!=null).sort((a,b)=>a-b);if(d.length)days.unshift(d[Math.floor(d.length/2)])}
@@ -60,7 +67,7 @@ function jumpSignals(n){
   const avg=a=>a.reduce((x,y)=>x+y,0)/a.length,all=avg(p.filter(v=>v!=null));const tmr=(new Date().getDay()+1)%7;
   if(by[tmr]&&avg(by[tmr])>all*1.1)why.push(`Usually spikes on ${['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'][tmr]}`)}
  if(!why.length)return null;
- const high=Math.max(...p.filter(v=>v!=null));return {why,high};
+ const high=Math.max(it&&it.hi30||0,...p.filter(v=>v!=null));return {why,high};
 }
 
 /* ---------- 1. top sellers ---------- */
@@ -75,7 +82,7 @@ function renderTop(){
   ${spark(hist(x.r.n).slice(-24),col)}</div>`}).join('');
  const jumps=list.map(x=>({x,j:jumpSignals(x.r.n)})).filter(o=>o.j).slice(0,3);
  const jc=jumps.map(({x,j})=>`<div class="card jump"><div class="mrow"><span style="font-size:15.5px;font-weight:600">${esc(x.r.n)}</span><span class="badge lock">MIGHT JUMP</span></div>
-  <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span class="big" style="font-size:22px">${money(x.s)}</span>${j.high>x.s*1.03?`<span class="soft" style="font-size:13px">7-day high</span><span class="up" style="font:700 18px 'Space Grotesk',Inter,sans-serif">${money(j.high)}</span>`:''}</div>
+  <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span class="big" style="font-size:22px">${money(x.s)}</span>${j.high>x.s*1.03?`<span class="soft" style="font-size:13px">recent high</span><span class="up" style="font:700 18px 'Space Grotesk',Inter,sans-serif">${money(j.high)}</span>`:''}</div>
   ${spark(hist(x.r.n),'#ffb26b')}<div class="lbl" style="color:var(--soft)">WHY</div><ul style="margin:0;padding-left:18px;font-size:13px">${j.why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
   <div class="note" style="margin-top:2px">Tip: craft or buy now, list when it peaks.</div></div>`).join('');
  const enough=H&&H.t&&H.t.length>=24;
@@ -98,7 +105,7 @@ function renderProfit(){
  rows.sort((a,b)=>{const ka=key(a),kb=key(b);return (ka>kb?1:ka<kb?-1:0)*S.dir});
  const th=(k,t,n)=>`<th class="${n?'n':''}" data-sort="${k}">${t}${S.sort===k?(S.dir<0?' ▾':' ▴'):''}</th>`;
  const body=rows.map(x=>{const r=x.r,open=S.open===r.n,pc=x.profit==null?'soft':x.profit>0?'up':'down';
-  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${canMake(r)?'<span class="badge ok">CAN MAKE</span>':`<span class="badge lock">NEEDS ${r.sk}</span>`}</div><div class="psub">Alchemy ${r.sk} · ${r.c}${r.pvp?' · PvP':''}</div></td>
+  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${canMake(r)?'<span class="badge ok">CAN MAKE</span>':`<span class="badge lock">NEEDS ${r.sk}</span>`}</div><div class="psub">Alchemy ${r.sk} · ${r.c}${r.pvp?' · PvP':''}${perDay(r.n)?` · ~${perDay(r.n)} sell a day`:''}</div></td>
   <td class="n">${money(x.s)}</td><td class="n soft">${money(x.cost)}</td><td class="n ${pc}" style="font-weight:700">${money(x.profit)}</td><td class="n ${pc}">${x.margin!=null?x.margin.toFixed(0)+'%':'—'}</td><td class="n soft">${x.qty!=null?x.qty+' on AH':'—'}</td></tr>`;
   if(open){const mats=x.parts.map(p=>`<div class="mrow"><span>${p.q}× ${esc(p.n)}</span><span class="soft">${p.how}${p.c!=null?' · '+money(p.c)+' each':''}</span><span>${p.c!=null?money(p.c*p.q):'—'}</span></div>`).join('');
    h+=`<tr class="open"><td colspan="6" style="padding:0 10px 12px"><div class="detail"><div><div class="lbl">MATS (CHEAPEST WAY)</div>${mats}</div>
@@ -180,7 +187,7 @@ function header(){
   w.innerHTML='<b>Waiting for the first hourly price update.</b> Prices fill in every hour on their own. Recipes and mats already work below.';return}
  const age=(Date.now()/1000-PR.updated)/60;
  f.innerHTML=PR.synced?`<span class="dot ${age>130?'old':''}"></span>Prices from your addon sync ${ago(PR.updated)}`
-  :`<span class="dot ${age>130?'old':''}"></span>Updated ${ago(PR.updated)} · every hour · ${esc(PR.realm||'')} · <a href="https://auctionhouse.fyi/" target="_blank" rel="noopener">Prices from auctionhouse.fyi</a>`;
+  :`<span class="dot ${age>130?'old':''}"></span>Updated ${ago(PR.updated)} · every hour · ${esc(PR.realm||'')} · <a href="https://ahledger.com/" target="_blank" rel="noopener">Prices from AHledger</a>`;
  w.hidden=!PR.synced;if(PR.synced)w.innerHTML='<b>Using prices from your last addon sync</b> until the hourly prices are set up.';
 }
 function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop()}

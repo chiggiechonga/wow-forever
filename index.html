@@ -369,6 +369,19 @@ th{color:var(--gold);font-size:12px;letter-spacing:.4px}
     <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn" id="codeGo">Sync</button><button class="btn ghost" id="codeClear">Forget my synced data</button></div>
     <div class="msg" id="codeMsg"></div>
 
+    <div class="sec">SHARE MY PROGRESS <small>so anyone opening the site sees where you're at</small></div>
+    <p class="sub" id="pubState"></p>
+    <details id="pubSetup"><summary style="cursor:pointer">Turn on auto-share in this browser (one time)</summary>
+     <ol style="font-size:14px;line-height:1.7;margin:8px 0">
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → new fine-grained token</a>.</li>
+      <li>Repository access: <b>Only select repositories → wow-forever</b>.</li>
+      <li>Permissions → Repository → <b>Contents: Read and write</b>. Generate, copy it.</li>
+      <li>Paste it below. It stays in this browser only, never in the site.</li>
+     </ol>
+     <div style="display:flex;gap:8px;flex-wrap:wrap"><input id="pubTok" type="password" placeholder="github_pat_…" style="flex:1;min-width:220px"><button class="btn" id="pubSave">Turn on</button><button class="btn ghost" id="pubOff">Turn off</button></div>
+    </details>
+    <div class="msg" id="pubMsg"></div>
+
     <div class="sec">INSTALL THE ADDON <small>one time</small></div>
     <p><a class="btn dl" href="addon/ForeverGuide.zip" download>⬇ Download ForeverGuide.zip</a></p>
     <div class="steps">
@@ -532,5 +545,5 @@ const CFG={ovKey:'dwarfpriest-2160-ov',cls:'PRIEST',otherPage:null,alchemy:150,d
 </script>
 <script src="questnpc.js?v=1794357473"></script>
 <script src="plan.js?v=1794357473"></script>
-<script src="helper.js?v=1794357473"></script>
+<script src="helper.js?v=1794379926"></script>
 </body></html>

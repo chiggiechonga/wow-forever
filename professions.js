@@ -222,9 +222,10 @@ function renderAll(){header();renderTop();renderProfit();renderRaw();renderShop(
 function showTab(t){S.tab=t;store(K('tab'),t);document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==t)}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
 const getJSON=u=>fetch(u+'?v='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all([getJSON(P.file),getJSON('data/prices.json'),getJSON('data/history.json')]).then(([a,p,h])=>{
+Promise.all([getJSON(P.file),getJSON('data/prices.json'),getJSON('data/history.json'),getJSON('data/status.json')]).then(([a,p,h,st])=>{
  A=a;A.raw=A.raw||A.herbs||[];A.recipes.forEach(r=>{RECIPE[r.n]=r;if(!PRODUCT[O(r)])PRODUCT[O(r)]=r});PR=p||syncedPrices();H=h;
  if(S.skill==null){const sync=[...Array(localStorage.length).keys()].map(i=>localStorage.key(i)).filter(k=>/^fg-sync-/.test(k)).map(k=>load(k,null)).filter(Boolean);
+  if(!sync.length&&st&&st.sync)sync.push(st.sync); // nothing synced here: use the shared progress
   const al=sync.flatMap(d=>d.prof||[]).find(x=>new RegExp(P.name,'i').test(x.n));S.skill=al?al.r:(PID==='alchemy'?150:1)}
  const sk=$('#skill');sk.value=S.skill;sk.onchange=()=>{S.skill=+sk.value||1;store(K('skill'),S.skill);renderAll()};
  renderAll();showTab(S.tab);

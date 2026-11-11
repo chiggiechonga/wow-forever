@@ -5,7 +5,7 @@
 /* ---------- storage ---------- */
 const SKEY='fg-sync-'+String(CFG.cls||'any').toLowerCase(), TKEY=CFG.ovKey+'-trained', PKEY='fg-prices-v1';
 const load=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
-const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){};if(typeof queuePublish==='function')queuePublish(k)};
 let ov=load(CFG.ovKey,{});   // your own taps: key -> true/false
 let C=load(SKEY,null);       // last synced character for THIS guide's class
 if(!C){const old=load('fg-sync-v1',null);if(old&&(!CFG.cls||old.cls===CFG.cls)){C=old;store(SKEY,C)}} // carry over the old shared sync
@@ -321,6 +321,7 @@ $('codeGo').onclick=()=>{
    m.innerHTML=`That code is from <b>${esc(d.n)}</b>, your ${esc(cap(d.cls))}. This is the ${esc(cap(CFG.cls))} guide, so it wasn't synced here. It's saved for your ${esc(cap(d.cls))} guide${CFG.otherPage?` · <a href="${CFG.otherPage}">open it</a>`:''}.`;
    return;
   }
+  if(viewing){viewing=false;ov=load(CFG.ovKey,{});trainedLv=load(TKEY,0);pubNote()}
   C=d;store(SKEY,C);cur=null;$('codeIn').value='';
   m.className='msg ok';m.textContent=`Synced ${d.n}, Lv ${d.lv}, in ${d.zone}. Taking you to your next steps…`;
   render();setTimeout(()=>{showTab('walk');m.textContent=''},900);
@@ -330,4 +331,43 @@ $('codeClear').onclick=()=>{C=null;try{localStorage.removeItem(SKEY)}catch(e){};
 if($('onlyDiff'))$('onlyDiff').onchange=render;
 if($('qsearch')){$('qsearch').oninput=e=>{Q=e.target.value;showTab('walk');detail()};$('qsearch').onkeydown=e=>{if(e.key==='Escape'){Q='';e.target.value='';detail()}}}
 $('reset').onclick=()=>{ov={};store(CFG.ovKey,ov);trainedLv=0;store(TKEY,0);cur=null;render()};
-render();
+
+/* ---------- shared progress ----------
+   Your browser (with a GitHub token saved) writes data/status.json every time you sync or tick
+   something. Everyone else, with no sync of their own, sees that published progress. */
+const REPO='chiggiechonga/wow-forever',SPATH='data/status.json',TOKK='fg-owner-token';
+const token=()=>{try{return localStorage.getItem(TOKK)||''}catch(e){return ''}};
+let viewing=false,pubTimer=null,pubSha=null;
+const gh=(path,opt={})=>fetch('https://api.github.com/repos/'+REPO+'/contents/'+path,{...opt,headers:{Accept:'application/vnd.github+json',...(opt.headers||{})}});
+function pubNote(){const el=$('pubState');if(!el)return;
+ el.innerHTML=token()?'✅ Auto-share is <b>on</b> in this browser: every sync and check-off is published for everyone.'
+  :viewing?'👀 You\'re viewing the shared progress. Syncing here would switch this browser to your own.':'Auto-share is off in this browser.'}
+function queuePublish(k){if(!token()||![SKEY,CFG.ovKey,TKEY].includes(k))return;clearTimeout(pubTimer);pubTimer=setTimeout(publish,2500)}
+async function publish(){const m=$('pubMsg');
+ const body={updated:new Date().toISOString(),cls:CFG.cls,sync:C,ov,trained:trainedLv};
+ const json=JSON.stringify(body);const content=btoa(String.fromCharCode(...new TextEncoder().encode(json)));
+ const auth={Authorization:'Bearer '+token()};
+ for(let tries=0;tries<2;tries++){
+  try{if(!pubSha){const r=await gh(SPATH+'?ref=main',{headers:auth});pubSha=r.ok?(await r.json()).sha:null}
+   const r=await gh(SPATH,{method:'PUT',headers:{...auth,'Content-Type':'application/json'},body:JSON.stringify({message:'Update shared progress',content,branch:'main',...(pubSha?{sha:pubSha}:{})})});
+   if(r.ok){pubSha=(await r.json()).content.sha;if(m){m.className='msg ok';m.textContent='Shared ✓ '+new Date().toLocaleTimeString()}return}
+   if(r.status===409||r.status===422){pubSha=null;continue}
+   if(r.status===401||r.status===403)throw new Error('GitHub said no. Check the token has Contents: Read and write on wow-forever.');
+   throw new Error('Couldn\'t share (GitHub '+r.status+').');
+  }catch(e){if(m){m.className='msg err';m.textContent=e.message}return}}
+}
+async function loadShared(){
+ if(token()||C)return; // your own browser: use your own data
+ let d=null;
+ try{const r=await gh(SPATH+'?ref=main',{headers:{Accept:'application/vnd.github.raw'}});if(r.ok)d=await r.json()}catch(e){}
+ if(!d)try{const r=await fetch(SPATH+'?t='+Date.now());if(r.ok)d=await r.json()}catch(e){}
+ if(!d||!d.sync||(CFG.cls&&d.cls&&d.cls!==CFG.cls))return;
+ viewing=true;C=d.sync;ov=d.ov||{};trainedLv=d.trained||0;cur=null;render();pubNote();
+}
+if($('pubSave'))$('pubSave').onclick=async()=>{const t=$('pubTok').value.trim(),m=$('pubMsg');if(!t)return;
+ try{localStorage.setItem(TOKK,t)}catch(e){}$('pubTok').value='';
+ if(viewing){C=load(SKEY,null);ov=load(CFG.ovKey,{});trainedLv=load(TKEY,0);viewing=false;cur=null;render()}
+ pubNote();m.className='msg ok';m.textContent='Turned on. Sharing now…';
+ if(C)publish();else m.textContent='Turned on. Sync your addon code above and it\'ll share right away.'};
+if($('pubOff'))$('pubOff').onclick=()=>{try{localStorage.removeItem(TOKK)}catch(e){}pubNote();const m=$('pubMsg');m.className='msg ok';m.textContent='Auto-share is off in this browser. The last shared progress stays up.'};
+render();pubNote();loadShared();

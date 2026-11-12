@@ -137,7 +137,7 @@ function renderProfit(){
    h+=`<tr class="open"><td colspan="6" style="padding:0 10px 12px"><div class="detail"><div><div class="lbl">MATS (CHEAPEST WAY)</div>${mats}</div>
    <div><div class="lbl">THE MATH</div><div style="font-size:13px;line-height:1.7">Sells for <b>${money(x.s)}</b> − 5% AH cut = <b>${money(x.s!=null?x.s*AH_CUT:null)}</b><br>Mats cost <b>${money(x.cost)}</b><br>Profit each: <b class="${pc}">${money(x.profit)}</b>${x.profit!=null?` · a stack of 5 makes <b class="${pc}">${money(x.profit*5)}</b>`:''}</div>
    ${(()=>{if(!x.parts.some(p=>PRODUCT[p.n]))return '';const b=calcBoth(r);if(b.buy.profit==null&&b.make.profit==null)return '';
-   return `<div class="note" style="margin-top:6px">Buying the components: <b class="${(b.buy.profit||0)>=0?'up':'dn'}">${money(b.buy.profit)}</b> each · making them yourself: <b class="${(b.make.profit||0)>=0?'up':'dn'}">${money(b.make.profit)}</b> each</div>`})()}
+   return `<div class="note" style="margin-top:6px">Buying the components: <b class="${(b.buy.profit||0)>=0?'up':'down'}">${money(b.buy.profit)}</b> each · making them yourself: <b class="${(b.make.profit||0)>=0?'up':'down'}">${money(b.make.profit)}</b> each</div>`})()}
    ${r.y>1?`<div class="note">Makes ${r.y} per craft: the numbers are for one craft.</div>`:''}
    <div class="note">Recipe: ${esc(r.src||'unknown')}</div></div></div></td></tr>`}
   return h}).join('');
@@ -204,6 +204,18 @@ const BUFFFOOD=[
  ["Sage's Tea",'+44 healing','heal',44],['Sunny Tea','+33 healing','heal',33],['Lobster Stew','+28 healing','heal',28],['Triage Tea','+22 healing','heal',22],
  ['Root Tea','+11 healing','heal',11],['Royal Tea','+7 healing','heal',7],['Peace Tea','+2 healing','heal',2]];
 const VENDOR_ONLY=n=>vendor(n)!=null;
+// where an Alliance player learns each recipe (QuestieDB vendor spawns; newer Forever recipes from wow.gg / wow-professions)
+const FOODSRC={
+ 'Baked Salmon':'Vendor: Vivianna, Feathermoon (Feralas) 31.3, 43.5','Lobster Stew':'Vendor: Vivianna, Feathermoon (Feralas) 31.3, 43.5',
+ 'Spotted Yellowtail':'Vendor: Gikkix, Steamwheedle Port (Tanaris) 66.6, 22.1','Nightfin Soup':'Vendor: Gikkix, Steamwheedle Port (Tanaris) 66.6, 22.1',
+ 'Sagefish Delight':'Vendor: Gloria Femmel, Lakeshire (Redridge) 21.6, 43.5 · or Kalsey Sanden, Three Corners (Redridge)',
+ 'Smoked Sagefish':'Vendor: Gloria Femmel, Lakeshire (Redridge) 21.6, 43.5 · or Erika Tate, Stormwind 78.5, 52.9',
+ 'Rainbow Fin Albacore':'Vendor: Catherine Leland, Stormwind 55.1, 69.8 · or Kriggon Talsone, Westfall 36.2, 90.2',
+ 'Briny Seafood Stew':'Cooking trainer (Stormwind: Stephen Ryback)','Sunny Tea':'Cooking trainer (Stormwind: Stephen Ryback)',
+ "Sage's Tea":'Not confirmed yet: likely the cooking trainer, like Sunny Tea','Triage Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
+ 'Root Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea','Royal Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
+ 'Peace Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
+ 'Sunrise Omelette':'Not confirmed in Forever (in Season of Discovery it was a quest reward in the Scarlet Enclave)'};
 function foodCost(r,farm){let c=0,ok=true;const farmList=[];
  r.m.forEach(([q,n])=>{if(farm&&!VENDOR_ONLY(n)){farmList.push(q+'× '+n);return}
   const v=vendor(n),a=sell(n),one=v!=null?v:a;if(one==null)ok=false;else c+=q*one});
@@ -213,15 +225,17 @@ function renderFood(){
  const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing']];
  const rows=g=>BUFFFOOD.filter(f=>f[2]===g).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
   const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
-  return `<tr><td style="font-size:15px">${esc(n)}<div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}${trained(r)?'':' · '+esc(r.src)}</div></td>
+  const pr=ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null;const pc=pr==null?'':pr>=0?'up':'down';
+  return `<tr><td style="font-size:15px"><span class="${pc}" style="font-weight:700">${esc(n)}</span><div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}</div><div class="psub">📍 ${esc(FOODSRC[n]||r.src)}</div>
+   ${pr!=null?`<div class="psub">Buy mats, cook &amp; sell: <b class="${pc}">${pr>=0?'+':''}${money(pr)}</b> each</div>`:''}</td>
    <td>${esc(buff)}</td>
    <td class="n">${money(ah)}${qtyOf(n)!=null?`<div class="psub">${qtyOf(n)} on AH</div>`:''}</td>
-   <td class="n">${money(buy.c)}</td>
+   <td class="n ${pc}">${money(buy.c)}</td>
    <td class="n" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
  el.innerHTML=`<h2>Caster food: spell damage &amp; healing</h2>
  <p class="sub">Every 15-minute Well Fed buff with spell damage or healing (any level), strongest first. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
  ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
- <div class="note">One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
+ <div class="note">Green = you make money buying the mats, cooking and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
 }
 
 /* ---------- 4. shopping list ---------- */

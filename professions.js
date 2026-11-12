@@ -211,11 +211,14 @@ const FOODSRC={
  'Sagefish Delight':'Vendor: Gloria Femmel, Lakeshire (Redridge) 21.6, 43.5 · or Kalsey Sanden, Three Corners (Redridge)',
  'Smoked Sagefish':'Vendor: Gloria Femmel, Lakeshire (Redridge) 21.6, 43.5 · or Erika Tate, Stormwind 78.5, 52.9',
  'Rainbow Fin Albacore':'Vendor: Catherine Leland, Stormwind 55.1, 69.8 · or Kriggon Talsone, Westfall 36.2, 90.2',
- 'Briny Seafood Stew':'Cooking trainer (Stormwind: Stephen Ryback)','Sunny Tea':'Cooking trainer (Stormwind: Stephen Ryback)',
- "Sage's Tea":'Not confirmed yet: likely the cooking trainer, like Sunny Tea','Triage Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
- 'Root Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea','Royal Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
- 'Peace Tea':'Not confirmed yet: likely the cooking trainer, like Sunny Tea',
- 'Sunrise Omelette':'Not confirmed in Forever (in Season of Discovery it was a quest reward in the Scarlet Enclave)'};
+ 'Briny Seafood Stew':'Cooking trainer at 200 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53)',
+ 'Sunny Tea':'Cooking trainer at 200 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53)',
+ 'Triage Tea':'Cooking trainer at 180 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53)',
+ "Sage's Tea":'Cooking trainer at 250 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53)',
+ 'Root Tea':'Cooking trainer at 125 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53) · one site lists a drop from Torn Fin Oracles, Hillsbrad ~42, 69',
+ 'Royal Tea':'Drop: Windshear Geomancer, Stonetalon Mountains ~74, 59 (very rare, ~0.05%) · one site lists it at Kendor Kabonka, Stormwind 77.5, 52.7: check him first',
+ 'Peace Tea':'Drop: Frostmane Seer, Dun Morogh (troll camps ~42, 39)',
+ 'Sunrise Omelette':'No Forever source found yet, and none listed on the AH'};
 function foodCost(r,farm){let c=0,ok=true;const farmList=[];
  r.m.forEach(([q,n])=>{if(farm&&!VENDOR_ONLY(n)){farmList.push(q+'× '+n);return}
   const v=vendor(n),a=sell(n),one=v!=null?v:a;if(one==null)ok=false;else c+=q*one});
@@ -226,16 +229,17 @@ function renderFood(){
  const rows=g=>BUFFFOOD.filter(f=>f[2]===g).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
   const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
   const pr=ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null;const pc=pr==null?'':pr>=0?'up':'down';
-  return `<tr><td style="font-size:15px"><span class="${pc}" style="font-weight:700">${esc(n)}</span><div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}</div><div class="psub">📍 ${esc(FOODSRC[n]||r.src)}</div>
+  const pf=ah!=null&&farm.c!=null?ah*AH_CUT-farm.c:null;const fc=pf==null?'':pf>=0?'up':'down';
+  return `<tr><td style="font-size:15px"><span style="font-weight:700">${esc(n)}</span><div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}</div><div class="psub">📍 ${esc(FOODSRC[n]||r.src)}</div>
    ${pr!=null?`<div class="psub">Buy mats, cook &amp; sell: <b class="${pc}">${pr>=0?'+':''}${money(pr)}</b> each</div>`:''}</td>
    <td>${esc(buff)}</td>
    <td class="n">${money(ah)}${qtyOf(n)!=null?`<div class="psub">${qtyOf(n)} on AH</div>`:''}</td>
    <td class="n ${pc}">${money(buy.c)}</td>
-   <td class="n" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
+   <td class="n ${fc}" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
  el.innerHTML=`<h2>Caster food: spell damage &amp; healing</h2>
  <p class="sub">Every 15-minute Well Fed buff with spell damage or healing (any level), strongest first. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
  ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
- <div class="note">Green = you make money buying the mats, cooking and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
+ <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
 }
 
 /* ---------- 4. shopping list ---------- */

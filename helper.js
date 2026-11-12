@@ -127,7 +127,7 @@ function sidebar(){
  document.querySelectorAll('.srow[data-s]').forEach(b=>b.onclick=()=>{cur=b.dataset.s;render();if(innerWidth<860)$('detail').scrollIntoView({behavior:'smooth'})});
 }
 let Q='';
-const VERDICT={do:['TAKE IT','v-take'],dng:['TAKE IT · DUNGEON','v-take'],turn:['TURN IN','v-take'],hold:['GRAB + HOLD','v-hold'],train:['DO IT','v-take'],hearth:['DO IT','v-take'],book:['GRAB IT','v-take'],bag:['DO IT','v-take'],skip:['SKIP','v-skip']};
+const VERDICT={do:['TAKE IT','v-take'],dng:['TAKE IT · DUNGEON','v-take'],turn:['TURN IN','v-take'],hold:['GRAB + HOLD','v-hold'],train:['DO IT','v-take'],hearth:['DO IT','v-take'],book:['GRAB IT','v-take'],bag:['DO IT','v-take'],skip:['SKIP','v-skip'],mage:['TELL YOUR MAGE FRIEND','v-take']};
 function searchView(){
  const q=norm(Q);const hits=[];
  STOPS.forEach((s,si)=>{s.q.forEach((x,i)=>{if(norm(x[1]).includes(q)||norm(x[2]).includes(q))hits.push({s,si,i,x})});
@@ -146,7 +146,7 @@ function searchView(){
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
-  h+=`<div class="q ${t==='bag'?'bag':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">💡 ${esc(tip)}</div>`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
+  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">💡 ${esc(tip)}</div>`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
 
 
@@ -187,7 +187,7 @@ function lineNpc(s,kind,text){
 }
 
 // grouped view (plan.js): town → grab → do → turn in → hold
-const PICON={town:'🏠',grab:'📥',do:'⚔️',turn:'↩',hold:'🎒',dng:'◆',skip:'×'};
+const PICON={town:'🏠',grab:'📥',do:'⚔️',turn:'↩',hold:'🎒',dng:'◆',skip:'×',mage:'✦'};
 const lineKey=(s,si,i)=>`${s.id}-L${si}-${i}`;
 function lineAuto(kind,text){if(!C)return false;const n=norm(String(text).split(' (')[0]);if(!n)return false;
  if(kind==='grab')return IX.log.has(n)||IX.done.has(n);if(kind==='turn')return IX.done.has(n);return false}

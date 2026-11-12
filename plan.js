@@ -82,12 +82,13 @@ s13:[
  {k:'turn',h:"Back in Booty Bay",i:['@Some Assembly Required','@Favor for Krazek','@Water Elementals','@Magical Analysis','@Excelsior']},
  {k:'do',h:"Heading north to leave STV",i:['@Return to Corporal Kaleb','@Tiger Mastery, part 4','@Panther Mastery, part 3','@Special Forces',"@Kurzen's Mystery"]}],
 s14:[
- {k:'town',h:"Stormwind errands",i:['@The Missing Diplomat, part 1','@The Missing Diplomat, part 2','@The Missing Diplomat, part 3','@The Missing Diplomat, part 4','@Southshore',"@Malin's Request, part 1",'@Brother Anton','@Tinkmaster Overspark','@Turn in library books','@Bewitchments and Glamours (optional)','@A Green Sample','@Power Overwhelming']},
+ {k:'town',h:"Stormwind errands",i:['@The Missing Diplomat, part 1','@The Missing Diplomat, part 2','@The Missing Diplomat, part 3','@The Missing Diplomat, part 4','@Southshore',"@Malin's Request, part 1",'@Brother Anton','@Tinkmaster Overspark','@Turn in library books','@Bewitchments and Glamours (optional)','@A Green Sample','@Power Overwhelming','@Mage: Journey to the Marsh']},
  {k:'do',h:"Quick Duskwood detour (fly to Darkshire)",i:['@The Missing Diplomat, part 5','@The Missing Diplomat, part 6']},
  {k:'town',h:"Back in Stormwind, then the tram to Ironforge",i:['@The Missing Diplomat, part 7','@The Missing Diplomat, part 8','@The Missing Diplomat, part 9','@The Missing Diplomat, part 10',"@Reclaimers' Business in Desolace",'@Mythology of the Titans','@Hand in: Knowledge in the Deeps (if you took it)']},
  {k:'dng',h:"Gnomeregan: grab in Ironforge + Dun Morogh, then run it (entrance 24, 39)",i:["@Save Techbot's Brain!",'@Essential Artificials','@Data Rescue','@The Grand Betrayal','@Gyrodrillmatic Excavationators','@The Day After','@Gnogaine','@The Only Cure is More Green Glow','@Legacy: Gnomeregan']},
  {k:'town',h:"Menethil Harbor",i:['@The Missing Diplomat, part 11','@The Missing Diplomat, part 12','@The Missing Diplomat, part 13']},
- {k:'do',h:"Theramore (boat from Menethil)",i:['@Boat Menethil → Theramore','@The Missing Diplomat, part 14','@The Missing Diplomat, part 15','@The Missing Diplomat, part 16','@The Missing Diplomat, part 17']},
+ {k:'do',h:"Theramore (boat from Menethil)",i:['@Boat Menethil → Theramore','@The Missing Diplomat, part 14','@The Missing Diplomat, part 15','@The Missing Diplomat, part 16','@The Missing Diplomat, part 17','@Mage: Hidden Secrets + Items of Power']},
+ {k:'mage',h:"Mage friend detour: Shimmering Flats (on the way west)",i:['@Mage: Get the Scoop','@Mage: Rituals of Power (hold)']},
  {k:'do',h:"Stonetalon on the way",i:['@Cozy Sleeping Bag · step 3','@Cozy Sleeping Bag · step 4','@Stonetalon Peak flight path','@Fury of the Land']},
  {k:'town',h:"Nijel's Point (66, 10)",i:['@Set hearth + flight path','@Centaur Bounty','@Reagents for Reclaimers Inc., part 1','@Reagents for Reclaimers Inc., part 2',"@Vahlarriel's Search, part 1","@Vahlarriel's Search, part 2","@Vahlarriel's Search, part 3",'@Search for Tyranis','@Return to Vahlarriel','@The Karnitol Shipwreck, part 1','@The Karnitol Shipwreck, part 2','@The Karnitol Shipwreck, part 3','@The Karnitol Shipwreck, part 4','@Down the Scarlet Path, part 1','@Down the Scarlet Path, part 2','@Reagents for Reclaimers Inc., part 3','@Lost Shipping Crate [Desolace]']},
  {k:'do',h:"West Desolace",i:['@Sceptre of Light','@Book of the Ancients',"@Claim Rackmore's Treasure!"]},
@@ -113,10 +114,10 @@ s16:[
  {k:'town',h:'Get your mount',i:['@Riding + your first','@Bind your mount','@Re-import naowh']},
  {k:'town',h:'Tram to Stormwind',i:['@Turn in library books']},
  {k:'grab',h:"Grab for later, while you're in the cities",i:['@Ironband Wants You!','@The Lost Dwarves','@Reclaimed Treasures','@Morgan Stern','@In Search of The Temple']},
- {k:'dng',h:"Scarlet Monastery: first long ride on your new mount",i:['@Ride to the Scarlet Monastery','@Scarlet Monastery (all wings)','@Hand in: In the Name of the Light','@Hand in: Mythology of the Titans']}],
+ {k:'dng',h:"Scarlet Monastery: first long ride on your new mount",i:['@Ride to the Scarlet Monastery','@Scarlet Monastery (all wings)','@Mage: Rituals of Power (the book)','@Hand in: In the Name of the Light','@Hand in: Mythology of the Titans']}],
 s17:[
  {k:'town',h:"Theramore",i:['@Set hearth','@They Call Him Smiling Jim','@Mudrock Soup and Bugs','@... and Bugs','@Shadowshard Fragments']},
- {k:'do',h:"Hold for later dungeons",i:['@Tiara of the Deep']},
+ {k:'do',h:"Hold for later dungeons",i:['@Tiara of the Deep',"@Mage: Mage's Wand"]},
  {k:'do',h:"Swamplight Manor + north-west",i:['@The Orc Report','@Captain Vimes','@Soothing Spices','@Jarl Needs Eyes','@Jarl Needs a Blade','@RwlRwlRwlRwl!',"@Stinky's Escape"]},
  {k:'do',h:"West Dustwallow (the Black Shield)",i:['@Suspicious Hoofprints','@Lieutenant Paval Reethe, part 1','@The Black Shield, part 1','@The Black Shield, part 2','@The Black Shield, part 3','@Lieutenant Paval Reethe, part 2',"@Daelin's Men",'@The Deserters, part 1','@The Deserters, part 2']},
  {k:'do',h:"South road",i:['@Hungry!']},
@@ -216,6 +217,6 @@ d3:[
 d4:[
  {k:'dng',h:"Blackrock Mountain",i:['@Legacy: Blackrock Depths','@Legacy: Lower Blackrock Spire','@Legacy: Upper Blackrock Spire']},
  {k:'dng',h:"Kalimdor",i:['@Legacy: Blackmaw Hold',"@Legacy: The Shaper's Terrace"]},
- {k:'dng',h:"Dire Maul (Feralas): grab these first",i:["@Pusillin and the Elder Azj'Tordin",'@Elven Legends','@Legacy: Dire Maul East','@Legacy: Dire Maul West','@Legacy: Dire Maul North']},
+ {k:'dng',h:"Dire Maul (Feralas): grab these first",i:["@Pusillin and the Elder Azj'Tordin",'@Elven Legends','@Legacy: Dire Maul East','@Legacy: Dire Maul West','@Legacy: Dire Maul North','@Mage: Arcane Refreshment']},
  {k:'dng',h:"Plaguelands",i:['@Legacy: Scholomance','@Legacy: Stratholme (Live)','@Legacy: Stratholme (Dead)']}],
 };

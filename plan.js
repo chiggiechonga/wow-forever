@@ -84,7 +84,7 @@ s13:[
 s14:[
  {k:'town',h:"Stormwind errands",i:['@The Missing Diplomat, part 1','@The Missing Diplomat, part 2','@The Missing Diplomat, part 3','@The Missing Diplomat, part 4','@Southshore',"@Malin's Request, part 1",'@Brother Anton','@Tinkmaster Overspark','@Turn in library books','@Bewitchments and Glamours (optional)','@A Green Sample','@Power Overwhelming','@Mage: Journey to the Marsh']},
  {k:'do',h:"Quick Duskwood detour (fly to Darkshire)",i:['@The Missing Diplomat, part 5','@The Missing Diplomat, part 6']},
- {k:'town',h:"Back in Stormwind, then the tram to Ironforge",i:['@The Missing Diplomat, part 7','@The Missing Diplomat, part 8','@The Missing Diplomat, part 9','@The Missing Diplomat, part 10',"@Reclaimers' Business in Desolace",'@Mythology of the Titans','@Hand in: Knowledge in the Deeps (if you took it)']},
+ {k:'town',h:"Back in Stormwind, then the tram to Ironforge",i:['@The Missing Diplomat, part 7','@The Missing Diplomat, part 8','@The Missing Diplomat, part 9','@The Missing Diplomat, part 10',"@Reclaimers' Business in Desolace",'@Mythology of the Titans','@Hand in: Knowledge in the Deeps (if you took it)',"@Priest: A Lack of Fear (only if you're missing Fear Ward)"]},
  {k:'dng',h:"Gnomeregan: grab in Ironforge + Dun Morogh, then run it (entrance 24, 39)",i:["@Save Techbot's Brain!",'@Essential Artificials','@Data Rescue','@The Grand Betrayal','@Gyrodrillmatic Excavationators','@The Day After','@Gnogaine','@The Only Cure is More Green Glow','@Legacy: Gnomeregan']},
  {k:'town',h:"Menethil Harbor",i:['@The Missing Diplomat, part 11','@The Missing Diplomat, part 12','@The Missing Diplomat, part 13']},
  {k:'do',h:"Theramore (boat from Menethil)",i:['@Boat Menethil → Theramore','@The Missing Diplomat, part 14','@The Missing Diplomat, part 15','@The Missing Diplomat, part 16','@The Missing Diplomat, part 17','@Mage: Hidden Secrets + Items of Power']},
@@ -171,22 +171,21 @@ s23:[
  {k:'do',h:"Kalaran Windblade (39, 39)",i:['@Divine Retribution','@The Flawless Flame','@Forging the Shaft',"@The Flame's Casing",'@The Torch of Retribution, part 1','@The Torch of Retribution, part 2','@Squire Maltrake','@Set Them Ablaze!','@Trinkets...']},
  {k:'do',h:"Around Searing Gorge",i:['@Suntara Stones, part 1','@Suntara Stones, part 2','@Prayer to Elune, part 1','@Prayer to Elune, part 2']},
  {k:'town',h:"Nethergarde Keep, Blasted Lands (66, 19)",i:["@Nekrum's Medallion",'@The Divination','@Return to the Hinterlands','@Snickerfang Jowls',"@A Boar's Vitality",'@The Decisive Striker',"@The Basilisk's Bite","@Vulture's Vigor","@To Serve Kum'isha","@Conjurer's Codex"]},
- {k:'town',h:"Fly to Stormwind",i:['@Turn in library books','@A Call to Arms: The Plaguelands!',"@Into The Temple of Atal'Hakkar","@The Dragon's Journal"]},
- {k:'dng',h:"Dungeons",i:['@Sunken Temple (50-60)','@Sanguine Sorcery (optional)']},
+ {k:'town',h:"Fly to Stormwind",i:['@Turn in library books','@A Call to Arms: The Plaguelands!',"@Into The Temple of Atal'Hakkar","@The Dragon's Journal",'@Cenarion Aid']},
  {k:'dng',h:"Legacy dungeon · once, for points",i:['@Legacy: Uldaman']}],
 s24:[
  {k:'town',h:"Emerald Sanctuary, Felwood (51, 82)",i:['@The Corruption of the Jadefire','@Further Corruption','@Forces of Jaedenar','@Collection of the Corrupt Water','@Verifying the Corruption','@Flute of Xavaric','@Felbound Ancients','@Purified!','@Ancient Spirit','@Cleansing Felwood']},
  {k:'do',h:"Jaedenar (west Felwood)",i:['@A Strange Red Key','@Rescue From Jaedenar','@Retribution of the Light','@The Remains of Trey Lightforge']},
  {k:'town',h:"Timbermaw Hold (north)",i:['@Timbermaw Ally','@Speak to Nafien','@Deadwood of the North','@Northern Kalimdor – A Comprehensive Guide']},
- {k:'do',h:"Azshara",i:["@Kim'jael Indeed!","@Kim'jael's \"Missing\" Equipment",'@Poisoned Water','@Stormers and Rumblers','@Everyday Etiquette']},
+ {k:'do',h:"Azshara",i:["@Kim'jael Indeed!","@Kim'jael's \"Missing\" Equipment",'@Poisoned Water','@Stormers and Rumblers','@Everyday Etiquette','@Of Coursers We Know','@The Ichor of Undeath']},
  {k:'dng',h:"Dungeon",i:['@Blackmaw Hold']}],
 s25:[
  {k:'town',h:"Morgan's Vigil, Burning Steppes (85, 69)",i:['@Extinguish the Firegut',"@Gor'tesh the Brute Lord",'@Ogre Head On A Stick = Party','@FIFTY! YEP!','@The Good Stuff','@Overmaster Pyron','@Incendius!','@Dragonkin Menace']},
  {k:'do',h:"The True Masters (Redridge + Stormwind runs)",i:['@The True Masters, part 1','@The True Masters, part 2','@The True Masters, part 3','@The True Masters, part 4','@The True Masters, part 5','@The True Masters, part 6','@Marshal Windsor']},
  {k:'town',h:"Flame Crest goblins (65, 24)",i:['@Broodling Essence','@Felnok Steelspring','@Tablet of the Seven','@The Heart of the Mountain']},
- {k:'dng',h:"Dungeons (Blackrock Mountain is between here and Searing Gorge)",i:['@Blackrock Depths (52-60)','@Magma or Lava? + Stonewrought Design','@Lower Blackrock Spire (55-60)']},
- {k:'dng',h:"Legacy dungeon · once, for points",i:["@Legacy: Temple of Atal'Hakkar (Sunken Temple)"]}],
+ {k:'dng',h:"Dungeons (Blackrock Mountain is between here and Searing Gorge)",i:['@Blackrock Depths (52-60)','@Magma or Lava? + Stonewrought Design','@Lower Blackrock Spire (55-60)']}],
 s26:[
+ {k:'dng',h:"Sunken Temple first: fly to Nethergarde Keep, ride north into the Swamp of Sorrows (70, 51)",i:['@Sunken Temple (50-60)','@Blood of Morphaz','@Sanguine Sorcery (optional)',"@Legacy: Temple of Atal'Hakkar (Sunken Temple)"]},
  {k:'town',h:"Chillwind Camp, Western Plaguelands (43, 84)",i:['@Clear the Way','@All Along the Watchtowers','@Alas, Andorhal','@The Scourge Cauldrons','@Target: Felstone Field','@Return to Chillwind Camp, part 1',"@Target: Dalson's Tears",'@Return to Chillwind Camp, part 2','@Target: Writhing Haunt','@Return to Chillwind Camp, part 3',"@Target: Gahrron's Withering",'@Return to Chillwind Point','@Mission Accomplished!','@A Plague Upon Thee, part 1','@A Plague Upon Thee, part 2','@A Plague Upon Thee, part 3','@Scholomance','@Skeletal Fragments','@Barov Family Fortune','@Doctor Theolen Krastinov, the Butcher','@Argent Dawn Commission + Scourgestones']},
  {k:'do',h:"Felstone + Dalson's Tears",i:['@Better Late Than Never, part 1','@Better Late Than Never, part 2','@Locked Away','@Undead Potatoes']},
  {k:'do',h:"Around WPL",i:['@The Wildlife Suffers Too, part 1','@The Wildlife Suffers Too, part 2','@Glyphed Oaken Branch','@A Matter of Time','@Counting Out Time','@Unfinished Business, part 1','@Unfinished Business, part 2','@Unfinished Business, part 3','@Little Pamela']},
@@ -210,13 +209,14 @@ s29:[
  {k:'do',h:"Tirion Fordring's hut (west, 5, 36)",i:['@Demon Dogs','@Blood Tinged Skies','@Carrion Grubbage','@Redemption','@Of Forgotten Memories','@Of Lost Honor','@Of Love and Family']},
  {k:'do',h:"Around EPL",i:["@Hameya's Plea","@Augustus' Receipt Book",'@Fragments of the Past, part 1','@Fragments of the Past, part 2','@Tormented By the Past','@The Knight and the Lady','@Scourge: Undead Menace or Misunderstood?']},
  {k:'dng',h:"Stratholme: grab at Light's Hope, then run it",i:['@The Flesh Does Not Lie','@The Active Agent','@Houses of the Holy','@The Archivist','@The Great Fras Siabi','@Stratholme (58-60)']},
+ {k:'dng',h:"Priest: Benediction staff chain (at 60, optional)",i:['@A Warning','@The Balance of Light and Shadow']},
  {k:'train',h:"The end",i:['@DING 60']}],
 d3:[
  {k:'do',h:"Maraudon quests: grab around the entrance (Desolace)",i:['@Twisted Evils','@Vyletongue Corruption',"@The Pariah's Instructions",'@Legends of Maraudon','@Corruption of Earth and Seed']},
  {k:'dng',h:"Legacy runs",i:['@Legacy: Maraudon','@Legacy: Alcaz Island Prison']}],
 d4:[
  {k:'dng',h:"Blackrock Mountain",i:['@Legacy: Blackrock Depths','@Legacy: Lower Blackrock Spire','@Legacy: Upper Blackrock Spire']},
- {k:'dng',h:"Kalimdor",i:['@Legacy: Blackmaw Hold',"@Legacy: The Shaper's Terrace"]},
- {k:'dng',h:"Dire Maul (Feralas): grab these first",i:["@Pusillin and the Elder Azj'Tordin",'@Elven Legends','@Legacy: Dire Maul East','@Legacy: Dire Maul West','@Legacy: Dire Maul North','@Mage: Arcane Refreshment']},
+ {k:'dng',h:"Kalimdor",i:['@Legacy: Blackmaw Hold',"@Legacy: The Shaper's Terrace",'@Priest: hand in Blood of Morphaz']},
+ {k:'dng',h:"Dire Maul (Feralas): grab these first",i:["@Pusillin and the Elder Azj'Tordin",'@Elven Legends','@Legacy: Dire Maul East','@Legacy: Dire Maul West','@Legacy: Dire Maul North','@Mage: Arcane Refreshment',"@Holy Bologna: What the Light Won't Tell You"]},
  {k:'dng',h:"Plaguelands",i:['@Legacy: Scholomance','@Legacy: Stratholme (Live)','@Legacy: Stratholme (Dead)']}],
 };

@@ -54,6 +54,14 @@ h2{margin:0;font:600 20px "Space Grotesk",Inter,sans-serif}
 .ench{margin-top:14px;padding:10px 12px;border-radius:8px;background:var(--sel);font-size:13px}
 .ench b{color:var(--acc2)}
 .foot{margin-top:16px;font-size:12px;color:var(--soft)}
+.ic img{width:100%;height:100%;border-radius:6px;display:block}
+.ic.qr{border-color:#0070dd}.ic.qe{border-color:#a335ee}.ic.qu{border-color:#1eff00}.ic.qc{border-color:#9d9d9d}
+.tt{margin-top:7px;padding:8px 10px;border:1px solid #2e2e34;border-radius:8px;background:#0e0e10;font-size:12px;line-height:1.5}
+.tt div{color:#e6e3e5}.tt .f-Uncommon{color:#1eff00}.tt .f-Misc{color:#ffd100}.tt .f-alignRight{float:right;color:var(--soft)}.tt .f-Poor{color:#9d9d9d}
+.wh{font-size:11.5px;margin-left:6px}
+.noinfo{margin-top:6px;font-size:11.5px;color:var(--warn)}
+.cur .ic{width:18px;height:18px;display:inline-grid;vertical-align:-4px;margin-right:4px;border-width:1px}
+.wearing .ic{width:26px;height:26px;display:inline-grid;vertical-align:-8px;margin-right:6px}
 @media (max-width:980px){.doll{grid-template-columns:1fr}.detail{position:static;order:-1;min-height:0}.right .slot{flex-direction:row;text-align:left}.wep .slot{width:100%}}
 </style></head><body>
 <div class="app">
@@ -70,7 +78,7 @@ h2{margin:0;font:600 20px "Space Grotesk",Inter,sans-serif}
    <div class="col right" id="R"></div>
    <div class="wep" id="W"></div>
   </div>
-  <div class="foot">Forever launched Nov 4, so online BiS lists still disagree. These picks are the overlap between several Forever lists (Warcraft Tavern, wow4ever, timesaver, frostyboost). Anything ⚠️ is a guess until you can hover it. Your current gear is from the screenshot you sent on Nov 12.</div>
+  <div class="foot">Forever launched Nov 4, so online BiS lists still disagree. These picks are the overlap between several Forever lists (Warcraft Tavern, wow4ever, timesaver, frostyboost). Anything ⚠️ is a guess until you can hover it. Your current gear is from the screenshot you sent on Nov 12. Pictures and stats come from the Classic Era item database, so Forever may have tweaked a few numbers (Forever-only items have no picture yet).</div>
  </div>
 </div>
 <script>
@@ -143,22 +151,25 @@ const SPECS={
   wand:[O('Brilliant Wand','r','Enchanting','','n'),O('Lunar Wand','r','','')]
  },ench:{head:'Lesser Arcanum of Focus (spell damage), Dire Maul librams',chest:'Greater Stats',wrist:'Intellect +7',hands:'⭐ Spell Damage +12',legs:'Lesser Arcanum of Focus',feet:'Minor Speed',mh:'Spell Power +30'}}
 };
+let IT={};const QC={Poor:'c',Common:'c',Uncommon:'u',Rare:'r',Epic:'e',Legendary:'e'};
+const ICON=n=>{const x=IT[n];return x?`<img src="https://wow.zamimg.com/images/wow/icons/large/${x.icon}.jpg" alt="" loading="lazy" onerror="this.remove()">`:''};
+const qOf=(n,q)=>IT[n]?QC[IT[n].q]||q:q;
 const TAG={c:['craft','✂️ alt crafts'],n:['new','⭐ new'],r:['route','🧭 on your route'],u:['unc','⚠️ unconfirmed'],p:['pvp','🏆 PvP']};
 const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
 const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 let spec=ld('bis-spec','holy'),sel=ld('bis-slot','chest'),have=ld('bis-have',{});
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function slotBtn([id,lab,ico]){const S=SPECS[spec],top=(S.slots[id]||[])[0];const got=(S.slots[id]||[]).some(o=>have[o.n]);
- return `<button class="slot" data-s="${id}" aria-pressed="${id===sel}"><div class="ic ${got?'have':''}">${ico}${got?'<span class="tick">✓</span>':''}</div><div style="min-width:0"><div class="sl">${lab}</div><div class="nm q-${top?top.q:'u'}">${top?esc(top.n):'—'}</div><div class="cur">now: ${CUR[id]?esc(CUR[id][0]):'empty'}</div></div></button>`}
+ return `<button class="slot" data-s="${id}" aria-pressed="${id===sel}"><div class="ic ${got?'have':top&&IT[top.n]?'q'+qOf(top.n,top.q):''}">${top&&IT[top.n]?ICON(top.n):ico}${got?'<span class="tick">✓</span>':''}</div><div style="min-width:0"><div class="sl">${lab}</div><div class="nm q-${top?qOf(top.n,top.q):'u'}">${top?esc(top.n):'—'}</div><div class="cur">now: ${CUR[id]?esc(CUR[id][0]):'empty'}</div></div></button>`}
 function render(){
  const S=SPECS[spec];
  document.getElementById('specs').innerHTML=Object.entries(SPECS).map(([k,v])=>`<button data-k="${k}" aria-pressed="${k===spec}">${v.name.split(' · ')[0]}${k==='holy'?' raid':k==='pvp'?' PvP':''}</button>`).join('');
  document.getElementById('specName').textContent=S.name;document.getElementById('specSub').textContent=S.sub;
  for(const c of ['L','R','W'])document.getElementById(c).innerHTML=SLOTS.filter(s=>s[3]===c).map(slotBtn).join('');
  const [id,lab,ico]=SLOTS.find(s=>s[0]===sel)||SLOTS[4];const opts=S.slots[id]||[];
- let h=`<div class="dh"><div class="ic">${ico}</div><div><div class="sl">${lab}</div><h2>${opts[0]?esc(opts[0].n):'—'}</h2></div></div>`;
- h+=`<div class="wearing">You're wearing: <b class="q-${CUR[id]?CUR[id][1]:'u'}">${CUR[id]?esc(CUR[id][0]):'nothing'}</b></div>`;
- h+=opts.map((o,i)=>`<div class="opt"><div class="rank">#${i+1}</div><div class="body"><div class="nm q-${o.q}">${esc(o.n)}</div>${o.s?`<div class="src">${esc(o.s)}</div>`:''}${o.h?`<div class="how">${esc(o.h)}</div>`:''}${o.t?`<div class="tags">${[...o.t].map(t=>`<span class="tag ${TAG[t][0]}">${TAG[t][1]}</span>`).join('')}</div>`:''}</div><label class="got"><input type="checkbox" data-n="${esc(o.n)}" ${have[o.n]?'checked':''}> got it</label></div>`).join('');
+ let h=`<div class="dh"><div class="ic ${opts[0]&&IT[opts[0].n]?'q'+qOf(opts[0].n,opts[0].q):''}">${opts[0]&&IT[opts[0].n]?ICON(opts[0].n):ico}</div><div><div class="sl">${lab}</div><h2>${opts[0]?esc(opts[0].n):'—'}</h2></div></div>`;
+ h+=`<div class="wearing">You're wearing: ${CUR[id]&&IT[CUR[id][0]]?`<span class="ic q${qOf(CUR[id][0],CUR[id][1])}">${ICON(CUR[id][0])}</span>`:''}<b class="q-${CUR[id]?CUR[id][1]:'u'}">${CUR[id]?esc(CUR[id][0]):'nothing'}</b></div>`;
+ h+=opts.map((o,i)=>`<div class="opt"><div class="rank">#${i+1}</div>${IT[o.n]?`<div class="ic q${qOf(o.n,o.q)}">${ICON(o.n)}</div>`:''}<div class="body"><div class="nm q-${qOf(o.n,o.q)}">${esc(o.n)}${IT[o.n]?`<a class="wh" href="https://www.wowhead.com/classic/item=${IT[o.n].id}" target="_blank" rel="noopener">wowhead ↗</a>`:''}</div>${o.s?`<div class="src">${esc(o.s)}</div>`:''}${o.h?`<div class="how">${esc(o.h)}</div>`:''}${o.t?`<div class="tags">${[...o.t].map(t=>`<span class="tag ${TAG[t][0]}">${TAG[t][1]}</span>`).join('')}</div>`:''}${IT[o.n]?`<div class="tt">${IT[o.n].tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}</div>`:(o.s?`<div class="noinfo">No picture/stats yet: new Forever item that isn't in the item database. Hover it in game.</div>`:'')}</div><label class="got"><input type="checkbox" data-n="${esc(o.n)}" ${have[o.n]?'checked':''}> got it</label></div>`).join('');
  const e=S.ench[id];h+=`<div class="ench">✨ <b>Enchant:</b> ${e?esc(e):'nothing worth it for this slot yet'}</div>`;
  document.getElementById('D').innerHTML=h;
 }
@@ -166,5 +177,6 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('.slot');if(b){
  const k=ev.target.closest('#specs button');if(k){spec=k.dataset.k;sv('bis-spec',spec);render()}});
 document.addEventListener('change',ev=>{const c=ev.target.closest('input[data-n]');if(c){have[c.dataset.n]=c.checked;if(!c.checked)delete have[c.dataset.n];sv('bis-have',have);render()}});
 render();
+fetch('data/bis_items.json?v=1').then(r=>r.json()).then(j=>{IT=j;render()}).catch(()=>{});
 </script>
 </body></html>

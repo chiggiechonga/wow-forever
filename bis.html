@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BiS Gear · Level Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#0a0a0b;--panel:#141416;--panel2:#1b1b1e;--line:#2c2c31;--line2:#232327;--ink:#f4f1f3;--soft:#a7a0a5;--acc:#e89ab8;--acc2:#f6c9da;--sel:#2a1d23;--up:#7fd8a8;--warn:#ffb26b;--blue:#6cb8ff;--epic:#c690ff;--green:#5fd35f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,sans-serif}
+a{color:var(--acc2)}
+.app{max-width:1280px;margin:12px auto;border:1.5px solid var(--acc);border-radius:12px;background:var(--panel);overflow:clip}
+@media (max-width:1310px){.app{margin:8px}}
+.top{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;background:var(--sel);flex:none;font-size:20px}
+h1{margin:0;font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc)}
+h2{margin:0;font:600 20px "Space Grotesk",Inter,sans-serif}
+.cross{color:var(--acc2);font-size:12px;text-decoration:none;border:1px solid var(--acc2);border-radius:999px;padding:3px 11px}
+.seg{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:auto;flex-wrap:wrap}
+.seg button{font:600 13px Inter,sans-serif;border:0;background:none;color:var(--soft);padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--sel);color:var(--acc2);box-shadow:inset 0 0 0 1px var(--acc)}
+.page{padding:16px 18px 22px;background:var(--panel2)}
+.specline{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px}
+.specline .sub{color:var(--soft);font-size:13px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin:-4px 0 14px}
+.doll{display:grid;grid-template-columns:280px 1fr 280px;gap:14px;align-items:start}
+.col{display:flex;flex-direction:column;gap:6px}
+.wep{grid-column:1/-1;display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.wep .slot{width:280px}
+.slot{display:flex;gap:10px;align-items:center;padding:7px 9px;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.slot:hover{border-color:#4a3a42}
+.slot[aria-pressed=true]{border-color:var(--acc);background:var(--sel)}
+.right .slot{flex-direction:row-reverse;text-align:right}
+.ic{width:38px;height:38px;border-radius:7px;border:1.5px solid var(--line);display:grid;place-items:center;font-size:19px;flex:none;background:#101012;position:relative}
+.ic.have{border-color:var(--up)}
+.ic .tick{position:absolute;bottom:-5px;right:-5px;background:var(--up);color:#0a0a0b;border-radius:50%;width:16px;height:16px;font-size:10px;display:grid;place-items:center;font-weight:700}
+.sl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.nm{font-weight:600;font-size:13.5px;line-height:1.25}
+.cur{font-size:11.5px;color:var(--soft)}
+.q-r{color:var(--blue)}.q-e{color:var(--epic)}.q-u{color:var(--green)}
+.detail{border:1px solid var(--acc);border-radius:12px;background:var(--panel);padding:16px 18px;min-height:520px;position:sticky;top:10px}
+.dh{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.dh .ic{width:46px;height:46px;font-size:24px}
+.wearing{font-size:12.5px;color:var(--soft);margin:6px 0 12px;padding:8px 10px;border:1px dashed var(--line);border-radius:8px}
+.opt{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line2)}
+.opt:first-of-type{border-top:0}
+.rank{font:700 12px "Space Grotesk",sans-serif;color:var(--acc);width:22px;flex:none;padding-top:2px}
+.opt .body{flex:1;min-width:0}
+.opt .src{font-size:12.5px;color:var(--ink);margin-top:2px}
+.opt .how{font-size:12px;color:var(--soft);margin-top:3px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.tag{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--soft)}
+.tag.craft{border-color:#8fe3b0;color:#8fe3b0}.tag.new{border-color:var(--warn);color:var(--warn)}.tag.route{border-color:var(--blue);color:var(--blue)}.tag.unc{border-color:#ff8f8f;color:#ff8f8f}.tag.pvp{border-color:var(--epic);color:var(--epic)}
+.got{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--soft);cursor:pointer;flex:none;align-self:flex-start;padding-top:2px}
+.got input{accent-color:var(--up)}
+.ench{margin-top:14px;padding:10px 12px;border-radius:8px;background:var(--sel);font-size:13px}
+.ench b{color:var(--acc2)}
+.foot{margin-top:16px;font-size:12px;color:var(--soft)}
+@media (max-width:980px){.doll{grid-template-columns:1fr}.detail{position:static;order:-1;min-height:0}.right .slot{flex-direction:row;text-align:left}.wep .slot{width:100%}}
+</style></head><body>
+<div class="app">
+ <div class="top"><div class="logo">🛡️</div><div><h1>BiS Gear</h1></div>
+  <a class="cross" href="index.html">← Level Guide</a><a class="cross" href="professions.html">⚗️ Professions</a>
+  <div class="seg" id="specs" role="group" aria-label="Spec"></div>
+ </div>
+ <div class="page">
+  <div class="specline"><h2 id="specName"></h2><span class="sub" id="specSub"></span></div>
+  <div class="legend"><span>✂️ your tailor alt makes it</span><span>⭐ new in Forever</span><span>🧭 already on your leveling route</span><span>⚠️ unconfirmed, hover it in game first</span><span>🏆 PvP vendor</span><span>✓ = you have it (tick it in the list)</span></div>
+  <div class="doll">
+   <div class="col left" id="L"></div>
+   <div class="detail" id="D"></div>
+   <div class="col right" id="R"></div>
+   <div class="wep" id="W"></div>
+  </div>
+  <div class="foot">Forever launched Nov 4, so online BiS lists still disagree. These picks are the overlap between several Forever lists (Warcraft Tavern, wow4ever, timesaver, frostyboost). Anything ⚠️ is a guess until you can hover it. Your current gear is from the screenshot you sent on Nov 12.</div>
+ </div>
+</div>
+<script>
+const SLOTS=[
+ ['head','Head','🎩','L'],['neck','Neck','📿','L'],['shoulder','Shoulders','🦺','L'],['back','Back','🧣','L'],['chest','Chest','👘','L'],['wrist','Wrists','⌚','L'],
+ ['hands','Hands','🧤','R'],['waist','Waist','🎗️','R'],['legs','Legs','👖','R'],['feet','Feet','👢','R'],['ring1','Ring 1','💍','R'],['ring2','Ring 2','💍','R'],['trink1','Trinket 1','🔮','R'],['trink2','Trinket 2','🔮','R'],
+ ['mh','Main hand','🪄','W'],['oh','Off hand','📕','W'],['wand','Wand','✨','W']];
+// what she's wearing (screenshot, Nov 12)
+const CUR={head:['Thistlefur Cap of the Prophet','u'],neck:['Giantstone Medallion','r'],shoulder:['Mantle of Honor','u'],back:['Cloak of the Faith','u'],chest:["Elder's Robe of the Owl",'u'],wrist:["Geomancer's Bracers of the Owl",'u'],
+ hands:['Magefist Gloves','r'],waist:["Daewyn's Girdle",'u'],legs:['Night Watch Pantaloons','u'],feet:["Incinerator's Boots",'u'],ring1:['Seal of Wrynn','r'],ring2:['Ring of Forlorn Spirits','u'],trink1:['Satchel of Potions','u'],trink2:null,
+ mh:["Healer's Staff",'r'],oh:null,wand:['Consecrated Wand','u']};
+// option: [name, quality, source, how-to, tags]   tags: c=craft n=new r=route u=unconfirmed p=pvp
+const O=(n,q,s,h,t='')=>({n,q,s,h,t});
+const SPECS={
+ holy:{name:'Holy · Raid healing',sub:'Talents 18/33/0 · +Healing > MP5/Spirit > Intellect > Crit',slots:{
+  head:[O('Incandescent Mooncloth Circlet','r','Tailoring 290','4 Bolt of Runecloth, 6 Mooncloth, 1 Azerothian Diamond, 2 Enchanted Leather, 2 Rune Thread. Pattern source not confirmed yet.','cu'),O('Devout Crown','r','Scholomance · Darkmaster Gandling','Devout set (tier 0). Set bonus is nice if you run Scholo anyway.'),O("Cassandra's Grace",'r','World drop (BoE)','Check the AH.')],
+  neck:[O('Orb of the Darkmoon','r','Darkmoon Faire · 1200 tickets','You already know the faire grind from your DMF doc.'),O('Animated Chain Necklace','r','Stratholme · Ramstein the Gorger',''),O('Beads of Ogre Mojo','r',"Quest: Falrin's Vendetta (Dire Maul)",'')],
+  shoulder:[O('Mooncloth Shoulders','r','Tailoring 265','5 Bolt of Runecloth, 5 Mooncloth, 1 Rune Thread. Pattern is a world drop, check the AH.','c'),O('Devout Mantle','r','UBRS · Solakar Flamewreath','Devout set.'),O('Theramore Shoulderpads','r','Theramore rep · Exalted','New Forever rep item.','nu')],
+  back:[O('Hide of the Wild','e','Leatherworking','Pattern drops in Dire Maul. You need a leatherworker friend or the AH.'),O('Cloak of the Cosmos','e',"Dire Maul West · Immol'thar",''),O('Drape of Recovery','r','Unknown yet','New Forever cloak.','nu')],
+  chest:[O('Truefaith Vestments','r','Tailoring 295 · priest only','Pattern drops from Balnazzar (Stratholme Live). 12 Bolt of Runecloth, 8 Mooncloth, 2 Righteous Orb, 2 Golden Pearl, 8 Ghost Dye, 10 Viridian Dye, 2 Rune Thread.','c'),O('Robes of the Exalted','e','Stratholme · Baron Rivendare',''),O('Virtuous Robe','r',"Quest: Saving the Best for Last (Ironforge)",'Dungeon Set 2 chain.')],
+  wrist:[O('Nethergeld Cuffs','r','Tailoring 205','18 Bolt of Mageweave, 3 Heavy Silken Thread, 6 Magenta Dye, 4 Cerulean Dye, 10 Gold Bar, 4 Greater Nether Essence.','cn'),O('Earthenweave Cuffs','r','Tailoring 245','5 Bolt of Runecloth, 1 Essence of Earth, 1 Rune Thread.','c'),O('Devout Bracers','r','Stratholme / world drop','Devout set.')],
+  hands:[O('Devout Gloves','r','Stratholme · Archivist Galford','Devout set.'),O('Hands of the Exalted Herald','r','BRD · Princess Moira Bronzebeard',''),O('Theramore Handwraps','r','Theramore rep · Exalted','New Forever rep item.','nu'),O('Mooncloth Gloves','r','Tailoring 270','12 Bolt of Runecloth, 6 Mooncloth, 2 Golden Pearl, 2 Rune Thread.','c')],
+  waist:[O('Wisdom of the Timbermaw','r','Tailoring 255','Pattern from Timbermaw Hold rep (you pass Timbermaw at the Felwood stop). 8 Bolt of Runecloth, 3 Essence of Earth, 3 Living Essence, 2 Ironweb Spider Silk.','c'),O('Whipvine Cord','r','Dire Maul East · Alzzin the Wildshaper',''),O("Penitent's Cinch",'r','Vendor (cost not listed yet)','New Forever item.','nu')],
+  legs:[O('Devout Skirt','r','Stratholme Dead · Baron Rivendare','Devout set.'),O("Padre's Trousers",'r','Dire Maul West · Illyanna Ravenoak',''),O('Incandescent Mooncloth Leggings','r','Tailoring 280','6 Bolt of Runecloth, 4 Mooncloth, 1 Rune Thread.','c')],
+  feet:[O("Swarmtender's Footpads",'r','Tailoring 295','Pattern from Cenarion Circle (Friendly, Cenarion Hold in Silithus). 5 Bolt of Runecloth, 1 Small Brilliant Shard, 3 Essence of Water, 6 Rune Thread.','cn'),O('Devout Sandals','r','Stratholme · Maleki the Pallid','Devout set.'),O('Gilded Sandals','r','Tailoring','New Forever pattern.','cn')],
+  ring1:[O("Philanthropist's Ring",'r','Greater Friend of the Library (20 books)','Turn in at the Lv 40 stop.','r'),O("Warden's Signet of Resolve",'r','The Watchers · Exalted','New Forever rep ring. You can only wear one signet.','nu')],
+  ring2:[O('Band of Mending','r','Stratholme · Balnazzar',''),O('Rosewine Circle','r','LBRS · Urok Doomhowl',''),O('Blessed Band of Light','r','Vendor (cost not listed yet)','New Forever item.','nu')],
+  trink1:[O('Briarwood Reed','r','UBRS · Jed Runewatcher','Rare spawn, not every run.'),O('Second Wind','r','BRD · Golem Lord Argelmach','')],
+  trink2:[O('Shard of the Splithooves','r','Quest: Heroes of Old (Blasted Lands)','End of the Fallen Hero chain. Skipped in the leveling guide; worth doing at 60 for this.'),O('Serenity Field','r','Vendor (cost not listed yet)','New Undermine trinket. You can only wear one Undermine trinket.','nu')],
+  mh:[O('Resurgence Rod','r','Quest: Corruption of Earth and Seed (Maraudon)','Already in your guide at the Maraudon + Alcaz trip (~53).','r'),O('Hand of Righteousness','e','Scarlet Monastery · High Inquisitor Whitemane','Shows up on one Forever list; check the tooltip.','u'),O('Royal Diplomatic Scepter','r','Gnomeregan · Dark Iron Ambassador','')],
+  oh:[O('Brightly Glowing Stone','r','Dire Maul North · King Gordok',''),O("Thaurissan's Royal Scepter",'r','BRD · Emperor Dagran Thaurissan',''),O('Barkskin Baubles','r','Barkskin Burrow rep · Revered','New Forever rep item.','nu')],
+  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling',''),O('Torch of Light','r','Enchanting',''),O('Brilliant Wand','r','Enchanting','New Forever recipe.','n')]
+ },ench:{head:'Lesser Arcanum of Rumination (+150 mana), from the Dire Maul librams (Lorekeeper Lydros)',neck:'⭐ Healing +11 / Spell Damage +4 (new Forever neck enchant)',back:'Greater Resistance',chest:'Greater Stats (+4 all) · ⭐ or the new +10 Intellect',wrist:'Healing +24',hands:'⭐ Healing +35 / Spell Damage +12',legs:'Lesser Arcanum of Rumination',feet:'Spirit +5',mh:'Healing +55 (the biggest one)',oh:'⭐ +6 Intellect, +5 Spirit'}},
+ pvp:{name:'Disc · PvP',sub:'Talents 31/20/0 · Stamina > +Healing > Intellect · blue honor set needs no rank, only Lv 55 + Honor + Marks',slots:{
+  head:[O('Blue honor set helm (Satin)','r','PvP vendor · Honor + Marks of Honor','Each slot needs marks from one specific battleground.','p'),O('Devout Crown','r','Scholomance · Darkmaster Gandling','Good Stamina until you have the honor piece.')],
+  neck:[O('Orb of the Darkmoon','r','Darkmoon Faire · 1200 tickets',''),O('Darkspear Islands rep neck','r','Darkspear Islands BG rep','New Forever battleground with its own rep vendor.','npu')],
+  shoulder:[O('Blue honor set shoulders (Satin)','r','PvP vendor · Honor + Marks','','p'),O('Devout Mantle','r','UBRS · Solakar Flamewreath','')],
+  back:[O('Sergeant Major\'s Cape','r','PvP vendor (rank)','','p'),O('Darkspear Islands rep cloak','r','Darkspear Islands BG rep','','npu')],
+  chest:[O('Blue honor set robe (Satin)','r','PvP vendor · Honor + Marks','','p'),O('Truefaith Vestments','r','Tailoring 295','Lots of Stamina for a cloth chest, and it shortens Fade.','c')],
+  wrist:[O('Sergeant Major\'s / First Sergeant\'s Silk Cuffs','r','PvP vendor (rank)','Buy wrists early: they upgrade toward epics first.','p'),O('Nethergeld Cuffs','r','Tailoring 205','','cn')],
+  hands:[O('Blue honor set gloves (Satin)','r','PvP vendor · Honor + Marks','Buy early: upgrades toward epics first.','p'),O('Devout Gloves','r','Stratholme · Archivist Galford','')],
+  waist:[O("Knight-Captain's Satin Cord",'r','PvP vendor (rank)','Buy early: upgrades toward epics first.','p'),O('Wisdom of the Timbermaw','r','Tailoring 255','','c')],
+  legs:[O("Knight-Captain's Satin Legguards",'r','PvP vendor · Honor + Marks','','p'),O('Devout Skirt','r','Stratholme Dead · Baron Rivendare','')],
+  feet:[O('Blue honor set boots (Satin)','r','PvP vendor · Honor + Marks','Buy early: upgrades toward epics first. Minor Speed on these.','p'),O("Swarmtender's Footpads",'r','Tailoring 295','','cn')],
+  ring1:[O("Philanthropist's Ring",'r','Greater Friend of the Library','','r'),O('Darkspear Islands rep ring','r','Darkspear Islands BG rep','','npu')],
+  ring2:[O('Band of Mending','r','Stratholme · Balnazzar',''),O("Warden's Signet of Resolve",'r','The Watchers · Exalted','','nu')],
+  trink1:[O('Insignia of the Alliance','r','PvP vendor (rank)','Breaks fear/stun/charm. Must-have. Dwarf Stoneform covers poison/bleed.','p')],
+  trink2:[O('Second Wind','r','BRD · Golem Lord Argelmach',''),O('Darkspear Islands rep trinket','r','Darkspear Islands BG rep','','npu')],
+  mh:[O('Resurgence Rod','r','Quest: Corruption of Earth and Seed (Maraudon)','','r'),O('Grand Marshal\'s weapon','e','PvP Rank 14','Long-term goal only.','p')],
+  oh:[O('Brightly Glowing Stone','r','Dire Maul North · King Gordok','')],
+  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling','')]
+ },ench:{head:'Lesser Arcanum of Constitution (+100 HP), from the Dire Maul librams',back:'Armor or +3 Agility',chest:'Greater Stats',wrist:'Healing +24, or +9 Stamina if you keep getting trained',hands:'⭐ Healing +35',legs:'Lesser Arcanum of Constitution',feet:'Minor Speed (the must-have PvP enchant)',mh:'Healing +55'}},
+ shadow:{name:'Shadow · DPS',sub:'Talents 14/3/34 · Shadow damage > Spell hit > Intellect · for questing/farming or if your raid wants a shadow priest',slots:{
+  head:[O('Felcloth Hood','r','Tailoring','5 Bolt of Runecloth, 4 Felcloth, 1 Rune Thread.','c'),O('Dreamweave Circlet','r','Tailoring','','c')],
+  neck:[O('Beads of Ogre Mojo','r',"Quest: Falrin's Vendetta (Dire Maul)",''),O('Seal of the Expedition','r','Unknown yet','','nu')],
+  shoulder:[O('Felcloth Shoulders','r','Tailoring','7 Bolt of Runecloth, 6 Felcloth, 4 Demonic Rune, 4 Rugged Leather, 2 Rune Thread.','c'),O('Theramore Shoulderpads','r','Theramore rep · Exalted','','nu')],
+  back:[O('Arcanoweave Cloak','r','Vendor (cost not listed yet)','','nu'),O("Expeditionary's Cape",'r','Vendor','','nu')],
+  chest:[O('Robe of Winter Night','e','Tailoring',''),O('Felcloth Robe','r','Tailoring','8 Bolt of Runecloth, 8 Felcloth, 4 Demonic Rune, 2 Rune Thread.','c')],
+  wrist:[O('Shadowy Bracers','r','Quest: Shadoweaver','','u'),O('Virtuous Bracers','r','Dungeon Set 2','')],
+  hands:[O('Felcloth Gloves','r','Tailoring','12 Bolt of Runecloth, 20 Felcloth, 6 Demonic Rune, 8 Essence of Undeath, 2 Rune Thread.','c'),O('Gloves of Spell Mastery','e','Tailoring','')],
+  waist:[O('Belt of the Archmage','e','Tailoring',''),O('Virtuous Belt','r','Dungeon Set 2','')],
+  legs:[O('Felcloth Pants','r','Tailoring','5 Bolt of Runecloth, 4 Felcloth, 1 Rune Thread.','c'),O("High Priestess's Kilt",'r','Unknown yet','','nu')],
+  feet:[O('Black Sandals','r','Tailoring','New Forever shadow set pattern (Azeroth Commerce Authority vendors).','cn'),O('Venomspew Footpads','r','Tailoring','','cn')],
+  ring1:[O("Warden's Signet of Brilliance",'r','The Watchers · Exalted','','nu')],
+  ring2:[O("Channeler's Ring",'r','Vendor (cost not listed yet)','','nu'),O("Maiden's Circle",'r','Vendor','')],
+  trink1:[O('Weakness Analyzer','r','Vendor (Undermine trinket)','Only one Undermine trinket at a time.','nu'),O('Everlook Delivery Bot','r','Vendor','','nu')],
+  trink2:[O('Frozen Heart of the Mountain','r','Enchanting','','n')],
+  mh:[O('Staff of Jordan','e','World drop (BoE)',''),O('Wisepaw Totem','r','Barkskin Burrow rep · Revered','Listed on one site; might not be a priest item.','nu')],
+  oh:[O('(two-hander, no off hand)','u','','')],
+  wand:[O('Brilliant Wand','r','Enchanting','','n'),O('Lunar Wand','r','','')]
+ },ench:{head:'Lesser Arcanum of Focus (spell damage), Dire Maul librams',chest:'Greater Stats',wrist:'Intellect +7',hands:'⭐ Spell Damage +12',legs:'Lesser Arcanum of Focus',feet:'Minor Speed',mh:'Spell Power +30'}}
+};
+const TAG={c:['craft','✂️ alt crafts'],n:['new','⭐ new'],r:['route','🧭 on your route'],u:['unc','⚠️ unconfirmed'],p:['pvp','🏆 PvP']};
+const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let spec=ld('bis-spec','holy'),sel=ld('bis-slot','chest'),have=ld('bis-have',{});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function slotBtn([id,lab,ico]){const S=SPECS[spec],top=(S.slots[id]||[])[0];const got=(S.slots[id]||[]).some(o=>have[o.n]);
+ return `<button class="slot" data-s="${id}" aria-pressed="${id===sel}"><div class="ic ${got?'have':''}">${ico}${got?'<span class="tick">✓</span>':''}</div><div style="min-width:0"><div class="sl">${lab}</div><div class="nm q-${top?top.q:'u'}">${top?esc(top.n):'—'}</div><div class="cur">now: ${CUR[id]?esc(CUR[id][0]):'empty'}</div></div></button>`}
+function render(){
+ const S=SPECS[spec];
+ document.getElementById('specs').innerHTML=Object.entries(SPECS).map(([k,v])=>`<button data-k="${k}" aria-pressed="${k===spec}">${v.name.split(' · ')[0]}${k==='holy'?' raid':k==='pvp'?' PvP':''}</button>`).join('');
+ document.getElementById('specName').textContent=S.name;document.getElementById('specSub').textContent=S.sub;
+ for(const c of ['L','R','W'])document.getElementById(c).innerHTML=SLOTS.filter(s=>s[3]===c).map(slotBtn).join('');
+ const [id,lab,ico]=SLOTS.find(s=>s[0]===sel)||SLOTS[4];const opts=S.slots[id]||[];
+ let h=`<div class="dh"><div class="ic">${ico}</div><div><div class="sl">${lab}</div><h2>${opts[0]?esc(opts[0].n):'—'}</h2></div></div>`;
+ h+=`<div class="wearing">You're wearing: <b class="q-${CUR[id]?CUR[id][1]:'u'}">${CUR[id]?esc(CUR[id][0]):'nothing'}</b></div>`;
+ h+=opts.map((o,i)=>`<div class="opt"><div class="rank">#${i+1}</div><div class="body"><div class="nm q-${o.q}">${esc(o.n)}</div>${o.s?`<div class="src">${esc(o.s)}</div>`:''}${o.h?`<div class="how">${esc(o.h)}</div>`:''}${o.t?`<div class="tags">${[...o.t].map(t=>`<span class="tag ${TAG[t][0]}">${TAG[t][1]}</span>`).join('')}</div>`:''}</div><label class="got"><input type="checkbox" data-n="${esc(o.n)}" ${have[o.n]?'checked':''}> got it</label></div>`).join('');
+ const e=S.ench[id];h+=`<div class="ench">✨ <b>Enchant:</b> ${e?esc(e):'nothing worth it for this slot yet'}</div>`;
+ document.getElementById('D').innerHTML=h;
+}
+document.addEventListener('click',ev=>{const b=ev.target.closest('.slot');if(b){sel=b.dataset.s;sv('bis-slot',sel);render();if(innerWidth<980)document.getElementById('D').scrollIntoView({behavior:'smooth'})}
+ const k=ev.target.closest('#specs button');if(k){spec=k.dataset.k;sv('bis-spec',spec);render()}});
+document.addEventListener('change',ev=>{const c=ev.target.closest('input[data-n]');if(c){have[c.dataset.n]=c.checked;if(!c.checked)delete have[c.dataset.n];sv('bis-have',have);render()}});
+render();
+</script>
+</body></html>

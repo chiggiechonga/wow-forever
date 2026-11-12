@@ -62,7 +62,8 @@ s11:[
  {k:'grab',h:"Grab at Maestra's Post (west)",i:['Vile Satyr! Dryads in Danger! (Illiyana)']},
  {k:'do',h:'Do, in this order',i:['@Vile Satyr','@Kayneth Stillwind','@Satyr Slaying','@Gleaming Crescent']},
  {k:'do',h:'Optional (mostly grey at 32)',i:['@Fallen Sky Lake',"@Raene's Cleansing",'@Ruuzel']},
- {k:'dng',h:'Dungeon',i:['@Blackfathom Deeps']},
+ {k:'grab',h:'Grab the 4 BFD quests first (one at a time)',i:['@Knowledge in the Deeps','@Researching the Corruption','@In Search of Thaelrid','@Twilight Falls']},
+ {k:'dng',h:'Dungeon',i:['@Blackfathom Deeps: run it']},
  {k:'skip',h:'Stay away',i:['@Horde camps']},
  {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s12:[

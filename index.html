@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dwarf Priest 21-60 · Leveling Helper</title>
+<title>Journey · Hearthbound</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
 <style>
 :root{--bg:#0a0a0b;--panel:#141416;--panel2:#1b1b1e;--line:#2c2c31;--line2:#232327;--gold:#e89ab8;--gold2:#e89ab8;--ink:#f4f1f3;--soft:#a7a0a5;--red:#e0544b;--blue:#4aa3ff;--green:#3fd06a;--purple:#b98cff;--teal:#5fd4e0;--pink:#ff9fd0;--orange:#ffa95a;--hi:#2a1d23}
 :root[data-theme="light"],:root:not([data-theme="dark"]){color-scheme:dark}
@@ -95,10 +95,10 @@ th{color:var(--gold);font-size:12px;letter-spacing:.4px}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;padding:6px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--soft)}
 .reset{background:none;border:1px solid var(--line);color:var(--soft);border-radius:4px;font:inherit;font-size:11.5px;padding:1px 8px;cursor:pointer}
 @media print{.mtabs,.side,.reset{display:none!important}.cols{grid-template-columns:1fr}[data-panel]{display:block!important}}
-</style><link rel="stylesheet" href="helper.css?v=1794519916">
+</style><link rel="stylesheet" href="helper.css?v=1794520854">
 </head><body>
 <div class="app">
-  <div class="top"><div class="logo">🪄</div><div><h1>Level Guide</h1></div><label class="qs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr">Search quests</span><input id="qsearch" type="search" placeholder="Search a quest, NPC or item…" autocomplete="off"></label><a class="cross" href="professions.html">⚗️ Professions</a> <a class="cross" href="bis.html">🛡️ BiS Gear</a><button class="syncbtn" style="margin-left:0" id="syncTop">🔄 Sync<small id="syncAgo">not synced yet</small></button></div>
+  <div class="top"><div class="logo">🧭</div><div><div class="brand" style="font:700 10.5px Inter,sans-serif;letter-spacing:.22em;color:var(--soft,#a7a0a5);text-transform:uppercase">Hearthbound</div><h1>Journey</h1></div><label class="qs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr">Search quests</span><input id="qsearch" type="search" placeholder="Search a quest, NPC or item…" autocomplete="off"></label><a class="cross" href="professions.html">⚗️ Workshop</a> <a class="cross" href="bis.html">🛡️ Armory</a><button class="syncbtn" style="margin-left:0" id="syncTop">🔄 Sync<small id="syncAgo">not synced yet</small></button></div>
   <div class="mtabs" role="tablist">
     <button class="mtab" data-tab="walk" aria-selected="true">🗺️ Walkthrough</button>
     <button class="mtab" data-tab="heal" aria-selected="false">⚔️ Rotations</button>
@@ -396,7 +396,7 @@ th{color:var(--gold);font-size:12px;letter-spacing:.4px}
   </section>
 
 
-  <div class="foot"><span>Dwarf Priest · 21 → 60 · tags: do now / hold / turn in / dungeon / sleeping bag</span><button class="reset" id="reset">reset checkmarks</button></div>
+  <div class="foot"><span>Hearthbound · your WoW Forever companion · tags: do now / hold / turn in / dungeon / sleeping bag</span><button class="reset" id="reset">reset checkmarks</button></div>
 </div>
 
 <script>
@@ -546,8 +546,8 @@ const TRAVEL={"s1": [["fly", "Fly to Lakeshire (Redridge). New here? From Stormw
 STOPS.forEach(s=>{if(TRAVEL[s.id])s.go=TRAVEL[s.id]});
 const CFG={ovKey:'dwarfpriest-2160-ov',cls:'PRIEST',otherPage:null,alchemy:150,decades:true,doneStub:['Part 3 · Loch Modan → Redridge','18-21'],nextStub:null,trainer:'Head to the Cathedral of Light (Stormwind) or the Mystic Ward (Ironforge).'};
 </script>
-<script src="questnpc.js?v=1794519916"></script>
-<script src="qobj.js?v=1794519916"></script>
-<script src="plan.js?v=1794519916"></script>
-<script src="helper.js?v=1794519916"></script>
+<script src="questnpc.js?v=1794520854"></script>
+<script src="qobj.js?v=1794520854"></script>
+<script src="plan.js?v=1794520854"></script>
+<script src="helper.js?v=1794520854"></script>
 </body></html>

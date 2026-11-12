@@ -279,7 +279,7 @@ function header(){
  w.hidden=!PR.synced;if(PR.synced)w.innerHTML='<b>Using prices from your last addon sync</b> until the hourly prices are set up.';
 }
 function shell(){
- document.title=P.name+' · Level Guide';$('#plogo').innerHTML=P.logo;$('#skLbl').textContent='My '+P.name.toLowerCase();
+ document.title=P.name+' · Workshop · Hearthbound';$('#plogo').innerHTML=P.logo;$('#skLbl').textContent='My '+P.name.toLowerCase();
  document.querySelectorAll('[data-prof]').forEach(b=>{b.setAttribute('aria-selected',b.dataset.prof===PID||(!PROFS[PID]&&b.dataset.prof==='alchemy'));b.onclick=()=>{location.search='?p='+b.dataset.prof}});
 }
 {const ft=document.querySelector('.tab[data-t=food]');if(ft)ft.hidden=PID!=='cooking'}

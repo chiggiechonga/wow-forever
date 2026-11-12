@@ -1,6 +1,6 @@
 # WoW Forever leveling helper
 
-- `index.html`: Dwarf Priest 21-60 route (main page)
+- `index.html`: Journey, the leveling route (main page)
 - `helper.js` / `helper.css`: shared engine (addon sync, "right now" list, potions calculator)
 - `professions.html` / `professions.js`: profit page with an Alchemy / Tailoring switch (`?p=alchemy` or `?p=tailoring`): top sellers, profit board, craft or sell raw, shopping list. `alchemy.html` redirects here
 - `data/alchemy.json`: every Forever alchemy recipe + mats + item IDs

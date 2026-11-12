@@ -13,8 +13,7 @@ s1:[
 s2:[
  {k:'turn',h:'On the way: Tower of Azora',i:['@Theocritus\' Retrieval']},
  {k:'town',h:'In Stormwind',i:['@Train Lv 22','@Turn in library books','@Sell herbs']},
- {k:'grab',h:'Grab in Stormwind (for the Stockade)',i:['@The Color of Blood','@Quell the Uprising','@The Stockade Riots']},
- {k:'do',h:'Mage class quest',i:['@Investigate the Blue Recluse']}],
+ {k:'grab',h:'Grab in Stormwind (for the Stockade)',i:['@The Color of Blood','@Quell the Uprising','@The Stockade Riots']}],
 s3:[
  {k:'town',h:'In Darkshire',i:['@Set hearth']},
  {k:'grab',h:'Grab in Darkshire',i:['The Night Watch (Commander Althea Ebonlocke)','Seasoned Wolf Kabobs','Dusky Crab Cakes','Raven Hill','Ghost Hair Thread','@Crime and Punishment','@The Legend of Stalvan']},
@@ -99,16 +98,16 @@ s16:[
  {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s17:[
  {k:'town',h:'In Theramore',i:['@Set hearth','@The Missing Diplomat']},
- {k:'grab',h:'Grab in Theramore',i:['Mudrock Soup and Bugs','Captain Vimes','The Black Shield','Lieutenant Paval Reethe']},
+ {k:'grab',h:'Grab in Theramore',i:['The Black Shield','Lieutenant Paval Reethe']},
  {k:'do',h:'Do, in this order',i:['@Theramore quests','@Jarl Needs a Blade','@Hungry!','@RwlRwlRwlRwl!','@Stinky\'s Escape']},
- {k:'hold',h:'Hold for later',i:['@I See Alcaz Island']},
+ {k:'skip',h:'Not for now',i:['@No quest needed']},
  {k:'town',h:'Next time you\'re in a city',i:['@Train Lv 42']}],
 s18:[
  {k:'do',h:'The Riverglades',i:['@Get there','@Do every quest you see']},
  {k:'dng',h:'Dungeon',i:['@Krol\'Dok']},
  {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s19:[
- {k:'grab',h:'Grab in the Badlands camps',i:['A Dwarf and His Tools','Find Agmond','Barbecued Buzzard Wings','Pearl Diving']},
+ {k:'grab',h:'Grab in the Badlands camps',i:['A Dwarf and His Tools','Barbecued Buzzard Wings','Pearl Diving']},
  {k:'do',h:'Do, in this order',i:['@A Dwarf and His Tools','@Barbecued Buzzard Wings','@Scrounging','@Pearl Diving','@Mummies']},
  {k:'dng',h:'Dungeon',i:['@Uldaman quests']}],
 s20:[
@@ -139,12 +138,13 @@ s24:[
  {k:'do',h:'Azshara',i:['@Azshara quests','@Everyday Etiquette']},
  {k:'dng',h:'Dungeon',i:['@Blackmaw Hold']}],
 s25:[
- {k:'grab',h:'Grab in Morgan\'s Vigil',i:['Extinguish the Firegut','Ogre Head On A Stick = Party','Gor\'tesh the Brute Lord','Lower Blackrock Spire quests']},
+ {k:'grab',h:'Grab in Morgan\'s Vigil',i:['Extinguish the Firegut','Gor\'tesh the Brute Lord','Lower Blackrock Spire quests']},
  {k:'do',h:'Do, in this order',i:['@Extinguish the Firegut','@Gor\'tesh','@Libram quests']},
  {k:'dng',h:'Blackrock Mountain',i:['@Magma or Lava','@Lower Blackrock Spire']},
  {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s26:[
- {k:'grab',h:'Grab in Chillwind Camp',i:['The Scourge Cauldrons','Argent Dawn Commission']},
+ {k:'grab',h:'Before you go: Stormwind or Ironforge',i:['A Call to Arms: The Plaguelands! (Crier Goodman)']},
+ {k:'grab',h:'Grab in Chillwind Camp',i:['Clear the Way','Argent Dawn Commission']},
  {k:'do',h:'Do, in this order',i:['@The Scourge Cauldrons','@Undead Potatoes','@Locked Away','@A Matter of Time','@Glyphed Oaken Branch','@Argent Dawn Commission']},
  {k:'dng',h:'Dungeon',i:['@Scholomance','@Necromancy 101']}],
 s27:[
@@ -153,7 +153,7 @@ s27:[
  {k:'dng',h:'Dungeon',i:['@Shaper\'s Terrace']},
  {k:'dng',h:'Legacy dungeon · once, for points',i:['@Legacy: ']}],
 s28:[
- {k:'grab',h:'Grab in Everlook',i:['Winterfall Firewater','Threat of the Winterfall','Are We There, Yeti?']},
+ {k:'grab',h:'Grab in Everlook',i:['Winterfall Firewater','Trouble in Winterspring!','Are We There, Yeti?']},
  {k:'do',h:'Do, in this order',i:['@Winterfall Firewater','@Ka-Boom!','@The Ruins of Kel\'Theril','@Strange Sources']},
  {k:'hold',h:'Only with a group',i:['@High Chief Winterfall']}],
 s29:[

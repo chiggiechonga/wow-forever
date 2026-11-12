@@ -153,18 +153,22 @@ function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do
 /* ---------- quest givers + coordinates (questnpc.js, from QuestieDB) ---------- */
 const QDB=(typeof QNPC!=='undefined')?QNPC:{};
 const midLv=s=>{const n=nums(s.lv);return n.length?(Math.min(...n)+Math.max(...n))/2:0};
-function qrec(name,lv){const k=norm(String(name).replace(/,? part \d+/i,''));const r=QDB[k];if(!r)return null;
+function qrec(name,lv,mode){const k=norm(String(name).replace(/,? part \d+/i,''));const r=QDB[k];if(!r)return null;
+ // a chain shares one name: "start" = where the chain begins (earliest step), "end" = its last hand-in
+ const near=r.filter(x=>Math.abs((x[2]||0)-lv)<=12);const pool=near.length?near:r;
+ if(mode==='start'){const c=pool.filter(x=>x[0]).sort((a,b)=>(a[2]||0)-(b[2]||0));if(c.length)return c[0]}
+ if(mode==='end'){const self=x=>x[0]&&x[1]&&x[0][0]===x[1][0]?1:0;const c=pool.filter(x=>x[1]).sort((a,b)=>(b[2]||0)-(a[2]||0)||self(a)-self(b));if(c.length)return c[0]}
  return r.slice().sort((a,b)=>Math.abs((a[2]||0)-lv)-Math.abs((b[2]||0)-lv))[0]}
 const zshort=z=>String(z||'').replace(/ (Forest|Mountains|Highlands|Vale|City|Marsh|Crater|Mountain)$/,'');
-function npcTxt(n,withZone=true){if(!n)return '';const c=n[2]!=null?` <span class="xy">${withZone&&n[1]?esc(zshort(n[1]))+' ':''}${(+n[2]).toFixed(1)}, ${(+n[3]).toFixed(1)}</span>`:'';return `<b>${esc(n[0])}</b>${c}`}
+function npcTxt(n,withZone=true){if(!n)return '';const c=n[2]!=null&&n[2]>=0?` <span class="xy">${withZone&&n[1]?esc(zshort(n[1]))+' ':''}${(+n[2]).toFixed(1)}, ${(+n[3]).toFixed(1)}</span>`:'';return `<b>${esc(n[0])}</b>${c}`}
 const sameNpc=(a,b)=>a&&b&&a[0]===b[0];
 // one line under a quest row: who starts it, who you turn it in to
 function npcLine(s,i){
  const [t,nm]=s.q[i];if(['hearth','train','book','bag','skip'].includes(t))return '';
  const lv=midLv(s);const chain=nm.includes(' → ');const parts=nm.split(/ → | · /).map(x=>x.trim()).filter(Boolean);
- const recs=parts.map(p=>[p,qrec(p,lv)]).filter(x=>x[1]);if(!recs.length)return '';
+ const recs=parts.map(p=>[p,qrec(p,lv,t==='turn'?'end':'start'),qrec(p,lv,'end')]).filter(x=>x[1]);if(!recs.length)return '';
  let h='';
- if(chain||recs.length===1){const st=recs[0][1][0],en=recs[recs.length-1][1][1];
+ if(chain||recs.length===1){const st=recs[0][1][0],en=(recs[recs.length-1][2]||recs[recs.length-1][1])[1];
   if(t==='turn'){h=en?`↩ Turn in: ${npcTxt(en)}`:''}
   else if(sameNpc(st,en))h=`📍 From + turn in: ${npcTxt(st)}`;
   else h=[st?`📍 From: ${npcTxt(st)}`:'',en?`↩ Turn in: ${npcTxt(en)}`:''].filter(Boolean).join(' · ');
@@ -177,7 +181,7 @@ function npcLine(s,i){
 // a grab / turn-in line: swap in the real NPC; keep lowercase notes like "(skip if…)"
 function lineNpc(s,kind,text){
  const m=String(text).match(/^(.*?)(?: \((.*)\))?$/);const name=m[1],paren=m[2]||'';const note=paren&&/^[a-z]/.test(paren)?paren:'';
- const r=(kind==='grab'||kind==='turn')?qrec(name,midLv(s)):null;const n=r?(kind==='turn'?r[1]:r[0]):null;
+ const r=(kind==='grab'||kind==='turn')?qrec(name,midLv(s),kind==='turn'?'end':'start'):null;const n=r?(kind==='turn'?r[1]:r[0]):null;
  const who=n?npcTxt(n):(paren&&!note?esc(paren):'');
  return {name,html:(who?`<span class="npc">${kind==='turn'?'↩ ':'📍 '}${who}</span>`:'')+(note?`<span class="npc">· ${esc(note)}</span>`:'')};
 }
@@ -355,11 +359,11 @@ function planItems(s){ // same order as the plan view: [{row}|{kind,text}]
 }
 function stopPins(s){
  const lv=midLv(s),raw=[];
- const add=(zone,x,y,kind,label,done)=>{if(zone&&x!=null&&y!=null)raw.push({zone,x:+x,y:+y,kind,label,done})};
+ const add=(zone,x,y,kind,label,done)=>{if(zone&&x!=null&&y!=null&&+x>=0&&+y>=0)raw.push({zone,x:+x,y:+y,kind,label,done})};
  const npcPin=(n,kind,label,done)=>{if(n&&n[2]!=null)add(zslug(n[1]),n[2],n[3],kind,label,done)};
  const objPins=(name,done)=>{const k=norm(String(name).replace(/,? part \d+/i,''));(QO[k]||[]).filter(o=>!o[4]||Math.abs(o[4]-lv)<=7).forEach(o=>add(o[1],o[2],o[3],'do',o[0],done))};
  planItems(s).forEach(it=>{
-  if(it.row===undefined){const name=String(it.text).split(' (')[0];const r=(it.kind==='grab'||it.kind==='turn')?qrec(name,lv):null;
+  if(it.row===undefined){const name=String(it.text).split(' (')[0];const r=(it.kind==='grab'||it.kind==='turn')?qrec(name,lv,it.kind==='turn'?'end':'start'):null;
    const m=String(it.text).match(XY);
    if(r)npcPin(it.kind==='turn'?r[1]:r[0],it.kind,(it.kind==='turn'?'Turn in: ':'Grab: ')+name,false);
    else if(m)add(zoneOf(it.text)||null,m[1],m[2],it.kind,name,false);return}
@@ -368,7 +372,7 @@ function stopPins(s){
   const m=(wh+' '+(tip||'')).match(XY);
   if(m){add(zoneOf(wh),m[1],m[2],t,nm,done);if(t!=='do')return}
   const parts=nm.split(/ → | · /).map(p=>p.trim()).filter(Boolean);
-  parts.forEach(p=>{const r=qrec(p,lv);
+  parts.forEach(p=>{const r=qrec(p,lv,t==='turn'?'end':'start');
    if(t==='turn'){if(r)npcPin(r[1],'turn','Turn in: '+p,done);return}
    if(t==='hold'||t==='dng'){if(r)npcPin(r[0],'grab','Grab: '+p,done);return}
    if(t==='do'){objPins(p,done)}});

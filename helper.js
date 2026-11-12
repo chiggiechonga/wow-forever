@@ -221,7 +221,7 @@ function detail(){
   <div class="hearth"><span class="chip">⌂ Hearth: <b>${esc(s.hearth)}</b></span><span class="chip ${s.rdiff?'diff':''}">💤 ${esc(s.rest)}</span>${s.hdiff?`<span class="chip diff">❄ ${esc(s.hdiff)}</span>`:''}</div>`;
  h+=goBox(s);
  if(n-1===hereIdx())h+=rightNow(s);
- h+=mapHtml(s);
+ 
  h+=questsHtml(s);
  if(s.gear.length){h+=`<div class="sec">GEAR FROM THIS STOP <small>★ = take this one</small></div><div class="cards">`;
   s.gear.forEach((g,i)=>{h+=`<div class="card ${g[3]?'diff':''}"><h3><span class="num">${i+1}</span>${esc(g[0])}${g[3]?'<span class="mg">❄ MAGE</span>':''}<span class="lvq">Lv ${g[1]}</span></h3>`;

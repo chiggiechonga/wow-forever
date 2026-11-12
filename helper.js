@@ -225,10 +225,11 @@ function detail(){
  h+=questsHtml(s);
  if(s.gear.length){h+=`<div class="sec">GEAR FROM THIS STOP <small>★ = take this one</small></div><div class="cards">`;
   s.gear.forEach((g,i)=>{h+=`<div class="card ${g[3]?'diff':''}"><h3><span class="num">${i+1}</span>${esc(g[0])}${g[3]?'<span class="mg">❄ MAGE</span>':''}<span class="lvq">Lv ${g[1]}</span></h3>`;
-   g[2].forEach(it=>{const w=wearing(it[1]);h+=`<div class="it"><div class="icon">${it[0]}</div><div><div class="nm ${it[2]}">${esc(it[1])}</div><div class="ty">${esc(it[3])}</div></div><span class="pick ${w?'wear':''}">${w?'✓ WEARING':it[4]?'★ PICK':''}</span></div>`});
-   h+='</div>'});h+='</div><div class="cnote">Item stats in Forever can differ from classic, so hover the reward before picking.</div>'}
+   g[2].forEach(it=>{const w=wearing(it[1]);const v=w?null:verdict(it[1]);const gi=gearInfo(it[1]);h+=`<div class="it${gi?' hasTT':''}" title="${v?esc(v.why):''}"><div class="icon">${iconImg(it[1],it[0])}</div><div><div class="nm ${it[2]}">${esc(it[1])}${gi?' <span class="ttgl">stats ▾</span>':''}</div><div class="ty">${esc(it[3])}</div>${v?`<div class="vwhy">${esc(v.why)}</div>`:''}</div><span class="pick ${w?'wear':''}">${w?'✓ WEARING':it[4]?'★ PICK':''}${v?`<span class="vtag ${v.c}">${v.t}</span>`:''}</span>${gi?ttHtml(it[1]):''}</div>`});
+   h+='</div>'});h+='</div><div class="cnote">Pictures + stats are from the Classic Era item database, and Forever can differ a bit, so hover the reward before picking. Tap an item to see its stats. ▲/▼ compares it to what you had on at your last sync, using healer weights (+healing > mp5 > Intellect > Spirit > Stamina).</div>'}
  if(s.note)h+=`<div class="box2"><b>Heads up:</b> ${esc(s.note)}</div>`;
  const d=$('detail');d.innerHTML=h;bindMap(s);
+ d.querySelectorAll('.it.hasTT').forEach(r=>r.onclick=e=>{if(e.target.closest('a'))return;r.classList.toggle('open')});
  d.querySelectorAll('.q.pl').forEach(r=>r.onclick=()=>{const k=r.dataset.l;const cur2=k in ov?ov[k]:lineAuto(r.dataset.kind,r.dataset.t);const now=!cur2;
   if(now===lineAuto(r.dataset.kind,r.dataset.t))delete ov[k];else ov[k]=now;store(CFG.ovKey,ov);render()});
  d.querySelectorAll('.q[data-q]').forEach(r=>r.onclick=()=>{const S=STOPS.find(x=>x.id===r.dataset.s),i=+r.dataset.i,k=r.dataset.q;
@@ -298,6 +299,43 @@ function profSync(){
  el.innerHTML=p.length?`<div class="box2 frost" style="margin:0 0 10px"><b>Your skills (synced):</b> ${p.map(x=>`${esc(x.n)} ${x.r}/${x.m}`).join(' · ')}</div>`:'';
 }
 function syncLabel(){$('syncAgo').textContent=C?`${C.n} · Lv ${C.lv} · ${ago(C.t)}`:'not synced yet'}
+
+/* ---------- item pictures, stats + upgrade check ---------- */
+var ITEMS={},GTT={};
+fetch('data/items.json?v=2').then(r=>r.json()).then(j=>{ITEMS=j;try{render()}catch(e){}}).catch(()=>{});
+fetch('data/gear_tt.json?v=2').then(r=>r.json()).then(j=>{GTT=j;try{render()}catch(e){}}).catch(()=>{});
+var W8={sp:1,int:.6,spi:.5,sta:.4,mp5:1.6,cr:.5,arm:.01};
+var SUF={Owl:['int','spi'],Eagle:['sta','int'],Prophet:['int','spi','sp'],Sorcerer:['sta','int','sp'],Elder:['sta','int','spi'],Whale:['sta','spi'],Wizardry:['int'],Intellect:['int'],Spirit:['spi'],Stamina:['sta'],Healing:['sp'],Sorcery:['sp'],Bear:['sta'],Monkey:['sta']};
+var SLOTW={1:1,5:1,7:1,16:1,3:.75,6:.75,8:.75,10:.75,9:.55,2:.55,15:.55,11:.55,12:.55,17:.55,13:.55,14:.55,18:.4};
+function iscore(s){let t=0;for(const k in s)t+=(W8[k]||0)*s[k];return t}
+function eqStats(g){ // stats of an equipped item: addon stats > item db (+random suffix estimate)
+ if(g.st)return {s:g.st,est:false};
+ const it=ITEMS[g.id];if(!it)return null;
+ const s=Object.assign({},it[6]);let est=false;
+ const m=/ of (?:the )?(\w+)$/.exec(g.n||'');
+ if(m&&SUF[m[1]]&&!(it[6].int||it[6].spi||it[6].sp)){const ks=SUF[m[1]];const tot=Math.round(it[4]*.45*(SLOTW[g.s]||.6));const each=Math.max(1,Math.round(tot/ks.length));ks.forEach(k=>s[k]=(s[k]||0)+(k==='sp'?Math.round(each*1.2):each));est=true}
+ return {s,est};
+}
+function gearInfo(name){const t=GTT[name];if(!t)return null;const it=ITEMS[t[0]];return {id:t[0],tt:t[1],it}}
+function verdict(name){
+ const gi=gearInfo(name);if(!gi||!gi.it)return {c:'v-unk',t:'? new Forever item',why:"Not in the item database yet, so hover it in game."};
+ const it=gi.it;if(!it[7])return {c:'v-no',t:"✗ CAN'T WEAR",why:'Priests can only wear cloth and use staves, maces, daggers and wands.'};
+ if(!C||!C.gear)return {c:'v-unk',t:'sync to compare',why:'Sync with the addon and this will say if it beats what you wear.'};
+ const slot=it[3],eq=s=>C.gear.find(g=>g.s===s);let cur=null,label='';
+ const pick=ss=>{let best=null;ss.forEach(s=>{const g=eq(s);const e=g?eqStats(g):{s:{},est:false};if(!g)e.empty=true;if(e&&(!best||iscore(e.s)<iscore(best.e.s)))best={g,e}});return best};
+ let b;
+ if(slot===11)b=pick([11,12]);else if(slot===13)b=pick([13,14]);
+ else if(it[8]){const mh=eq(16),oh=eq(17);const a=mh?eqStats(mh):{s:{}},o=oh?eqStats(oh):{s:{}};if(!a||!o)b={g:mh||oh,e:null};else{const s={};[a.s,o.s].forEach(x=>{for(const k in x)s[k]=(s[k]||0)+x[k]});b={g:mh,e:{s,est:a.est||o.est}}}}
+ else{const g=eq(slot);b={g,e:g?eqStats(g):{s:{},est:false}};if(!g)b.e.empty=true}
+ if(!b||!b.e)return {c:'v-unk',t:"? can't compare",why:`Your ${b&&b.g?b.g.n:'current item'} is a new Forever item, so the addon needs to send its stats. Update the addon to 1.3 and sync again.`};
+ const d=iscore(it[6])-iscore(b.e.s);const lvl=it[5]>(C.lv||0)?` Needs Lv ${it[5]}.`:'';
+ const vs=b.e.empty?'an empty slot':(b.g?b.g.n:'nothing');const est=b.e.est?' (your item has a random "of the…" bonus, so that part is estimated)':'';
+ if(d>1.5)return {c:'v-up',t:`▲ UPGRADE +${Math.round(d)}`,why:`Better than ${vs}${est}.${lvl}`};
+ if(d<-1.5)return {c:'v-down',t:'▼ NOT AN UPGRADE',why:`Worse than ${vs}${est}.${lvl}`};
+ return {c:'v-same',t:'≈ ABOUT THE SAME',why:`About even with ${vs}${est}.${lvl}`};
+}
+function ttHtml(name){const gi=gearInfo(name);if(!gi)return '';return `<div class="itt">${gi.tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}<a href="https://www.wowhead.com/classic/item=${gi.id}" target="_blank" rel="noopener">wowhead ↗</a></div>`}
+function iconImg(name,fallback){const gi=gearInfo(name);return gi&&gi.it?`<img src="https://wow.zamimg.com/images/wow/icons/large/${gi.it[1]}.jpg" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${fallback}'))">`:fallback}
 function render(){buildIndex();if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked))}
 
 /* ---------- tabs + sync ---------- */

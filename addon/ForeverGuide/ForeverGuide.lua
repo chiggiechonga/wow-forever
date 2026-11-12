@@ -116,7 +116,32 @@ local function gear()
     if link then
       local name = link:match("%[(.-)%]")
       local id = tonumber(link:match("item:(%d+)") or 0)
-      list[#list + 1] = { s = slot, id = id, n = name or "?" }
+      local e = { s = slot, id = id, n = name or "?" }
+      -- stats (so the web helper can say if a quest reward is an upgrade)
+      local getStats = (C_Item and C_Item.GetItemStats) or GetItemStats
+      local st = getStats and safe(getStats, link)
+      if type(st) == "table" then
+        local MAP = {
+          ITEM_MOD_STAMINA_SHORT = "sta", ITEM_MOD_INTELLECT_SHORT = "int", ITEM_MOD_SPIRIT_SHORT = "spi",
+          ITEM_MOD_STRENGTH_SHORT = "str", ITEM_MOD_AGILITY_SHORT = "agi",
+          ITEM_MOD_SPELL_POWER_SHORT = "sp", ITEM_MOD_SPELL_HEALING_DONE_SHORT = "sp", ITEM_MOD_SPELL_HEALING_DONE = "sp", ITEM_MOD_SPELL_POWER = "sp",
+          ITEM_MOD_POWER_REGEN0_SHORT = "mp5", ITEM_MOD_MANA_REGENERATION_SHORT = "mp5", ITEM_MOD_MANA_REGENERATION = "mp5",
+          ITEM_MOD_SPELL_CRIT_RATING_SHORT = "cr", ITEM_MOD_CRIT_SPELL_RATING_SHORT = "cr", ITEM_MOD_CRIT_RATING_SHORT = "cr",
+          RESISTANCE0_NAME = "arm",
+        }
+        local o, any = {}, false
+        for k, v in pairs(st) do
+          local key = MAP[k]
+          if key and type(v) == "number" then o[key] = math.max(o[key] or 0, math.floor(v + 0.5)); any = true end
+        end
+        if any then e.st = o end
+      end
+      if GetItemInfo then
+        local _, _, q, ilvl = safe(GetItemInfo, link)
+        if q then e.q = q end
+        if ilvl then e.il = ilvl end
+      end
+      list[#list + 1] = e
     end
   end
   return list

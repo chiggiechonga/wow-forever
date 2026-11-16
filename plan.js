@@ -204,6 +204,7 @@ s27:[
  {k:'dng',h:"Dungeons",i:["@Shaper's Terrace","@Legacy: Zul'Farrak"]}],
 s28:[
  {k:'town',h:"Everlook, Winterspring (61, 38)",i:['@Ka-Boom!','@Trouble in Winterspring!','@Are We There, Yeti?, part 1','@Are We There, Yeti?, part 2','@Are We There, Yeti?, part 3','@The Everlook Report','@Duke Nicholas Zverenhoff','@Sister Pamela']},
+ {k:'do',h:"Mount Hyjal side trip: free 18-slot bag + 5% speed trinket (~30 min)",i:['@Shroud of the Winter Wilds','@Mount Hyjal: grab both flight paths','@Mending Communications','@Unfrozen Deliveries','@Top of the Post']},
  {k:'do',h:"Donova Snowden (31, 45)",i:['@Threat of the Winterfall','@Winterfall Firewater','@Falling to Corruption','@Mystery Goo','@Toxic Horrors','@Winterfall Runners','@The Final Piece','@Words of the High Chief','@Strange Sources','@The Videre Elixir','@Meet at the Grave']},
  {k:'do',h:"Starfall Village + Kel'Theril (52, 30)",i:["@The Ruins of Kel'Theril","@Troubled Spirits of Kel'Theril",'@Enraged Wildkin, part 1','@Enraged Wildkin, part 2','@Enraged Wildkin, part 3']},
  {k:'do',h:"Timbermaw side",i:['@Speak to Salfa','@Winterfall Activity']},

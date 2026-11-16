@@ -79,8 +79,8 @@ s13:[
  {k:'do',h:"Nesingwary's camp (35, 10)",i:['@Welcome to the Jungle','@Tiger Mastery, part 1','@Panther Mastery, part 1','@Raptor Mastery, part 1','@Tiger Mastery, part 2','@Panther Mastery, part 2','@Tiger Mastery, part 3','@Raptor Mastery, part 2']},
  {k:'do',h:"Rebel Camp (38, 3)",i:['@The Second Rebellion','@Bad Medicine','@Jungle Secrets','@Bookie Herod','@The Hidden Key','@The Spy Revealed!','@Patrol Schedules','@Report to Doren',"@Krazek's Cookery"]},
  {k:'do',h:"Middle STV",i:['@Basilisks: Should Petrification be Feared?']},
- {k:'turn',h:"Back in Booty Bay",i:['@Some Assembly Required','@Favor for Krazek','@Water Elementals','@Magical Analysis','@Excelsior']},
- {k:'do',h:"Heading north to leave STV",i:['@Return to Corporal Kaleb','@Tiger Mastery, part 4','@Panther Mastery, part 3','@Special Forces',"@Kurzen's Mystery"]}],
+ {k:'turn',h:"Back in Booty Bay",i:['@Some Assembly Required','@Water Elementals','@Magical Analysis','@Excelsior','@Favor for Krazek']},
+ {k:'do',h:"Heading north to leave STV",i:['@Tiger Mastery, part 4','@Panther Mastery, part 3','@Special Forces',"@Kurzen's Mystery"]}],
 d5:[
  {k:'town',h:"Stormwind: grab these two",i:['@A Green Sample','@Power Overwhelming']},
  {k:'town',h:"Southshore, Hillsbrad",i:['@An Alarming Request']},
@@ -109,10 +109,10 @@ s15:[
  {k:'do',h:"Sleeping bag: Thoradin's Wall (on the way west)",i:['@Cozy Sleeping Bag · step 6','@Cozy Sleeping Bag · step 7']},
  {k:'town',h:"Southshore, Hillsbrad (51, 58)",i:['@Set hearth + flight path','@Down the Coast',"@Farren's Proof, part 1","@Farren's Proof, part 2","@Farren's Proof, part 3",'@Stormwind Ho!','@Reassignment','@Syndicate Assassins',"@Bartolo's Yeti Fur Cloak",'@Costly Menace','@Hints of a New Plague?, part 1','@Crushridge Bounty','@Preserving Knowledge','@Return to Milton','@Magics of the Drowned City','@Take Two With Water','@The Web of Magic',"@Findings for the Explorer's League"]},
  {k:'do',h:"Alterac Mountains",i:['@Foreboding Plans','@Encrypted Letter','@Noble Deaths','@Crushridge Warmongers','@Letter to Stormpike','@Strahnbrad Mystery','@Defensive Magics 101 (optional)','@Ancient Gurubashi Secrets','@Vengeance of the Highborne']},
- {k:'do',h:"Back to Arathi: Go'Shek Farm + Myzrael",i:['@Hints of a New Plague?, part 2','@Hints of a New Plague?, part 3','@Hints of a New Plague?, part 4','@Hints of a New Plague?, part 5','@The Princess Trapped','@Stones of Binding']},
+ {k:'do',h:"Back to Arathi: Go'Shek Farm + Myzrael",i:['@Hints of a New Plague?, part 2','@Hints of a New Plague?, part 3','@Hints of a New Plague?, part 4','@Hints of a New Plague?, part 5','@The Princess Trapped','@Stones of Binding','@Favor for Krazek: 4 Lesser Bloodstone Ore']},
  {k:'do',h:"Stromgarde (Refuge Pointe chain)",i:['@Wand over Fist',"@Trelane's Defenses","@An Apprentice's Enchantment",'@Attack on the Tower',"@Malin's Request, part 2",'@Wanted!  Marez Cowl','@Wanted!  Otto and Falconcrest']},
  {k:'do',h:"Faldir's Cove (south-west coast, 32, 81)",i:['@Land Ho!','@Drowned Sorrows','@Sunken Treasure, part 1','@Sunken Treasure, part 2','@Sunken Treasure, part 3','@Deep Sea Salvage']},
- {k:'dng',h:"Last thing: fly to Booty Bay for The Drowned City",i:['@The Drowned City','@Legacy: The Drowned City']}],
+ {k:'dng',h:"Last thing: fly to Booty Bay for The Drowned City",i:['@Favor for Krazek (turn in)','@Return to Corporal Kaleb','@The Drowned City','@Legacy: The Drowned City']}],
 s16:[
  {k:'town',h:'In Ironforge',i:['@Train Lv 40','@Dual spec','@Archmage Antonidas']},
  {k:'turn',h:'Ironforge hand-ins you carried here',i:['@Letter to Stormpike',"@Sully Balloo's Letter"]},
@@ -154,7 +154,7 @@ s20:[
  {k:'town',h:"Booty Bay",i:['@Set hearth','@The Bloodsail Buccaneers, part 1','@The Bloodsail Buccaneers, part 2','@The Bloodsail Buccaneers, part 3','@Up to Snuff','@Keep An Eye Out','@The Bloodsail Buccaneers, part 4','@The Bloodsail Buccaneers, part 5','@Akiris by the Bundle','@Skullsplitter Tusks','@Venture Company Mining',"@Zanzil's Secret","@\"Pretty Boy\" Duncan",'@The Curse of the Tides','@Stranglethorn Fever',"@Stoley's Debt","@Tran'rek","@The Captain's Chest",'@Get the Goods',"@We've Been Robbed!","@All's Well That Ends Well"]},
  {k:'do',h:"West coast (Shaky + MacKinley)",i:['@Scaring Shaky','@Return to MacKinley','@Voodoo Dues',"@Cracking Maury's Foot"]},
  {k:'do',h:"Nesingwary's camp (35, 10)",i:['@Panther Mastery, part 4','@Raptor Mastery, part 3','@Raptor Mastery, part 4','@Big Game Hunter','@The Green Hills of Stranglethorn']},
- {k:'do',h:"Rebel Camp (38, 3)",i:['@Colonel Kurzen','@Troll Witchery',"@Mai'Zoth"]},
+ {k:'do',h:"Rebel Camp (38, 3)",i:['@Colonel Kurzen','@Troll Witchery',"@Mai'Zoth",'@Return to Corporal Kaleb']},
  {k:'do',h:"New in Forever",i:['@Partial Mystical Notes']},
  {k:'dng',h:"Next",i:["@Zul'Farrak (next)"]}],
 s21:[

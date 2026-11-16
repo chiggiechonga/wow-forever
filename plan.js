@@ -224,5 +224,6 @@ d4:[
  {k:'dng',h:"Blackrock Mountain",i:['@Legacy: Blackrock Depths','@Legacy: Lower Blackrock Spire','@Legacy: Upper Blackrock Spire']},
  {k:'dng',h:"Kalimdor",i:['@Legacy: Blackmaw Hold',"@Legacy: The Shaper's Terrace",'@Priest: hand in Blood of Morphaz']},
  {k:'dng',h:"Dire Maul (Feralas): grab these first",i:["@Pusillin and the Elder Azj'Tordin",'@Elven Legends','@Legacy: Dire Maul East','@Legacy: Dire Maul West','@Legacy: Dire Maul North','@Mage: Arcane Refreshment',"@Holy Bologna: What the Light Won't Tell You"]},
- {k:'dng',h:"Plaguelands",i:['@Legacy: Scholomance','@Legacy: Stratholme (Live)','@Legacy: Stratholme (Dead)']}],
+ {k:'dng',h:"Plaguelands",i:['@Legacy: Scholomance','@Legacy: Stratholme (Live)','@Legacy: Stratholme (Dead)']},
+ {k:'dng',h:"Alterac Valley (queue from anywhere, Lv 51+)",i:['@The Battle of Alterac','@Hero of the Stormpike']}],
 };

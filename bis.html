@@ -110,7 +110,7 @@ const SPECS={
   trink2:[O('Shard of the Splithooves','r','Quest: Heroes of Old (Blasted Lands)','End of the Fallen Hero chain. Skipped in the leveling guide; worth doing at 60 for this.'),O('Serenity Field','r','Vendor (cost not listed yet)','New Undermine trinket. You can only wear one Undermine trinket.','nu')],
   mh:[O('Resurgence Rod','r','Quest: Corruption of Earth and Seed (Maraudon)','Already in your guide at the Maraudon + Alcaz trip (~53).','r'),O('Hand of Righteousness','e','Scarlet Monastery · High Inquisitor Whitemane','Shows up on one Forever list; check the tooltip.','u'),O('Royal Diplomatic Scepter','r','Gnomeregan · Dark Iron Ambassador','')],
   oh:[O('Brightly Glowing Stone','r','Dire Maul North · King Gordok',''),O("Thaurissan's Royal Scepter",'r','BRD · Emperor Dagran Thaurissan',''),O('Barkskin Baubles','r','Barkskin Burrow rep · Revered','New Forever rep item.','nu')],
-  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling',''),O('Torch of Light','r','Enchanting',''),O('Brilliant Wand','r','Enchanting','New Forever recipe.','n')]
+  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling',''),O('Torch of Light','r','Enchanting',''),O('Brilliant Wand','r','Enchanting','New Forever recipe.','n'),O('Wand of Biting Cold','r','Alterac Valley · quest Hero of the Stormpike','Easy pre-raid pick: win one AV where Drek\'thar dies.')]
  },ench:{head:'Lesser Arcanum of Rumination (+150 mana), from the Dire Maul librams (Lorekeeper Lydros)',neck:'⭐ Healing +11 / Spell Damage +4 (new Forever neck enchant)',back:'Greater Resistance',chest:'Greater Stats (+4 all) · ⭐ or the new +10 Intellect',wrist:'Healing +24',hands:'⭐ Healing +35 / Spell Damage +12',legs:'Lesser Arcanum of Rumination',feet:'Spirit +5',mh:'Healing +55 (the biggest one)',oh:'⭐ +6 Intellect, +5 Spirit'}},
  pvp:{name:'Disc · PvP',sub:'Talents 31/20/0 · Stamina > +Healing > Intellect · blue honor set needs no rank, only Lv 55 + Honor + Marks',slots:{
   head:[O('Blue honor set helm (Satin)','r','PvP vendor · Honor + Marks of Honor','Each slot needs marks from one specific battleground.','p'),O('Devout Crown','r','Scholomance · Darkmaster Gandling','Good Stamina until you have the honor piece.')],
@@ -129,7 +129,7 @@ const SPECS={
   trink2:[O('Second Wind','r','BRD · Golem Lord Argelmach',''),O('Darkspear Islands rep trinket','r','Darkspear Islands BG rep','','npu')],
   mh:[O('Resurgence Rod','r','Quest: Corruption of Earth and Seed (Maraudon)','','r'),O('Grand Marshal\'s weapon','e','PvP Rank 14','Long-term goal only.','p')],
   oh:[O('Brightly Glowing Stone','r','Dire Maul North · King Gordok','')],
-  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling','')]
+  wand:[O('Bonecreeper Stylus','r','Scholomance · Darkmaster Gandling',''),O('Wand of Biting Cold','r','Alterac Valley · quest Hero of the Stormpike','Easy pre-raid pick: win one AV where Drek\'thar dies.')]
  },ench:{head:'Lesser Arcanum of Constitution (+100 HP), from the Dire Maul librams',back:'Armor or +3 Agility',chest:'Greater Stats',wrist:'Healing +24, or +9 Stamina if you keep getting trained',hands:'⭐ Healing +35',legs:'Lesser Arcanum of Constitution',feet:'Minor Speed (the must-have PvP enchant)',mh:'Healing +55'}},
  shadow:{name:'Shadow · DPS',sub:'Talents 14/3/34 · Shadow damage > Spell hit > Intellect · for questing/farming or if your raid wants a shadow priest',slots:{
   head:[O('Felcloth Hood','r','Tailoring','5 Bolt of Runecloth, 4 Felcloth, 1 Rune Thread.','c'),O('Dreamweave Circlet','r','Tailoring','','c')],
@@ -148,7 +148,7 @@ const SPECS={
   trink2:[O('Frozen Heart of the Mountain','r','Enchanting','','n')],
   mh:[O('Staff of Jordan','e','World drop (BoE)',''),O('Wisepaw Totem','r','Barkskin Burrow rep · Revered','Listed on one site; might not be a priest item.','nu')],
   oh:[O('(two-hander, no off hand)','u','','')],
-  wand:[O('Brilliant Wand','r','Enchanting','','n'),O('Lunar Wand','r','','')]
+  wand:[O('Brilliant Wand','r','Enchanting','','n'),O('Lunar Wand','r','',''),O('Wand of Biting Cold','r','Alterac Valley · quest Hero of the Stormpike','Easy pre-raid pick: win one AV where Drek\'thar dies.')]
  },ench:{head:'Lesser Arcanum of Focus (spell damage), Dire Maul librams',chest:'Greater Stats',wrist:'Intellect +7',hands:'⭐ Spell Damage +12',legs:'Lesser Arcanum of Focus',feet:'Minor Speed',mh:'Spell Power +30'}}
 };
 let IT={};const QC={Poor:'c',Common:'c',Uncommon:'u',Rare:'r',Epic:'e',Legendary:'e'};
@@ -177,6 +177,6 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('.slot');if(b){
  const k=ev.target.closest('#specs button');if(k){spec=k.dataset.k;sv('bis-spec',spec);render()}});
 document.addEventListener('change',ev=>{const c=ev.target.closest('input[data-n]');if(c){have[c.dataset.n]=c.checked;if(!c.checked)delete have[c.dataset.n];sv('bis-have',have);render()}});
 render();
-fetch('data/bis_items.json?v=1').then(r=>r.json()).then(j=>{IT=j;render()}).catch(()=>{});
+fetch('data/bis_items.json?v=1794843797').then(r=>r.json()).then(j=>{IT=j;render()}).catch(()=>{});
 </script>
 </body></html>

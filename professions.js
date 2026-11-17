@@ -1,4 +1,4 @@
-/* Professions page (Alchemy / Tailoring): recipes from data/<prof>.json, hourly AH prices from
+/* Professions page (Alchemy / Tailoring / Cooking / Blacksmithing): recipes from data/<prof>.json, hourly AH prices from
    data/prices.json + data/history.json (written by the "AH prices" GitHub Action). */
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -16,6 +16,9 @@ const PROFS={
  cooking:{name:'Cooking',key:'ckg',file:'data/cooking.json',thing:'dish',things:'dishes',raw:'fish',raws:'fish',
   cats:['All','Fish','Meat','Drink','Feast','Other'],farm:'I catch my own fish',shop:[['Smoked Desert Dumplings',10]],search:'dish or fish…',pvp:false,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h14a0 0 0 0 1 0 0 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M17 12h4"/><path d="M8 7c0-1.5 1-1.5 1-3M12 7c0-1.5 1-1.5 1-3"/></svg>'},
+ blacksmithing:{name:'Blacksmithing',key:'bsm',file:'data/blacksmithing.json',thing:'item',things:'items',raw:'ore',raws:'ore & stone',
+  cats:['All','Weapon','Armor','Stone','Bar','Other'],farm:'I mine my own ore',shop:[['Dense Sharpening Stone',10]],search:'item, ore or bar…',pvp:false,
+  logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h11l3-3h2v4a3 3 0 0 1-3 3h-3"/><path d="M8 13h6l1 4H7z"/><path d="M5 21h14"/></svg>'},
  tailoring:{name:'Tailoring',key:'tlr',file:'data/tailoring.json',thing:'item',things:'items',raw:'cloth',raws:'cloth',
   cats:['All','Bolt','Bag','Shirt','Armor','Other'],farm:'I farm my cloth',shop:[['Bolt of Runecloth',10]],search:'item or cloth…',pvp:false,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5"/><circle cx="17.5" cy="6.5" r="1.6"/><path d="M4 12c3-3 5 3 8 0s5 3 8 0"/></svg>'}};
@@ -131,7 +134,7 @@ function renderProfit(){
  rows.sort((a,b)=>{const ka=key(a),kb=key(b);return (ka>kb?1:ka<kb?-1:0)*S.dir});
  const th=(k,t,n)=>`<th class="${n?'n':''}" data-sort="${k}">${t}${S.sort===k?(S.dir<0?' ▾':' ▴'):''}</th>`;
  const body=rows.map(x=>{const r=x.r,open=S.open===r.n,pc=x.profit==null?'soft':x.profit>0?'up':'down';
-  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${!canMake(r)?`<span class="badge lock">NEEDS ${r.sk}</span>`:trained(r)?'<span class="badge ok">CAN MAKE</span>':'<span class="badge pvp">NEEDS RECIPE</span>'}</div><div class="psub">${P.name} ${r.sk} · ${r.c}${trained(r)?'':' · '+esc(r.src||'recipe source unknown')}${r.pvp?' · PvP':''}${perDay(O(r))?` · ~${perDay(O(r))} sell a day`:''}</div></td>
+  let h=`<tr class="row ${open?'open':''}" data-r="${esc(r.n)}"><td><div class="pname">${esc(r.n)}${!canMake(r)?`<span class="badge lock">NEEDS ${r.sk}</span>`:trained(r)?'<span class="badge ok">CAN MAKE</span>':'<span class="badge pvp">NEEDS RECIPE</span>'}</div><div class="psub">${r.mining?'Smelting · Mining '+r.mining:P.name+' '+r.sk+' · '+r.c}${r.new?' · new in Forever':''}${trained(r)?'':' · '+esc(r.src||'recipe source unknown')}${r.pvp?' · PvP':''}${perDay(O(r))?` · ~${perDay(O(r))} sell a day`:''}</div></td>
   <td class="n">${money(x.s)}</td><td class="n soft">${money(x.cost)}</td><td class="n ${pc}" style="font-weight:700">${money(x.profit)}</td><td class="n ${pc}">${x.margin!=null?x.margin.toFixed(0)+'%':'—'}</td><td class="n soft">${x.qty!=null?x.qty+' on AH':'—'}</td></tr>`;
   if(open){const mats=x.parts.map(p=>`<div class="mrow"><span>${p.q}× ${esc(p.n)}</span><span class="soft">${p.how}${p.c!=null?' · '+money(p.c)+' each':''}</span><span>${p.c!=null?money(p.c*p.q):'—'}</span></div>`).join('');
    h+=`<tr class="open"><td colspan="6" style="padding:0 10px 12px"><div class="detail"><div><div class="lbl">MATS (CHEAPEST WAY)</div>${mats}</div>

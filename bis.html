@@ -169,7 +169,7 @@ function render(){
  const [id,lab,ico]=SLOTS.find(s=>s[0]===sel)||SLOTS[4];const opts=S.slots[id]||[];
  let h=`<div class="dh"><div class="ic ${opts[0]&&IT[opts[0].n]?'q'+qOf(opts[0].n,opts[0].q):''}">${opts[0]&&IT[opts[0].n]?ICON(opts[0].n):ico}</div><div><div class="sl">${lab}</div><h2>${opts[0]?esc(opts[0].n):'—'}</h2></div></div>`;
  h+=`<div class="wearing">You're wearing: ${CUR[id]&&IT[CUR[id][0]]?`<span class="ic q${qOf(CUR[id][0],CUR[id][1])}">${ICON(CUR[id][0])}</span>`:''}<b class="q-${CUR[id]?CUR[id][1]:'u'}">${CUR[id]?esc(CUR[id][0]):'nothing'}</b></div>`;
- h+=opts.map((o,i)=>`<div class="opt"><div class="rank">#${i+1}</div>${IT[o.n]?`<div class="ic q${qOf(o.n,o.q)}">${ICON(o.n)}</div>`:''}<div class="body"><div class="nm q-${qOf(o.n,o.q)}">${esc(o.n)}${IT[o.n]?`<a class="wh" href="https://www.wowhead.com/classic/item=${IT[o.n].id}" target="_blank" rel="noopener">wowhead ↗</a>`:''}</div>${o.s?`<div class="src">${esc(o.s)}</div>`:''}${o.h?`<div class="how">${esc(o.h)}</div>`:''}${o.t?`<div class="tags">${[...o.t].map(t=>`<span class="tag ${TAG[t][0]}">${TAG[t][1]}</span>`).join('')}</div>`:''}${IT[o.n]?`<div class="tt">${IT[o.n].tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}</div>`:(o.s?`<div class="noinfo">No picture/stats yet: new Forever item that isn't in the item database. Hover it in game.</div>`:'')}</div><label class="got"><input type="checkbox" data-n="${esc(o.n)}" ${have[o.n]?'checked':''}> got it</label></div>`).join('');
+ h+=opts.map((o,i)=>`<div class="opt"><div class="rank">#${i+1}</div>${IT[o.n]?`<div class="ic q${qOf(o.n,o.q)}">${ICON(o.n)}</div>`:''}<div class="body"><div class="nm q-${qOf(o.n,o.q)}">${esc(o.n)}${IT[o.n]?`<a class="wh" href="https://www.wowhead.com/${IT[o.n].fv?'forever':'classic'}/item=${IT[o.n].id}" target="_blank" rel="noopener">wowhead ↗</a>`:''}</div>${o.s?`<div class="src">${esc(o.s)}</div>`:''}${o.h?`<div class="how">${esc(o.h)}</div>`:''}${o.t?`<div class="tags">${[...o.t].map(t=>`<span class="tag ${TAG[t][0]}">${TAG[t][1]}</span>`).join('')}</div>`:''}${IT[o.n]&&IT[o.n].tt.length?`<div class="tt">${IT[o.n].tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}</div>`:IT[o.n]?'':(o.s?`<div class="noinfo">No picture/stats yet: new Forever item that isn't in the item database. Hover it in game.</div>`:'')}</div><label class="got"><input type="checkbox" data-n="${esc(o.n)}" ${have[o.n]?'checked':''}> got it</label></div>`).join('');
  const e=S.ench[id];h+=`<div class="ench">✨ <b>Enchant:</b> ${e?esc(e):'nothing worth it for this slot yet'}</div>`;
  document.getElementById('D').innerHTML=h;
 }
@@ -177,6 +177,8 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('.slot');if(b){
  const k=ev.target.closest('#specs button');if(k){spec=k.dataset.k;sv('bis-spec',spec);render()}});
 document.addEventListener('change',ev=>{const c=ev.target.closest('input[data-n]');if(c){have[c.dataset.n]=c.checked;if(!c.checked)delete have[c.dataset.n];sv('bis-have',have);render()}});
 render();
-fetch('data/bis_items.json?v=1794843797').then(r=>r.json()).then(j=>{IT=j;render()}).catch(()=>{});
+const QN={1:'Common',2:'Uncommon',3:'Rare',4:'Epic',5:'Legendary'};
+Promise.all([fetch('data/bis_items.json?v=1794843797').then(r=>r.json()).catch(()=>({})),fetch('data/item_icons.json?v=2').then(r=>r.json()).catch(()=>({}))])
+ .then(([j,ic])=>{IT=j;for(const [n,m] of Object.entries(ic))if(!IT[n]&&m.icon)IT[n]={id:m.id,icon:m.icon,q:QN[m.q]||'Rare',tt:[],fv:1};render()});
 </script>
 </body></html>

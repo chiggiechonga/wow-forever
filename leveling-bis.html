@@ -166,10 +166,10 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 let spec=ld('lbis-spec','shadow');if(!SPECS[spec])spec='shadow';
 let lv=ld('lbis-lv','40');if(!SPECS[spec].sets[lv])lv='40';
 let have=ld('lbis-have',{});           // keyed by item name, so a kept piece stays ticked across levels
-let META=ld('lbis-meta',{});           // wowhead icon + quality cache: id → {icon,q}
+let META={};                           // item name → {id,icon,q}
 function tile(slot,o,side){
  if(!o)return `<div class="it ${side||''}"><div class="ic" style="opacity:.45;cursor:default">${slot[3]}</div><div><div class="sl">${slot[1]}</div><div class="src">empty: the main hand is a two-hander</div></div></div>`;
- const m=META[o.id]||{},q=m.q||o.q,got=!!have[o.n];
+ const m=META[o.n]||{},q=m.q||o.q,got=!!have[o.n];
  const url=`https://www.wowhead.com/forever/item=${o.id}`;
  const icon=m.icon?`<img src="https://wow.zamimg.com/images/wow/icons/large/${m.icon}.jpg" alt="" loading="lazy">`:slot[3];
  return `<div class="it ${side||''} ${got?'got':''}"><button class="ic q${q}" data-n="${esc(o.n)}" title="${got?'Got it (tap to untick)':'Tap when you have it'}">${icon}<span class="tick">✓</span></button>
@@ -193,9 +193,7 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('#lvls button');if(b){lv=b.dataset.l;sv('lbis-lv',lv);render();return}
  const ic=e.target.closest('.ic[data-n]');if(ic){const n=ic.dataset.n;if(have[n])delete have[n];else have[n]=1;sv('lbis-have',have);render()}});
 render();
-// pull icons + real quality from wowhead's tooltip data (Forever first, Classic for old items)
-const ids=[...new Set(Object.values(SPECS).flatMap(p=>Object.values(p.sets)).flatMap(S=>Object.values(S.items).filter(Boolean).map(o=>o.id)))].filter(id=>!META[id]);
-async function meta(id){for(const env of ['forever','classic']){try{const r=await fetch(`https://nether.wowhead.com/${env}/tooltip/item/${id}`);if(!r.ok)continue;const j=await r.json();if(j&&j.icon)return {icon:j.icon,q:j.quality}}catch(e){}}return null}
-Promise.all(ids.map(async id=>{const m=await meta(id);if(m)META[id]=m})).then(()=>{sv('lbis-meta',META);render()});
+// icons + quality, looked up from wowhead by the Item icons workflow (data/item_icons.json)
+fetch('data/item_icons.json?v=2').then(r=>r.json()).then(j=>{for(const [n,m] of Object.entries(j))META[n]=m;render()}).catch(()=>{});
 </script>
 </body></html>

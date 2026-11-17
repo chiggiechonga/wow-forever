@@ -1,0 +1,476 @@
+{
+"Apprentice Sorcerer's Slacks": {
+"icon": "inv_pants_10",
+"id": 279878,
+"q": 3,
+"via": "forever"
+},
+"Arcanoweave Cloak": {
+"icon": "inv_misc_cape_05",
+"id": 272411,
+"q": 3,
+"via": "forever-search"
+},
+"Bad Mojo Mask": {
+"icon": "inv_banner_01",
+"id": 9470,
+"q": 3,
+"via": "forever"
+},
+"Ban'thok Sash": {
+"icon": "inv_belt_29",
+"id": 11662,
+"q": 3,
+"via": "forever"
+},
+"Band of Crimson Light": {
+"icon": "inv_jewelry_ring_25",
+"id": 274295,
+"q": 3,
+"via": "forever"
+},
+"Barkskin Baubles": {
+"icon": "inv_misc_bag_10_black",
+"id": 274417,
+"q": 3,
+"via": "forever-search"
+},
+"Black Sandals": {
+"icon": "inv_boots_05",
+"id": 254113,
+"q": 3,
+"via": "forever-search"
+},
+"Blade of Eternal Darkness": {
+"icon": "inv_sword_09",
+"id": 17780,
+"q": 4,
+"via": "forever"
+},
+"Blessed Band of Light": {
+"icon": "inv_jewelry_ring_60",
+"id": 272407,
+"q": 3,
+"via": "forever-search"
+},
+"Bloodmage Mantle": {
+"icon": "inv_shoulder_05",
+"id": 7684,
+"q": 3,
+"via": "forever"
+},
+"Brilliant Cloak": {
+"icon": "inv_misc_cape_16",
+"id": 277206,
+"q": 2,
+"via": "forever"
+},
+"Brilliant Wand": {
+"icon": "inv_wand_07",
+"id": 249385,
+"q": 3,
+"via": "forever-search"
+},
+"Briny Sash": {
+"icon": "inv_belt_07",
+"id": 274605,
+"q": 3,
+"via": "forever"
+},
+"Channeler's Ring": {
+"icon": "inv_jewelry_ring_24",
+"id": 272406,
+"q": 3,
+"via": "forever-search"
+},
+"Civinad Robes": {
+"icon": "inv_chest_cloth_18",
+"id": 9623,
+"q": 3,
+"via": "forever"
+},
+"Cleansed Vilebranch Icon": {
+"icon": "inv_misc_coin_08",
+"id": 270276,
+"q": 2,
+"via": "forever"
+},
+"Cyclopean Band": {
+"icon": "inv_jewelry_ring_08",
+"id": 11824,
+"q": 3,
+"via": "forever"
+},
+"Deathmage Sash": {
+"icon": "inv_belt_24",
+"id": 10771,
+"q": 3,
+"via": "forever"
+},
+"Drape of Recovery": {
+"icon": "inv_misc_cape_06",
+"id": 272413,
+"q": 3,
+"via": "forever-search"
+},
+"Earthenweave Cuffs": {
+"icon": "inv_bracer_13",
+"id": 254131,
+"q": 2,
+"via": "forever"
+},
+"Electromagnetic Gigaflux Reactivator": {
+"icon": "inv_gizmo_01",
+"id": 9492,
+"q": 3,
+"via": "forever"
+},
+"Embrace of the Wind Serpent": {
+"icon": "inv_chest_cloth_42",
+"id": 12462,
+"q": 4,
+"via": "forever"
+},
+"Ephemeral Grips": {
+"icon": "inv_gauntlets_24",
+"id": 273034,
+"q": 3,
+"via": "forever"
+},
+"Everlook Delivery Bot": {
+"icon": "inv_misc_enggizmos_03",
+"id": 274760,
+"q": 3,
+"via": "forever-search"
+},
+"Expeditionary's Cape": {
+"icon": "inv_misc_cape_20",
+"id": 271923,
+"q": 3,
+"via": "forever-search"
+},
+"Frozen Heart of the Mountain": {
+"icon": "inv_misc_gem_sapphire_01",
+"id": 249469,
+"q": 3,
+"via": "forever-search"
+},
+"Gilded Sandals": {
+"icon": "inv_boots_cloth_06",
+"id": 254107,
+"q": 3,
+"via": "forever-search"
+},
+"Glinteye Slippers": {
+"icon": "inv_boots_05",
+"id": 273024,
+"q": 3,
+"via": "forever"
+},
+"Glowing Brightwood Staff": {
+"icon": "inv_staff_29",
+"id": 812,
+"q": 4,
+"via": "forever"
+},
+"Glowing Eye of Mordresh": {
+"icon": "inv_misc_orb_03",
+"id": 10769,
+"q": 3,
+"via": "forever"
+},
+"Hand of Righteousness": {
+"icon": "inv_hammer_02",
+"id": 7721,
+"q": 3,
+"via": "forever"
+},
+"Heart of the Primeval": {
+"icon": "inv_elemental_primal_water",
+"id": 274615,
+"q": 3,
+"via": "forever"
+},
+"High Priestess's Kilt": {
+"icon": "inv_pants_cloth_06",
+"id": 286640,
+"q": 3,
+"via": "forever-search"
+},
+"Incandescent Mooncloth Circlet": {
+"icon": "inv_misc_bandana_01",
+"id": 227863,
+"q": 3,
+"via": "classic"
+},
+"Incandescent Mooncloth Leggings": {
+"icon": "inv_pants_13",
+"id": 227864,
+"q": 3,
+"via": "classic"
+},
+"Inquisitor's Shawl": {
+"icon": "inv_shoulder_27",
+"id": 19507,
+"q": 3,
+"via": "forever"
+},
+"Jumanza Grips": {
+"icon": "inv_gauntlets_09",
+"id": 18083,
+"q": 3,
+"via": "forever"
+},
+"Kentic Amice": {
+"icon": "inv_shoulder_25",
+"id": 11624,
+"q": 3,
+"via": "forever"
+},
+"Knight-Captain's Satin Cord": {
+"icon": "inv_belt_22",
+"id": 17597,
+"q": 3,
+"via": "forever-search"
+},
+"Library Walkers": {
+"icon": "inv_boots_05",
+"id": 274294,
+"q": 2,
+"via": "forever"
+},
+"Mantle of Lost Hope": {
+"icon": "inv_shoulder_09",
+"id": 22234,
+"q": 3,
+"via": "forever"
+},
+"Mordresh's Lifeless Skull": {
+"icon": "inv_misc_bone_elfskull_01",
+"id": 10770,
+"q": 3,
+"via": "forever"
+},
+"Nethergeld Cuffs": {
+"icon": "inv_bracer_23b",
+"id": 254061,
+"q": 3,
+"via": "forever-search"
+},
+"Orb of Lorica": {
+"icon": "inv_misc_orb_01",
+"id": 11262,
+"q": 3,
+"via": "forever"
+},
+"Penitent's Cinch": {
+"icon": "inv_belt_37b",
+"id": 272394,
+"q": 4,
+"via": "forever-search"
+},
+"Philanthropist's Ring": {
+"icon": "inv_jewelry_ring_14",
+"id": 281635,
+"q": 3,
+"via": "forever"
+},
+"Priestess Cloak": {
+"icon": "inv_misc_cape_15",
+"id": 274613,
+"q": 3,
+"via": "forever"
+},
+"Prisoner Handwraps": {
+"icon": "inv_gauntlets_21",
+"id": 275021,
+"q": 3,
+"via": "forever"
+},
+"Purified Ring": {
+"icon": "inv_jewelry_ring_01",
+"id": 270081,
+"q": 3,
+"via": "forever"
+},
+"Restorer's Fine Gloves": {
+"icon": "inv_gauntlets_21",
+"id": 270059,
+"q": 2,
+"via": "forever"
+},
+"Robes of the Lich": {
+"icon": "inv_chest_cloth_17",
+"id": 10762,
+"q": 3,
+"via": "forever"
+},
+"Roogug's Severed Head": {
+"icon": "inv_misc_head_quillboar_01",
+"id": 274152,
+"q": 3,
+"via": "forever"
+},
+"Runemender's Seal": {
+"icon": "inv_jewelry_ring_28",
+"id": 273031,
+"q": 3,
+"via": "forever"
+},
+"Seal of the Expedition": {
+"icon": "inv_jewelry_necklace_08",
+"id": 271920,
+"q": 3,
+"via": "forever-search"
+},
+"Serenity Field": {
+"icon": "inv_misc_enggizmos_36",
+"id": 272439,
+"q": 3,
+"via": "forever-search"
+},
+"Sergeant Major's Cape": {
+"icon": "inv_misc_cape_21",
+"id": 16315,
+"q": 3,
+"via": "forever-search"
+},
+"Singed Cloth Robe": {
+"icon": "inv_shirt_03",
+"id": 270113,
+"q": 2,
+"via": "forever"
+},
+"Soulsplatter Mace": {
+"icon": "inv_mace_01",
+"id": 271804,
+"q": 3,
+"via": "forever"
+},
+"Southsea Mojo Boots": {
+"icon": "inv_boots_05",
+"id": 20641,
+"q": 2,
+"via": "forever"
+},
+"Spidertank Oilrag": {
+"icon": "inv_misc_bandage_09",
+"id": 9448,
+"q": 3,
+"via": "forever"
+},
+"Spritecaster Cape": {
+"icon": "inv_misc_cape_20",
+"id": 11623,
+"q": 3,
+"via": "forever"
+},
+"Stoneweaver Leggings": {
+"icon": "inv_pants_01",
+"id": 9407,
+"q": 3,
+"via": "forever"
+},
+"Swarmtender's Footpads": {
+"icon": "inv_boots_cloth_01",
+"id": 275609,
+"q": 3,
+"via": "forever"
+},
+"Talvash's Enhancing Necklace": {
+"icon": "inv_jewelry_necklace_02",
+"id": 7673,
+"q": 3,
+"via": "forever"
+},
+"Theramore Handwraps": {
+"icon": "inv_gauntlets_22",
+"id": 271945,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Shoulderpads": {
+"icon": "inv_shoulder_02",
+"id": 271953,
+"q": 4,
+"via": "forever-search"
+},
+"Tidesong Wand": {
+"icon": "inv_wand_01",
+"id": 276735,
+"q": 3,
+"via": "forever"
+},
+"Torch of Light": {
+"icon": "inv_torch_lit",
+"id": 279246,
+"q": 4,
+"via": "forever-search"
+},
+"Triune Amulet": {
+"icon": "inv_jewelry_amulet_01",
+"id": 7722,
+"q": 3,
+"via": "forever"
+},
+"Venomspew Footpads": {
+"icon": "inv_boots_cloth_04",
+"id": 275606,
+"q": 3,
+"via": "forever"
+},
+"Vinerot Sandals": {
+"icon": "inv_boots_05",
+"id": 17748,
+"q": 3,
+"via": "forever"
+},
+"Warden's Signet of Brilliance": {
+"icon": "inv_jewelry_ring_09",
+"id": 275982,
+"q": 4,
+"via": "forever-search"
+},
+"Warden's Signet of Resolve": {
+"icon": "inv_jewelry_ring_11",
+"id": 275983,
+"q": 4,
+"via": "forever-search"
+},
+"Weakness Analyzer": {
+"icon": "inv_misc_blizzcon09_graphicscard",
+"id": 272438,
+"q": 3,
+"via": "forever-search"
+},
+"White Obsidian Wand": {
+"icon": "inv_wand_07",
+"id": 274425,
+"q": 3,
+"via": "forever"
+},
+"Whitemane's Chapeau": {
+"icon": "inv_helmet_12",
+"id": 7720,
+"q": 3,
+"via": "forever"
+},
+"Wisepaw Totem": {
+"icon": "inv_staff_51",
+"id": 274420,
+"q": 3,
+"via": "forever-search"
+},
+"Woestave": {
+"icon": "inv_wand_09",
+"id": 20082,
+"q": 3,
+"via": "forever"
+},
+"Zarla's Snack Pouch": {
+"icon": "inv_misc_bag_06",
+"id": 276744,
+"q": 3,
+"via": "forever"
+}
+}

@@ -95,11 +95,23 @@
 "q": 2,
 "via": "forever"
 },
+"Clever Expeditionary's Spellblade": {
+"icon": "inv_weapon_shortblade_18",
+"id": 271931,
+"q": 3,
+"via": "forever-search"
+},
 "Cyclopean Band": {
 "icon": "inv_jewelry_ring_08",
 "id": 11824,
 "q": 3,
 "via": "forever"
+},
+"Darkspear Islands Mark of Honor": {
+"icon": "inv_misc_rune_14",
+"id": 274895,
+"q": 2,
+"via": "forever-search"
 },
 "Deathmage Sash": {
 "icon": "inv_belt_24",
@@ -130,6 +142,12 @@
 "id": 12462,
 "q": 4,
 "via": "forever"
+},
+"Enriched Seal": {
+"icon": "inv_misc_rune_06",
+"id": 271905,
+"q": 3,
+"via": "forever-search"
 },
 "Ephemeral Grips": {
 "icon": "inv_gauntlets_24",
@@ -179,6 +197,12 @@
 "q": 3,
 "via": "forever"
 },
+"Guerrilla's Jagged Mace": {
+"icon": "inv_hammer_05",
+"id": 271939,
+"q": 3,
+"via": "forever-search"
+},
 "Hand of Righteousness": {
 "icon": "inv_hammer_02",
 "id": 7721,
@@ -215,6 +239,12 @@
 "q": 3,
 "via": "forever"
 },
+"Insurgent's Manifesto": {
+"icon": "inv_misc_book_06",
+"id": 271935,
+"q": 3,
+"via": "forever-search"
+},
 "Jumanza Grips": {
 "icon": "inv_gauntlets_09",
 "id": 18083,
@@ -244,6 +274,12 @@
 "id": 22234,
 "q": 3,
 "via": "forever"
+},
+"Militant's Band": {
+"icon": "inv_jewelry_ring_28",
+"id": 271916,
+"q": 3,
+"via": "forever-search"
 },
 "Mordresh's Lifeless Skull": {
 "icon": "inv_misc_bone_elfskull_01",
@@ -292,6 +328,12 @@
 "id": 270081,
 "q": 3,
 "via": "forever"
+},
+"Rebels' Rugged Reaper": {
+"icon": "inv_axe_18",
+"id": 271927,
+"q": 3,
+"via": "forever-search"
 },
 "Restorer's Fine Gloves": {
 "icon": "inv_gauntlets_21",
@@ -383,15 +425,81 @@
 "q": 3,
 "via": "forever"
 },
+"Theramore Battle Tabard": {
+"icon": "inv_tabard_theramorec60",
+"id": 276504,
+"q": 1,
+"via": "forever"
+},
+"Theramore Epaulets": {
+"icon": "inv_shoulder_12",
+"id": 271956,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Gauntlets": {
+"icon": "inv_gauntlets_29",
+"id": 271940,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Gloves": {
+"icon": "inv_gauntlets_27",
+"id": 271948,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Handguards": {
+"icon": "inv_gauntlets_11",
+"id": 271950,
+"q": 4,
+"via": "forever-search"
+},
 "Theramore Handwraps": {
 "icon": "inv_gauntlets_22",
 "id": 271945,
 "q": 4,
 "via": "forever-search"
 },
+"Theramore Mantle": {
+"icon": "inv_shoulder_25",
+"id": 271957,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Pauldrons": {
+"icon": "inv_shoulder_06",
+"id": 271955,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Shoulderguards": {
+"icon": "inv_shoulder_14",
+"id": 272957,
+"q": 4,
+"via": "forever-search"
+},
 "Theramore Shoulderpads": {
 "icon": "inv_shoulder_02",
 "id": 271953,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Shoulders": {
+"icon": "inv_shoulder_24",
+"id": 271954,
+"q": 4,
+"via": "forever-search"
+},
+"Theramore Signet": {
+"icon": "inv_jewelry_ring_28",
+"id": 271911,
+"q": 3,
+"via": "forever-search"
+},
+"Theramore Spaulders": {
+"icon": "inv_shoulder_22",
+"id": 271959,
 "q": 4,
 "via": "forever-search"
 },
@@ -424,6 +532,12 @@
 "id": 17748,
 "q": 3,
 "via": "forever"
+},
+"Volunteer's Lucky Seal": {
+"icon": "inv_misc_rune_08",
+"id": 271904,
+"q": 3,
+"via": "forever-search"
 },
 "Warden's Signet of Brilliance": {
 "icon": "inv_jewelry_ring_09",

@@ -1,0 +1,33 @@
+name: Item icons
+
+# Looks up icons for the gear pages. Runs when the wanted list changes, or by hand.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/icons_wanted.json'
+      - 'scripts/fetch_icons.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  icons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/fetch_icons.py
+      - name: Save icons
+        run: |
+          git config user.name "item-icons bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/item_icons.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Item icons"
+          git pull --rebase -X theirs origin main
+          git push

@@ -39,7 +39,8 @@ s6:[
  {k:'skip',h:'Skip',i:['@Tharil\'zun']}],
 s8:[
  {k:'dng',h:'Inside the Excavation Site',i:['@Songblade Search','@Lost in the Thicket Things','@Highland Hides','@Horrors in the Highland','@Lost Relic Carry']},
- {k:'turn',h:'Turn in',i:['@Turn in everything','Heartwoven (Caitlin Grassman, Menethil)','Highland Hides (James Halloran, Menethil)','Horrors in the Highland (Rethiel the Greenwarden)','Lost Relic Carry (Prospector Whelgar)','Songblade Search (Dorin Songblade, Lakeshire, next stop)']}],
+ {k:'turn',h:'Turn in',i:['@Turn in everything','Heartwoven (Caitlin Grassman, Menethil)','Highland Hides (James Halloran, Menethil)','Horrors in the Highland (Rethiel the Greenwarden)','Lost Relic Carry (Prospector Whelgar)','Songblade Search (Dorin Songblade, Lakeshire, next stop)']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Saltspine (boss)"]}],
 s9:[
  {k:'town',h:'In Darkshire',i:['@Set hearth']},
  {k:'grab',h:'Grab in Darkshire',i:['The Night Watch, part 2 (Commander Althea Ebonlocke)','Worgen in the Woods','The Legend of Stalvan (if you\'re holding it)']},
@@ -73,7 +74,8 @@ s12:[
  {k:'do',h:"South Barrens, next to the Great Lift",i:['@A Host of Evil']},
  {k:'do',h:"Thousand Needles: Mirage Raceway (78, 77)",i:['@Hardened Shells','@Salt Flat Venom','@Load Lightening','@Rocket Car Parts','@A Bump in the Road','@Encrusted Tail Fins','@Hemet Nesingwary','@Martek the Exiled','@Wharfmaster Dizzywig','@Goblin Sponsorship, part 1','@Geomancy: The Stone-Cold Truth','@Packaged Pristine Pelts']},
  {k:'town',h:"Ratchet, then the boat",i:['@Ride to Ratchet','@Baxtan: On Destructive Magics','@Goblin Sponsorship, part 2','@Boat to Booty Bay']},
- {k:'town',h:"Arrive in Booty Bay",i:['@Goblin Sponsorship, part 3','@Expert Fishing book']}],
+ {k:'town',h:"Arrive in Booty Bay",i:['@Goblin Sponsorship, part 3','@Expert Fishing book']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Razorfen Kraul: Roogug"]}],
 s13:[
  {k:'grab',h:"Booty Bay: grab these",i:['@Supply and Demand','@Bloodscalp Ears','@Hostile Takeover','@Singing Blue Shards','@Goblin Sponsorship, part 4','@The Haunted Isle','@The Stone of the Tides','@Supplies to Private Thorsen','@Shady Saltseers','@The Saltseer Captain']},
  {k:'do',h:"Nesingwary's camp (35, 10)",i:['@Welcome to the Jungle','@Tiger Mastery, part 1','@Panther Mastery, part 1','@Raptor Mastery, part 1','@Tiger Mastery, part 2','@Panther Mastery, part 2','@Tiger Mastery, part 3','@Raptor Mastery, part 2']},
@@ -94,7 +96,8 @@ s14:[
  {k:'do',h:"West Desolace",i:['@Sceptre of Light','@Book of the Ancients',"@Claim Rackmore's Treasure!"]},
  {k:'do',h:"Kodo Graveyard + south",i:['@Kodo Roundup','@Bodyguard for Hire','@Gizelton Caravan','@Bone Collector','@Ghost-o-plasm Round Up','@Get Me Out of Here!','@Demons and You']},
  {k:'turn',h:"Last trip to Nijel's Point",i:['@Reagents for Reclaimers Inc., part 4']},
- {k:'dng',h:"Later",i:['@Maraudon (later)']}],
+ {k:'dng',h:"Later",i:['@Maraudon (later)']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Khan Jehn"]}],
 s15:[
  {k:'turn',h:"Ironforge hand-ins (fly from Menethil)",i:['@The Karnitol Shipwreck, part 4','@Reagents for Reclaimers Inc., part 4']},
  {k:'do',h:"Sleeping bag: Loch Modan",i:['@Cozy Sleeping Bag · step 5']},
@@ -109,14 +112,16 @@ s15:[
  {k:'do',h:"Back to Arathi: Go'Shek Farm + Myzrael",i:['@Hints of a New Plague?, part 2','@Hints of a New Plague?, part 3','@Hints of a New Plague?, part 4','@Hints of a New Plague?, part 5','@The Princess Trapped','@Stones of Binding','@Favor for Krazek: 4 Lesser Bloodstone Ore']},
  {k:'do',h:"Stromgarde (Refuge Pointe chain)",i:['@Wand over Fist',"@Trelane's Defenses","@An Apprentice's Enchantment",'@Attack on the Tower',"@Malin's Request, part 2",'@Wanted!  Marez Cowl','@Wanted!  Otto and Falconcrest']},
  {k:'do',h:"Faldir's Cove (south-west coast, 32, 81)",i:['@Land Ho!','@Drowned Sorrows','@Sunken Treasure, part 1','@Sunken Treasure, part 2','@Sunken Treasure, part 3','@Deep Sea Salvage']},
- {k:'dng',h:"Last thing: fly to Booty Bay for The Drowned City",i:['@Favor for Krazek (turn in)','@Return to Corporal Kaleb','@The Drowned City','@Legacy: The Drowned City']}],
+ {k:'dng',h:"Last thing: fly to Booty Bay for The Drowned City",i:['@Favor for Krazek (turn in)','@Return to Corporal Kaleb','@The Drowned City','@Legacy: The Drowned City']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Arcane Anomaly farm"]}],
 s16:[
  {k:'town',h:'In Ironforge',i:['@Train Lv 40','@Dual spec','@Archmage Antonidas']},
  {k:'turn',h:'Ironforge hand-ins you carried here',i:['@Letter to Stormpike',"@Sully Balloo's Letter"]},
  {k:'town',h:'Get your mount',i:['@Riding + your first','@Bind your mount','@Re-import naowh']},
  {k:'town',h:'Tram to Stormwind',i:['@Turn in library books']},
  {k:'grab',h:"Grab for later, while you're in the cities",i:['@Ironband Wants You!','@The Lost Dwarves','@Reclaimed Treasures','@Morgan Stern','@In Search of The Temple']},
- {k:'dng',h:"Scarlet Monastery: first long ride on your new mount",i:['@Ride to the Scarlet Monastery','@Scarlet Monastery (all wings)','@Mage: Rituals of Power (the book)','@Hand in: In the Name of the Light','@Hand in: Mythology of the Titans']}],
+ {k:'dng',h:"Scarlet Monastery: first long ride on your new mount",i:['@Ride to the Scarlet Monastery','@Scarlet Monastery (all wings)','@Mage: Rituals of Power (the book)','@Hand in: In the Name of the Light','@Hand in: Mythology of the Titans']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Bring the Light"]}],
 s17:[
  {k:'town',h:"Theramore",i:['@Set hearth','@They Call Him Smiling Jim','@Mudrock Soup and Bugs','@... and Bugs','@Shadowshard Fragments']},
  {k:'do',h:"Hold for later dungeons",i:['@Tiara of the Deep',"@Mage: Mage's Wand"]},
@@ -125,7 +130,8 @@ s17:[
  {k:'do',h:"South road",i:['@Hungry!']},
  {k:'skip',h:"Not for now",i:['@No quest needed for Alcaz Island Prison']},
  {k:'town',h:"Next time you're in a city",i:['@Train Lv 42']},
- {k:'do',h:"Shen'dralas (new zone, optional: fly to Nijel's Point and go west)",i:['@A Brief History Lesson','@Meeting the Magister','@Fragments of the Pylons','@Powering the Pylons','@Strange Pylons','@A Heart of Crystal','@Mana Mania']}],
+ {k:'do',h:"Shen'dralas (new zone, optional: fly to Nijel's Point and go west)",i:['@A Brief History Lesson','@Meeting the Magister','@Fragments of the Pylons','@Powering the Pylons','@Strange Pylons','@A Heart of Crystal','@Mana Mania']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Razorfen Downs"]}],
 s18:[
  {k:'town',h:"Getting there",i:['@Get there']},
  {k:'town',h:"Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6)",i:['@My Kingdom for a Horse','@Saving Sunnyglade','@Out in the Field','@The Twilight Threat','@The Western Front','@A Small Favor','@Curious Trinkets','@Scraps of Knowledge','@Apple of My Eye','@Fit for a Princess','@Stepped Out','@Bats in the Belfry','@In Memoriam','@Keeping the Light On',"@Something's in the Water",'@Upstream Contamination','@Clerical Quarantine',"@Doctor's Orderly",'@Wound Dressings',"@Foreman's Plight",'@High Stakes',"@Stuff 'Em and Stick 'Em",'@The Sharpest of Blades','@Love Thy Neighbor','@WANTED: Blademaster Kaijo','@WANTED: Ghostmaw']},
@@ -139,14 +145,16 @@ s18:[
  {k:'do',h:"Sergeant Riftan, west (30.7, 49.1)",i:['@A Miner Problem','@Bring Me His Head','@News to Farholde','@Carving a Path','@No Soldier Left Behind','@Twilight Mementos','@Lingering Essence',"@Field Marshal's Log",'@Saving Marshal Ryan','@Dying Wish','@Delivering Closure']},
  {k:'town',h:"Powderfuse Port, goblin town (78, 53)",i:['@A Blast Ye Scurvy Dogs!','@Admiral Lamora','@Saltwater Savages','@See Ya, Scallywags!','@Unchecked Expansion','@Unfriendly Competition','@A Taste of the Sea','@Goes Down Smooth','@Drink Up!','@Her World',"@Frazzlespark's Crate",'@From Port to Port','@I Know a Guy','@A Few Furs for Friz',"@Smuggler's Bargain",'@Shipping and Handling (1/2)','@It Takes Guts','@The Monster Surfaces','@Terrors From the Deep','@Not My Circus','@Gaseous Gold',"@Rock 'em and Sock 'em",'@WANTED: Old Rot-Chum','@WANTED: Trapclaw']},
  {k:'do',h:"North (Dunston Willis, 68.7, 12.6)",i:["@An Ogre's Captive"]},
- {k:'dng',h:"Krol'dok Stronghold",i:['@Curios of Curiosity',"@Krol'Dok Stronghold","@Legacy: Krol'dok Stronghold"]}],
+ {k:'dng',h:"Krol'dok Stronghold",i:['@Curios of Curiosity',"@Krol'Dok Stronghold","@Legacy: Krol'dok Stronghold"]},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Dunston Checks Out"]}],
 s19:[
  {k:'town',h:"Loch Modan first (fly to Thelsamar)",i:['@Badlands Reagent Run','@Find Agmond']},
  {k:'town',h:"Badlands: Martek's camp (42, 52)",i:['@Indurium','@Barbecued Buzzard Wings','@Pearl Diving','@Power Stones']},
  {k:'town',h:"Badlands: Ryedol + Sigrun's camp (53, 43)",i:['@A Dwarf and His Tools','@A Sign of Hope, part 1','@A Sign of Hope, part 2','@Amulet of Secrets','@Prospect of Faith, part 1','@Prospect of Faith, part 2','@Mirages','@Scrounging','@Tremors of the Earth, part 1','@Fiery Blaze Enchantments','@Tremors of the Earth, part 2']},
  {k:'do',h:"South Badlands",i:['@Murdaloc',"@Agmond's Fate",'@Solution to Doom',"@To Ironforge for Yagyin's Digest",'@Mummies: A Guide to the Unsavory Undead']},
  {k:'do',h:"Lotwil's camp (west, 26, 45)",i:['@Study of the Elements: Rock, part 1','@Study of the Elements: Rock, part 2','@Study of the Elements: Rock, part 3','@Stone Is Better than Cloth']},
- {k:'dng',h:"Uldaman (north entrance, 44, 12)",i:['@Uldaman Reagent Run','@The Hidden Chamber','@The Shattered Necklace','@The Platinum Discs, part 1','@The Platinum Discs, part 2']}],
+ {k:'dng',h:"Uldaman (north entrance, 44, 12)",i:['@Uldaman Reagent Run','@The Hidden Chamber','@The Shattered Necklace','@The Platinum Discs, part 1','@The Platinum Discs, part 2']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Restoring the Necklace","@Uldaman: BiS bosses"]}],
 s20:[
  {k:'town',h:"Booty Bay",i:['@Set hearth','@The Bloodsail Buccaneers, part 1','@The Bloodsail Buccaneers, part 2','@The Bloodsail Buccaneers, part 3','@Up to Snuff','@Keep An Eye Out','@The Bloodsail Buccaneers, part 4','@The Bloodsail Buccaneers, part 5','@Akiris by the Bundle','@Skullsplitter Tusks','@Venture Company Mining',"@Zanzil's Secret","@\"Pretty Boy\" Duncan",'@The Curse of the Tides','@Stranglethorn Fever',"@Stoley's Debt","@Tran'rek","@The Captain's Chest",'@Get the Goods',"@We've Been Robbed!","@All's Well That Ends Well"]},
  {k:'do',h:"West coast (Shaky + MacKinley)",i:['@Scaring Shaky','@Return to MacKinley','@Voodoo Dues',"@Cracking Maury's Foot"]},

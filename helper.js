@@ -336,7 +336,7 @@ function verdict(name){
 }
 function ttHtml(name){const gi=gearInfo(name);if(!gi)return '';return `<div class="itt">${gi.tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}<a href="https://www.wowhead.com/classic/item=${gi.id}" target="_blank" rel="noopener">wowhead ↗</a></div>`}
 function iconImg(name,fallback){const gi=gearInfo(name);return gi&&gi.it?`<img src="https://wow.zamimg.com/images/wow/icons/large/${gi.it[1]}.jpg" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${fallback}'))">`:fallback}
-function render(){buildIndex();if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked))}
+function render(){buildIndex();if(!cur){const h=(location.hash.match(/stop=([sd]\d+)/)||[])[1];if(h&&STOPS.find(s=>s.id===h)){cur=h;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}}if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked))}
 
 /* ---------- tabs + sync ---------- */
 function showTab(name){document.querySelectorAll('.mtab').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===name));document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==name)}

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leveling BiS · Hearthbound</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪄</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#0a0a0b;--panel:#141416;--panel2:#1b1b1e;--line:#2c2c31;--line2:#232327;--ink:#f4f1f3;--soft:#a7a0a5;--acc:#e89ab8;--acc2:#f6c9da;--sel:#2a1d23;--up:#7fd8a8;--warn:#ffb26b;
+ --q1:#ffffff;--q2:#1eff00;--q3:#0070dd;--q4:#a335ee;--q3t:#4aa3ff;--q4t:#c47bff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,sans-serif}
+a{color:var(--acc2)}
+.app{max-width:1100px;margin:12px auto;border:1.5px solid var(--acc);border-radius:12px;background:var(--panel);overflow:clip}
+@media (max-width:1130px){.app{margin:8px}}
+.top{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;background:var(--sel);flex:none;font-size:20px}
+h1{margin:0;font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc)}
+.brand{font:700 10.5px Inter,sans-serif;letter-spacing:.22em;color:var(--soft);text-transform:uppercase}
+.cross{color:var(--acc2);font-size:12px;text-decoration:none;border:1px solid var(--acc2);border-radius:999px;padding:3px 11px}
+.seg{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:auto}
+.seg button{font:600 13px Inter,sans-serif;border:0;background:none;color:var(--soft);padding:7px 16px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--sel);color:var(--acc2);box-shadow:inset 0 0 0 1px var(--acc)}
+.page{padding:16px 18px 22px;background:var(--panel2)}
+.intro{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:baseline;margin-bottom:12px}
+.intro h2{margin:0;font:600 20px "Space Grotesk",Inter,sans-serif}
+.intro .sub{color:var(--soft);font-size:13px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin:0 0 14px}
+.chip{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--soft);white-space:nowrap}
+.chip.D{border-color:#ff9f6b;color:#ff9f6b}.chip.Q{border-color:#ffd100;color:#ffd100}.chip.M{border-color:#8fe3b0;color:#8fe3b0}.chip.K{border-color:var(--line);color:var(--soft)}
+/* wowhead-style gear box */
+.gear{position:relative;border:1px solid #3a3a40;border-radius:6px;background:#161618;padding:12px 14px 16px;overflow:hidden}
+.gear h3{margin:0 0 10px;font:700 17px "Space Grotesk",Inter,sans-serif;color:#fff}
+.gear .ghost{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:300px;height:520px;opacity:.035;pointer-events:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;position:relative}
+.colL,.colR{display:flex;flex-direction:column;gap:9px}
+.it{display:flex;gap:10px;align-items:flex-start;min-height:56px}
+.colR .it{flex-direction:row-reverse;text-align:right}
+.ic{width:52px;height:52px;border-radius:5px;border:2px solid #555;background:#0c0c0e;flex:none;position:relative;cursor:pointer;display:grid;place-items:center;font-size:24px;padding:0}
+.ic img{width:100%;height:100%;border-radius:3px;display:block}
+.ic.q1{border-color:#9d9d9d}.ic.q2{border-color:var(--q2)}.ic.q3{border-color:var(--q3)}.ic.q4{border-color:var(--q4)}
+.ic .tick{position:absolute;bottom:-6px;right:-6px;background:var(--up);color:#0a0a0b;border-radius:50%;width:18px;height:18px;font-size:11px;display:none;place-items:center;font-weight:700;border:2px solid #161618}
+.it.got .ic .tick{display:grid}
+.it.got .ic img{filter:saturate(.35) brightness(.8)}
+.nm{font-weight:600;font-size:14px;line-height:1.2;text-decoration:none;display:inline-block}
+.nm.q1{color:#fff}.nm.q2{color:var(--q2)}.nm.q3{color:var(--q3t)}.nm.q4{color:var(--q4t)}
+.nm:hover{text-decoration:underline}
+.src{font-size:12px;color:var(--soft);margin-top:2px}
+.meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.colR .meta{justify-content:flex-end}
+.stop{font-size:11px;color:var(--acc2);text-decoration:none;border:1px solid #4a3a42;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.stop:hover{border-color:var(--acc)}
+.sl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#77717a}
+.wep{display:flex;justify-content:center;gap:10px 18px;flex-wrap:wrap;margin-top:16px;position:relative}
+.wep .it{width:330px}
+.wep .it.L{flex-direction:row-reverse;text-align:right}.wep .it.L .meta{justify-content:flex-end}
+.foot{margin-top:14px;font-size:12px;color:var(--soft)}
+.prog{font-size:12.5px;color:var(--soft)}.prog b{color:var(--up)}
+@media (max-width:760px){.cols{grid-template-columns:1fr;gap:9px}.colR .it,.wep .it.L{flex-direction:row;text-align:left}.colR .meta,.wep .it.L .meta{justify-content:flex-start}.wep{justify-content:flex-start;flex-direction:column;gap:9px}.wep .it{width:auto}.seg{margin-left:0}}
+</style>
+<script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
+<script src="https://wow.zamimg.com/js/tooltips.js" async></script>
+</head><body>
+<div class="app">
+ <div class="top"><div class="logo">🪄</div><div><div class="brand">Hearthbound</div><h1>Leveling BiS</h1></div>
+  <a class="cross" href="index.html">🧭 Journey</a><a class="cross" href="bis.html">🛡️ Armory</a><a class="cross" href="professions.html">⚗️ Workshop</a>
+  <div class="seg" id="specs" role="group" aria-label="Spec"></div><div class="seg" id="lvls" role="group" aria-label="Level" style="margin-left:0"></div>
+ </div>
+ <div class="page">
+  <div class="intro"><h2 id="title"></h2><span class="sub" id="sub"></span><span class="prog" id="prog"></span></div>
+  <div class="legend"><span class="chip D">◆ Dungeon drop</span><span class="chip Q">❗ Quest reward</span><span class="chip M">⚔️ Mob farm</span><span class="chip K">↻ keep from earlier</span><span>🧭 Stop N = where it is in your Journey guide</span><span>Tap an icon to tick it off · hover a name for stats</span></div>
+  <div class="gear">
+   <svg class="ghost" viewBox="0 0 100 180" aria-hidden="true"><circle cx="50" cy="20" r="15" fill="#fff"/><path d="M22 42h56l10 60-12 3-6-38v50l6 60H60l-10-55-10 55H24l6-60V67l-6 38-12-3z" fill="#fff"/></svg>
+   <h3>Gear</h3>
+   <div class="cols"><div class="colL" id="L"></div><div class="colR" id="R"></div></div>
+   <div class="wep" id="W"></div>
+  </div>
+  <div class="foot">Picks are the Alliance Shadow + Holy leveling lists from timesaver.gg (Forever data, Nov 2026). The Wowhead BiS guide has no Forever items yet. Forever is still being tuned, so hover the item in game before you grind for it. Every quest, dungeon and mob farm here is also tagged 🛡️ Shadow BiS or 🛡️ Holy BiS in your Journey guide.</div>
+ </div>
+</div>
+<script>
+// stop id → number in the Journey guide
+const STOPN={s26:28,s8:7,s12:11,s14:13,s15:14,s16:15,s17:16,s18:17,s19:18,s21:20,s22:21,s23:22,s25:23,d3:24,s26:28};
+const SLOTS=[['head','Head','L','🎩'],['neck','Neck','L','📿'],['shoulder','Shoulders','L','🦺'],['back','Back','L','🧣'],['chest','Chest','L','👘'],['wrist','Wrists','L','⌚'],
+ ['hands','Hands','R','🧤'],['waist','Waist','R','🎗️'],['legs','Legs','R','👖'],['feet','Feet','R','👢'],['ring1','Ring','R','💍'],['ring2','Ring','R','💍'],['trink1','Trinket','R','🔮'],['trink2','Trinket','R','🔮'],
+ ['mh','Main hand','W','🗡️'],['oh','Off hand','W','📕'],['wand','Wand','W','✨']];
+// [item, wowhead id, quality guess (refined by wowhead), source, type D/Q/M, stop, kept-from-earlier]
+const I=(n,id,q,s,t,st,k)=>({n,id,q,s,t,st,k});
+const SHADOW={
+ 40:{title:'Level 40',items:{
+  head:I('Electromagnetic Gigaflux Reactivator',9492,3,'Gnomeregan · Mekgineer Thermaplugg','D','s14'),
+  neck:I('Triune Amulet',7722,3,'Scarlet Monastery · High Inquisitor Whitemane','D','s16'),
+  shoulder:I('Bloodmage Mantle',7684,3,'Scarlet Monastery (Graveyard) · Bloodmage Thalnos','D','s16'),
+  back:I('Brilliant Cloak',277206,2,'Quest: Strahnbrad Mystery (Alterac Mountains)','Q','s15'),
+  chest:I('Robes of the Lich',10762,3,'Razorfen Downs · Amnennar the Coldbringer','D','s17'),
+  wrist:I('Spidertank Oilrag',9448,3,'Gnomeregan · Electrocutioner 6000','D','s14'),
+  hands:I('Ephemeral Grips',273034,2,'Arcane Anomaly mobs (Alterac Mountains)','M','s15'),
+  waist:I('Deathmage Sash',10771,3,'Razorfen Downs · Mordresh Fire Eye','D','s17'),
+  legs:I("Apprentice Sorcerer's Slacks",279878,2,'Quest: The Web of Magic (Hillsbrad)','Q','s15'),
+  feet:I('Glinteye Slippers',273024,3,'Excavation Site: Wetlands · Saltspine','D','s8'),
+  ring1:I("Philanthropist's Ring",281635,3,'Greater Friend of the Library (20 books)','Q','s16'),
+  ring2:I('Purified Ring',270081,3,'Quest: Bring the Light (Razorfen Downs)','Q','s16'),
+  trink1:I('Heart of the Primeval',274615,3,'The Drowned City · Primeval Elemental','D','s15'),
+  trink2:I("Roogug's Severed Head",274152,3,'Razorfen Kraul · Roogug','D','s12'),
+  mh:I('Soulsplatter Mace',271804,3,'Quest: Khan Jehn (Desolace)','Q','s14'),
+  oh:I("Mordresh's Lifeless Skull",10770,3,'Razorfen Downs · Mordresh Fire Eye','D','s17'),
+  wand:I('White Obsidian Wand',274425,3,'Uldaman · Obsidian Sentinel','D','s19')}},
+ 50:{title:'Level 50',items:{
+  head:I('Bad Mojo Mask',9470,3,"Zul'Farrak · Shadowpriest Sezz'ziz",'D','s21'),
+  neck:I("Talvash's Enhancing Necklace",7673,3,'Quest: Restoring the Necklace (Uldaman)','Q','s19'),
+  shoulder:I('Kentic Amice',11624,3,'Blackrock Depths · High Interrogator Gerstahn','D','s25'),
+  back:I('Spritecaster Cape',11623,3,'Blackrock Depths · Houndmaster Grebmar','D','s25'),
+  chest:I('Singed Cloth Robe',270113,3,'Quest: WANTED: Overseer Maltorius (Searing Gorge)','Q','s23'),
+  wrist:I('Spidertank Oilrag',9448,3,'Gnomeregan · Electrocutioner 6000','D','s14',1),
+  hands:I('Prisoner Handwraps',275021,3,'Quest: Dunston Checks Out (Riverglades)','Q','s18'),
+  waist:I("Ban'thok Sash",11662,3,"Blackrock Depths · Ok'thor the Breaker",'D','s25'),
+  legs:I("Apprentice Sorcerer's Slacks",279878,2,'Quest: The Web of Magic (Hillsbrad)','Q','s15',1),
+  feet:I('Southsea Mojo Boots',20641,3,'Quest: Southsea Shakedown (Tanaris)','Q','s21'),
+  ring1:I('Cyclopean Band',11824,3,"Blackrock Depths · Ok'thor the Breaker",'D','s25'),
+  ring2:I("Philanthropist's Ring",281635,3,'Greater Friend of the Library (20 books)','Q','s16',1),
+  trink1:I('Heart of the Primeval',274615,3,'The Drowned City · Primeval Elemental','D','s15',1),
+  trink2:I('Cleansed Vilebranch Icon',270276,3,'Quest: Saving Sharpbeak (Hinterlands, elite)','Q','s22'),
+  mh:I('Blade of Eternal Darkness',17780,4,'Maraudon · Princess Theradras','D','d3'),
+  oh:I("Mordresh's Lifeless Skull",10770,3,'Razorfen Downs · Mordresh Fire Eye','D','s17',1),
+  wand:I('Woestave',20082,3,'Quest: Blood of Morphaz (priest only)','Q','s26')}}
+};
+const HOLY={
+ 40:{title:'Level 40',items:{
+  head:I("Whitemane's Chapeau",7720,3,'Scarlet Monastery · High Inquisitor Whitemane','D','s16'),
+  neck:I('Glowing Eye of Mordresh',10769,3,'Razorfen Downs · Mordresh Fire Eye','D','s17'),
+  shoulder:I("Inquisitor's Shawl",19507,3,'Scarlet Monastery · High Inquisitor Fairbanks','D','s16'),
+  back:I('Priestess Cloak',274613,3,"The Drowned City · Var'Taka",'D','s15'),
+  chest:I('Civinad Robes',9623,3,'Quest: The Grand Betrayal (Gnomeregan)','Q','s14'),
+  wrist:I('Spidertank Oilrag',9448,3,'Gnomeregan · Electrocutioner 6000','D','s14'),
+  hands:I("Restorer's Fine Gloves",270059,3,"Quest: Agmond's Fate (Uldaman)",'Q','s19'),
+  waist:I('Briny Sash',274605,3,'The Drowned City · Captain Dreadrise','D','s15'),
+  legs:I('Stoneweaver Leggings',9407,3,'Uldaman · Ironaya','D','s19'),
+  feet:I('Library Walkers',274294,3,'Scarlet Monastery (Library) · Arcanist Doan','D','s16'),
+  ring1:I('Band of Crimson Light',274295,3,'Scarlet Monastery (Armory) · Herod','D','s16'),
+  ring2:I("Runemender's Seal",273031,3,'Arcane Anomaly mobs (Alterac Mountains)','M','s15'),
+  trink1:I('Heart of the Primeval',274615,3,'The Drowned City · Primeval Elemental','D','s15'),
+  trink2:I("Roogug's Severed Head",274152,3,'Razorfen Kraul · Roogug','D','s12'),
+  mh:I('Hand of Righteousness',7721,3,'Scarlet Monastery · High Inquisitor Whitemane','D','s16'),
+  oh:I('Orb of Lorica',11262,3,'Quest: In the Name of the Light (Scarlet Monastery)','Q','s16'),
+  wand:I('White Obsidian Wand',274425,3,'Uldaman · Obsidian Sentinel','D','s19')}},
+ 50:{title:'Level 50',items:{
+  head:I("Whitemane's Chapeau",7720,3,'Scarlet Monastery · High Inquisitor Whitemane','D','s16',1),
+  neck:I('Glowing Eye of Mordresh',10769,3,'Razorfen Downs · Mordresh Fire Eye','D','s17',1),
+  shoulder:I('Mantle of Lost Hope',22234,3,'Blackrock Depths · Lord Roccor','D','s25'),
+  back:I('Spritecaster Cape',11623,3,'Blackrock Depths · Houndmaster Grebmar','D','s25'),
+  chest:I('Embrace of the Wind Serpent',12462,3,"Sunken Temple · Shade of Hakkar",'D','s26'),
+  wrist:I('Spidertank Oilrag',9448,3,'Gnomeregan · Electrocutioner 6000','D','s14',1),
+  hands:I('Jumanza Grips',18083,3,"Zul'Farrak · Witch Doctor Zum'rah",'D','s21'),
+  waist:I('Briny Sash',274605,3,'The Drowned City · Captain Dreadrise','D','s15',1),
+  legs:I('Stoneweaver Leggings',9407,3,'Uldaman · Ironaya','D','s19',1),
+  feet:I('Vinerot Sandals',17748,3,'Maraudon · Razorlash','D','d3'),
+  ring1:I('Band of Crimson Light',274295,3,'Scarlet Monastery (Armory) · Herod','D','s16',1),
+  ring2:I('Cyclopean Band',11824,3,"Blackrock Depths · Ok'thor the Breaker",'D','s25'),
+  trink1:I('Heart of the Primeval',274615,3,'The Drowned City · Primeval Elemental','D','s15',1),
+  trink2:I("Zarla's Snack Pouch",276744,3,'Alcaz Island Prison · Blazeroar','D','s22'),
+  mh:I('Glowing Brightwood Staff',812,3,'Blackrock Depths · Anvilrage Medic (trash)','D','s25'),
+  oh:null,
+  wand:I('Tidesong Wand',276735,3,"Alcaz Island Prison · Tidemistress Ca'zass",'D','s22')}}
+};
+const SPECS={shadow:{nm:'Shadow',sub:'Shadow · Alliance · no auction house: every piece is a dungeon drop, a quest reward or a mob farm',sets:SHADOW},
+ holy:{nm:'Holy',sub:'Holy · Alliance · no auction house: every piece is a dungeon drop, a quest reward or a mob farm',sets:HOLY}};
+const TY={D:['D','◆ Dungeon'],Q:['Q','❗ Quest'],M:['M','⚔️ Mob farm']};
+const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let spec=ld('lbis-spec','shadow');if(!SPECS[spec])spec='shadow';
+let lv=ld('lbis-lv','40');if(!SPECS[spec].sets[lv])lv='40';
+let have=ld('lbis-have',{});           // keyed by item name, so a kept piece stays ticked across levels
+let META=ld('lbis-meta',{});           // wowhead icon + quality cache: id → {icon,q}
+function tile(slot,o,side){
+ if(!o)return `<div class="it ${side||''}"><div class="ic" style="opacity:.45;cursor:default">${slot[3]}</div><div><div class="sl">${slot[1]}</div><div class="src">empty: the main hand is a two-hander</div></div></div>`;
+ const m=META[o.id]||{},q=m.q||o.q,got=!!have[o.n];
+ const url=`https://www.wowhead.com/forever/item=${o.id}`;
+ const icon=m.icon?`<img src="https://wow.zamimg.com/images/wow/icons/large/${m.icon}.jpg" alt="" loading="lazy">`:slot[3];
+ return `<div class="it ${side||''} ${got?'got':''}"><button class="ic q${q}" data-n="${esc(o.n)}" title="${got?'Got it (tap to untick)':'Tap when you have it'}">${icon}<span class="tick">✓</span></button>
+  <div style="min-width:0"><div class="sl">${slot[1]}</div><a class="nm q${q}" href="${url}" target="_blank" rel="noopener" data-wowhead="item=${o.id}&domain=forever">${esc(o.n)}</a>
+  <div class="src">${esc(o.s)}</div><div class="meta"><span class="chip ${TY[o.t][0]}">${TY[o.t][1]}</span>${o.k?'<span class="chip K">↻ keep</span>':''}<a class="stop" href="index.html#stop=${o.st}">🧭 Stop ${STOPN[o.st]}</a></div></div></div>`}
+function render(){
+ const S=SPECS[spec].sets[lv];
+ document.getElementById('specs').innerHTML=Object.entries(SPECS).map(([k,v])=>`<button data-s="${k}" aria-pressed="${k===spec}">${v.nm}</button>`).join('');
+ document.getElementById('sub').textContent=SPECS[spec].sub;
+ document.getElementById('lvls').innerHTML=Object.keys(SPECS[spec].sets).map(k=>`<button data-l="${k}" aria-pressed="${k===lv}">Lv ${k}</button>`).join('');
+ document.getElementById('title').textContent=S.title;
+ const put=(c,side)=>document.getElementById(c).innerHTML=SLOTS.filter(s=>s[2]===c).map((s,i)=>tile(s,S.items[s[0]],c==='W'&&i===0?'L':side)).join('');
+ put('L');put('R');put('W');
+ const all=Object.values(S.items).filter(Boolean),n=all.filter(o=>have[o.n]).length;
+ const c={D:0,Q:0,M:0};all.forEach(o=>c[o.t]++);
+ document.getElementById('prog').innerHTML=`<b>${n}/${all.length}</b> collected · ${c.D} dungeon · ${c.Q} quest · ${c.M} mob farm`;
+ if(window.$WowheadPower&&$WowheadPower.refreshLinks)try{$WowheadPower.refreshLinks()}catch(e){}
+}
+document.addEventListener('click',e=>{
+ const sp=e.target.closest('#specs button');if(sp){spec=sp.dataset.s;sv('lbis-spec',spec);render();return}
+ const b=e.target.closest('#lvls button');if(b){lv=b.dataset.l;sv('lbis-lv',lv);render();return}
+ const ic=e.target.closest('.ic[data-n]');if(ic){const n=ic.dataset.n;if(have[n])delete have[n];else have[n]=1;sv('lbis-have',have);render()}});
+render();
+// pull icons + real quality from wowhead's tooltip data (Forever first, Classic for old items)
+const ids=[...new Set(Object.values(SPECS).flatMap(p=>Object.values(p.sets)).flatMap(S=>Object.values(S.items).filter(Boolean).map(o=>o.id)))].filter(id=>!META[id]);
+async function meta(id){for(const env of ['forever','classic']){try{const r=await fetch(`https://nether.wowhead.com/${env}/tooltip/item/${id}`);if(!r.ok)continue;const j=await r.json();if(j&&j.icon)return {icon:j.icon,q:j.quality}}catch(e){}}return null}
+Promise.all(ids.map(async id=>{const m=await meta(id);if(m)META[id]=m})).then(()=>{sv('lbis-meta',META);render()});
+</script>
+</body></html>

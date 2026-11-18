@@ -178,7 +178,7 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('.slot');if(b){
 document.addEventListener('change',ev=>{const c=ev.target.closest('input[data-n]');if(c){have[c.dataset.n]=c.checked;if(!c.checked)delete have[c.dataset.n];sv('bis-have',have);render()}});
 render();
 const QN={1:'Common',2:'Uncommon',3:'Rare',4:'Epic',5:'Legendary'};
-Promise.all([fetch('data/bis_items.json?v=1794843797').then(r=>r.json()).catch(()=>({})),fetch('data/item_icons.json?v=2').then(r=>r.json()).catch(()=>({}))])
+Promise.all([fetch('data/bis_items.json?v=1795038649').then(r=>r.json()).catch(()=>({})),fetch('data/item_icons.json?v=2').then(r=>r.json()).catch(()=>({}))])
  .then(([j,ic])=>{IT=j;for(const [n,m] of Object.entries(ic))if(!IT[n]&&m.icon)IT[n]={id:m.id,icon:m.icon,q:QN[m.q]||'Rare',tt:[],fv:1};render()});
 </script>
 </body></html>

@@ -1,3 +1,4 @@
+const tipHtml=t=>{const L=String(t).split('\n').filter(Boolean);return L.length<2?'💡 '+esc(t):'💡 '+esc(L[0])+'<ul class="tipl">'+L.slice(1).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'};
 /* Shared engine for the leveling guides: sidebar + stop detail (same layout as the
    Claude guides), ForeverGuide addon sync, "right now" list, and the potions calculator.
    Each page defines T, STOPS and CFG before loading this file. */
@@ -139,14 +140,14 @@ function searchView(){
   const [t,nm,wh,tip]=r.x;const done=isDoneRow(r.s,r.i);const a=auto(r.s,r.i);
   const v=done?['ALREADY DONE','v-done']:(VERDICT[t]||VERDICT.do);
   const extra=!done&&a.badge==='ready'?' <span class="st st-ready">READY TO TURN IN</span>':!done&&a.badge==='log'?' <span class="st st-log">IN YOUR LOG</span>':'';
-  h+=`<div class="sres" data-s="${r.s.id}"><div><div class="n">${esc(nm)}${extra}</div><div class="s">${esc(wh)} · stop ${r.si+1}: ${esc(r.s.nm)} (Lv ${esc(r.s.lv)})</div>${tip?`<div class="tip">💡 ${esc(tip)}</div>`:''}</div><span class="verdict ${v[1]}">${v[0]}</span></div>`});
+  h+=`<div class="sres" data-s="${r.s.id}"><div><div class="n">${esc(nm)}${extra}</div><div class="s">${esc(wh)} · stop ${r.si+1}: ${esc(r.s.nm)} (Lv ${esc(r.s.lv)})</div>${tip?`<div class="tip">${tipHtml(tip)}</div>`:''}</div><span class="verdict ${v[1]}">${v[0]}</span></div>`});
  if(!hits.length)h+=`<div class="nores"><b>Not on your route.</b> You don't need it. Skip it, unless it's right on your way and quick.${inLog&&inLog.length?`<br><br>It's in your quest log though (${inLog.map(l=>esc(l.t)).join(', ')}). Finish it if it's easy, or abandon it to free up space.`:''}</div>`;
  return h;
 }
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
-  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">💡 ${esc(tip)}</div>`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
+  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
 
 

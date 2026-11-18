@@ -84,7 +84,7 @@ td.k{color:var(--soft);white-space:nowrap;width:1%}
     <tr><td><div data-i="Darkspear Islands Mark of Honor"></div></td><td><b>3</b></td><td><b>1</b></td><td>Turn 3 in for reputation (step 8). You can hold <b>30</b> at most, so turn them in often.</td></tr>
     <tr><td><b>Honor</b></td><td>✓</td><td>✓</td><td>Spend on PvP gear at the Stormwind PvP vendors. Extra this week.</td></tr>
     <tr><td><b>Rank Points</b></td><td>✓</td><td>✓</td><td>Move you up the 14 PvP ranks (Private → Grand Marshal). Extra this week.</td></tr>
-    <tr><td><b>Win quest</b></td><td>+200 rep</td><td>—</td><td>The Battle for Darkspear Islands! (step 4). Hand it in after a win.</td></tr>
+    <tr><td><b>Win quest</b></td><td>+200 rep</td><td>—</td><td>The Battle for Darkspear Islands! (step 4). Hand it in after your first win of the day. <b>Once a day</b>, resets at 7 AM Pacific.</td></tr>
    </table></div>
   </section>
 
@@ -102,7 +102,7 @@ td.k{color:var(--soft);white-space:nowrap;width:1%}
    <p class="why">These are where most of your reputation comes from. Each one has a version for your level bracket, so take the one that's offered.</p>
    <div class="tbl"><table>
     <tr><th></th><th>Quest</th><th>NPC</th><th>You need</th><th>You get</th><th>Repeat?</th></tr>
-    <tr data-c="s4a"><td><span class="box"></span></td><td><b>The Battle for Darkspear Islands!</b></td><td>Brelinda McFarry, next to the quartermaster</td><td>Win one match</td><td><b>+200 rep</b>, Honor, XP (3,000 XP at Lv 30–39)</td><td>Not confirmed if it's once a day. Check after your first win.</td></tr>
+    <tr data-c="s4a"><td><span class="box"></span></td><td><b>The Battle for Darkspear Islands!</b></td><td>Brelinda McFarry, next to the quartermaster</td><td>Win one match</td><td><b>+200 rep</b>, Honor, XP (3,000 XP at Lv 30–39)</td><td><b>Once a day.</b> Resets at 7 AM Pacific (8 AM during summer time).</td></tr>
     <tr data-c="s4b"><td><span class="box"></span></td><td><b>Darkspear Islands Clash</b></td><td>at the camp (also Alliance Brigadier General in cities)</td><td>3 Darkspear Islands Marks of Honor</td><td><b>+150 rep</b>, Honor, 1,500 XP the first time · then +100–150 rep each repeat</td><td>Yes, every 3 marks</td></tr>
     <tr data-c="s4c"><td><span class="box"></span></td><td><b>Concerted Efforts</b></td><td>Alliance Brigadier General</td><td>Marks from the battlegrounds (one source says all four kinds, another says 3 DI marks)</td><td>+150 rep</td><td>Unclear. Read it in game.</td></tr>
    </table></div>
@@ -155,18 +155,18 @@ td.k{color:var(--soft);white-space:nowrap;width:1%}
    <p class="why">This is the loop: play, get marks, hand in 3 at a time. You can only hold 30, so don't sit on them.</p>
    <div class="tbl"><table>
     <tr><th>Loop</th><th>What happens</th></tr>
-    <tr><td class="k">Win</td><td>3 marks → 1 Clash turn-in (+100–150 rep) + the win quest (+200 rep) = <b>about 300–350 rep</b></td></tr>
+    <tr><td class="k">Win</td><td>3 marks → 1 Clash turn-in (+100–150 rep) = about 100–150 rep. Your <b>first win each day</b> also gets the win quest (+200 rep), so that win is worth <b>about 300–350 rep</b>.</td></tr>
     <tr><td class="k">Loss</td><td>1 mark. Three losses = 1 Clash turn-in (+100–150 rep)</td></tr>
     <tr><td class="k">Cap</td><td>30 marks max. That's 10 turn-ins waiting, so empty your bag at the camp or in a city.</td></tr>
    </table></div>
-   <div class="warn">Blizzard hasn't confirmed how much rep a match gives by itself, or whether the win quest repeats every win. The numbers here only count the quests.</div>
+   <div class="warn">The win quest is once a day (resets 7 AM Pacific), so never skip your first win of the day. Blizzard hasn't said how much rep a match gives by itself, so these numbers only count the quests.</div>
   </section>
 
   <section class="step" id="s9"><h3><span class="num">9</span>Reputation ladder</h3>
    <p class="why">Exalted takes 42,000 rep from Neutral. Pick a goal to see roughly how many wins it takes.</p>
    <div class="calc">Goal <select id="goal"></select> · rep you have now <input id="have" type="number" min="0" value="0"> → <span class="res" id="out"></span></div>
    <div class="tbl"><table id="ladder">
-    <tr><th>Standing</th><th>Rep in this tier</th><th>Total from Neutral</th><th>Wins (win quest repeats)</th><th>Wins (only marks)</th><th>Unlocks</th></tr>
+    <tr><th>Standing</th><th>Rep in this tier</th><th>Total from Neutral</th><th>Days (3 wins a day)</th><th>Wins (only marks)</th><th>Unlocks</th></tr>
    </table></div>
   </section>
 
@@ -203,13 +203,13 @@ document.addEventListener('click',e=>{const r=e.target.closest('tr[data-c]');if(
 ticks();
 // rep ladder
 const TIERS=[['Friendly','f',3000,'Trinkets (Enriched Seal, Volunteer\'s Lucky Seal), food, bandages'],['Honored','h',6000,'Neck, 2 rings, cloak, Major Healing/Mana Draughts'],['Revered','r',12000,'Weapons + off hand'],['Exalted','e',21000,'Epic gloves + shoulders, tabard quest, Legacy Point']];
-const PERWIN_HI=325,PERWIN_LO=125; // win quest + 1 turn-in · turn-in only
+const PERDAY=3*125+200,PERWIN_LO=125; // 3 wins a day = 3 turn-ins + the daily win quest · turn-in only
 let cum=0;const lad=document.getElementById('ladder');
-TIERS.forEach(([n,c,r,u])=>{cum+=r;lad.insertAdjacentHTML('beforeend',`<tr><td><span class="std ${c}">${n}</span></td><td>${r.toLocaleString()}</td><td>${cum.toLocaleString()}<div class="bar"><i style="width:${cum/420}%"></i></div></td><td>~${Math.ceil(cum/PERWIN_HI)}</td><td>~${Math.ceil(cum/PERWIN_LO)}</td><td>${esc(u)}</td></tr>`)});
+TIERS.forEach(([n,c,r,u])=>{cum+=r;lad.insertAdjacentHTML('beforeend',`<tr><td><span class="std ${c}">${n}</span></td><td>${r.toLocaleString()}</td><td>${cum.toLocaleString()}<div class="bar"><i style="width:${cum/420}%"></i></div></td><td>~${Math.ceil(cum/PERDAY)}</td><td>~${Math.ceil(cum/PERWIN_LO)}</td><td>${esc(u)}</td></tr>`)});
 const g=document.getElementById('goal');let c2=0;g.innerHTML=TIERS.map(([n,,r])=>{c2+=r;return `<option value="${c2}">${n} (${c2.toLocaleString()})</option>`}).join('');g.value=ld('dsi-goal','9000');
 const hv=document.getElementById('have');hv.value=ld('dsi-have',0);
 function calc(){sv('dsi-goal',g.value);sv('dsi-have',+hv.value||0);const left=Math.max(0,+g.value-(+hv.value||0));
- document.getElementById('out').textContent=left?`${left.toLocaleString()} rep left ≈ ${Math.ceil(left/PERWIN_HI)} wins (or ~${Math.ceil(left/PERWIN_LO)} if the win quest is once a day)`:'you\'re there 🎉'}
+ document.getElementById('out').textContent=left?`${left.toLocaleString()} rep left ≈ ${Math.ceil(left/PERDAY)} days at 3 wins a day (~${Math.ceil(left/PERWIN_LO)} wins if you only count marks)`:'you\'re there 🎉'}
 g.onchange=calc;hv.oninput=calc;calc();
 // rewards
 const R=[

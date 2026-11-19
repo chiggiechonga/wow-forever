@@ -147,7 +147,7 @@ function searchView(){
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
-  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
+  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
 
 
@@ -230,7 +230,7 @@ function detail(){
    h+='</div>'});h+='</div><div class="cnote">Pictures + stats are from the Classic Era item database, and Forever can differ a bit, so hover the reward before picking. Tap an item to see its stats. ▲/▼ compares it to what you had on at your last sync, using healer weights (+healing > mp5 > Intellect > Spirit > Stamina).</div>'}
  if(s.note)h+=`<div class="box2"><b>Heads up:</b> ${esc(s.note)}</div>`;
  const d=$('detail');d.innerHTML=h;bindMap(s);
- d.querySelectorAll('.it.hasTT').forEach(r=>r.onclick=e=>{if(e.target.closest('a'))return;r.classList.toggle('open')});
+ d.querySelectorAll('.it.hasTT').forEach(r=>r.onclick=e=>{if(r.classList.contains('bisit'))e.stopPropagation();if(e.target.closest('a'))return;r.classList.toggle('open')});
  d.querySelectorAll('.q.pl').forEach(r=>r.onclick=()=>{const k=r.dataset.l;const cur2=k in ov?ov[k]:lineAuto(r.dataset.kind,r.dataset.t);const now=!cur2;
   if(now===lineAuto(r.dataset.kind,r.dataset.t))delete ov[k];else ov[k]=now;store(CFG.ovKey,ov);render()});
  d.querySelectorAll('.q[data-q]').forEach(r=>r.onclick=()=>{const S=STOPS.find(x=>x.id===r.dataset.s),i=+r.dataset.i,k=r.dataset.q;
@@ -303,8 +303,8 @@ function syncLabel(){$('syncAgo').textContent=C?`${C.n} · Lv ${C.lv} · ${ago(C
 
 /* ---------- item pictures, stats + upgrade check ---------- */
 var ITEMS={},GTT={};
-fetch('data/items.json?v=2').then(r=>r.json()).then(j=>{ITEMS=j;try{render()}catch(e){}}).catch(()=>{});
-fetch('data/gear_tt.json?v=2').then(r=>r.json()).then(j=>{GTT=j;try{render()}catch(e){}}).catch(()=>{});
+fetch('data/items.json?v=3').then(r=>r.json()).then(j=>{ITEMS=j;try{render()}catch(e){}}).catch(()=>{});
+fetch('data/gear_tt.json?v=3').then(r=>r.json()).then(j=>{GTT=j;try{render()}catch(e){}}).catch(()=>{});
 var W8={sp:1,int:.6,spi:.5,sta:.4,mp5:1.6,cr:.5,arm:.01};
 var SUF={Owl:['int','spi'],Eagle:['sta','int'],Prophet:['int','spi','sp'],Sorcerer:['sta','int','sp'],Elder:['sta','int','spi'],Whale:['sta','spi'],Wizardry:['int'],Intellect:['int'],Spirit:['spi'],Stamina:['sta'],Healing:['sp'],Sorcery:['sp'],Bear:['sta'],Monkey:['sta']};
 var SLOTW={1:1,5:1,7:1,16:1,3:.75,6:.75,8:.75,10:.75,9:.55,2:.55,15:.55,11:.55,12:.55,17:.55,13:.55,14:.55,18:.4};
@@ -317,6 +317,12 @@ function eqStats(g){ // stats of an equipped item: addon stats > item db (+rando
  if(m&&SUF[m[1]]&&!(it[6].int||it[6].spi||it[6].sp)){const ks=SUF[m[1]];const tot=Math.round(it[4]*.45*(SLOTW[g.s]||.6));const each=Math.max(1,Math.round(tot/ks.length));ks.forEach(k=>s[k]=(s[k]||0)+(k==='sp'?Math.round(each*1.2):each));est=true}
  return {s,est};
 }
+function bisChips(tip){ // BiS items named after 🛡️ in a tip -> icon + stats + verdict
+ const i=String(tip).indexOf('🛡️');if(i<0||!GTT)return '';const seg=tip.slice(i);
+ let ns=Object.keys(GTT).filter(n=>n.length>4&&seg.includes(n));ns=ns.filter(n=>!ns.some(o=>o!==n&&o.includes(n)));if(!ns.length)return '';
+ ns.sort((a,b)=>seg.indexOf(a)-seg.indexOf(b));
+ return '<div class="bisits">'+ns.map(n=>{const w=wearing(n);const v=w?null:verdict(n);const gi=gearInfo(n);const q={uncommon:'green',rare:'blue',epic:'purple'}[gi&&gi.it?gi.it[2]:'rare']||'blue';
+  return `<div class="it hasTT bisit" title="${v?esc(v.why):''}"><div class="icon">${iconImg(n,'🛡️')}</div><div><div class="nm ${q}">${esc(n)} <span class="ttgl">stats ▾</span></div>${v?`<div class="vwhy">${esc(v.why)}</div>`:''}</div><span class="pick ${w?'wear':''}">${w?'✓ WEARING':''}${v?`<span class="vtag ${v.c}">${v.t}</span>`:''}</span>${ttHtml(n)}</div>`}).join('')+'</div>'}
 function gearInfo(name){const t=GTT[name];if(!t)return null;const it=ITEMS[t[0]];return {id:t[0],tt:t[1],it}}
 function verdict(name){
  const gi=gearInfo(name);if(!gi||!gi.it)return {c:'v-unk',t:'? new Forever item',why:"Not in the item database yet, so hover it in game."};
@@ -335,7 +341,7 @@ function verdict(name){
  if(d<-1.5)return {c:'v-down',t:'▼ NOT AN UPGRADE',why:`Worse than ${vs}${est}.${lvl}`};
  return {c:'v-same',t:'≈ ABOUT THE SAME',why:`About even with ${vs}${est}.${lvl}`};
 }
-function ttHtml(name){const gi=gearInfo(name);if(!gi)return '';return `<div class="itt">${gi.tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}<a href="https://www.wowhead.com/classic/item=${gi.id}" target="_blank" rel="noopener">wowhead ↗</a></div>`}
+function ttHtml(name){const gi=gearInfo(name);if(!gi)return '';return `<div class="itt">${gi.tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}<a href="https://www.wowhead.com/${gi.id>=200000?'forever':'classic'}/item=${gi.id}" target="_blank" rel="noopener">wowhead ↗</a></div>`}
 function iconImg(name,fallback){const gi=gearInfo(name);return gi&&gi.it?`<img src="https://wow.zamimg.com/images/wow/icons/large/${gi.it[1]}.jpg" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${fallback}'))">`:fallback}
 function render(){buildIndex();if(!cur){const h=(location.hash.match(/stop=([sd]\d+)/)||[])[1];if(h&&STOPS.find(s=>s.id===h)){cur=h;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}}if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked))}
 

@@ -6,6 +6,6 @@
 - `data/alchemy.json`: every Forever alchemy recipe + mats + item IDs
 - `data/tailoring.json`: Forever tailoring recipes (metabot.gg) + mats + item IDs; cloth is the "raw" list, threads/dyes the vendor list
 - `data/prices.json`, `data/history.json`: AH prices, refreshed hourly by `.github/workflows/ah-prices.yml` (`scripts/fetch_prices.py`, needs `BLIZZARD_CLIENT_ID` + `BLIZZARD_CLIENT_SECRET` secrets; realm in `data/ah-config.json`)
-- `alts.html`: alt leveling guides hub, linking `paladin.html` and `frost-mage.html` (levels 1 to 20)
+- `alts.html`: alt leveling guides hub, linking `paladin.html`, `frost-mage.html` and `rogue.html` (levels 1 to 35)
 - `addon/ForeverGuide/`: the in-game addon (`/fg` makes a sync code). `addon/ForeverGuide.zip` is the download
 

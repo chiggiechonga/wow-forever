@@ -17,8 +17,8 @@ h1{margin:0;font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc)}
 .page{padding:16px 18px 24px;background:var(--panel2)}
 .page h2{margin:0 0 4px;font:600 21px "Space Grotesk",Inter,sans-serif}
 .sub{color:var(--soft);font-size:13px;margin:0 0 16px}
-.alts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:640px){.alts{grid-template-columns:1fr}}
+.alts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.alts{grid-template-columns:1fr}}
 .alt{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;transition:border-color .15s}
 .alt:hover,.alt:focus-visible{border-color:var(--acc)}
 .alt .bar{padding:16px 18px;color:#111114;font:800 20px Inter,sans-serif}
@@ -27,16 +27,18 @@ h1{margin:0;font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc)}
 .alt .body span{color:var(--soft);font-size:13px}
 .pal .bar{background:linear-gradient(90deg,#c99a2e,#f2c14e)}
 .mag .bar{background:linear-gradient(90deg,#3a8ee0,#a6e1ff)}
+.rog .bar{background:linear-gradient(90deg,#7b3fe4,#c39bff)}
 </style></head>
 <body>
 <div class="app">
   <div class="top"><div class="logo">🗡️</div><div><div class="brand">Hearthbound</div><h1>Alts</h1></div><a class="cross" href="index.html" style="margin-left:auto">🧭 Journey</a></div>
   <div class="page">
     <h2>Alt leveling guides</h2>
-    <p class="sub">Skills, talents and rotation for levels 1 to 20.</p>
+    <p class="sub">Skills, talents and rotation for levels 1 to 35.</p>
     <div class="alts">
-      <a class="alt pal" href="paladin.html"><div class="bar">Paladin</div><div class="body"><b>Retribution · 1 to 20</b><span>Seal stays up. Judge, Holy Strike, swing.</span></div></a>
-      <a class="alt mag" href="frost-mage.html"><div class="bar">Frost Mage</div><div class="body"><b>Frost · 1 to 20</b><span>Frostbolt, Frostbolt, Nova, back up, finish it.</span></div></a>
+      <a class="alt pal" href="paladin.html"><div class="bar">Paladin</div><div class="body"><b>Retribution · 1 to 35</b><span>Seal stays up. Judge, Holy Strike, swing.</span></div></a>
+      <a class="alt mag" href="frost-mage.html"><div class="bar">Frost Mage</div><div class="body"><b>Frost · 1 to 35</b><span>Frostbolt, Nova, Ice Lance while it's frozen.</span></div></a>
+      <a class="alt rog" href="rogue.html"><div class="bar">Rogue</div><div class="body"><b>Combat · 1 to 35</b><span>Open, Slice and Dice, Sinister Strike, Eviscerate.</span></div></a>
     </div>
   </div>
 </div>

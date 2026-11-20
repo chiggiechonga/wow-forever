@@ -158,7 +158,13 @@ function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do
 /* ---------- quest givers + coordinates (questnpc.js, from QuestieDB) ---------- */
 const QDB=(typeof QNPC!=='undefined')?QNPC:{};
 const midLv=s=>{const n=nums(s.lv);return n.length?(Math.min(...n)+Math.max(...n))/2:0};
-function qrec(name,lv,mode){const k=norm(String(name).replace(/,? part \d+/i,''));const r=QDB[k];if(!r)return null;
+function qrec(name,lv,mode,ctx){const k=norm(String(name).replace(/,? part \d+/i,''));const r=QDB[k];if(!r)return null;
+ if(ctx&&r.length>1&&mode!=='end'||ctx&&r.length>1&&!/ → /.test(name)){ // pick the step whose giver is the row's NPC and whose hand-in matches the tip
+  const W=String(ctx.where||''),T=String(ctx.tip||'');const hm=T.match(/Hand in: ([^,(]+)/);const hi=hm?hm[1].trim():'';
+  let bs=0;const sc=r.map(x=>{let v=0;if(x[0]&&W.includes(x[0][0]))v+=2;if(x[1]&&hi&&hi.startsWith(x[1][0]))v+=3;else if(x[1]&&T.includes(x[1][0]))v+=1;bs=Math.max(bs,v);return v});
+  const top=r.filter((x,j)=>sc[j]===bs);if(bs>=2&&top.length===1)return top[0];
+  const pm0=String(name).match(/,? part (\d+)/i);if(bs>=2&&pm0){const ord=r.map((x,j)=>[x,j]).sort((a,b)=>(a[0][2]||0)-(b[0][2]||0)||a[1]-b[1]).map(x=>x[0]);const c=ord[+pm0[1]-1];if(c&&top.includes(c))return c}
+  if(bs>=2&&!pm0)return top[0]}
  const pm=String(name).match(/,? part (\d+)/i);if(pm){const n=+pm[1];const ord=r.map((x,i)=>[x,i]).sort((a,b)=>(a[0][2]||0)-(b[0][2]||0)||a[1]-b[1]).map(x=>x[0]);if(ord.length>=n&&ord.length>1)return ord[n-1]} // "part N" = Nth step of the chain
  // a chain shares one name: "start" = where the chain begins (earliest step), "end" = its last hand-in
  const near=r.filter(x=>Math.abs((x[2]||0)-lv)<=12);const pool=near.length?near:r;
@@ -179,11 +185,18 @@ function turnWhen(s,i,parts,st,en){
  if(inStop)return ' <span class="tw now">· turn in when done</span>';
  const zs=zshort(ez),zk=zs.replace(/^The /,'').split(' ')[0];for(let a=si+1;a<STOPS.length;a++){const S=STOPS[a];if(zk&&zk.length>3&&((S.zone||'').includes(zk)||(S.nm||'').includes(zk)))return ` <span class="tw later">· hand in at "${esc(S.nm)}". Don't fly there just for this</span>`}
  return zs?` <span class="tw far">· next time you're in ${esc(zs)}</span>`:''}
+// giver / turn-in / when, for the town view
+function rowNpcs(s,i){const [t,nm]=s.q[i];if(['hearth','train','book','bag','skip'].includes(t)||nm.includes(' · '))return null;
+ const lv=midLv(s);const parts=nm.split(/ → /).map(x=>x.trim()).filter(Boolean);
+ const ctx=parts.length===1?{where:s.q[i][2],tip:s.q[i][3]}:null;const recs=parts.map(p=>[p,qrec(p,lv,t==='turn'?'end':'start',ctx),qrec(p,lv,'end',ctx)]).filter(x=>x[1]);if(!recs.length)return null;
+ const st=recs[0][1][0],en=(recs[recs.length-1][2]||recs[recs.length-1][1])[1];
+ const w=t==='turn'?'':turnWhen(s,i,parts,st,en);const cat=/tw now/.test(w)?'now':/tw later/.test(w)?'later':/tw far/.test(w)?'far':'';
+ return {st,en,w,cat}}
 // one line under a quest row: who starts it, who you turn it in to
 function npcLine(s,i){
  const [t,nm]=s.q[i];if(['hearth','train','book','bag','skip'].includes(t))return '';
  const lv=midLv(s);const chain=nm.includes(' → ');const parts=nm.split(/ → | · /).map(x=>x.trim()).filter(Boolean);
- const recs=parts.map(p=>[p,qrec(p,lv,t==='turn'?'end':'start'),qrec(p,lv,'end')]).filter(x=>x[1]);if(!recs.length)return '';
+ const ctx=parts.length===1?{where:s.q[i][2],tip:s.q[i][3]}:null;const recs=parts.map(p=>[p,qrec(p,lv,t==='turn'?'end':'start',ctx),qrec(p,lv,'end',ctx)]).filter(x=>x[1]);if(!recs.length)return '';
  let h='';
  if(chain||recs.length===1){const st=recs[0][1][0],en=(recs[recs.length-1][2]||recs[recs.length-1][1])[1];
   if(t==='turn'){h=en?`↩ Turn in: ${npcTxt(en)}`:''}
@@ -210,6 +223,28 @@ const lineKey=(s,si,i)=>`${s.id}-L${si}-${i}`;
 function lineAuto(kind,text){if(!C)return false;const n=norm(String(text).split(' (')[0]);if(!n)return false;
  if(kind==='grab')return IX.log.has(n)||IX.done.has(n);if(kind==='turn')return IX.done.has(n);return false}
 const lineDone=(s,si,i,kind,text)=>{const k=lineKey(s,si,i);return k in ov?ov[k]:lineAuto(kind,text)};
+let VIEW=load('fg-view','town');
+function townSec(s,p){
+ const base=n=>norm(String(n).replace(/,? part \d+/i,''));const R={};const rows=[];const notes=[];const rnd={};
+ p.items.forEach(it=>{if(it.row===undefined){notes.push(it);return}const i=it.row,x=s.q[i];const b=base(x[1]);const r=(R[b]||0)+1;R[b]=r;rnd[i]=x[0]==='turn'?0:r;rows.push(i)});
+ const maxR=Math.max(1,...rows.map(i=>rnd[i]));let h='';
+ notes.forEach((it,n)=>{const c=lineDone(s,p.si,it.ii,p.k,it.text);const k=lineKey(s,p.si,it.ii);const ln=lineNpc(s,p.k,it.text);
+  h+=`<div class="q pl ${c?'chk':''}" data-l="${k}" data-kind="${p.k}" data-t="${esc(it.text)}"><span class="box">${c?'✓':''}</span><span class="pnum">🧭</span><div><div class="n">${esc(ln.name)}${ln.html}</div></div><span></span></div>`});
+ const li=(i,who,extra='')=>{const x=s.q[i];const c=isDoneRow(s,i);return `<li class="${c?'done':''}"><span class="tb">${c?'✓':'○'}</span><b>${esc(x[1])}</b>${who?' · '+npcTxt(who):''}${extra}</li>`};
+ const turns=rows.filter(i=>rnd[i]===0);
+ if(turns.length){h+=`<div class="tphase"><div class="tph">↩ Turn in first <small>stuff you've been carrying</small></div>`;turns.forEach(i=>h+=rowHtml(s,i));h+='</div>'}
+ for(let r=1;r<=maxR;r++){const rr=rows.filter(i=>rnd[i]===r);if(!rr.length)continue;
+  const info={};rr.forEach(i=>info[i]=rowNpcs(s,i));
+  const quests=rr.filter(i=>['do','dng','mage','hold'].includes(s.q[i][0]));const other=rr.filter(i=>!quests.includes(i));
+  const pick=quests.filter(i=>info[i]&&info[i].st);const doing=quests.filter(i=>s.q[i][0]!=='hold');const hold=quests.filter(i=>s.q[i][0]==='hold');
+  const here=i=>info[i]&&info[i].en&&info[i].st&&info[i].en[1]===info[i].st[1];const tin=doing.filter(i=>here(i)),keep=doing.filter(i=>info[i]&&info[i].en&&!here(i));
+  if(maxR>1)h+=`<div class="tround">${r===1?'Round 1':'Round '+r+' <small>the follow-ups you get from those turn-ins</small>'}</div>`;
+  if(pick.length)h+=`<div class="tphase"><div class="tph">📜 ${r===1?'Pick up':'Pick up the new ones'}</div><ul class="tl">${pick.map(i=>li(i,info[i].st,s.q[i][0]==='hold'?' <span class="tw later">· hold it</span>':'')).join('')}</ul></div>`;
+  if(doing.length||other.length){h+=`<div class="tphase"><div class="tph">⚔️ Go do</div>`;doing.concat(other).forEach(i=>h+=rowHtml(s,i));h+='</div>'}
+  if(hold.length){h+=`<div class="tphase"><div class="tph">🎒 Grab and hold <small>do these later</small></div>`;hold.forEach(i=>h+=rowHtml(s,i));h+='</div>'}
+  if(tin.length)h+=`<div class="tphase"><div class="tph">↩ Turn in</div><ul class="tl">${tin.map(i=>li(i,info[i].en)).join('')}</ul></div>`;
+  if(keep.length)h+=`<div class="tphase"><div class="tph">🎒 Keep in your bags <small>turned in somewhere else</small></div><ul class="tl">${keep.map(i=>li(i,info[i].en,info[i].cat==='now'?' <span class="tw later">· later this stop</span>':info[i].w)).join('')}</ul></div>`}
+ return h}
 function questsHtml(s){
  const plan=(typeof PLAN!=='undefined')&&PLAN[s.id];
  if(!plan){let h=`<div class="sec">QUESTS <small>in order · tap to check off</small></div>`;s.q.forEach((x,i)=>h+=rowHtml(s,i));return h}
@@ -218,10 +253,11 @@ function questsHtml(s){
  const secs=plan.map((p,si)=>{const items=p.i.map((it,ii)=>it.startsWith('@')?{row:find(it)}:{text:it,ii}).filter(x=>x.row===undefined||x.row>=0);return {...p,si,items}});
  const left=s.q.map((x,i)=>i).filter(i=>!used.has(i));
  if(left.length)secs.push({k:'do',h:'Also on this stop',si:99,items:left.map(i=>({row:i}))});
- let h=`<div class="sec">THE PLAN <small>top to bottom · tap to check off</small></div>`+`<div class="tlegend"><b>DO NOW</b> = pick it up, do it, and hand it in when the line says. <span class="tw now">turn in when done</span> = the turn-in is in this area. <span class="tw later">later</span> = keep carrying it, the guide has a TURN IN step for it further down. <span class="tw far">next time you're in…</span> = no need to fly there, just hand it in when your route takes you there. <b>HOLD</b> = grab it now, do it later. <b>TURN IN</b> = hand in something you've been carrying.</div>`;
+ let h=`<div class="sec">THE PLAN <small>top to bottom · tap to check off</small><span class="vtog"><button data-v="town" class="${VIEW==='town'?'on':''}">🏘️ By town</button><button data-v="steps" class="${VIEW!=='town'?'on':''}">🔢 Step by step</button></span></div>`+`<div class="tlegend"><b>DO NOW</b> = pick it up, do it, and hand it in when the line says. <span class="tw now">turn in when done</span> = the turn-in is in this area. <span class="tw later">later</span> = keep carrying it, the guide has a TURN IN step for it further down. <span class="tw far">next time you're in…</span> = no need to fly there, just hand it in when your route takes you there. <b>HOLD</b> = grab it now, do it later. <b>TURN IN</b> = hand in something you've been carrying.</div>`;
  secs.forEach(p=>{if(!p.items.length)return;
   const done=p.items.filter(it=>it.row!==undefined?isDoneRow(s,it.row):lineDone(s,p.si,it.ii,p.k,it.text)).length;
   h+=`<div class="psec psec-${p.k}"><div class="psec-h"><span>${PICON[p.k]||'•'} ${esc(p.h)}</span><small>${done}/${p.items.length}</small></div>`;
+  if(VIEW==='town'){h+=townSec(s,p)+'</div>';return}
   p.items.forEach((it,n)=>{
    if(it.row!==undefined){h+=rowHtml(s,it.row);return}
    const c=lineDone(s,p.si,it.ii,p.k,it.text);const k=lineKey(s,p.si,it.ii);const syn=c&&!(k in ov);
@@ -250,6 +286,7 @@ function detail(){
  d.querySelectorAll('.it.hasTT').forEach(r=>r.onclick=e=>{if(r.classList.contains('bisit'))e.stopPropagation();if(e.target.closest('a'))return;r.classList.toggle('open')});
  d.querySelectorAll('.q.pl').forEach(r=>r.onclick=()=>{const k=r.dataset.l;const cur2=k in ov?ov[k]:lineAuto(r.dataset.kind,r.dataset.t);const now=!cur2;
   if(now===lineAuto(r.dataset.kind,r.dataset.t))delete ov[k];else ov[k]=now;store(CFG.ovKey,ov);render()});
+ d.querySelectorAll('.vtog button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;store('fg-view',VIEW);render()});
  d.querySelectorAll('.lbtn').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.lk;if(later[k])delete later[k];else later[k]=b.dataset.ls;store(CFG.ovKey+'-later',later);render()});
  d.querySelectorAll('.q[data-q]').forEach(r=>r.onclick=()=>{const S=STOPS.find(x=>x.id===r.dataset.s),i=+r.dataset.i,k=r.dataset.q;
   const now=!isDoneRow(S,i);

@@ -159,6 +159,7 @@ function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do
 const QDB=(typeof QNPC!=='undefined')?QNPC:{};
 const midLv=s=>{const n=nums(s.lv);return n.length?(Math.min(...n)+Math.max(...n))/2:0};
 function qrec(name,lv,mode){const k=norm(String(name).replace(/,? part \d+/i,''));const r=QDB[k];if(!r)return null;
+ const pm=String(name).match(/,? part (\d+)/i);if(pm){const n=+pm[1];const ord=r.map((x,i)=>[x,i]).sort((a,b)=>(a[0][2]||0)-(b[0][2]||0)||a[1]-b[1]).map(x=>x[0]);if(ord.length>=n&&ord.length>1)return ord[n-1]} // "part N" = Nth step of the chain
  // a chain shares one name: "start" = where the chain begins (earliest step), "end" = its last hand-in
  const near=r.filter(x=>Math.abs((x[2]||0)-lv)<=12);const pool=near.length?near:r;
  if(mode==='start'){const c=pool.filter(x=>x[0]).sort((a,b)=>(a[2]||0)-(b[2]||0));if(c.length)return c[0]}
@@ -172,7 +173,7 @@ function turnWhen(s,i,parts,st,en){
  if(!en)return '';const k0=norm(parts[parts.length-1].replace(/,? part \d+/i,'')),k1=norm(parts[0].replace(/,? part \d+/i,''));
  const si=STOPS.indexOf(s);
  for(let a=si;a<STOPS.length;a++){const S=STOPS[a];for(let b=(a===si?i+1:0);b<S.q.length;b++){const q=S.q[b];if(q[0]!=='turn')continue;
-  const kn=norm(q[1].replace(/,? part \d+/i,''));if(kn&&(kn===k0||kn===k1||kn.startsWith(k0)||k0.startsWith(kn)))
+  const kn=norm(q[1].replace(/,? part \d+/i,''));if(kn&&(kn===k0||kn===k1||kn.startsWith(k0)||k0.startsWith(kn))&&(!en[0]||String(q[2]).includes(en[0])))
    return a===si?' <span class="tw later">· later this stop, keep going</span>':` <span class="tw later">· later, at "${esc(S.nm)}". Don't fly back for it</span>`}}
  const ez=en[1]||'',sz=st&&st[1]||'';const zk0=zshort(ez).replace(/^The /,'').split(' ')[0];const inStop=ez&&(ez===sz||(zk0.length>3&&((s.zone||'').includes(zk0)||(s.nm||'').includes(zk0))));
  if(inStop)return ' <span class="tw now">· turn in when done</span>';

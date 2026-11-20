@@ -189,3 +189,4 @@ textarea{width:100%;min-height:110px;background:#070708;color:var(--ink);border:
 .tphase{margin:6px 0 10px}.tph{font:700 12.5px Inter,sans-serif;letter-spacing:.02em;margin:8px 0 4px;color:var(--ink,#eee)}.tph small{font-weight:500;color:var(--soft);margin-left:6px}
 .tl{list-style:none;margin:0;padding:0 0 0 4px}.tl li{padding:3px 0;font-size:13px;line-height:1.45}.tl li.done{opacity:.55}.tl li.done b{text-decoration:line-through}.tl .tb{display:inline-block;width:16px;color:var(--soft)}
 .tround{margin:12px 0 2px;padding-top:8px;border-top:1px dashed var(--line,#3a3a42);font:700 12px Inter,sans-serif;color:#f0c674}.tround small{font-weight:500;color:var(--soft)}
+.st-lock{background:rgba(240,198,116,.13);color:#f0c674}

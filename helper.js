@@ -150,8 +150,10 @@ function searchView(){
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
+  const pb=PRE[norm(String(nm).replace(/,? part \d+/i,''))]||[];const lock=!c&&t!=='turn'?s.q.findIndex((y,j)=>j<i&&pb.includes(norm(String(y[1]).replace(/,? part \d+/i,'')))&&!isDoneRow(s,j)):-1;
+  const lockH=lock>=0?`<span class="st st-lock">🔒 after ${esc(s.q[lock][1])}</span>`:'';
   const lt=!c&&later[k];const lbtn=c?'':`<button class="lbtn${lt?' on':''}" data-lk="${k}" data-ls="${s.id}" title="${lt?'Put it back in the route':'Skip it for now. It stays on your Saved for later list and stops holding up your progress'}">${lt?'↩ back in':'⏭ later'}</button>`;
-  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}${lt?'<span class="st st-later">SAVED FOR LATER</span>':''}${lbtn}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
+  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}${lockH}${lt?'<span class="st st-later">SAVED FOR LATER</span>':''}${lbtn}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
 
 
@@ -226,7 +228,7 @@ const lineDone=(s,si,i,kind,text)=>{const k=lineKey(s,si,i);return k in ov?ov[k]
 let VIEW=load('fg-view','town');
 function townSec(s,p){
  const base=n=>norm(String(n).replace(/,? part \d+/i,''));const R={};const rows=[];const notes=[];const rnd={};
- p.items.forEach(it=>{if(it.row===undefined){notes.push(it);return}const i=it.row,x=s.q[i];const b=base(x[1]);const r=(R[b]||0)+1;R[b]=r;rnd[i]=x[0]==='turn'?0:r;rows.push(i)});
+ p.items.forEach(it=>{if(it.row===undefined){notes.push(it);return}const i=it.row,x=s.q[i];const b=base(x[1]);let r=(R[b]||0)+1;(PRE[b]||[]).forEach(pb=>{if(R[pb])r=Math.max(r,R[pb]+1)});R[b]=r;rnd[i]=x[0]==='turn'?0:r;rows.push(i)});
  const maxR=Math.max(1,...rows.map(i=>rnd[i]));let h='';
  notes.forEach((it,n)=>{const c=lineDone(s,p.si,it.ii,p.k,it.text);const k=lineKey(s,p.si,it.ii);const ln=lineNpc(s,p.k,it.text);
   h+=`<div class="q pl ${c?'chk':''}" data-l="${k}" data-kind="${p.k}" data-t="${esc(it.text)}"><span class="box">${c?'✓':''}</span><span class="pnum">🧭</span><div><div class="n">${esc(ln.name)}${ln.html}</div></div><span></span></div>`});
@@ -357,7 +359,8 @@ function profSync(){
 function syncLabel(){$('syncAgo').textContent=C?`${C.n} · Lv ${C.lv} · ${ago(C.t)}`:'not synced yet'}
 
 /* ---------- item pictures, stats + upgrade check ---------- */
-var ITEMS={},GTT={};
+var ITEMS={},GTT={},PRE={};
+fetch('data/qprereq.json?v=1').then(r=>r.json()).then(j=>{PRE=j;try{render()}catch(e){}}).catch(()=>{});
 fetch('data/items.json?v=3').then(r=>r.json()).then(j=>{ITEMS=j;try{render()}catch(e){}}).catch(()=>{});
 fetch('data/gear_tt.json?v=3').then(r=>r.json()).then(j=>{GTT=j;try{render()}catch(e){}}).catch(()=>{});
 var W8={sp:1,int:.6,spi:.5,sta:.4,mp5:1.6,cr:.5,arm:.01};

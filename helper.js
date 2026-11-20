@@ -7,7 +7,8 @@ const tipHtml=t=>{const L=String(t).split('\n').filter(Boolean);return L.length<
 const SKEY='fg-sync-'+String(CFG.cls||'any').toLowerCase(), TKEY=CFG.ovKey+'-trained', PKEY='fg-prices-v1';
 const load=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){};if(typeof queuePublish==='function')queuePublish(k)};
-let ov=load(CFG.ovKey,{});   // your own taps: key -> true/false
+let ov=load(CFG.ovKey,{});
+let later=load(CFG.ovKey+'-later',{}); // quests you're saving for later: key -> stop id   // your own taps: key -> true/false
 let C=load(SKEY,null);       // last synced character for THIS guide's class
 if(!C){const old=load('fg-sync-v1',null);if(old&&(!CFG.cls||old.cls===CFG.cls)){C=old;store(SKEY,C)}} // carry over the old shared sync
 let trainedLv=load(TKEY,0);  // highest level you've trained at
@@ -47,7 +48,7 @@ function auto(s,i){
 const qid=(s,i)=>s.id+'-'+i;
 const isDoneRow=(s,i)=>{const k=qid(s,i);return k in ov?ov[k]:auto(s,i).done};
 const doneCount=s=>s.q.filter((x,i)=>isDoneRow(s,i)).length;
-function hereIdx(){const i=STOPS.findIndex(s=>s.q.some((x,i)=>x[0]!=='skip'&&!isDoneRow(s,i)));return i<0?STOPS.length-1:i}
+function hereIdx(){const i=STOPS.findIndex(s=>s.q.some((x,i)=>x[0]!=='skip'&&!isDoneRow(s,i)&&!later[qid(s,i)]));return i<0?STOPS.length-1:i}
 
 /* ---------- helpers ---------- */
 let cur=null;
@@ -121,6 +122,8 @@ function sidebar(){
  const row=(s,i,cls)=>`<button class="srow ${cls} ${s.id===cur?'on':''}" data-s="${s.id}"><span class="nm"><span>${i<h?'✓':s.ic}</span>${esc(s.nm)}${(()=>{const n=s.q.filter(x=>x[4]).length+s.gear.filter(g=>g[3]).length;return n?`<span class="dn">❄${n}</span>`:''})()}</span><span class="lv">${s.lv}</span></button>`;
  let out=`<div class="grp">▾ DONE</div><button class="srow done" disabled><span class="nm"><span>✓</span>${esc(CFG.doneStub[0])}</span><span class="lv">${CFG.doneStub[1]}</span></button>`;
  STOPS.slice(0,h).forEach((s,i)=>out+=row(s,i,'done'));
+ {const L=[];for(const k in later){const s=STOPS.find(x=>x.id===later[k]);if(!s)continue;const i=s.q.findIndex((x,ii)=>qid(s,ii)===k);if(i<0||isDoneRow(s,i))continue;L.push([s,s.q[i][1]])}
+  if(L.length){out+='<div class="grp">▾ SAVED FOR LATER</div>';L.forEach(([s,n])=>out+=`<button class="srow later ${s.id===cur?'on':''}" data-s="${s.id}"><span class="nm"><span>⏭</span>${esc(n.length>34?n.slice(0,33)+'…':n)}</span><span class="lv">${s.lv}</span></button>`)}}
  out+='<div class="grp">▾ YOU\'RE HERE</div>'+row(STOPS[h],h,'');
  if(h<STOPS.length-1){out+='<div class="grp">▾ COMING UP</div>';let br='';STOPS.slice(h+1).forEach((s,j)=>{if(CFG.decades){const lv=parseInt(s.lv);const b=lv<30?'20s':lv<40?'30s':lv<50?'40s':'50s';if(b!==br){br=b;out+=`<div class="sub2">${b}</div>`}}out+=row(s,h+1+j,'')})}
  if(CFG.nextStub)out+=`<div class="grp">▾ NEXT PART</div><button class="srow done" disabled><span class="nm"><span>🔒</span>${esc(CFG.nextStub[0])}</span><span class="lv">${CFG.nextStub[1]}</span></button>`;
@@ -147,7 +150,8 @@ function searchView(){
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
-  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
+  const lt=!c&&later[k];const lbtn=c?'':`<button class="lbtn${lt?' on':''}" data-lk="${k}" data-ls="${s.id}" title="${lt?'Put it back in the route':'Skip it for now. It stays on your Saved for later list and stops holding up your progress'}">${lt?'↩ back in':'⏭ later'}</button>`;
+  h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}${lt?'<span class="st st-later">SAVED FOR LATER</span>':''}${lbtn}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
 
 
@@ -245,6 +249,7 @@ function detail(){
  d.querySelectorAll('.it.hasTT').forEach(r=>r.onclick=e=>{if(r.classList.contains('bisit'))e.stopPropagation();if(e.target.closest('a'))return;r.classList.toggle('open')});
  d.querySelectorAll('.q.pl').forEach(r=>r.onclick=()=>{const k=r.dataset.l;const cur2=k in ov?ov[k]:lineAuto(r.dataset.kind,r.dataset.t);const now=!cur2;
   if(now===lineAuto(r.dataset.kind,r.dataset.t))delete ov[k];else ov[k]=now;store(CFG.ovKey,ov);render()});
+ d.querySelectorAll('.lbtn').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.lk;if(later[k])delete later[k];else later[k]=b.dataset.ls;store(CFG.ovKey+'-later',later);render()});
  d.querySelectorAll('.q[data-q]').forEach(r=>r.onclick=()=>{const S=STOPS.find(x=>x.id===r.dataset.s),i=+r.dataset.i,k=r.dataset.q;
   const now=!isDoneRow(S,i);
   if(now===auto(S,i).done)delete ov[k];else ov[k]=now;

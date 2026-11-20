@@ -163,6 +163,17 @@ function qrec(name,lv,mode){const k=norm(String(name).replace(/,? part \d+/i,'')
 const zshort=z=>String(z||'').replace(/ (Forest|Mountains|Highlands|Vale|City|Marsh|Crater|Mountain)$/,'');
 function npcTxt(n,withZone=true){if(!n)return '';const c=n[2]!=null&&n[2]>=0?` <span class="xy">${withZone&&n[1]?esc(zshort(n[1]))+' ':''}${(+n[2]).toFixed(1)}, ${(+n[3]).toFixed(1)}</span>`:'';return `<b>${esc(n[0])}</b>${c}`}
 const sameNpc=(a,b)=>a&&b&&a[0]===b[0];
+// when do you hand it in? a later TURN IN row wins; same zone = right away; otherwise next time you're there
+function turnWhen(s,i,parts,st,en){
+ if(!en)return '';const k0=norm(parts[parts.length-1].replace(/,? part \d+/i,'')),k1=norm(parts[0].replace(/,? part \d+/i,''));
+ const si=STOPS.indexOf(s);
+ for(let a=si;a<STOPS.length;a++){const S=STOPS[a];for(let b=(a===si?i+1:0);b<S.q.length;b++){const q=S.q[b];if(q[0]!=='turn')continue;
+  const kn=norm(q[1].replace(/,? part \d+/i,''));if(kn&&(kn===k0||kn===k1||kn.startsWith(k0)||k0.startsWith(kn)))
+   return a===si?' <span class="tw later">· later this stop, keep going</span>':` <span class="tw later">· later, at "${esc(S.nm)}". Don't fly back for it</span>`}}
+ const ez=en[1]||'',sz=st&&st[1]||'';const zk0=zshort(ez).replace(/^The /,'').split(' ')[0];const inStop=ez&&(ez===sz||(zk0.length>3&&((s.zone||'').includes(zk0)||(s.nm||'').includes(zk0))));
+ if(inStop)return ' <span class="tw now">· turn in when done</span>';
+ const zs=zshort(ez),zk=zs.replace(/^The /,'').split(' ')[0];for(let a=si+1;a<STOPS.length;a++){const S=STOPS[a];if(zk&&zk.length>3&&((S.zone||'').includes(zk)||(S.nm||'').includes(zk)))return ` <span class="tw later">· hand in at "${esc(S.nm)}". Don't fly there just for this</span>`}
+ return zs?` <span class="tw far">· next time you're in ${esc(zs)}</span>`:''}
 // one line under a quest row: who starts it, who you turn it in to
 function npcLine(s,i){
  const [t,nm]=s.q[i];if(['hearth','train','book','bag','skip'].includes(t))return '';
@@ -171,8 +182,9 @@ function npcLine(s,i){
  let h='';
  if(chain||recs.length===1){const st=recs[0][1][0],en=(recs[recs.length-1][2]||recs[recs.length-1][1])[1];
   if(t==='turn'){h=en?`↩ Turn in: ${npcTxt(en)}`:''}
-  else if(sameNpc(st,en))h=`📍 From + turn in: ${npcTxt(st)}`;
-  else h=[st?`📍 From: ${npcTxt(st)}`:'',en?`↩ Turn in: ${npcTxt(en)}`:''].filter(Boolean).join(' · ');
+  else{const w=turnWhen(s,i,parts,st,en);
+   if(sameNpc(st,en))h=`📍 From + turn in: ${npcTxt(st)}${w}`;
+   else h=[st?`📍 From: ${npcTxt(st)}`:'',en?`↩ Turn in: ${npcTxt(en)}${w}`:''].filter(Boolean).join(' · ');}
  }else{
   h=recs.map(([p,r])=>{const n=t==='turn'?r[1]:r[0];return n?`${esc(p)}: ${npcTxt(n)}`:''}).filter(Boolean).join(' · ');
   h=(t==='turn'?'↩ ':'📍 ')+h;
@@ -201,7 +213,7 @@ function questsHtml(s){
  const secs=plan.map((p,si)=>{const items=p.i.map((it,ii)=>it.startsWith('@')?{row:find(it)}:{text:it,ii}).filter(x=>x.row===undefined||x.row>=0);return {...p,si,items}});
  const left=s.q.map((x,i)=>i).filter(i=>!used.has(i));
  if(left.length)secs.push({k:'do',h:'Also on this stop',si:99,items:left.map(i=>({row:i}))});
- let h=`<div class="sec">THE PLAN <small>top to bottom · tap to check off</small></div>`;
+ let h=`<div class="sec">THE PLAN <small>top to bottom · tap to check off</small></div>`+`<div class="tlegend"><b>DO NOW</b> = pick it up, do it, and hand it in when the line says. <span class="tw now">turn in when done</span> = the turn-in is in this area. <span class="tw later">later</span> = keep carrying it, the guide has a TURN IN step for it further down. <span class="tw far">next time you're in…</span> = no need to fly there, just hand it in when your route takes you there. <b>HOLD</b> = grab it now, do it later. <b>TURN IN</b> = hand in something you've been carrying.</div>`;
  secs.forEach(p=>{if(!p.items.length)return;
   const done=p.items.filter(it=>it.row!==undefined?isDoneRow(s,it.row):lineDone(s,p.si,it.ii,p.k,it.text)).length;
   h+=`<div class="psec psec-${p.k}"><div class="psec-h"><span>${PICON[p.k]||'•'} ${esc(p.h)}</span><small>${done}/${p.items.length}</small></div>`;

@@ -16,7 +16,7 @@ P = lambda f: os.path.join(ROOT, f)
 API = 'https://auctionhouse.fyi/api/v1'
 AHL = 'https://api.ahledger.com'
 UA = 'wow-forever-guide (github.com/chiggiechonga/wow-forever)'
-PROFS = ('alchemy', 'tailoring', 'cooking', 'crates', 'blacksmithing', 'disenchant')                  # data/<prof>.json
+PROFS = ('alchemy', 'tailoring', 'cooking', 'crates', 'blacksmithing', 'disenchant', 'leatherworking')                  # data/<prof>.json
 
 
 def load(f, default):

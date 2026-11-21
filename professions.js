@@ -19,6 +19,9 @@ const PROFS={
  blacksmithing:{name:'Blacksmithing',key:'bsm',file:'data/blacksmithing.json',thing:'item',things:'items',raw:'ore',raws:'ore & stone',
   cats:['All','Weapon','Armor','Stone','Bar','Other'],farm:'I mine my own ore',shop:[['Dense Sharpening Stone',10]],search:'item, ore or bar…',pvp:false,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h11l3-3h2v4a3 3 0 0 1-3 3h-3"/><path d="M8 13h6l1 4H7z"/><path d="M5 21h14"/></svg>'},
+ leatherworking:{name:'Leatherworking',key:'lwk',file:'data/leatherworking.json',thing:'item',things:'items',raw:'leather',raws:'leather & hides',
+  cats:['All','Armor','Kit','Bag','Leather','Other'],farm:'I skin my own leather',shop:[['Heavy Armor Kit',10]],search:'item, leather or hide…',pvp:false,
+  logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c2 1 8 1 10 0l2 4c-1 2-1 4 0 6l-2 8c-3-1-7-1-10 0l-2-8c1-2 1-4 0-6z"/><path d="M9 9h6M9 13h6"/></svg>'},
  tailoring:{name:'Tailoring',key:'tlr',file:'data/tailoring.json',thing:'item',things:'items',raw:'cloth',raws:'cloth',
   cats:['All','Bolt','Bag','Shirt','Armor','Other'],farm:'I farm my cloth',shop:[['Bolt of Runecloth',10]],search:'item or cloth…',pvp:false,
   logo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6c9da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5"/><circle cx="17.5" cy="6.5" r="1.6"/><path d="M4 12c3-3 5 3 8 0s5 3 8 0"/></svg>'}};

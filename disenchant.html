@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disenchant flip · Hearthbound</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪄</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#0a0a0b;--panel:#141416;--panel2:#1b1b1e;--line:#2c2c31;--line2:#232327;--ink:#f4f1f3;--soft:#a7a0a5;--acc:#e89ab8;--acc2:#f6c9da;--sel:#2a1d23;--up:#7fd8a8;--down:#ff8f8f;--warn:#ffb26b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,sans-serif}
+a{color:var(--acc2)}a:hover{color:var(--acc)}
+.app{max-width:1280px;margin:12px auto;border:1.5px solid var(--acc);border-radius:12px;background:var(--panel);overflow:clip}
+@media (max-width:1310px){.app{margin:8px}}
+.top{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;background:var(--sel);flex:none}
+h1{margin:0;font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc)}
+h2{margin:0;font:600 22px "Space Grotesk",Inter,sans-serif}
+h3{margin:0;font:600 18px "Space Grotesk",Inter,sans-serif}
+.cross{color:var(--acc2);font-size:12px;text-decoration:none;border:1px solid var(--acc2);border-radius:999px;padding:3px 11px}
+.meta{margin-left:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--soft)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;background:var(--up)}
+.dot.old{background:var(--warn)}.dot.none{background:var(--down)}
+.fld{display:flex;gap:6px;align-items:center}
+input,select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+.tabs{display:flex;gap:4px;padding:8px 14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{font:500 13.5px Inter,sans-serif;padding:8px 14px;border-radius:8px 8px 0 0;border:1px solid var(--line);border-bottom:0;background:var(--panel2);color:var(--soft);cursor:pointer}
+.tab[aria-selected=true]{border-color:var(--acc);background:var(--sel);color:var(--acc2)}
+.page{padding:18px 20px 24px;background:var(--panel2)}
+.sub{font-size:13px;color:var(--soft);margin:2px 0 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 12px}
+.chip{font:500 12.5px Inter,sans-serif;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--soft);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--acc);background:var(--sel);color:var(--acc2)}
+.chips .r{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--soft)}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--bg);min-width:240px}
+.search input{border:0;background:none;outline:0;flex:1;padding:2px}
+.box{border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font:700 11.5px Inter,sans-serif;letter-spacing:.06em;color:var(--acc);padding:9px 10px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}
+th.n,td.n{text-align:right;font-variant-numeric:tabular-nums}
+td{padding:10px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr.row{cursor:pointer}tr.row:hover td{background:#1d1a1c}
+tr.open td{background:var(--sel)}
+.pname{font-size:15px}.psub{font-size:12px;color:var(--soft)}
+.badge{font:700 10.5px Inter,sans-serif;padding:1px 7px;border-radius:999px;border:1px solid;margin-left:8px;white-space:nowrap}
+.ok{color:var(--up)}.lock{color:var(--warn)}.pvp{color:var(--acc2)}
+.up{color:var(--up)}.down{color:var(--down)}.soft{color:var(--soft)}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:16px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--panel)}
+@media (max-width:760px){.detail{grid-template-columns:1fr}}
+.lbl{font:700 11.5px Inter,sans-serif;letter-spacing:.06em;color:var(--acc);margin-bottom:4px}
+.mrow{display:flex;justify-content:space-between;gap:14px;font-size:13px;padding:2px 0}
+.note{font-size:12px;color:var(--soft);margin-top:8px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1000px){.cards,.cards.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards,.cards.three{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.card.first{border-color:var(--acc)}.card.jump{border-color:var(--warn)}
+.big{font:700 24px "Space Grotesk",Inter,sans-serif;color:var(--acc2)}
+.sec{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:24px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.callout{margin-top:14px;border:1px dashed var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.callout b{color:var(--acc)}
+.grid2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;margin-top:14px}
+.grid2b{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;margin-top:14px}
+@media (max-width:900px){.grid2,.grid2b{grid-template-columns:1fr}}
+.side{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 14px}
+.side.hl{border-color:var(--acc);background:var(--sel)}
+.bag{display:grid;grid-template-columns:minmax(0,1fr) 70px;gap:6px 10px;align-items:center;font-size:13.5px;max-height:320px;overflow:auto}
+.verdict{font:700 11.5px Inter,sans-serif;padding:3px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pick{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line2)}
+.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.step button{width:34px;height:34px;background:var(--panel2);color:var(--ink);border:0;font-size:16px;cursor:pointer}
+.step span{width:42px;text-align:center;font-variant-numeric:tabular-nums}
+.btn{font:600 13px Inter,sans-serif;padding:7px 12px;border-radius:8px;border:1px solid var(--acc);background:var(--sel);color:var(--acc2);cursor:pointer}
+.btn.ghost{border-style:dashed;background:none;width:100%;margin-top:12px;padding:10px}
+.ghostbtn{background:none;border:0;color:var(--soft);cursor:pointer;font:inherit;font-size:13px}
+.tot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.tot div{border:1px solid var(--line);border-radius:8px;padding:10px}
+.tot div.hl{border-color:var(--acc);background:var(--sel)}
+.tot small{font-size:11.5px;color:var(--soft);display:block}
+.tot b{font:700 20px "Space Grotesk",Inter,sans-serif}
+.mats{display:grid;grid-template-columns:22px minmax(0,1fr) 50px 110px 90px;gap:8px;padding:7px 0;border-bottom:1px solid var(--line2);font-size:13.5px;align-items:center}
+.mats.h{font:700 11px Inter,sans-serif;letter-spacing:.05em;color:var(--soft);border-bottom:1px solid var(--line)}
+.mats.done{opacity:.45;text-decoration:line-through}
+.waiting{border:1px dashed var(--warn);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13.5px}
+.waiting b{color:var(--warn)}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{font:600 13px Inter,sans-serif;padding:6px 14px;background:none;border:0;color:var(--soft);cursor:pointer}
+.seg button[aria-selected=true]{background:var(--sel);color:var(--acc2);box-shadow:inset 0 0 0 1px var(--acc);border-radius:999px}
+[hidden]{display:none!important}
+.dsk{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:12px 0 14px;font-size:13px;color:var(--soft)}
+.dsk label{display:flex;gap:6px;align-items:center}
+.ic{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);vertical-align:middle;margin-right:8px;background:var(--panel2)}
+.q2{color:#3cd25a}.q3{color:#4a9eff}.q4{color:#b26bff}
+.good{color:var(--up);font-weight:700}.meh{color:var(--soft)}
+.small{font-size:12px;color:var(--soft)}
+.note{font-size:12.5px;color:var(--soft);line-height:1.55;margin-top:14px}
+</style></head><body>
+<div class="app">
+ <div class="top">
+  <div class="logo">🪄</div>
+  <div><div class="brand" style="font:700 10.5px Inter,sans-serif;letter-spacing:.22em;color:var(--soft,#a7a0a5);text-transform:uppercase">Hearthbound · Workshop</div><h1>Disenchant flip</h1></div>
+  <a class="cross" href="professions.html">⚗️ Workshop</a> <a class="cross" href="index.html">🧭 Journey</a>
+  <div class="meta"><span id="fresh"><span class="dot none"></span>Loading prices…</span></div>
+ </div>
+ <div class="page">
+  <p class="sub">Gear on the AH that's selling for less than the mats you'd get from disenchanting it. Buy it, disenchant it, sell the dust/essences/shards. The value is the average over many disenchants (each one is random) after the 5% AH cut.</p>
+  <div class="dsk">
+   <label>My enchanting <input id="sk" type="number" min="1" max="300" style="width:64px"></label>
+   <label>Buy at ≤ <input id="pct" type="number" min="10" max="100" step="5" style="width:58px">% of value</label>
+   <label>Min profit <input id="minp" type="number" min="0" step="10" style="width:64px"> copper</label>
+   <label><input id="q2" type="checkbox"> greens</label><label><input id="q3" type="checkbox"> blues</label><label><input id="q4" type="checkbox"> purples</label>
+   <label><input id="all" type="checkbox"> show ones I can't disenchant yet</label>
+  </div>
+  <div class="box"><table><thead><tr><th>Item</th><th class="n">ilvl</th><th class="n">Needs</th><th class="n">Cheapest</th><th class="n">DE value</th><th class="n">Profit</th><th class="n">% of value</th><th class="n">Listed</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="note" id="note"></div>
+ </div>
+</div>
+<script>
+const $=s=>document.querySelector(s);const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const money=c=>{if(c==null)return '—';c=Math.round(c);const neg=c<0;c=Math.abs(c);const g=Math.floor(c/10000),s=Math.floor(c/100)%100,cp=c%100;return (neg?'−':'')+(g?g+'g ':'')+(g||s?s+'s ':'')+cp+'c'};
+// Classic disenchant table. Greens: [max ilvl, dust, avg dust, essence, avg essence, shard, shard chance]
+const G=[[15,'Strange Dust',1.5,'Lesser Magic Essence',1.5,null,0],[20,'Strange Dust',2.5,'Greater Magic Essence',1.5,'Small Glimmering Shard',.05],[25,'Strange Dust',5,'Lesser Astral Essence',1.5,'Small Glimmering Shard',.1],
+ [30,'Soul Dust',1.5,'Greater Astral Essence',1.5,'Large Glimmering Shard',.05],[35,'Soul Dust',3.5,'Lesser Mystic Essence',1.5,'Small Glowing Shard',.05],[40,'Vision Dust',1.5,'Greater Mystic Essence',1.5,'Large Glowing Shard',.05],
+ [45,'Vision Dust',3.5,'Lesser Nether Essence',1.5,'Small Radiant Shard',.05],[50,'Dream Dust',1.5,'Greater Nether Essence',1.5,'Large Radiant Shard',.05],[55,'Dream Dust',3.5,'Lesser Eternal Essence',1.5,'Small Brilliant Shard',.05],
+ [60,'Illusion Dust',1.5,'Greater Eternal Essence',1.5,'Large Brilliant Shard',.05],[99,'Illusion Dust',3.5,'Greater Eternal Essence',2.5,'Large Brilliant Shard',.05]];
+const B=[[25,'Small Glimmering Shard'],[30,'Large Glimmering Shard'],[35,'Small Glowing Shard'],[40,'Large Glowing Shard'],[45,'Small Radiant Shard'],[50,'Large Radiant Shard'],[55,'Small Brilliant Shard'],[99,'Large Brilliant Shard']];
+const E=[[45,'Small Radiant Shard',3],[50,'Large Radiant Shard',3],[55,'Small Brilliant Shard',3],[60,'Nexus Crystal',1],[99,'Nexus Crystal',1.5]];
+const need=il=>il<=20?1:il<=25?25:il<=30?50:il<=35?75:il<=40?100:il<=45?125:il<=50?150:il<=55?175:il<=60?200:225;
+let P={},D=[];
+function yieldOf(il,q,wpn){const out=[];
+ if(q===2){const r=G.find(x=>il<=x[0]);const sh=r[6],pd=wpn?.2:1-sh-.2,pe=wpn?1-sh-.2:.2;
+  out.push([r[1],pd*r[2]],[r[3],pe*r[4]]);if(r[5])out.push([r[5],sh])}
+ else if(q===3){const r=B.find(x=>il<=x[0]);out.push([r[1],il>55?.995:1]);if(il>55)out.push(['Nexus Crystal',.005])}
+ else{const r=E.find(x=>il<=x[0]);if(il<40)return [];out.push([r[1],r[2]])}
+ return out}
+const price=n=>{const x=P[n];return x&&(x.mkt||x.min)||null};
+function value(il,q,wpn){const y=yieldOf(il,q,wpn);if(!y.length)return null;let v=0,top=null,tv=0;for(const [n,c] of y){const p=price(n);if(p==null)return null;v+=p*c;if(p*c>tv){tv=p*c;top=n}}return {v:v*.95,top,y}}
+function draw(){const sk=+$('#sk').value||1,pct=(+$('#pct').value||75)/100,minp=+$('#minp').value||0,all=$('#all').checked;
+ const qs={2:$('#q2').checked,3:$('#q3').checked,4:$('#q4').checked};
+ store('de-set',{sk,pct:pct*100,minp,all,qs});
+ const rows=[];for(const [id,n,il,q,wpn,icon,min,med,qty,pd] of D){if(!qs[q])continue;const nd=need(il);if(!all&&nd>sk)continue;const r=value(il,q,wpn);if(!r)continue;
+  const profit=r.v-min;if(min>r.v*pct||profit<minp)continue;rows.push({id,n,il,q,wpn,icon,min,qty,nd,...r,profit})}
+ rows.sort((a,b)=>b.profit-a.profit);
+ $('#tb').innerHTML=rows.slice(0,300).map(r=>`<tr><td><img class="ic" loading="lazy" src="https://wow.zamimg.com/images/wow/icons/medium/${r.icon}.jpg" onerror="this.style.visibility='hidden'"><a class="q${r.q}" href="https://www.wowhead.com/classic/item=${r.id}" target="_blank" rel="noopener">${esc(r.n)}</a><div class="small">${r.wpn?'weapon':'armor'} · mostly ${esc(r.top)}</div></td>
+  <td class="n">${r.il}</td><td class="n ${r.nd>sk?'down':''}">${r.nd}</td><td class="n">${money(r.min)}</td><td class="n">${money(r.v)}</td><td class="n good">${money(r.profit)}</td><td class="n">${Math.round(r.min/r.v*100)}%</td><td class="n">${r.qty}</td></tr>`).join('')||'<tr><td colspan="8" class="meh">Nothing matches right now. Try a higher %, or turn on blues.</td></tr>';
+ $('#note').innerHTML=`${rows.length} deals. Check the in-game price before you buy (these are from the last hourly scan), and only buy items with <b>Needs</b> ≤ your enchanting. Disenchanting a weapon gives more essence, armor more dust. Wowhead links go to the Classic database; WoW Forever-only gear isn't in this list yet.`}
+Promise.all([fetch('data/prices.json?v='+Date.now()).then(r=>r.json()),fetch('data/de.json?v='+Date.now()).then(r=>r.json())]).then(([p,d])=>{
+ P=p.items||{};D=d.items||[];const age=(Date.now()/1000-(d.updated||0))/3600;
+ $('#fresh').innerHTML=`<span class="dot ${age>3?'old':''}"></span>${D.length} gear items on the AH · ${age<1?'updated this hour':Math.round(age)+'h ago'}`;draw()}).catch(()=>{$('#fresh').innerHTML='<span class="dot none"></span>No disenchant data yet (it fills in at the next hourly price scan)'});
+const S=load('de-set',{sk:1,pct:75,minp:0,all:false,qs:{2:true,3:true,4:false}});
+$('#sk').value=S.sk;$('#pct').value=S.pct;$('#minp').value=S.minp;$('#all').checked=S.all;['2','3','4'].forEach(q=>$('#q'+q).checked=!!S.qs[q]);
+document.querySelectorAll('input').forEach(i=>i.oninput=draw);
+</script></body></html>

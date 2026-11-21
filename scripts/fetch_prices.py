@@ -16,7 +16,7 @@ P = lambda f: os.path.join(ROOT, f)
 API = 'https://auctionhouse.fyi/api/v1'
 AHL = 'https://api.ahledger.com'
 UA = 'wow-forever-guide (github.com/chiggiechonga/wow-forever)'
-PROFS = ('alchemy', 'tailoring', 'cooking', 'crates', 'blacksmithing')                  # data/<prof>.json
+PROFS = ('alchemy', 'tailoring', 'cooking', 'crates', 'blacksmithing', 'disenchant')                  # data/<prof>.json
 
 
 def load(f, default):
@@ -138,6 +138,18 @@ def main():
     save('prices.json', {'updated': updated or now, 'fetched': int(time.time()), 'market': mid,
                          'realm': cfg.get('label', 'PvP Alliance US'), 'source': 'AHledger',
                          'vendor': vendor, 'items': items})
+    # Disenchant flip: every green/blue/epic armor or weapon listed right now
+    try:
+        de = json.load(open(os.path.join(os.path.dirname(__file__), 'de_items.json')))
+        listed = []
+        for sid, (n, il, q, wpn, icon) in de.items():
+            r = rows.get(int(sid))
+            if r and r['min'] and r['qty']:
+                listed.append([int(sid), n, il, q, wpn, icon, r['min'], r['median'], r['qty'], r['perDay']])
+        save('de.json', {'updated': updated or now, 'items': listed})
+        print(f'Disenchant: {len(listed)} gear items listed.')
+    except Exception as e:
+        print('Disenchant list failed:', e)
     hist = load('history.json', {'t': [], 'p': {}, 'q': {}})
     if hist['t'] and hist['t'][-1] == now:            # same hour already saved
         print('Snapshot for this hour already saved.')

@@ -144,7 +144,7 @@ function draw(){const sk=+$('#sk').value||1,pct=(+$('#pct').value||75)/100,minp=
   <td class="n">${r.il}</td><td class="n ${r.nd>sk?'down':''}">${r.nd}</td><td class="n">${money(r.min)}</td><td class="n">${money(r.v)}</td><td class="n good">${money(r.profit)}</td><td class="n">${Math.round(r.min/r.v*100)}%</td><td class="n">${r.qty}</td></tr>`).join('')||'<tr><td colspan="8" class="meh">Nothing matches right now. Try a higher %, or turn on blues.</td></tr>';
  $('#note').innerHTML=`${rows.length} deals. Check the in-game price before you buy (these are from the last hourly scan), and only buy items with <b>Needs</b> ≤ your enchanting. Disenchanting a weapon gives more essence, armor more dust. Wowhead links go to the Classic database; WoW Forever-only gear isn't in this list yet.`}
 Promise.all([fetch('data/prices.json?v='+Date.now()).then(r=>r.json()),fetch('data/de.json?v='+Date.now()).then(r=>r.json())]).then(([p,d])=>{
- P=p.items||{};D=d.items||[];const age=(Date.now()/1000-(d.updated||0))/3600;
+ P=p.items||{};const NODE=new Set([11287,11288,11289,11290]);D=(d.items||[]).filter(i=>!NODE.has(+i[0])&&!/Practice Wand/.test(i[1]));const age=(Date.now()/1000-(d.updated||0))/3600;
  $('#fresh').innerHTML=`<span class="dot ${age>3?'old':''}"></span>${D.length} gear items on the AH · ${age<1?'updated this hour':Math.round(age)+'h ago'}`;draw()}).catch(()=>{$('#fresh').innerHTML='<span class="dot none"></span>No disenchant data yet (it fills in at the next hourly price scan)'});
 const S=load('de-set',{sk:1,pct:75,minp:0,all:false,qs:{2:true,3:true,4:false}});
 $('#sk').value=S.sk;$('#pct').value=S.pct;$('#minp').value=S.minp;$('#all').checked=S.all;['2','3','4'].forEach(q=>$('#q'+q).checked=!!S.qs[q]);

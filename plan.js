@@ -97,7 +97,11 @@ s14:[
  {k:'do',h:"Kodo Graveyard + south",i:['@Kodo Roundup','@Bodyguard for Hire','@Gizelton Caravan','@Bone Collector','@Ghost-o-plasm Round Up','@Get Me Out of Here!','@Demons and You']},
  {k:'turn',h:"Last trip to Nijel's Point",i:['@Reagents for Reclaimers Inc., part 4']},
  {k:'dng',h:"Later",i:['@Maraudon (later)']},
- {k:'dng',h:'🛡️ BiS gear pickups',i:["@Khan Jehn"]}],
+ {k:'town',h:"Magram Village: Warug's chain (75, 68)",i:['@Brutal Politics','@Buying Friendship: Magram','@Broken Tears','@Gizmo for Warug','@Khan Shaka','@A New Need for Shadow Protection','@Big, No, MASSIVE Iron Axes']},
+ {k:'do',h:"Badlands side trip: A Conqueror's Crown (crypt 57, 40)",i:["@A Conqueror's Crown"]},
+ {k:'do',h:"Valley of Bones (Shen'dralas): Orgrul + Hagiak · Lv 40+, needs Honored",i:['@Valley of Bones','@Mountain of Bones','@Outcast Necromancers','@Corrupting Tears','@Proof of Concept','@Bone Raising','@No Mercy for the Weak','@Bristleback Retreat','@Long-Term Solutions','@Threat of Starvation','@Return to Orgrul','@Khan Jehn']},
+ {k:'do',h:"Magram finale (Lv 42)",i:['@Khan Hratha']},
+ {k:'dng',h:'🛡️ BiS gear pickups',i:["@Khan Jehn","@Proof of Concept"]}],
 s15:[
  {k:'turn',h:"Ironforge hand-ins (fly from Menethil)",i:['@The Karnitol Shipwreck, part 4','@Reagents for Reclaimers Inc., part 4']},
  {k:'do',h:"Sleeping bag: Loch Modan",i:['@Cozy Sleeping Bag · step 5']},

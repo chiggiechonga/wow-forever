@@ -92,6 +92,21 @@ tr.open td{background:var(--sel)}
 .good{color:var(--up);font-weight:700}.meh{color:var(--soft)}
 .small{font-size:12px;color:var(--soft)}
 .note{font-size:12.5px;color:var(--soft);line-height:1.55;margin-top:14px}
+.calc{border:1px solid var(--acc);border-radius:10px;background:var(--panel);padding:14px 16px;margin:0 0 18px}
+.calc .srch{position:relative;max-width:420px}
+.calc .srch input{width:100%}
+.sugg{position:absolute;left:0;right:0;top:100%;z-index:5;background:var(--panel2);border:1px solid var(--line);border-radius:8px;margin-top:4px;max-height:300px;overflow:auto}
+.sugg div{padding:7px 10px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13.5px}.sugg div:hover,.sugg div.on{background:var(--sel)}
+.sugg img{width:20px;height:20px;border-radius:4px}
+.cres{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-top:14px}
+@media (max-width:800px){.cres{grid-template-columns:1fr}}
+.yl{display:grid;grid-template-columns:minmax(0,1fr) 60px 60px 80px 80px;gap:6px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--line2)}
+.yl.h{font:700 11px Inter,sans-serif;letter-spacing:.05em;color:var(--soft)}
+.yl span:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.vbox{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.vbox.win{border-color:var(--up)}
+.vrow{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:13.5px}
+.vbig{font:700 20px "Space Grotesk",Inter,sans-serif;margin:6px 0}
 </style></head><body>
 <div class="app">
  <div class="top">
@@ -101,7 +116,7 @@ tr.open td{background:var(--sel)}
   <div class="meta"><span id="fresh"><span class="dot none"></span>Loading prices…</span></div>
  </div>
  <div class="page">
-  <p class="sub">Gear on the AH that's selling for less than the mats you'd get from disenchanting it. Buy it, disenchant it, sell the dust/essences/shards. The value is the average over many disenchants (each one is random) after the 5% AH cut.</p>
+  <p class="sub">Gear on the AH that's selling for less than the mats you'd get from disenchanting it. Buy it, disenchant it, sell the dust/essences/shards. The value is the average over many disenchants (each one is random), priced at the cheapest listing for each mat, after the 5% AH cut.</p>
   <div class="dsk">
    <label>My enchanting <input id="sk" type="number" min="1" max="300" style="width:64px"></label>
    <label>Buy at ≤ <input id="pct" type="number" min="10" max="100" step="5" style="width:58px">% of value</label>
@@ -109,6 +124,16 @@ tr.open td{background:var(--sel)}
    <label><input id="q2" type="checkbox"> greens</label><label><input id="q3" type="checkbox"> blues</label><label><input id="q4" type="checkbox"> purples</label>
    <label><input id="all" type="checkbox"> show ones I can't disenchant yet</label>
   </div>
+  <div class="calc">
+   <h3>🧮 Sell it or disenchant it?</h3>
+   <p class="sub">Pick an item you've got. This compares what it sells for on the AH against what its mats are worth on average.</p>
+   <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px">
+    <div class="srch"><input id="cq" placeholder="Type an item name, e.g. Dire Wand" autocomplete="off"><div class="sugg" id="cs" hidden></div></div>
+    <label class="small">How many <input id="cn" type="number" min="1" value="1" style="width:56px"></label>
+   </div>
+   <div id="cr"></div>
+  </div>
+  <h3 style="margin-bottom:8px">🔁 Buy-to-disenchant deals on the AH</h3>
   <div class="box"><table><thead><tr><th>Item</th><th class="n">ilvl</th><th class="n">Needs</th><th class="n">Cheapest</th><th class="n">DE value</th><th class="n">Profit</th><th class="n">% of value</th><th class="n">Listed</th></tr></thead><tbody id="tb"></tbody></table></div>
   <div class="note" id="note"></div>
  </div>
@@ -132,7 +157,7 @@ function yieldOf(il,q,wpn){const out=[];
  else if(q===3){const r=B.find(x=>il<=x[0]);out.push([r[1],il>55?.995:1]);if(il>55)out.push(['Nexus Crystal',.005])}
  else{const r=E.find(x=>il<=x[0]);if(il<40)return [];out.push([r[1],r[2]])}
  return out}
-const price=n=>{const x=P[n];return x&&(x.mkt||x.min)||null};
+const price=n=>{const x=P[n];return x&&(x.min||x.mkt)||null};
 function value(il,q,wpn){const y=yieldOf(il,q,wpn);if(!y.length)return null;let v=0,top=null,tv=0;for(const [n,c] of y){const p=price(n);if(p==null)return null;v+=p*c;if(p*c>tv){tv=p*c;top=n}}return {v:v*.95,top,y}}
 function draw(){const sk=+$('#sk').value||1,pct=(+$('#pct').value||75)/100,minp=+$('#minp').value||0,all=$('#all').checked;
  const qs={2:$('#q2').checked,3:$('#q3').checked,4:$('#q4').checked};
@@ -145,7 +170,53 @@ function draw(){const sk=+$('#sk').value||1,pct=(+$('#pct').value||75)/100,minp=
  $('#note').innerHTML=`${rows.length} deals. Check the in-game price before you buy (these are from the last hourly scan), and only buy items with <b>Needs</b> ≤ your enchanting. Disenchanting a weapon gives more essence, armor more dust. Wowhead links go to the Classic database; WoW Forever-only gear isn't in this list yet.`}
 Promise.all([fetch('data/prices.json?v='+Date.now()).then(r=>r.json()),fetch('data/de.json?v='+Date.now()).then(r=>r.json())]).then(([p,d])=>{
  P=p.items||{};const NODE=new Set([11287,11288,11289,11290]);D=(d.items||[]).filter(i=>!NODE.has(+i[0])&&!/Practice Wand/.test(i[1]));const age=(Date.now()/1000-(d.updated||0))/3600;
- $('#fresh').innerHTML=`<span class="dot ${age>3?'old':''}"></span>${D.length} gear items on the AH · ${age<1?'updated this hour':Math.round(age)+'h ago'}`;draw()}).catch(()=>{$('#fresh').innerHTML='<span class="dot none"></span>No disenchant data yet (it fills in at the next hourly price scan)'});
+ $('#fresh').innerHTML=`<span class="dot ${age>3?'old':''}"></span>${D.length} gear items on the AH · ${age<1?'updated this hour':Math.round(age)+'h ago'}`;draw();const last=load('de-calc',null);if(last)loadAll().then(A=>{CUR=A.find(a=>a.id==last)||null;if(CUR){$('#cq').value=CUR.n;calc()}})}).catch(()=>{$('#fresh').innerHTML='<span class="dot none"></span>No disenchant data yet (it fills in at the next hourly price scan)'});
+
+// ---- Sell-or-disenchant calculator ----
+let ALL=null,CUR=null;
+const loadAll=()=>ALL?Promise.resolve(ALL):fetch('scripts/de_items.json').then(r=>r.json()).then(d=>{ALL=Object.entries(d).map(([id,v])=>({id:+id,n:v[0],il:v[1],q:v[2],wpn:v[3],icon:v[4],vend:v[5]||0,l:v[0].toLowerCase()}));return ALL});
+function sugg(){const t=$('#cq').value.trim().toLowerCase();if(t.length<2){$('#cs').hidden=true;return}
+ loadAll().then(A=>{const st=A.filter(x=>x.l.startsWith(t)),ct=A.filter(x=>!x.l.startsWith(t)&&x.l.includes(t));const L=st.concat(ct).slice(0,10);
+  $('#cs').innerHTML=L.map(x=>`<div data-id="${x.id}"><img src="https://wow.zamimg.com/images/wow/icons/small/${x.icon}.jpg" onerror="this.style.visibility='hidden'"><span class="q${x.q}">${esc(x.n)}</span><span class="small">ilvl ${x.il}</span></div>`).join('')||'<div class="small">No match (only greens, blues and purples that can be disenchanted)</div>';$('#cs').hidden=false})}
+$('#cq').addEventListener('input',sugg);
+$('#cs').addEventListener('mousedown',e=>{const d=e.target.closest('[data-id]');if(!d)return;const x=ALL.find(a=>a.id==d.dataset.id);CUR=x;$('#cq').value=x.n;$('#cs').hidden=true;store('de-calc',x.id);calc()});
+$('#cq').addEventListener('blur',()=>setTimeout(()=>$('#cs').hidden=true,150));
+$('#cn').addEventListener('input',()=>CUR&&calc());
+function calc(sellOverride){const x=CUR;if(!x)return;const cnt=Math.max(1,+$('#cn').value||1);
+ const y=yieldOf(x.il,x.q,x.wpn);const sk=+$('#sk').value||1,nd=need(x.il);
+ const ah=D.find(a=>a[0]===x.id);const listed=ah?ah[6]:null;
+ const sell=sellOverride!=null?sellOverride:(listed!=null?Math.max(1,listed-1):null);
+ let ev=0,miss=[],rows=[];
+ for(const [n,c] of y){const p=price(n);if(p==null){miss.push(n);continue}
+  const g=x.q===2?G.find(z=>x.il<=z[0]):null;
+  const chance=g?(n.includes('Dust')?(x.wpn?.2:1-g[6]-.2):n.includes('Essence')?(x.wpn?1-g[6]-.2:.2):g[6]):(c<1?c:1);
+  const avg=Math.round(c/chance*10)/10;ev+=p*c;rows.push({n,chance,avg,p,ev:p*c})}
+ ev*=.95;const sellNet=sell!=null?sell*.95:null;
+ const mn=a=>a===1.5?1:a===3.5?2:a===2.5?2:a===3?2:a,mx=a=>a===1.5?2:a===3.5?5:a===2.5?3:a===3?4:a;
+ const likely=rows.slice().sort((a,b)=>b.chance-a.chance)[0];
+ const lo=likely?likely.p*mn(likely.avg)*.95:0,hi=rows.length?Math.max(...rows.map(r=>r.p*mx(r.avg)))*.95:0;
+ const deWin=sellNet==null||ev>sellNet,diff=sellNet==null?null:Math.abs(ev-sellNet);
+ $('#cr').innerHTML=`<div class="cres"><div>
+  <div style="margin-bottom:8px"><img class="ic" src="https://wow.zamimg.com/images/wow/icons/medium/${x.icon}.jpg" onerror="this.style.visibility='hidden'"><a class="q${x.q}" href="https://www.wowhead.com/classic/item=${x.id}" target="_blank" rel="noopener">${esc(x.n)}</a> <span class="small">ilvl ${x.il} · ${x.wpn?'weapon':/Wand/.test(x.n)?'wand (rolls like armor)':'armor'} · needs enchanting ${nd}</span>${nd>sk?` <span class="down small">(you have ${sk})</span>`:''}</div>
+  <div class="lbl">WHAT ONE DISENCHANT GIVES</div>
+  <div class="yl h"><span>Mat</span><span>Chance</span><span>Amount</span><span>Price ea</span><span>Avg worth</span></div>
+  ${rows.map(r=>`<div class="yl"><span>${esc(r.n)}</span><span>${Math.round(r.chance*100)}%</span><span>${mn(r.avg)===mx(r.avg)?r.avg:mn(r.avg)+'-'+mx(r.avg)}</span><span>${money(r.p)}</span><span>${money(r.ev)}</span></div>`).join('')}
+  ${miss.length?`<div class="small down">No AH price for ${miss.map(esc).join(', ')}</div>`:''}
+  <div class="note" style="margin-top:8px">Each disenchant is one roll: ${likely?`${Math.round(likely.chance*100)}% of the time you get ${esc(likely.n)}`:''}. A bad roll is worth about ${money(lo)}, a great one ${money(hi)}. The average only shows up over lots of them.</div>
+ </div><div>
+  <div class="vbox ${deWin?'':'win'}"><div class="lbl">SELL ON THE AH</div>
+   <div class="vrow"><span>List at</span><span><input id="csell" type="number" min="0" style="width:90px" value="${sell!=null?Math.round(sell):''}" placeholder="copper"> <span class="small">${sell!=null?money(sell):''}</span></span></div>
+   <div class="vrow"><span class="small">${listed!=null?`Cheapest on the AH now: ${money(listed)} (${ah[8]} listed)`:'Not on the AH right now, type what you think it sells for'}</span></div>
+   <div class="vrow"><span>You get (after 5% cut)</span><b>${sellNet!=null?money(sellNet*cnt):'—'}</b></div>
+   <div class="vrow"><span class="small">Vendor instead</span><span class="small">${money(x.vend*cnt)}</span></div></div>
+  <div class="vbox ${deWin?'win':''}" style="margin-top:10px"><div class="lbl">DISENCHANT</div>
+   <div class="vrow"><span>Average mats worth (after 5% cut)</span><b>${money(ev*cnt)}</b></div></div>
+  ${x.vend*.95>Math.max(ev,sellNet||0)?`<div class="small warn" style="color:var(--warn)">Heads up: the vendor pays ${money(x.vend)}, more than both!</div>`:''}
+  <div class="vbig up">${sellNet==null?'Type an AH price to compare':deWin?`✨ Disenchant it, ~${money(diff*cnt)} more`:`💰 Sell it on the AH, ~${money(diff*cnt)} more`}</div>
+  ${!deWin||sellNet==null?'':ev-sellNet<sellNet*.15?'<div class="small">Close call, selling is less gamble-y and it might not sell anyway.</div>':''}
+ </div></div>`;
+ $('#csell').addEventListener('change',e=>calc(e.target.value===''?null:+e.target.value));
+}
 const S=load('de-set',{sk:1,pct:75,minp:0,all:false,qs:{2:true,3:true,4:false}});
 $('#sk').value=S.sk;$('#pct').value=S.pct;$('#minp').value=S.minp;$('#all').checked=S.all;['2','3','4'].forEach(q=>$('#q'+q).checked=!!S.qs[q]);
 document.querySelectorAll('input').forEach(i=>i.oninput=draw);

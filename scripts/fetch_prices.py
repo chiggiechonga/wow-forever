@@ -142,7 +142,8 @@ def main():
     try:
         de = json.load(open(os.path.join(os.path.dirname(__file__), 'de_items.json')))
         listed = []
-        for sid, (n, il, q, wpn, icon) in de.items():
+        for sid, v in de.items():
+            n, il, q, wpn, icon = v[:5]
             r = rows.get(int(sid))
             if r and r['min'] and r['qty']:
                 listed.append([int(sid), n, il, q, wpn, icon, r['min'], r['median'], r['qty'], r['perDay']])

@@ -95,7 +95,7 @@ s14:[
  {k:'town',h:"Nijel's Point (66, 10)",i:['@Set hearth + flight path','@Centaur Bounty','@Brutal Politics','@Reagents for Reclaimers Inc., part 1','@Reagents for Reclaimers Inc., part 2',"@Vahlarriel's Search, part 1","@Vahlarriel's Search, part 2","@Vahlarriel's Search, part 3",'@Search for Tyranis','@Return to Vahlarriel','@The Karnitol Shipwreck, part 1','@The Karnitol Shipwreck, part 2','@The Karnitol Shipwreck, part 3','@The Karnitol Shipwreck, part 4','@Down the Scarlet Path, part 1','@Down the Scarlet Path, part 2','@Reagents for Reclaimers Inc., part 3','@Lost Shipping Crate [Desolace]']},
  {k:'do',h:"West Desolace",i:['@Sceptre of Light','@Book of the Ancients',"@Claim Rackmore's Treasure!"]},
  {k:'do',h:"Kodo Graveyard + south",i:['@Kodo Roundup','@Bodyguard for Hire','@Gizelton Caravan','@Bone Collector','@Ghost-o-plasm Round Up','@Get Me Out of Here!','@Demons and You']},
- {k:'town',h:"Magram Village, Warug's camp (75, 68)",i:['@Buying Friendship: Magram','@Broken Tears','@Gizmo for Warug','@Khan Shaka','@A New Need for Shadow Protection','@Big, No, MASSIVE Iron Axes',"@A Conqueror's Crown"]},
+ {k:'town',h:"Magram Village, Warug's camp (75, 68)",i:['@Magram Alliance','@Broken Tears',"@A Conqueror's Crown"]},
  {k:'turn',h:"Last trip to Nijel's Point",i:['@Reagents for Reclaimers Inc., part 4']},
  {k:'dng',h:"Later",i:['@Maraudon (later)']}],
 s15:[
@@ -131,7 +131,7 @@ s17:[
  {k:'skip',h:"Not for now",i:['@No quest needed for Alcaz Island Prison']},
  {k:'town',h:"Next time you're in a city",i:['@Train Lv 42']},
  {k:'do',h:"Shen'dralas (new zone, optional: fly to Nijel's Point and go west)",i:['@A Brief History Lesson','@Meeting the Magister','@Fragments of the Pylons','@Powering the Pylons','@Strange Pylons','@A Heart of Crystal','@Mana Mania']},
- {k:'town',h:"Magram Village + Valley of Bones (same Nijel's Point trip)",i:["@Hand in: A Conqueror's Crown",'@Valley of Bones','@Mountain of Bones','@Outcast Necromancers','@Corrupting Tears','@Proof of Concept','@Bone Raising','@No Mercy for the Weak','@Bristleback Retreat','@Long-Term Solutions','@Threat of Starvation','@Return to Orgrul','@Khan Jehn','@Khan Hratha']},
+ {k:'town',h:"Magram Village + Valley of Bones (same Nijel's Point trip)",i:["@Hand in: A Conqueror's Crown",'@Valley of Bones','@Mountain of Bones','@Outcast Necromancers','@Corrupting Tears','@Proof of Concept','@Bone Raising','@No Mercy for the Weak','@Bristleback Retreat','@Long-Term Solutions','@Threat of Starvation','@Return to Orgrul','@Khan Jehn']},
  {k:'dng',h:'🛡️ BiS gear pickups',i:["@Razorfen Downs","@Khan Jehn"]}],
 s18:[
  {k:'town',h:"Getting there",i:['@Get there']},

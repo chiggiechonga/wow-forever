@@ -147,11 +147,17 @@ function searchView(){
  if(!hits.length)h+=`<div class="nores"><b>Not on your route.</b> You don't need it. Skip it, unless it's right on your way and quick.${inLog&&inLog.length?`<br><br>It's in your quest log though (${inLog.map(l=>esc(l.t)).join(', ')}). Finish it if it's easy, or abandon it to free up space.`:''}</div>`;
  return h;
 }
+
+/* prerequisite not done yet (anywhere in the guide, or per your synced quest log) */
+let GN=null;
+function guideNames(){if(GN)return GN;GN=new Map();(typeof STOPS!=='undefined'?STOPS:[]).forEach(s=>s.q.forEach((y,j)=>{if(y[0]==='turn')return;const b=norm(String(y[1]).replace(/^Hand in: /,'').replace(/,? part \d+/i,''));if(!GN.has(b))GN.set(b,[]);GN.get(b).push([s,j])}));return GN}
+function preMissing(nm,s0,i0){const me=norm(String(nm).replace(/^Hand in: /,'').replace(/,? part \d+/i,''));const pb=PRE[me]||[];const G=guideNames();
+ for(const p of pb){if(p===me)continue;const rows=G.get(p);if(!rows)continue;if(s0&&rows.some(([s,j])=>s===s0&&j<i0))continue;if(C&&IX.done.has(p))continue;if(rows.some(([s,j])=>isDoneRow(s,j)))continue;return rows[0][0].q[rows[0][1]][1]}return null}
 function rowHtml(s,i){const x=s.q[i];const[t,nm,wh,tip,df]=x;const tg=T[t]||T.do;const k=qid(s,i);const a=auto(s,i);const c=isDoneRow(s,i);let h='';
   const badge=c?(a.done&&!(k in ov)?'<span class="st st-sync">✓ SYNCED</span>':''):a.badge==='ready'?'<span class="st st-ready">READY TO TURN IN</span>':a.badge==='log'?'<span class="st st-log">IN LOG</span>':a.badge==='lv'?'<span class="st st-lv">LEVEL READY</span>':'';
   const part=!c&&a.partial?`<span class="st st-part">${a.partial}</span>`:'';
   const pb=PRE[norm(String(nm).replace(/,? part \d+/i,''))]||[];const lock=!c&&t!=='turn'?s.q.findIndex((y,j)=>j<i&&pb.includes(norm(String(y[1]).replace(/,? part \d+/i,'')))&&!isDoneRow(s,j)):-1;
-  const lockH=lock>=0?`<span class="st st-lock">🔒 after ${esc(s.q[lock][1])}</span>`:'';
+  const pm=!c&&t!=='turn'&&lock<0?preMissing(nm,s,i):null;const lockH=lock>=0?`<span class="st st-lock">🔒 after ${esc(s.q[lock][1])}</span>`:pm?`<span class="st st-lock" title="The quest giver won't offer this until that one is turned in">🔒 needs ${esc(pm)} first</span>`:'';
   const lt=!c&&later[k];const lbtn=c?'':`<button class="lbtn${lt?' on':''}" data-lk="${k}" data-ls="${s.id}" title="${lt?'Put it back in the route':'Skip it for now. It stays on your Saved for later list and stops holding up your progress'}">${lt?'↩ back in':'⏭ later'}</button>`;
   h+=`<div class="q ${t==='bag'?'bag':''} ${t==='mage'?'mageq':''} ${df?'diff':''} ${c?'chk':''}" data-q="${k}" data-s="${s.id}" data-i="${i}"><span class="box">${c?'✓':''}</span><span class="bang ${tg[2]}">${tg[0]}</span><div><div class="n">${esc(nm)}${df?'<span class="mg">❄ MAGE</span>':''}${badge}${part}${lockH}${lt?'<span class="st st-later">SAVED FOR LATER</span>':''}${lbtn}</div><div class="s">${esc(wh)}</div>${npcLine(s,i)}${tip?`<div class="tip">${tipHtml(tip)}</div>${bisChips(tip)}`:''}</div><span class="tag ${tg[2]}">${tg[1]}</span></div>`;
  return h}
@@ -241,7 +247,7 @@ function townSec(s,p){
   const pick=quests.filter(i=>info[i]&&info[i].st);const doing=quests.filter(i=>s.q[i][0]!=='hold');const hold=quests.filter(i=>s.q[i][0]==='hold');
   const here=i=>info[i]&&info[i].en&&info[i].st&&info[i].en[1]===info[i].st[1];const tin=doing.filter(i=>here(i)),keep=doing.filter(i=>info[i]&&info[i].en&&!here(i));
   if(maxR>1)h+=`<div class="tround">${r===1?'Round 1':'Round '+r+' <small>the follow-ups you get from those turn-ins</small>'}</div>`;
-  if(pick.length)h+=`<div class="tphase"><div class="tph">📜 ${r===1?'Pick up':'Pick up the new ones'}</div><ul class="tl">${pick.map(i=>li(i,info[i].st,s.q[i][0]==='hold'?' <span class="tw later">· hold it</span>':'')).join('')}</ul></div>`;
+  if(pick.length)h+=`<div class="tphase"><div class="tph">📜 ${r===1?'Pick up':'Pick up the new ones'}</div><ul class="tl">${pick.map(i=>{const pm=isDoneRow(s,i)?null:preMissing(s.q[i][1],s,i);return li(i,info[i].st,(s.q[i][0]==='hold'?' <span class="tw later">· hold it</span>':'')+(pm?` <span class="st st-lock">🔒 needs ${esc(pm)} first</span>`:''))}).join('')}</ul></div>`;
   if(doing.length||other.length){h+=`<div class="tphase"><div class="tph">⚔️ Go do</div>`;doing.concat(other).forEach(i=>h+=rowHtml(s,i));h+='</div>'}
   if(hold.length){h+=`<div class="tphase"><div class="tph">🎒 Grab and hold <small>do these later</small></div>`;hold.forEach(i=>h+=rowHtml(s,i));h+='</div>'}
   if(tin.length)h+=`<div class="tphase"><div class="tph">↩ Turn in</div><ul class="tl">${tin.map(i=>li(i,info[i].en)).join('')}</ul></div>`;
@@ -360,7 +366,7 @@ function syncLabel(){$('syncAgo').textContent=C?`${C.n} · Lv ${C.lv} · ${ago(C
 
 /* ---------- item pictures, stats + upgrade check ---------- */
 var ITEMS={},GTT={},PRE={};
-fetch('data/qprereq.json?v=1').then(r=>r.json()).then(j=>{PRE=j;try{render()}catch(e){}}).catch(()=>{});
+fetch('data/qprereq.json?v=1795459758').then(r=>r.json()).then(j=>{PRE=j;try{render()}catch(e){}}).catch(()=>{});
 fetch('data/items.json?v=3').then(r=>r.json()).then(j=>{ITEMS=j;try{render()}catch(e){}}).catch(()=>{});
 fetch('data/gear_tt.json?v=3').then(r=>r.json()).then(j=>{GTT=j;try{render()}catch(e){}}).catch(()=>{});
 var W8={sp:1,int:.6,spi:.5,sta:.4,mp5:1.6,cr:.5,arm:.01};

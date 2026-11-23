@@ -104,7 +104,7 @@ s15:[
  {k:'do',h:"Thandol Span → Arathi",i:["@MacKreel's Moonshine","@Sully Balloo's Letter"]},
  {k:'do',h:"Refuge Pointe, Arathi (46, 47)",i:["@Hand in: Malin's Request, part 1",'@Northfold Manor','@Worth Its Weight in Gold','@Stromgarde Badges','@A Web of Lies: Debunking Myths and Legends','@The Riverglades Report']},
  {k:'do',h:"Sleeping bag: Thoradin's Wall (on the way west)",i:['@Cozy Sleeping Bag · step 6','@Cozy Sleeping Bag · step 7']},
- {k:'town',h:"Southshore, Hillsbrad (51, 58)",i:['@Set hearth + flight path','@Hand in: Southshore','@Hand in: Down the Scarlet Path','@Down the Coast',"@Farren's Proof, part 1","@Farren's Proof, part 2","@Farren's Proof, part 3",'@Stormwind Ho!','@Reassignment','@Syndicate Assassins',"@Bartolo's Yeti Fur Cloak",'@Costly Menace','@Hints of a New Plague?, part 1','@Crushridge Bounty','@Preserving Knowledge','@Return to Milton','@Magics of the Drowned City','@Take Two With Water','@The Web of Magic',"@Findings for the Explorer's League",'@An Alarming Request']},
+ {k:'town',h:"Southshore, Hillsbrad (51, 58)",i:['@Set hearth + flight path','@Hand in: Southshore','@Hand in: Down the Scarlet Path','@Down the Coast',"@Farren's Proof, part 1","@Farren's Proof, part 2","@Farren's Proof, part 3",'@Stormwind Ho!','@Reassignment','@Syndicate Assassins',"@Bartolo's Yeti Fur Cloak",'@Costly Menace','@Hints of a New Plague?, part 1','@Crushridge Bounty','@Preserving Knowledge','@Return to Milton','@Hand in: An Acquaintance in Southshore','@Magics of the Drowned City','@Take Two With Water','@The Web of Magic',"@Findings for the Explorer's League",'@An Alarming Request']},
  {k:'do',h:"Alterac Mountains",i:['@Foreboding Plans','@Encrypted Letter','@Noble Deaths','@Crushridge Warmongers','@Letter to Stormpike','@Strahnbrad Mystery','@Defensive Magics 101 (optional)','@Ancient Gurubashi Secrets','@Vengeance of the Highborne']},
  {k:'dng',h:"Image of Archmage Modera (Silverpine border, 68.6, 45.2)",i:['@Heart of Disruption','@Starving Arcane']},
  {k:'do',h:"Archmage Ansirem, outside Dalaran (Alterac 18.8, 78.5)",i:['@Hand in: Magical Analysis',"@Ansirem's Key",'@The Dalaran Digest, Vol. 23 (optional)']},
@@ -160,7 +160,7 @@ s20:[
  {k:'town',h:"Booty Bay",i:['@Set hearth','@The Bloodsail Buccaneers, part 1','@The Bloodsail Buccaneers, part 2','@The Bloodsail Buccaneers, part 3','@Up to Snuff','@Keep An Eye Out','@The Bloodsail Buccaneers, part 4','@The Bloodsail Buccaneers, part 5','@Akiris by the Bundle','@Skullsplitter Tusks','@Venture Company Mining',"@Zanzil's Secret","@\"Pretty Boy\" Duncan",'@The Curse of the Tides','@Stranglethorn Fever',"@Stoley's Debt","@Tran'rek","@The Captain's Chest",'@Get the Goods',"@We've Been Robbed!","@All's Well That Ends Well"]},
  {k:'do',h:"West coast (Shaky + MacKinley)",i:['@Scaring Shaky','@Return to MacKinley','@Voodoo Dues',"@Cracking Maury's Foot"]},
  {k:'do',h:"Nesingwary's camp (35, 10)",i:['@Panther Mastery, part 4','@Raptor Mastery, part 3','@Raptor Mastery, part 4','@Big Game Hunter','@The Green Hills of Stranglethorn']},
- {k:'do',h:"Rebel Camp (38, 3)",i:['@Colonel Kurzen','@Troll Witchery',"@Mai'Zoth",'@Return to Corporal Kaleb']},
+ {k:'do',h:"Rebel Camp (38, 3)",i:['@Colonel Kurzen','@Troll Witchery','@An Acquaintance in Southshore',"@Mai'Zoth",'@Return to Corporal Kaleb']},
  {k:'do',h:"New in Forever",i:['@Partial Mystical Notes']},
  {k:'dng',h:"Next",i:["@Zul'Farrak (next)"]}],
 s21:[

@@ -48,7 +48,12 @@ function auto(s,i){
 const qid=(s,i)=>s.id+'-'+i;
 const isDoneRow=(s,i)=>{const k=qid(s,i);return k in ov?ov[k]:auto(s,i).done};
 const doneCount=s=>s.q.filter((x,i)=>isDoneRow(s,i)).length;
-function hereIdx(){const i=STOPS.findIndex(s=>s.q.some((x,i)=>x[0]!=='skip'&&!isDoneRow(s,i)&&!later[qid(s,i)]));return i<0?STOPS.length-1:i}
+function openRows(s){return s.q.filter((x,i)=>x[0]!=='skip'&&!isDoneRow(s,i)&&!later[qid(s,i)]).length}
+/* where you left off: the furthest stop you've really started (30%+ checked), not the first one with a straggler */
+function hereIdx(){let far=-1;STOPS.forEach((s,i)=>{const r=s.q.filter(x=>x[0]!=='skip').length;const d=s.q.filter((x,j)=>x[0]!=='skip'&&isDoneRow(s,j)).length;if(r&&d/r>=.3)far=i});
+ if(far<0){const i=STOPS.findIndex(s=>openRows(s)>0);return i<0?STOPS.length-1:i}
+ if(openRows(STOPS[far])>0)return far;
+ for(let i=far+1;i<STOPS.length;i++)if(openRows(STOPS[i])>0)return i;return STOPS.length-1}
 
 /* ---------- helpers ---------- */
 let cur=null;
@@ -119,7 +124,7 @@ function goBox(s,compact){
 /* ---------- sidebar + detail ---------- */
 function sidebar(){
  const h=hereIdx();
- const row=(s,i,cls)=>`<button class="srow ${cls} ${s.id===cur?'on':''}" data-s="${s.id}"><span class="nm"><span>${i<h?'✓':s.ic}</span>${esc(s.nm)}${(()=>{const n=s.q.filter(x=>x[4]).length+s.gear.filter(g=>g[3]).length;return n?`<span class="dn">❄${n}</span>`:''})()}</span><span class="lv">${s.lv}</span></button>`;
+ const row=(s,i,cls)=>{const left=i<h?openRows(s):0;return `<button class="srow ${cls} ${s.id===cur?'on':''}" data-s="${s.id}"><span class="nm"><span>${i<h?(left?'◐':'✓'):s.ic}</span>${esc(s.nm)}${left?`<span class="dn" title="${left} not checked off yet">+${left}</span>`:''}${(()=>{const n=s.q.filter(x=>x[4]).length+s.gear.filter(g=>g[3]).length;return n?`<span class="dn">❄${n}</span>`:''})()}</span><span class="lv">${s.lv}</span></button>`};
  let out=`<div class="grp">▾ DONE</div><button class="srow done" disabled><span class="nm"><span>✓</span>${esc(CFG.doneStub[0])}</span><span class="lv">${CFG.doneStub[1]}</span></button>`;
  STOPS.slice(0,h).forEach((s,i)=>out+=row(s,i,'done'));
  {const L=[];for(const k in later){const s=STOPS.find(x=>x.id===later[k]);if(!s)continue;const i=s.q.findIndex((x,ii)=>qid(s,ii)===k);if(i<0||isDoneRow(s,i))continue;L.push([s,s.q[i][1]])}
@@ -128,7 +133,7 @@ function sidebar(){
  if(h<STOPS.length-1){out+='<div class="grp">▾ COMING UP</div>';let br='';STOPS.slice(h+1).forEach((s,j)=>{if(CFG.decades){const lv=parseInt(s.lv);const b=lv<30?'20s':lv<40?'30s':lv<50?'40s':'50s';if(b!==br){br=b;out+=`<div class="sub2">${b}</div>`}}out+=row(s,h+1+j,'')})}
  if(CFG.nextStub)out+=`<div class="grp">▾ NEXT PART</div><button class="srow done" disabled><span class="nm"><span>🔒</span>${esc(CFG.nextStub[0])}</span><span class="lv">${CFG.nextStub[1]}</span></button>`;
  $('sidebar').innerHTML=out;
- document.querySelectorAll('.srow[data-s]').forEach(b=>b.onclick=()=>{cur=b.dataset.s;render();if(innerWidth<860)$('detail').scrollIntoView({behavior:'smooth'})});
+ document.querySelectorAll('.srow[data-s]').forEach(b=>b.onclick=()=>{cur=b.dataset.s;render();setTimeout(()=>{const any=document.querySelector('#detail .q[data-q].chk');if(any)jumpToOpen();else if(innerWidth<860)$('detail').scrollIntoView({behavior:'smooth'})},50)});
 }
 let Q='';
 const VERDICT={do:['TAKE IT','v-take'],dng:['TAKE IT · DUNGEON','v-take'],turn:['TURN IN','v-take'],hold:['GRAB + HOLD','v-hold'],train:['DO IT','v-take'],hearth:['DO IT','v-take'],book:['GRAB IT','v-take'],bag:['DO IT','v-take'],skip:['SKIP','v-skip'],mage:['TELL YOUR MAGE FRIEND','v-take']};
@@ -407,7 +412,9 @@ function verdict(name){
 }
 function ttHtml(name){const gi=gearInfo(name);if(!gi)return '';return `<div class="itt">${gi.tt.map(([l,f])=>`<div class="f-${f}">${esc(l)}</div>`).join('')}<a href="https://www.wowhead.com/${gi.id>=200000?'forever':'classic'}/item=${gi.id}" target="_blank" rel="noopener">wowhead ↗</a></div>`}
 function iconImg(name,fallback){const gi=gearInfo(name);return gi&&gi.it?`<img src="https://wow.zamimg.com/images/wow/icons/large/${gi.it[1]}.jpg" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${fallback}'))">`:fallback}
-function render(){buildIndex();if(!cur){const h=(location.hash.match(/stop=([sd]\d+)/)||[])[1];if(h&&STOPS.find(s=>s.id===h)){cur=h;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}}if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked))}
+let jumped=false;
+function jumpToOpen(instant){const el=[...document.querySelectorAll('#detail .q[data-q]:not(.chk)')].find(e=>!later[e.dataset.q]&&e.offsetParent);if(!el)return;el.scrollIntoView({block:'center',behavior:instant?'auto':'smooth'});el.classList.add('jumped');setTimeout(()=>el.classList.remove('jumped'),2200)}
+function render(){buildIndex();if(!cur){const h=(location.hash.match(/stop=([sd]\d+)/)||[])[1];if(h&&STOPS.find(s=>s.id===h)){cur=h;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}}if(!cur||!STOPS.find(s=>s.id===cur))cur=STOPS[hereIdx()].id;charCard();sidebar();detail();profSync();potions();syncLabel();const od=$('onlyDiff');$('detail').classList.toggle('hideSame',!!(od&&od.checked));if(!jumped){jumped=true;let user=false;const st=()=>user=true;['wheel','touchmove','keydown'].forEach(e=>addEventListener(e,st,{once:true,passive:true}));[400,1500,3000].forEach(t=>setTimeout(()=>{if(!user)jumpToOpen(t>400)},t))}}
 
 /* ---------- tabs + sync ---------- */
 function showTab(name){document.querySelectorAll('.mtab').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===name));document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==name)}

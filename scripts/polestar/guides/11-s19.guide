@@ -1,0 +1,266 @@
+guide hearthbound/s19
+title Badlands + Uldaman
+faction Alliance
+levels 42-45
+zone map 1432
+author Brownie
+keywords Hearthbound, Loch Modan → Badlands
+next hearthbound/s20
+
+step Loch Modan first (fly to Thelsamar)
+  zone map 1432
+  accept 2500 "Badlands Reagent Run" @37.1,49.4
+  accept 738 "Find Agmond" @65.9,65.6
+
+step Badlands Reagent Run
+  zone map 1432
+  tip Acquire the reagents Ghak Healtouch needs from the Badlands, then return to him in Thelsamar. ~3,000 XP.
+  complete 2500 "Badlands Reagent Run" @56.1,98.1
+  turnin 2500 "Badlands Reagent Run" @37.1,49.4
+
+step Find Agmond
+  zone map 1432
+  tip Find Agmond. · Hand in: Battered Dwarven Skeleton, Badlands (50.9, 62.4). ~1,450 XP.
+  turnin 738 "Find Agmond" map 1418 @50.9,62.4
+
+step Badlands: Martek's camp (42, 52)
+  zone map 1418
+  accept 1108 "Indurium" @42.2,52.7
+  accept 703 "Barbecued Buzzard Wings" @42.4,52.9
+  accept 705 "Pearl Diving" @42.4,52.9
+  accept 2418 "Power Stones" @42.4,52.9
+
+step Indurium
+  zone map 1418
+  tip Bring 10 Indurium Flakes to Martek the Exiled in the Badlands. ~3,000 XP.
+  complete 1108 "Indurium" @65.9,44.0
+  turnin 1108 "Indurium" @42.2,52.7
+
+step Barbecued Buzzard Wings
+  zone map 1418
+  tip Bring 4 Buzzard Wings to Rigglefuzz. ~2,350 XP.
+  complete 703 "Barbecued Buzzard Wings" map 1422 @32.3,62.4
+  turnin 703 "Barbecued Buzzard Wings" @42.4,52.9
+
+step Pearl Diving
+  zone map 1418
+  tip Bring 9 Blue Pearls to Rigglefuzz in the Badlands. ~3,550 XP.
+  complete 705 "Pearl Diving" map 1434 @25.2,29.6
+  turnin 705 "Pearl Diving" @42.4,52.9
+
+step Power Stones
+  zone map 1418
+  tip Bring 8 Dentrium Power Stones and 8 An'Alleum Power Stones to Rigglefuzz in the Badlands. ~3,500 XP.
+  complete 2418 "Power Stones" @53.8,16.8
+  turnin 2418 "Power Stones" @42.4,52.9
+
+step Badlands: Ryedol + Sigrun's camp (53, 43)
+  zone map 1418
+  accept 719 "A Dwarf and His Tools" @53.4,43.4
+  accept 720 "A Sign of Hope" @53.0,33.9
+  accept 718 "Mirages" @53.8,43.3
+  accept 706 "Fiery Blaze Enchantments" @53.8,43.3
+
+step A Dwarf and His Tools
+  zone map 1418
+  tip Find Ryedol's Lucky Pick and return it to Prospector Ryedol south of Hammertoe's Dig Site. ~2,750 XP.
+  complete 719 "A Dwarf and His Tools" @54.1,34.1
+  turnin 719 "A Dwarf and His Tools" @53.4,43.4
+
+step A Sign of Hope
+  zone map 1418
+  tip Find Prospector Ryedol and let him know Hammertoe Grez is alive. · Hand in: Prospector Ryedol, Badlands (53.4, 43.4). ~1,350 XP.
+  turnin 720 "A Sign of Hope" @53.4,43.4
+
+step Mirages
+  zone map 1418
+  tip Retrieve the Supply Crate for Sigrun Ironhew. ~2,150 XP.
+  complete 718 "Mirages" @66.6,22.0
+  turnin 718 "Mirages" @53.8,43.3
+
+step Fiery Blaze Enchantments
+  zone map 1418
+  tip Acquire a Black Drake's Heart for Sigrun Ironhew. ~3,900 XP.
+  complete 706 "Fiery Blaze Enchantments" @74.2,67.6
+  turnin 706 "Fiery Blaze Enchantments" @53.8,43.3
+
+step Badlands: Ryedol + Sigrun's camp (53, 43) · round 2
+  zone map 1418
+  accept 721 "A Sign of Hope" @53.4,43.4
+  accept 733 "Scrounging" @53.8,43.3
+  accept 732 "Tremors of the Earth" @61.9,54.3
+
+step A Sign of Hope
+  zone map 1418
+  tip Hammertoe Grez is lying in the outer (non-instanced) Uldaman cave, near the entrance to the instance. · Just talk to him to finish this and pick up Amulet of Secrets. · ~2,750 XP.
+  turnin 721 "A Sign of Hope" @37.9,10.6
+
+step Scrounging
+  zone map 1418
+  tip Get 7 pieces of Scrap Metal for Sigrun. ~3,150 XP.
+  complete 733 "Scrounging" @61.9,70.2
+  turnin 733 "Scrounging" @53.8,43.3
+
+step Tremors of the Earth
+  zone map 1418
+  tip Retrieve the Sign of the Earth for Garek. ~3,600 XP.
+  complete 732 "Tremors of the Earth" @12.6,75.5
+  turnin 732 "Tremors of the Earth" @61.9,54.3
+
+step Badlands: Ryedol + Sigrun's camp (53, 43) · round 3
+  zone map 1418
+  accept 722 "Amulet of Secrets" npc 2909 "Hammertoe Grez" map 1432 @37.3,85.8
+  accept 717 "Tremors of the Earth" @61.9,54.3
+
+step Amulet of Secrets
+  zone map 1432
+  tip Magregan Deepshadow, a Dark Iron dwarf just outside the Uldaman instance portal, drops Hammertoe's Amulet. · Kill him, loot it and give it back to Hammertoe Grez (lying in the same outer cave). · ~3,150 XP.
+  complete 722 "Amulet of Secrets" @38.3,94.0
+  turnin 722 "Amulet of Secrets" npc 2909 "Hammertoe Grez" @37.3,85.8
+
+step Tremors of the Earth
+  zone map 1418
+  tip Use the Sign of the Earth to activate the Pillars of Amethyst, Opal, and Diamond and obtain the Runestones. · Elite Lv 50 ogre: hold it and come back with a group. ~5,900 XP.
+  complete 717 "Tremors of the Earth" @81.9,49.5
+  note Keep it: you hand this in later on the route.
+
+step Badlands: Ryedol + Sigrun's camp (53, 43) · round 4
+  zone map 1432
+  accept 723 "Prospect of Faith" npc 2909 "Hammertoe Grez" @37.3,85.8
+
+step Prospect of Faith
+  zone map 1432
+  tip Take Hammertoe's Amulet to Prospector Ryedol in the Badlands. · Hand in: Prospector Ryedol, Badlands (53.4, 43.4). ~2,350 XP.
+  turnin 723 "Prospect of Faith" npc 2910 "Prospector Ryedol" map 1418 @53.4,43.4
+
+step Badlands: Ryedol + Sigrun's camp (53, 43) · round 5
+  zone map 1418
+  accept 724 "Prospect of Faith" @53.4,43.4
+
+step South Badlands
+  zone map 1418
+  tip Next to two bodies.
+  accept 739 "Murdaloc" @50.9,62.4
+  accept 709 "Solution to Doom" @51.4,76.9
+  task "Mummies: A Guide to the Unsavory Undead" optional
+
+step Murdaloc
+  zone map 1418
+  tip Slay Agmond's killer, Murdaloc. · Hand in: Prospector Ironband, Loch Modan (65.9, 65.6). ~3,450 XP.
+  complete 739 "Murdaloc" @49.6,66.3
+  turnin 739 "Murdaloc" npc 1344 "Prospector Ironband" map 1432 @65.9,65.6
+
+step Solution to Doom
+  zone map 1418
+  tip Bring the Tablet of Ryun'eh to Theldurin the Lost. ~3,150 XP.
+  complete 709 "Solution to Doom" @39.3,18.8
+  turnin 709 "Solution to Doom" @51.4,76.9
+
+step South Badlands · round 2
+  zone map 1418
+  accept 704 "Agmond's Fate" map 1432 @65.9,65.6
+  accept 727 "To Ironforge for Yagyin's Digest" @51.4,76.9
+
+step Agmond's Fate
+  zone map 1432
+  tip The 4 Carved Stone Urns are NOT at the dig site outside, even though the quest says so. · They're inside the Uldaman cave (the outer part, before the instance portal). · Click the urns on the ground. · ~2,850 XP. · Holy BiS: reward Restorer's Fine Gloves (Lv 40 hands).
+  complete 704 "Agmond's Fate" @34.4,97.8
+  turnin 704 "Agmond's Fate" @65.9,65.6
+
+step Lotwil's camp (west, 26, 45)
+  zone map 1418
+  accept 710 "Study of the Elements: Rock" @26.0,44.9
+  accept 716 "Stone Is Better than Cloth" @25.8,44.2
+
+step Study of the Elements: Rock
+  zone map 1418
+  tip Find 10 Small Stone Shards and bring them to Lotwil Veriatus in the Badlands. ~2,850 XP.
+  complete 710 "Study of the Elements: Rock" @20.2,47.9
+  turnin 710 "Study of the Elements: Rock" @26.0,44.9
+
+step Stone Is Better than Cloth
+  zone map 1418
+  tip Bring some Patterned Bronze Bracers to Lucien Tosselwrench in the Badlands. ~2,550 XP.
+  complete 716 "Stone Is Better than Cloth"
+  turnin 716 "Stone Is Better than Cloth" @25.8,44.2
+
+step Lotwil's camp (west, 26, 45) · round 2
+  zone map 1418
+  accept 711 "Study of the Elements: Rock" @26.0,44.9
+
+step Study of the Elements: Rock
+  zone map 1418
+  tip Bring 3 Large Stone Slabs to Lotwil Veriatus in the Badlands. ~3,000 XP.
+  complete 711 "Study of the Elements: Rock" @42.8,88.2
+  turnin 711 "Study of the Elements: Rock" @26.0,44.9
+
+step Lotwil's camp (west, 26, 45) · round 3
+  zone map 1418
+  accept 712 "Study of the Elements: Rock" @26.0,44.9
+
+step Study of the Elements: Rock
+  zone map 1418
+  tip Bring 5 Bracers of Rock Binding to Lotwil Veriatus in the Badlands. ~3,450 XP.
+  complete 712 "Study of the Elements: Rock" @13.7,90.2
+  turnin 712 "Study of the Elements: Rock" @26.0,44.9
+
+step Uldaman (north entrance, 44, 12)
+  zone map 1418
+  accept 17 "Uldaman Reagent Run" map 1432 @37.1,49.4
+  accept 2240 "The Hidden Chamber"
+  accept 2198 "The Shattered Necklace" item 7666 "Shattered Necklace"
+  accept 2278 "The Platinum Discs"
+
+step Uldaman Reagent Run
+  zone map 1432
+  tip The 12 Magenta Fungus Caps come from Magenta Cap Clusters (little pink mushroom clumps on the ground) in Uldaman, and the Stonevault troggs and Shadowforge dwarves inside drop them too. · Pick them up as you go. · ~3,450 XP.
+  complete 17 "Uldaman Reagent Run" @33.8,98.2
+  turnin 17 "Uldaman Reagent Run" @37.1,49.4
+
+step The Hidden Chamber
+  zone map 1418
+  tip Read Baelog's Journal on the table next to him. · Open Baelog's Chest right there for the Gni'kiv Medallion. · Kill Revelosh (the trogg boss) for The Shaft of Tsol. · Combine them into the Staff of Prehistoria. · In the Map Chamber, use the staff on the pedestal to open the Chamber of Khaz'mul (that's where Ironaya is). · Walk in to complete it, then report to Prospector Stormpike in Ironforge.
+  complete 2240 "The Hidden Chamber"
+  turnin 2240 "The Hidden Chamber" npc 1356 "Prospector Stormpike" map 1455 @74.6,11.7
+
+step The Shattered Necklace
+  zone map 1418
+  tip Search for the original creator of the shattered necklace to learn of its potential value. · Hand in: Talvash del Kissel, Ironforge (36.4, 3.6). ~3,300 XP.
+  turnin 2198 "The Shattered Necklace" npc 6826 "Talvash del Kissel" map 1455 @36.4,3.7
+
+step The Platinum Discs
+  zone map 1418
+  tip After you kill Archaedas (last boss), walk into the room behind him. · Talk to the stone watcher there and listen to all of it, then click the Discs of Norgannon. · That completes part 1 right away. · ~4,200 XP.
+  complete 2278 "The Platinum Discs"
+  turnin 2278 "The Platinum Discs"
+
+step Uldaman (north entrance, 44, 12) · round 2
+  zone map 1418
+  accept 2199 "Lore for a Price" map 1455 @36.4,3.6
+  accept 2279 "The Platinum Discs"
+
+step Lore for a Price
+  zone map 1455
+  tip Pay Talvash 5 silver to hear the story · Hand in: Talvash del Kissel
+  complete 2199 "Lore for a Price" map 1436 @34.7,85.7
+  turnin 2199 "Lore for a Price" @36.4,3.6
+
+step The Platinum Discs
+  zone map 1418
+  tip Click the Discs of Norgannon again: a Miniature Platinum Discs item goes in your bags. · Take it to High Explorer Magellas in the Hall of Explorers, Ironforge. · ~5,250 XP.
+  turnin 2279 "The Platinum Discs" npc 5387 "High Explorer Magellas" map 1455 @69.9,18.5
+
+step Uldaman (north entrance, 44, 12) · round 3
+  zone map 1455
+  accept 2200 "Back to Uldaman" @36.4,3.6 -- dungeon quest, hold it for the run
+
+step Uldaman (north entrance, 44, 12) · round 4
+  zone map 1418
+  accept 2201 "Find the Gems" -- dungeon quest, hold it for the run
+
+step 🛡️ BiS gear pickups
+  zone map 1418
+  tip Range 41-51. · Run it once you're 43+ (your Uldaman quests are inside too).
+  accept 2361 "Restoring the Necklace" map 1455 @36.4,3.6 -- dungeon quest, hold it for the run
+  task "Uldaman: BiS bosses" optional
+

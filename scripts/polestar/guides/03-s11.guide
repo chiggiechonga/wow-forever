@@ -1,0 +1,94 @@
+guide hearthbound/s11
+title Ashenvale + BFD
+faction Alliance
+levels 30-32
+zone map 1453
+author Brownie
+keywords Hearthbound, Stormwind → Auberdine → Ashenvale
+next hearthbound/s12
+
+step On the way: Darkshore
+  zone map 1439
+  tip Grab the Auberdine flight path, then head south into Ashenvale. · A detour north from Auberdine, with Lv 19-21 naga. · They're easy at 30.
+  task "Boat to Auberdine" optional
+  task "Nar'thalas Almanac, Vol. 74 (optional)" optional
+
+step In Astranaar
+  zone map 1440
+  task "Set hearth + flight path" optional
+
+step Do, in this order
+  zone map 1440
+  tip Anilia gives the Branch: kill Geltharis (78.0, 42.4), then hand it to Illiyana. · Faerie Mantle (cloth shoulder). · Forest Song is the Alliance camp in the far east. · Insane Druids (Lv 32) is the big XP one.
+  task "Vile Satyr! Dryads in Danger! → The Branch of Cenarius" optional
+  task "Kayneth Stillwind → Forsaken Diseases → Insane Druids" optional
+  accept 1032 "Satyr Slaying!" @21.7,53.3
+  accept 98027 "Gleaming Crescent Necklace" @63.0,71.6
+
+step Satyr Slaying!
+  zone map 1440
+  tip Illiyana offers this only after you hand in The Branch of Cenarius: 16 Satyr Horns from the Xavian satyrs, so grab a few horns while you're there.
+  complete 1032 "Satyr Slaying!" @78.8,46.7
+  turnin 1032 "Satyr Slaying!" @21.7,53.3
+
+step Gleaming Crescent Necklace
+  zone map 1440
+  tip New in Forever: if the necklace drops, hand it to Maliynn.
+  turnin 98027 "Gleaming Crescent Necklace" @36.6,50.0
+
+step Optional (mostly grey at 32)
+  zone map 1440
+  accept 1035 "Fallen Sky Lake" @37.4,51.8
+  accept 991 "Raene's Cleansing" @36.6,49.6
+  accept 1009 "Ruuzel" @14.8,31.3
+
+step Fallen Sky Lake
+  zone map 1440
+  tip Pelturas only offers it after Orendil's Cure → Elune's Tear → The Ruins of Stardust (all grey at 32). · Skip it unless you already did those.
+  complete 1035 "Fallen Sky Lake" @66.7,82.2
+  turnin 1035 "Fallen Sky Lake" @37.4,51.8
+
+step Raene's Cleansing
+  zone map 1440
+  tip Long chain that starts at Lv 19: Teronis' Corpse (20.3, 42.3), then Shael'dryn at the moonwell (53.5, 46.2), then Krolg once you have Dartol's Rod. · At 32 most steps are grey, so only do it for the Ring of Pure Silver.
+  turnin 991 "Raene's Cleansing" @20.3,42.3
+
+step Ruuzel
+  zone map 1440
+  tip Lv 25, grey for you now. · Talen only offers it after The Ancient Statuette (also from Talen). · Skip unless you're at the BFD entrance anyway.
+  complete 1009 "Ruuzel" @7.4,13.4
+  turnin 1009 "Ruuzel" @14.8,31.3
+
+step Optional side trip from Auberdine: Ironforge pickup
+  zone map 1455
+  accept 971 "Knowledge in the Deeps" @50.8,5.6 -- dungeon quest, hold it for the run
+
+step BFD loop: grab (Auberdine → Darnassus → back to Astranaar)
+  zone map 1457
+  accept 1275 "Researching the Corruption" map 1439 @38.3,43.0 -- dungeon quest, hold it for the run
+  accept 1198 "In Search of Thaelrid" @55.4,25.0 -- dungeon quest, hold it for the run
+  accept 1199 "Twilight Falls" @55.2,24.0 -- dungeon quest, hold it for the run
+  accept 2925 "Klockmort's Essentials" @59.5,45.4 -- dungeon quest, hold it for the run
+
+step Dungeon
+  zone map 1440
+  tip Step 4. · Inside, talk to Argent Guard Thaelrid (alcove in the Ghamoo-ra room): that finishes In Search of Thaelrid and gives Blackfathom Villainy (kill Twilight Lord Kelris at the end).
+  task "Blackfathom Deeps: run it" optional
+
+step Legacy dungeon · same run
+  zone map 1440
+  tip Range 24-32. · Kill the final boss (Aku'mai).
+  task "Legacy: Blackfathom Deeps" optional
+
+step BFD loop: hand in (Auberdine → Darnassus → back to Astranaar)
+  zone map 1457
+  turnin 1275 "Researching the Corruption" map 1439 @38.3,43.0 -- Darkshore · Auberdine · Gershala Nightwhisper (38.3, 43.0)
+  accept 1200 "Blackfathom Villainy" -- you should already have this one
+  turnin 1200 "Blackfathom Villainy" @56.2,24.4 -- Darnassus · Temple of the Moon · Dawnwatcher Selgorm (56.2, 24.4)
+  turnin 1199 "Twilight Falls" @55.2,24.0 -- Darnassus · Argent Guard Manados (55.2, 24.0)
+
+step Stay away
+  zone map 1440
+  tip Horde town on a PvP server. · Don't go near it.
+  task "Horde camps at Splintertree" optional
+

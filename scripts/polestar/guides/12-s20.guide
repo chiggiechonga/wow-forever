@@ -1,0 +1,283 @@
+guide hearthbound/s20
+title Stranglethorn part 2
+faction Alliance
+levels 43-46
+zone map 1434
+author Brownie
+keywords Hearthbound, Stranglethorn Vale
+next hearthbound/s21
+
+step Booty Bay
+  zone map 1434
+  task "Set hearth" optional
+  accept 595 "The Bloodsail Buccaneers" @28.1,76.2
+  accept 617 "Akiris by the Bundle" @26.8,76.4
+  accept 209 "Skullsplitter Tusks" @27.0,77.1
+  accept 600 "Venture Company Mining" @27.1,77.2
+  accept 621 "Zanzil's Secret" @27.1,77.2
+  accept 610 "'Pretty Boy' Duncan" @27.3,77.5
+  accept 348 "Stranglethorn Fever" @27.6,76.7
+  accept 2872 "Stoley's Debt" @27.8,77.1
+  accept 2864 "Tran'rek" @27.0,77.2
+  accept 8551 "The Captain's Chest" @26.7,73.6
+  accept 95322 "Get the Goods" @27.4,74.1
+  accept 95326 "The Big Payback" @42.8,18.5
+
+step The Bloodsail Buccaneers
+  zone map 1434
+  tip First Mate Crazz wants you to check the cove north of Booty Bay. · Hand in: Bloodsail Correspondence, Stranglethorn (27.3, 69.5). ~2,450 XP.
+  turnin 595 "The Bloodsail Buccaneers" @27.3,69.5
+
+step Akiris by the Bundle
+  zone map 1434
+  tip Bring 10 Bundles of Akiris Reed to Privateer Bloads in Booty Bay. ~3,600 XP.
+  complete 617 "Akiris by the Bundle" @28.2,64.4
+  turnin 617 "Akiris by the Bundle" @26.8,76.4
+
+step Skullsplitter Tusks
+  zone map 1434
+  tip Acquire 18 Skullsplitter Tusks and return them to Kebok. ~3,450 XP.
+  complete 209 "Skullsplitter Tusks" @47.0,41.8
+  turnin 209 "Skullsplitter Tusks" @27.0,77.1
+
+step Venture Company Mining
+  zone map 1434
+  tip Bring 10 Singing Blue Crystals to Crank Fizzlebub in Booty Bay. ~3,300 XP.
+  complete 600 "Venture Company Mining" @42.0,46.3
+  turnin 600 "Venture Company Mining" @27.1,77.2
+
+step Zanzil's Secret
+  zone map 1434
+  tip Bring 12 samples of Zanzil's Mixture to Crank Fizzlebub in Booty Bay. ~3,750 XP.
+  complete 621 "Zanzil's Secret" @40.8,59.1
+  turnin 621 "Zanzil's Secret" @27.1,77.2
+
+step 'Pretty Boy' Duncan
+  zone map 1434
+  tip Get Catelyn's dagger from 'Pretty Boy' Duncan. ~2,250 XP.
+  complete 610 "'Pretty Boy' Duncan" @27.4,69.4
+  turnin 610 "'Pretty Boy' Duncan" @27.3,77.5
+
+step Stranglethorn Fever
+  zone map 1434
+  tip Seek out Witch Doctor Unbagwa and have him summon Mokk the Savage. · Escort with gorilla waves, bring a friend. ~5,850 XP.
+  complete 348 "Stranglethorn Fever" @35.1,60.9
+  turnin 348 "Stranglethorn Fever" @27.6,76.7
+
+step The Captain's Chest
+  zone map 1434
+  tip Bring Smotts' Chest to Hecklebury Smotts in Booty Bay. ~3,150 XP.
+  complete 8551 "The Captain's Chest" @36.9,69.7
+  turnin 8551 "The Captain's Chest" @26.7,73.6
+
+step Get the Goods
+  zone map 1434
+  tip Opens after I Know a Guy (Riverglades) · Get: 1 Bloodsail Trunk examined. · Opened by I Know a Guy from the Riverglades.
+  turnin 95322 "Get the Goods" @27.4,74.1
+
+step The Big Payback
+  zone map 1434
+  tip Starts from the Venture Co. · Ledger where We've Been Robbed! ends · Hand in: Caravaneer Ruzzgot, Booty Bay (27.4, 74.1)
+  complete 95326 "The Big Payback"
+  turnin 95326 "The Big Payback" @27.4,74.1
+
+step Booty Bay · round 2
+  zone map 1434
+  accept 597 "The Bloodsail Buccaneers" @27.3,69.5
+  accept 611 "The Curse of the Tides" @27.3,77.5
+  accept 95325 "We've Been Robbed!" @27.4,74.1
+  accept 95327 "All's Well That Ends Well" @27.4,74.1
+
+step The Bloodsail Buccaneers
+  zone map 1434
+  tip Report your findings to First Mate Crazz in Booty Bay. · Hand in: First Mate Crazz, Stranglethorn (28.1, 76.2). ~2,450 XP.
+  turnin 597 "The Bloodsail Buccaneers" @28.1,76.2
+
+step The Curse of the Tides
+  zone map 1434
+  tip Destroy the Altar of the Tides with Catelyn's Blade, kill Gazban and bring the Stone of the Tides and Catelyn's Blade back to Baron Revilgaz. · Hand in: Baron Revilgaz, Stranglethorn (27.2, 76.9). ~3,150 XP.
+  complete 611 "The Curse of the Tides" @25.0,23.6
+  turnin 611 "The Curse of the Tides" @27.2,76.9
+
+step We've Been Robbed!
+  zone map 1434
+  tip Opens after Get the Goods · Hand in: Venture Co. · Ledger (north STV, 42.8, 18.5)
+  turnin 95325 "We've Been Robbed!" @42.8,18.5
+
+step All's Well That Ends Well
+  zone map 1434
+  tip Opens after The Big Payback · Hand in: Caravaneer Ruzzgot
+  turnin 95327 "All's Well That Ends Well" npc 255897 "Friz Frazzlespark" map 2548 @77.1,52.9
+
+step Booty Bay · round 3
+  zone map 1434
+  accept 599 "The Bloodsail Buccaneers" @28.1,76.2
+
+step The Bloodsail Buccaneers
+  zone map 1434
+  tip Report the planned Bloodsail attack to Fleet Master Seahorn. · Hand in: Fleet Master Seahorn, Stranglethorn (27.2, 77). ~820 XP.
+  turnin 599 "The Bloodsail Buccaneers" @27.2,77.0
+
+step Booty Bay · round 4
+  zone map 1434
+  accept 608 "The Bloodsail Buccaneers" @27.2,77.0
+
+step The Bloodsail Buccaneers
+  zone map 1434
+  tip Fleet Master Seahorn in Booty Bay wants you to kill 10 Bloodsail Swashbucklers and bring back the Bloodsail Charts and the Bloodsail Orders. ~3,600 XP.
+  complete 608 "The Bloodsail Buccaneers" @32.9,88.2
+  turnin 608 "The Bloodsail Buccaneers" @27.2,77.0
+
+step Booty Bay · round 5
+  zone map 1434
+  accept 608 "The Bloodsail Buccaneers" @27.2,77.0
+
+step The Bloodsail Buccaneers
+  zone map 1434
+  tip Fleet-Master Seahorn in Booty Bay wants you to kill Captain Stillwater, Captain Keelhaul and Fleet Master Firallon. ~4,850 XP.
+  complete 608 "The Bloodsail Buccaneers" @32.9,88.2
+  turnin 608 "The Bloodsail Buccaneers" @27.2,77.0
+
+step Booty Bay · round 6
+  zone map 1434
+  accept 576 "Keep An Eye Out" @28.6,75.9
+  accept 587 "Up to Snuff" @26.9,77.4
+
+step Keep An Eye Out
+  zone map 1434
+  tip Dizzy One-Eye in Booty Bay wants you to retrieve his eye from the Bloodsail Buccaneers. ~2,550 XP.
+  complete 576 "Keep An Eye Out" @33.1,74.0
+  turnin 576 "Keep An Eye Out" @28.6,75.9
+
+step Up to Snuff
+  zone map 1434
+  tip Deeg in Booty Bay wants you to bring him 15 shares of Snuff. ~1,650 XP.
+  complete 587 "Up to Snuff" @33.1,74.0
+  turnin 587 "Up to Snuff" @26.9,77.4
+
+step West coast (Shaky + MacKinley)
+  zone map 1434
+  accept 606 "Scaring Shaky" @27.8,77.1
+
+step Scaring Shaky
+  zone map 1434
+  tip Bring 5 Mistvale Giblets to 'Shaky' Phillipe in Booty Bay. · Hand in: 'Shaky' Phillipe, Stranglethorn (26.9, 73.6). ~820 XP.
+  complete 606 "Scaring Shaky" @32.3,68.4
+  turnin 606 "Scaring Shaky" @26.9,73.6
+
+step West coast (Shaky + MacKinley) · round 2
+  zone map 1434
+  accept 607 "Return to MacKinley" @26.9,73.6
+
+step Return to MacKinley
+  zone map 1434
+  tip Bring Shaky's Payment to 'Sea Wolf' MacKinley. · Hand in: 'Sea Wolf' MacKinley, Stranglethorn (27.8, 77.1). ~2,450 XP.
+  turnin 607 "Return to MacKinley" @27.8,77.1
+
+step West coast (Shaky + MacKinley) · round 3
+  zone map 1434
+  accept 609 "Voodoo Dues" @27.8,77.1
+
+step Voodoo Dues
+  zone map 1434
+  tip Bring Maury's Clubbed Foot, Jon-Jon's Golden Spyglass, and Chucky's Huge Ring to 'Sea Wolf' MacKinley in Booty Bay. ~3,750 XP.
+  complete 609 "Voodoo Dues" @35.3,51.3
+  turnin 609 "Voodoo Dues" @27.8,77.1
+
+step West coast (Shaky + MacKinley) · round 4
+  zone map 1434
+  accept 613 "Cracking Maury's Foot" @27.8,77.1
+
+step Cracking Maury's Foot
+  zone map 1434
+  tip Bring Maury's Key to 'Sea Wolf' Mackinley in Booty Bay. ~4,650 XP.
+  complete 613 "Cracking Maury's Foot" @51.5,28.5
+  turnin 613 "Cracking Maury's Foot" @27.8,77.1
+
+step Nesingwary's camp (35, 10)
+  zone map 1434
+  accept 193 "Panther Mastery" @35.6,10.6
+  accept 196 "Raptor Mastery" @35.7,10.8
+  accept 338 "The Green Hills of Stranglethorn" @35.7,10.5
+
+step Panther Mastery
+  zone map 1434
+  tip Sir S. · J. · Erlgadin of Nesingwary's Expedition wants you to bring him the Fang of Bhag'thera. ~3,150 XP.
+  complete 193 "Panther Mastery" @47.2,29.6
+  turnin 193 "Panther Mastery" @35.6,10.6
+
+step Raptor Mastery
+  zone map 1434
+  tip Hemet Nesingwary wants you to kill 10 Jungle Stalkers. ~2,450 XP.
+  complete 196 "Raptor Mastery" @23.2,51.5
+  turnin 196 "Raptor Mastery" @35.7,10.8
+
+step The Green Hills of Stranglethorn
+  zone map 1434
+  tip Collect the missing pages from The Green Hills of Stranglethorn manuscript. · Needs the 4 Chapters too: each needs pages that drop all over STV (or buy them on the AH). · Hand in chapters to Barnil as you get them. ~4,700 XP.
+  complete 338 "The Green Hills of Stranglethorn"
+  turnin 338 "The Green Hills of Stranglethorn" @35.7,10.5
+
+step Nesingwary's camp (35, 10) · round 2
+  zone map 1434
+  accept 197 "Raptor Mastery" @35.7,10.8
+
+step Raptor Mastery
+  zone map 1434
+  tip Hemet Nesingwary wants you to kill Tethis, an elusive, dangerous raptor in Stranglethorn. ~3,600 XP.
+  complete 197 "Raptor Mastery" @28.7,44.8
+  turnin 197 "Raptor Mastery" @35.7,10.8
+
+step Nesingwary's camp (35, 10) · round 3
+  zone map 1434
+  accept 208 "Big Game Hunter" @35.7,10.8
+
+step Big Game Hunter
+  zone map 1434
+  tip Hemet Nesingwary wants you to bring him the head of King Bangalash, the great white tiger. · Elite King Bangalash: group up or kite with Shield + DoTs. ~5,350 XP.
+  complete 208 "Big Game Hunter" @38.2,35.6
+  turnin 208 "Big Game Hunter" @35.7,10.8
+
+step Rebel Camp (38, 3)
+  zone map 1434
+  turnin 622 "Return to Corporal Kaleb" @37.7,3.3 -- Stranglethorn · Rebel Camp · Corporal Kaleb (37.7, 3.3)
+  accept 202 "Colonel Kurzen" @38.0,3.0
+  accept 205 "Troll Witchery" @37.8,3.6
+
+step Colonel Kurzen
+  zone map 1434
+  tip Kill 6 Kurzen Elite, 4 Kurzen Subchiefs, and bring Kurzen's Head to Lieutenant Doren at the Rebel Camp. ~3,150 XP.
+  complete 202 "Colonel Kurzen" @48.4,8.6
+  turnin 202 "Colonel Kurzen" @38.0,3.0
+
+step Troll Witchery
+  zone map 1434
+  tip Bring 4 Skullsplitter Fetishes to Brother Nimetz at the Rebel Camp. ~3,150 XP.
+  complete 205 "Troll Witchery" @45.6,42.8
+  turnin 205 "Troll Witchery" @37.8,3.6
+
+step Rebel Camp (38, 3) · round 2
+  zone map 1434
+  accept 206 "Mai'Zoth" @37.8,3.6
+
+step Mai'Zoth
+  zone map 1434
+  tip Bring the Mind's Eye to Brother Nimetz at the Rebel Camp. · Elite. · Group up. ~5,050 XP.
+  complete 206 "Mai'Zoth" @52.9,27.6
+  turnin 206 "Mai'Zoth" @37.8,3.6
+
+step New in Forever
+  zone map 1434
+  accept 95384 "Partial Mystical Notes"
+
+step Partial Mystical Notes
+  zone map 1434
+  tip New in Forever. · Rewards Dudd's Second Favorite Wand.
+  complete 95384 "Partial Mystical Notes"
+  turnin 95384 "Partial Mystical Notes" @28.3,76.4
+
+step Next
+  zone map 1446
+  tip 44-54. · Grab Tiara of the Deep + Divino-matic Rod quests in the next stop.
+  task "Zul'Farrak (next)" optional
+

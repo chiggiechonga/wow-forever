@@ -1,0 +1,72 @@
+guide hearthbound/d4
+title Lv 60: Master Spelunker sweep
+faction Alliance
+levels 60-60
+zone map 1427
+author Brownie
+keywords Hearthbound, Blackrock Mountain · Azshara · Un'Goro · Feralas · Plaguelands · Alterac Valley
+
+step Blackrock Mountain
+  zone map 1427
+  tip Kill Emperor Dagran Thaurissan. · Kill Overlord Wyrmthalak. · Kill General Drakkisath.
+  task "Legacy: Blackrock Depths" optional
+  task "Legacy: Lower Blackrock Spire" optional
+  task "Legacy: Upper Blackrock Spire" optional
+
+step Kalimdor
+  zone map 1448
+  tip Kill the final boss. · Kill the final boss.
+  turnin 8257 "Blood of Morphaz" @51.2,82.1 -- Felwood · Emerald Sanctuary · Greta Mosshoof (51.2, 82.1)
+  task "Legacy: Blackmaw Hold" optional
+  task "Legacy: The Shaper's Terrace" optional
+
+step Dire Maul (Feralas): grab these first
+  zone map 1444
+  tip Kill Alzzin the Wildshaper. · Kill Prince Tortheldrin. · Kill King Gordok.
+  accept 7441 "Pusillin and the Elder Azj'Tordin" @76.9,37.4
+  accept 7482 "Elven Legends" @31.7,43.5
+  task "Legacy: Dire Maul East" optional
+  task "Legacy: Dire Maul West" optional
+  task "Legacy: Dire Maul North" optional
+  accept 7463 "Arcane Refreshment"
+  accept 7504 "Holy Bologna: What the Light Won't Tell You" item 18362 "Holy Bologna: What the Light Won't Tell You"
+
+step Pusillin and the Elder Azj'Tordin
+  zone map 1444
+  tip Pusillin is the imp in Dire Maul East (Warpwood Quarter). · Talk to him and he runs off. · Chase him and talk to him again each time he stops (about 4 times), until he finally fights you. · Kill him for the Book of Incantations (and the Crescent Key, which opens DM West). · Bring the book to Azj'Tordin at the Lariss Pavilion, Feralas (76.9, 37.4). · ~7,750 XP.
+  complete 7441 "Pusillin and the Elder Azj'Tordin" @76.9,37.4
+  turnin 7441 "Pusillin and the Elder Azj'Tordin" @76.9,37.4
+
+step Elven Legends
+  zone map 1444
+  tip Kariel Winthalus' skeleton (Telmius Dreamseeker in some versions) is in the big library in Dire Maul (the Athenaeum), right next to Lorekeeper Lydros. · Click the remains, then report to Scholar Runethorn outside Dire Maul. · Doing this also lets you turn in librams to Lydros later. · ~8,300 XP.
+  complete 7482 "Elven Legends"
+  turnin 7482 "Elven Legends" @31.7,43.5
+
+step Arcane Refreshment
+  zone map 1444
+  tip Mage only, Lv 60. · Your mage friend talks to Lorekeeper Lydros in the DM West library to start it.
+  complete 7463 "Arcane Refreshment"
+  turnin 7463 "Arcane Refreshment"
+
+step Holy Bologna: What the Light Won't Tell You
+  zone map 1444
+  tip Priest only. · The book drops from any Dire Maul boss or from Dusty Tomes in the libraries. · Give it to Lorekeeper Javon, in the Dire Maul library (the Athenaeum) next to Lorekeeper Lydros. · ~6,600 XP.
+  turnin 7504 "Holy Bologna: What the Light Won't Tell You"
+
+step Plaguelands
+  zone map 1423
+  tip Kill Darkmaster Gandling. · Kill Balnazzar. · Kill Baron Rivendare.
+  task "Legacy: Scholomance" optional
+  task "Legacy: Stratholme (Live)" optional
+  task "Legacy: Stratholme (Dead)" optional
+
+step Alterac Valley (queue from anywhere, Lv 51+)
+  zone map 1459
+  accept 7141 "The Battle of Alterac" @42.6,13.5 -- dungeon quest, hold it for the run
+
+step Alterac Valley (queue from anywhere, Lv 51+) · round 2
+  zone map 1459
+  accept 8271 "Hero of the Stormpike" npc 13816 "Prospector Stonehewer" map 1416 @40.6,79.6 -- you should already have this one
+  turnin 8271 "Hero of the Stormpike" @42.6,13.5 -- Alterac Valley · Prospector Stonehewer
+

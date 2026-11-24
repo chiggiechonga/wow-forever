@@ -1,0 +1,224 @@
+guide hearthbound/s27
+title Un'Goro Crater
+faction Alliance
+levels 53-55
+zone map 1449
+author Brownie
+keywords Hearthbound, Marshal's Refuge
+next hearthbound/s24
+
+step Marshal's Refuge, Un'Goro (44, 8)
+  zone map 1449
+  accept 3881 "Expedition Salvation" @44.0,7.1
+  accept 3883 "Alien Ecology" @43.9,7.2
+  accept 3882 "Roll the Bones" @43.5,7.4
+  accept 4503 "Shizzle's Flyer" @44.2,11.6
+  accept 4501 "Beware of Pterrordax" @43.5,8.4
+  accept 4492 "Lost!" @43.6,8.5
+  accept 4141 "Muigin and Larion" @42.9,9.6
+
+step Expedition Salvation
+  zone map 1449
+  tip Bring a Crate of Foodstuffs and Research Equipment to Williden Marshal in Un'Goro Crater. ~3,950 XP.
+  complete 3881 "Expedition Salvation" @68.5,36.5
+  turnin 3881 "Expedition Salvation" @44.0,7.1
+
+step Alien Ecology
+  zone map 1449
+  tip Use the Scraping Vial to collect a Hive Wall Sample from one of the Gorishi hive hatcheries in Un'Goro Crater. ~2,550 XP.
+  complete 3883 "Alien Ecology"
+  turnin 3883 "Alien Ecology" @43.9,7.2
+
+step Roll the Bones
+  zone map 1449
+  tip Bring 8 Dinosaur Bones to Spark Nilminer in Un'Goro Crater. ~4,900 XP.
+  complete 3882 "Roll the Bones" @41.1,77.7
+  turnin 3882 "Roll the Bones" @43.5,7.4
+
+step Shizzle's Flyer
+  zone map 1449
+  tip Collect 8 Webbed Diemetradon Scales and 8 Webbed Pterrordax Scales for Shizzle in Marshal's Refuge. ~4,900 XP.
+  complete 4503 "Shizzle's Flyer" @60.7,38.9
+  turnin 4503 "Shizzle's Flyer" @44.2,11.6
+
+step Beware of Pterrordax
+  zone map 1449
+  tip Kill 10 Pterrordax and 15 Frenzied Pterrordax, then speak to Spraggle Frock at Marshal's Refuge. · Hand in: Spraggle Frock, Un Goro Crater (43.6, 8.5). ~5,650 XP.
+  complete 4501 "Beware of Pterrordax" @43.4,92.6
+  turnin 4501 "Beware of Pterrordax" @43.6,8.5
+
+step Lost!
+  zone map 1449
+  tip Find Ringo at Fire Plume Ridge. · Hand in: Ringo, Un Goro Crater (51.9, 49.9). ~2,800 XP.
+  turnin 4492 "Lost!" @51.9,49.9
+
+step Muigin and Larion
+  zone map 1449
+  tip Collect 15 Bloodpetals and return to Muigin. ~5,100 XP.
+  complete 4141 "Muigin and Larion" @73.5,69.8
+  turnin 4141 "Muigin and Larion" @42.9,9.6
+
+step Marshal's Refuge, Un'Goro (44, 8) · round 2
+  zone map 1449
+  accept 4491 "A Little Help From My Friends" @51.9,49.9
+  accept 4142 "A Visit to Gregan" @42.9,9.6
+
+step A Little Help From My Friends
+  zone map 1449
+  tip Lead Ringo to Spraggle Frock at Marshal's Refuge. · Hand in: Spraggle Frock, Un Goro Crater (43.6, 8.5). ~5,650 XP.
+  complete 4491 "A Little Help From My Friends"
+  turnin 4491 "A Little Help From My Friends" @43.6,8.5
+
+step J.D. Collie (42, 3): crystals
+  zone map 1449
+  accept 4284 "Crystals of Power" @41.9,2.7
+
+step Crystals of Power
+  zone map 1449
+  tip Collect 7 Power Crystals of each color: red, blue, yellow, and green. ~5,250 XP.
+  complete 4284 "Crystals of Power" @31.2,36.4
+  turnin 4284 "Crystals of Power" @41.9,2.7
+
+step J.D. Collie (42, 3): crystals · round 2
+  zone map 1449
+  accept 4285 "The Northern Pylon" @41.9,2.7
+  accept 4287 "The Eastern Pylon" @41.9,2.7
+  accept 4288 "The Western Pylon" @41.9,2.7
+
+step The Northern Pylon
+  zone map 1449
+  tip Discover the location of the Northern Crystal Pylon in Un'Goro Crater. ~3,950 XP.
+  complete 4285 "The Northern Pylon" @56.5,12.5
+  turnin 4285 "The Northern Pylon" @41.9,2.7
+
+step The Eastern Pylon
+  zone map 1449
+  tip Discover the location of the Eastern Crystal Pylon in Un'Goro Crater. ~3,950 XP.
+  complete 4287 "The Eastern Pylon" @77.2,50.0
+  turnin 4287 "The Eastern Pylon" @41.9,2.7
+
+step The Western Pylon
+  zone map 1449
+  tip Discover the location of the Western Crystal Pylon. ~3,950 XP.
+  complete 4288 "The Western Pylon" @23.9,59.2
+  turnin 4288 "The Western Pylon" @41.9,2.7
+
+step J.D. Collie (42, 3): crystals · round 3
+  zone map 1449
+  accept 4321 "Making Sense of It" @41.9,2.7
+
+step Making Sense of It
+  zone map 1449
+  tip Speak with J.D. · Collie in a moment. ~530 XP.
+  turnin 4321 "Making Sense of It" @41.9,2.7
+
+step Escorts
+  zone map 1449
+  accept 4243 "Chasing A-Me 01" @46.4,13.4
+
+step Chasing A-Me 01
+  zone map 1449
+  tip Find A-Me 01 in Un'Goro Crater. · Hand in: A-Me 01, Un Goro Crater (67.7, 16.8). ~2,650 XP.
+  turnin 4243 "Chasing A-Me 01" @67.7,16.8
+
+step Escorts · round 2
+  zone map 1449
+  accept 4245 "Chasing A-Me 01" @67.7,16.8
+
+step Chasing A-Me 01
+  zone map 1449
+  tip Find a Mithril Casing and return to A-Me 01 in Un'Goro Crater. ~3,950 XP.
+  complete 4245 "Chasing A-Me 01"
+  turnin 4245 "Chasing A-Me 01" @46.4,13.4
+
+step Escorts · round 3
+  zone map 1449
+  accept 4245 "Chasing A-Me 01" @67.7,16.8
+
+step Chasing A-Me 01
+  zone map 1449
+  tip Escort A-Me 01 back to Karna Remtravel in Un'Goro Crater. · Hand in: Karna Remtravel, Un Goro Crater (46.4, 13.4). ~6,550 XP.
+  complete 4245 "Chasing A-Me 01"
+  turnin 4245 "Chasing A-Me 01" @46.4,13.4
+
+step Torwa Pathfinder (72, 76)
+  zone map 1449
+  accept 4290 "The Fare of Lar'korwi" @71.6,76.0
+  accept 4289 "The Apes of Un'Goro" @71.6,76.0
+
+step The Fare of Lar'korwi
+  zone map 1449
+  tip Find the carcass of Lar'korwi's freshest kill and steal a Piece of Threshadon Carcass before returning to Torwa Pathfinder in Un'Goro Crater. ~5,250 XP.
+  complete 4290 "The Fare of Lar'korwi" @68.7,56.7
+  turnin 4290 "The Fare of Lar'korwi" @71.6,76.0
+
+step The Apes of Un'Goro
+  zone map 1449
+  tip Bring 2 Un'Goro Gorilla Pelts, 2 Un'Goro Stomper Pelts, and 2 Un'Goro Thunderer Pelts to Torwa Pathfinder at the entrance of Un'Goro Crater. ~5,650 XP.
+  complete 4289 "The Apes of Un'Goro" @62.6,19.7
+  turnin 4289 "The Apes of Un'Goro" @71.6,76.0
+
+step Torwa Pathfinder (72, 76) · round 2
+  zone map 1449
+  accept 4291 "The Scent of Lar'korwi" @71.6,76.0
+  accept 4301 "The Mighty U'cha" @71.6,76.0
+
+step The Scent of Lar'korwi
+  zone map 1449
+  tip Bring 2 Ravasaur Pheromone Glands to Torwa Pathfinder near the entrance to Un'Goro Crater. ~5,250 XP.
+  complete 4291 "The Scent of Lar'korwi" @62.0,80.0
+  turnin 4291 "The Scent of Lar'korwi" @71.6,76.0
+
+step The Mighty U'cha
+  zone map 1449
+  tip Bring U'cha's Pelt to Torwa Pathfinder at the entrance of Un'Goro Crater. ~5,650 XP.
+  complete 4301 "The Mighty U'cha" @68.1,12.6
+  turnin 4301 "The Mighty U'cha" @71.6,76.0
+
+step Torwa Pathfinder (72, 76) · round 3
+  zone map 1449
+  accept 4292 "The Bait for Lar'korwi" @71.6,76.0
+
+step The Bait for Lar'korwi
+  zone map 1449
+  tip Using the contents of Torwa's Pouch, summon Lar'korwi and defeat him. ~7,300 XP.
+  complete 4292 "The Bait for Lar'korwi" @79.6,49.8
+  turnin 4292 "The Bait for Lar'korwi" @71.6,76.0
+
+step Krakle (31, 50) + the raft (63, 69)
+  zone map 1449
+  accept 974 "Finding the Source" @30.9,50.4
+  accept 3844 "It's a Secret to Everybody" @63.0,68.6
+
+step Finding the Source
+  zone map 1449
+  tip Krakle in Un'Goro Crater wants you to find the hottest area of Fire Plume Ridge. ~5,650 XP.
+  complete 974 "Finding the Source" @49.7,45.6
+  turnin 974 "Finding the Source" @30.9,50.4
+
+step It's a Secret to Everybody
+  zone map 1449
+  tip Look around in the pond for a clue about who this wrecked raft may belong to. · Hand in: A Small Pack, Un Goro Crater (63.1, 69.1). ~1,250 XP.
+  turnin 3844 "It's a Secret to Everybody" @63.1,69.1
+
+step Krakle (31, 50) + the raft (63, 69) · round 2
+  zone map 1449
+  accept 980 "The New Springs" @30.9,50.4
+  accept 3845 "It's a Secret to Everybody" @63.1,69.1
+
+step It's a Secret to Everybody
+  zone map 1449
+  tip Examine the items inside the pack and bring them to their owner. · Hand in: Linken, Un Goro Crater (44.7, 8.1). ~5,100 XP.
+  complete 3845 "It's a Secret to Everybody"
+  turnin 3845 "It's a Secret to Everybody" @44.7,8.1
+
+step Krakle (31, 50) + the raft (63, 69) · round 3
+  zone map 1449
+  accept 3908 "It's a Secret to Everybody" @44.7,8.1
+
+step Dungeons
+  zone map 1446
+  tip New Forever dungeon (58-60). · Range 44-54. · Kill Chief Ukorz Sandscalp.
+  task "Shaper's Terrace" optional
+  task "Legacy: Zul'Farrak" optional
+

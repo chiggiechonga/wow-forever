@@ -1,0 +1,369 @@
+guide hearthbound/s17
+title Dustwallow Marsh
+faction Alliance
+levels 40-42
+zone map 1445
+author Brownie
+keywords Hearthbound, Theramore
+next hearthbound/s18
+
+step Theramore
+  zone map 1445
+  tip Boat from Menethil, or fly if you have the path.
+  task "Set hearth" optional
+  accept 1282 "They Call Him Smiling Jim" @66.2,46.1
+  accept 1204 "Mudrock Soup and Bugs" @66.3,45.5
+  accept 7070 "Shadowshard Fragments" @66.4,49.3
+
+step They Call Him Smiling Jim
+  zone map 1445
+  tip Speak with Captain Garran Vimes on the top floor of Foothold Citadel. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~275 XP.
+  turnin 1282 "They Call Him Smiling Jim" @68.2,48.6
+
+step Mudrock Soup and Bugs
+  zone map 1445
+  tip Bring 8 Forked Mudrock Tongues to Morgan Stern in Theramore. ~2,850 XP.
+  complete 1204 "Mudrock Soup and Bugs" @64.6,42.6
+  turnin 1204 "Mudrock Soup and Bugs" @66.3,45.5
+
+step Shadowshard Fragments
+  zone map 1445
+  tip Collect 10 Shadowshard Fragments from Maraudon and return them to Archmage Tervosh in Theramore on the coast of Dustwallow Marsh. · Hold it for Maraudon (the Maraudon + Alcaz trip around 53). · The fragments drop inside Maraudon. ~3,450 XP.
+  complete 7070 "Shadowshard Fragments" map 1443 @28.9,58.3
+  note Keep it: you hand this in later on the route.
+
+step Theramore · round 2
+  zone map 1445
+  accept 1258 "... and Bugs" @66.3,45.5
+
+step ... and Bugs
+  zone map 1445
+  tip Bring 12 Pristine Crawler Legs to Morgan Stern in Theramore. ~3,150 XP.
+  complete 1258 "... and Bugs" map 1435 @80.5,93.9
+  turnin 1258 "... and Bugs" @66.3,45.5
+
+step Hold for later dungeons
+  zone map 1445
+  accept 2846 "Tiara of the Deep" @46.1,57.1
+  accept 1952 "Mage's Wand" @46.1,57.1
+
+step Tiara of the Deep
+  zone map 1445
+  tip Hydromancer Velratha walks around the pool in the far west part of Zul'Farrak (the same pool where the Mallet summons Gahz'rilla). · Kill her for the Tiara of the Deep and bring it to Tabetha in Dustwallow. · ~6,050 XP.
+  complete 2846 "Tiara of the Deep"
+  turnin 2846 "Tiara of the Deep" @46.1,57.1
+
+step Mage's Wand
+  zone map 1445
+  tip Mage hands in Rituals of Power + Items of Power, then Mage's Wand: Tabetha does a ritual and the mage picks a wand. · Right next to where you grab Tiara of the Deep.
+  turnin 1952 "Mage's Wand" @46.1,57.1
+
+step Swamplight Manor + north-west
+  zone map 1445
+  tip Waterlogged book. · Murlocs come in packs, so Psychic Scream if you get swarmed.
+  accept 1219 "The Orc Report" @55.4,25.9
+  accept 1218 "Soothing Spices" @55.4,26.3
+  task "RwlRwlRwlRwl!" optional
+  accept 1222 "Stinky's Escape" @46.9,17.5
+
+step The Orc Report
+  zone map 1445
+  tip Bring the Spy's Report to a Theramore Lieutenant. · Hand in: Theramore Lieutenant, Dustwallow Marsh (67.1, 53.2). ~690 XP.
+  turnin 1219 "The Orc Report" @65.0,47.0
+
+step Soothing Spices
+  zone map 1445
+  tip Bring 3 Soothing Spices to 'Swamp Eye' Jarl in Dustwallow Marsh. ~1,350 XP.
+  complete 1218 "Soothing Spices"
+  turnin 1218 "Soothing Spices" @55.4,26.3
+
+step Stinky's Escape
+  zone map 1445
+  tip Escort 'Stinky' Ignatz, then speak with Morgan Stern in Theramore. · Hand in: Morgan Stern, Dustwallow Marsh (66.3, 45.5). ~2,850 XP.
+  complete 1222 "Stinky's Escape"
+  turnin 1222 "Stinky's Escape" @66.3,45.5
+
+step Swamplight Manor + north-west · round 2
+  zone map 1445
+  accept 1220 "Captain Vimes" @65.0,47.0
+  accept 1206 "Jarl Needs Eyes" @55.4,26.3
+
+step Captain Vimes
+  zone map 1445
+  tip Bring the Spy's Report to Captain Garran Vimes. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~2,750 XP.
+  turnin 1220 "Captain Vimes" @68.2,48.6
+
+step Jarl Needs Eyes
+  zone map 1445
+  tip Bring 20 Unpopped Darkmist Eyes to 'Swamp Eye' Jarl at the Swamplight Manor. ~2,750 XP.
+  complete 1206 "Jarl Needs Eyes" @34.4,25.6
+  turnin 1206 "Jarl Needs Eyes" @55.4,26.3
+
+step Swamplight Manor + north-west · round 3
+  zone map 1445
+  accept 1203 "Jarl Needs a Blade" @55.4,26.3
+
+step Jarl Needs a Blade
+  zone map 1445
+  tip Bring a Moonsteel Broadsword to Jarl in Dustwallow Marsh. ~3,450 XP.
+  complete 1203 "Jarl Needs a Blade"
+  turnin 1203 "Jarl Needs a Blade" @55.4,26.3
+
+step West Dustwallow (the Black Shield)
+  zone map 1445
+  accept 1284 "Suspicious Hoofprints" @29.7,47.6
+  accept 1252 "Lieutenant Paval Reethe" @29.8,48.2
+  accept 1253 "The Black Shield" @29.6,48.6
+
+step Suspicious Hoofprints
+  zone map 1445
+  tip Report about the suspicious prints at the Shady Rest Inn to Captain Garran Vimes in Theramore. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~1,350 XP.
+  turnin 1284 "Suspicious Hoofprints" @68.2,48.6
+
+step Lieutenant Paval Reethe
+  zone map 1445
+  tip Bring Reethe's Badge to Captain Garran Vimes in Theramore. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~780 XP.
+  turnin 1252 "Lieutenant Paval Reethe" @68.2,48.6
+
+step The Black Shield
+  zone map 1445
+  tip Bring the Blackened Iron Shield to Captain Garran Vimes in Theramore. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~690 XP.
+  turnin 1253 "The Black Shield" @68.2,48.6
+
+step West Dustwallow (the Black Shield) · round 2
+  zone map 1445
+  accept 1319 "The Black Shield" @68.2,48.6
+  accept 1259 "Lieutenant Paval Reethe" @68.2,48.6
+
+step The Black Shield
+  zone map 1445
+  tip Show the Blackened Iron Shield to Caz Twosprocket in Theramore. · Hand in: Caz Twosprocket, Dustwallow Marsh (64.8, 50.4). ~275 XP.
+  turnin 1319 "The Black Shield" @64.8,50.4
+
+step Lieutenant Paval Reethe
+  zone map 1445
+  tip Find out more about Reethe from Adjutant Tesoran in Theramore. · Hand in: Adjutant Tesoran, Dustwallow Marsh (68, 48.1). ~315 XP.
+  turnin 1259 "Lieutenant Paval Reethe" @68.1,48.1
+
+step West Dustwallow (the Black Shield) · round 3
+  zone map 1445
+  accept 1320 "The Black Shield" @64.8,50.4
+  accept 1285 "Daelin's Men" @68.1,48.1
+
+step The Black Shield
+  zone map 1445
+  tip Speak with Captain Garran Vimes in Theramore. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~1,350 XP.
+  turnin 1320 "The Black Shield" @68.2,48.6
+
+step Daelin's Men
+  zone map 1445
+  tip Return the information about Reethe to Captain Garran Vimes in Theramore. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~285 XP.
+  turnin 1285 "Daelin's Men" @68.2,48.6
+
+step West Dustwallow (the Black Shield) · round 4
+  zone map 1445
+  accept 1286 "The Deserters" @68.2,48.6
+
+step The Deserters
+  zone map 1445
+  tip Get information about Reethe from Balos Jacken and the deserters in Dustwallow Marsh. · Hand in: Balos Jacken, Dustwallow Marsh (36.1, 54.3). ~2,850 XP.
+  turnin 1286 "The Deserters" @36.1,54.3
+
+step West Dustwallow (the Black Shield) · round 5
+  zone map 1445
+  accept 1287 "The Deserters" @36.1,54.3
+
+step The Deserters
+  zone map 1445
+  tip Speak with Captain Garran Vimes in Theramore about Reethe. · Hand in: Captain Garran Vimes, Dustwallow Marsh (68.2, 48.6). ~2,850 XP.
+  turnin 1287 "The Deserters" @68.2,48.6
+
+step South road
+  zone map 1445
+  accept 1177 "Hungry!" @35.2,38.3
+
+step Hungry!
+  zone map 1445
+  tip Mudcrush Durtfeet in northern Dustwallow wants 8 Mirefin Heads. ~2,800 XP.
+  complete 1177 "Hungry!" @56.2,23.0
+  turnin 1177 "Hungry!" @35.2,38.3
+
+step Not for now
+  zone map 1445
+  tip 'I See Alcaz Island In Your Future...' is a level 58+ quest, not for now. · Alcaz Island Prison is a Legacy dungeon later (Stop 22 / the Maraudon + Alcaz trip).
+  task "No quest needed for Alcaz Island Prison" optional
+
+step Next time you're in a city
+  zone map 1455
+  tip 42 = Shadowform talent (Talents tab). · Huge damage boost.
+  task "Train Lv 42" optional
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west)
+  zone map 2652
+  accept 92914 "Strange Pylons" @43.7,34.3
+
+step Strange Pylons
+  zone map 2652
+  tip New Forever quest.
+  complete 92914 "Strange Pylons"
+  turnin 92914 "Strange Pylons" @35.2,46.6
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 2
+  zone map 2652
+  accept 96010 "Fragments of the Pylons" @35.2,46.6
+
+step Fragments of the Pylons
+  zone map 2652
+  tip Get: 1 Pylon Fragment, 1 Pylon Shard.
+  complete 96010 "Fragments of the Pylons"
+  turnin 96010 "Fragments of the Pylons" @35.2,46.6
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 3
+  zone map 2652
+  accept 96018 "Powering the Pylons" @35.2,46.6
+
+step Powering the Pylons
+  zone map 2652
+  tip Get: 1 Mana Sieve, 1 Coalesced Mana Crystal.
+  turnin 96018 "Powering the Pylons" @35.2,46.6
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 4
+  zone map 2652
+  accept 93016 "A Brief History Lesson" @35.2,46.6
+
+step A Brief History Lesson
+  zone map 2652
+  tip New Forever quest.
+  turnin 93016 "A Brief History Lesson" @35.2,46.6
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 5
+  zone map 2652
+  accept 93394 "Meeting the Magister" @35.2,46.6
+
+step Meeting the Magister
+  zone map 2652
+  tip New Forever quest.
+  turnin 93394 "Meeting the Magister" @47.4,76.5
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 6
+  zone map 2652
+  accept 99257 "A Heart of Crystal" @46.0,78.2
+
+step A Heart of Crystal
+  zone map 2652
+  tip Get: 1 Depleted Crystal Heart.
+  complete 99257 "A Heart of Crystal"
+  turnin 99257 "A Heart of Crystal" @46.0,78.2
+
+step Shen'dralas (new zone, optional: fly to Nijel's Point and go west) · round 7
+  zone map 2652
+  accept 99258 "Mana Mania" @46.0,78.2
+
+step Mana Mania
+  zone map 2652
+  tip Get: 1 Nascent Pylon Protector slain.
+  complete 99258 "Mana Mania" @50.0,87.9
+  turnin 99258 "Mana Mania" @46.0,78.2
+
+step Magram Village + Valley of Bones (same Nijel's Point trip)
+  zone map 2652
+  turnin 92743 "A Conqueror's Crown" map 1443 @75.0,68.2 -- Desolace · Warug, Magram Village (75.0, 68.2) · on the hill, north side of the village
+  accept 92841 "Valley of Bones" map 1443 @75.0,68.2
+  accept 92844 "Mountain of Bones" @35.7,12.7
+  accept 92847 "Corrupting Tears" @35.7,12.7
+  accept 92873 "Proof of Concept" @35.7,12.7
+  accept 92894 "Bone Raising" @35.7,12.7
+  accept 92893 "No Mercy for the Weak" @35.7,12.7
+  accept 93066 "Bristleback Retreat" @35.7,12.7
+
+step Valley of Bones
+  zone map 1443
+  tip Needs Honored with Magram for the new Forever steps · Lv 40+ · Not Honored yet? keep killing Gelkis centaurs (Gelkis Village) · Go find Orgrul at the north entrance to the Valley of Bones in Shen'dralas (35.8, 13.0) · Hand in: Orgrul
+  complete 92841 "Valley of Bones" @35.8,13.0
+  turnin 92841 "Valley of Bones" @65.4,84.2
+
+step Mountain of Bones
+  zone map 2652
+  tip Loot Gently Cursed Bones off the skeletons + undead in the Valley of Bones · Hand in: Orgrul (35.6, 12.0)
+  complete 92844 "Mountain of Bones"
+  turnin 92844 "Mountain of Bones" @35.7,12.7
+
+step Corrupting Tears
+  zone map 2652
+  tip Loot 3 Petrified Bark (treants/bark objects around the valley) + 3 Imbued Tears · Hand in: Orgrul
+  complete 92847 "Corrupting Tears"
+  turnin 92847 "Corrupting Tears" @35.7,12.7
+
+step Proof of Concept
+  zone map 2652
+  tip Use the Rudimentary Necromancy Staff on the ritual spot to raise bones, loot the Well Cursed Bones · Hand in: Orgrul · Reward pick: Staff of Revelations (caster staff) over Blade of the Magram Clan / Desperate Barrier
+  complete 92873 "Proof of Concept"
+  turnin 92873 "Proof of Concept" @35.7,12.7
+
+step Bone Raising
+  zone map 2652
+  tip Use the Enhanced Necromancy Staff on the struggling undead in the Valley of Bones to raise them · Hand in: Orgrul
+  complete 92894 "Bone Raising" @46.9,37.6
+  turnin 92894 "Bone Raising" @35.7,12.7
+
+step No Mercy for the Weak
+  zone map 2652
+  tip Kill 5 Gelkis Captives (tied up around the valley camp) · Do it with Bone Raising · Hand in: Orgrul
+  complete 92893 "No Mercy for the Weak" @45.9,36.0
+  turnin 92893 "No Mercy for the Weak" @35.7,12.7
+
+step Bristleback Retreat
+  zone map 2652
+  tip Kill the Bristleback quilboar at Bristleback Retreat · Hand in: Hagiak at the Magram Front, Shen'dralas (58.8, 53.8)
+  complete 93066 "Bristleback Retreat" @68.6,40.8
+  turnin 93066 "Bristleback Retreat" @59.3,53.9
+
+step Magram Village + Valley of Bones (same Nijel's Point trip) · round 2
+  zone map 2652
+  accept 92846 "Outcast Necromancers" @35.7,12.7
+  accept 93072 "Long-Term Solutions" @59.3,53.9
+  accept 93129 "Threat of Starvation" @59.3,53.9
+
+step Outcast Necromancers
+  zone map 2652
+  tip Kill the Outcast Necromancers in the Valley of Bones · Do it together with Mountain of Bones, both need to be done before Corrupting Tears · Hand in: Orgrul
+  complete 92846 "Outcast Necromancers" @32.3,26.3
+  turnin 92846 "Outcast Necromancers" @35.7,12.7
+
+step Long-Term Solutions
+  zone map 2652
+  tip Kill 2 Outcast Scouts, 6 Outcast Marauders, 8 Outcast Necromancers · Hand in: Hagiak
+  complete 93072 "Long-Term Solutions" @39.0,88.3
+  turnin 93072 "Long-Term Solutions" @59.3,53.9
+
+step Threat of Starvation
+  zone map 2652
+  tip Loot 6 Stolen Supplies (crates in the Outcast camps), do it while you kill for Long-Term Solutions · Hand in: Hagiak
+  complete 93129 "Threat of Starvation"
+  turnin 93129 "Threat of Starvation" @59.3,53.9
+
+step Magram Village + Valley of Bones (same Nijel's Point trip) · round 3
+  zone map 2652
+  accept 93188 "Return to Orgrul" @59.3,53.9
+
+step Return to Orgrul
+  zone map 2652
+  tip Head back to Orgrul (35.8, 13.0) · Hand in: Orgrul
+  complete 93188 "Return to Orgrul" @35.8,13.0
+  turnin 93188 "Return to Orgrul" @35.7,12.7
+
+step Magram Village + Valley of Bones (same Nijel's Point trip) · round 4
+  zone map 2652
+  accept 93196 "Khan Jehn" @35.7,12.7
+
+step Khan Jehn
+  zone map 2652
+  tip Grab the Ultimate Necromancy Staff, go to the big tent at the central lake of Magram Village · Do the ritual to raise Khan Jehn, then kill him (might want a buddy) · Hand in: Orgrul · Shadow BiS: reward Soulsplatter Mace (Lv 40 main hand)
+  complete 93196 "Khan Jehn"
+  turnin 93196 "Khan Jehn" npc 254357 "Khan Jehn" map 1443 @73.8,73.9
+
+step 🛡️ BiS gear pickups
+  zone map 1413
+  tip Range 37-46. · Do Bring the Light (Amnennar) in here.
+  task "Razorfen Downs" optional
+

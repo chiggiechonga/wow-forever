@@ -1,0 +1,26 @@
+guide hearthbound/s8
+title Excavation Site (heal)
+faction Alliance
+levels 26-28
+zone map 1437
+author Brownie
+keywords Hearthbound, Wetlands · dungeon
+next hearthbound/s9
+
+step Inside the Excavation Site
+  zone map 1437
+  accept 95772 "Songblade Search" npc 956 "Dorin Songblade" map 1433 @25.8,46.4 -- dungeon quest, hold it for the run
+  accept 95647 "Lost in the Thicket Things" @11.9,58.8 -- dungeon quest, hold it for the run
+  accept 98815 "Highland Hides" @8.6,55.7 -- dungeon quest, hold it for the run
+  accept 95646 "Horrors in the Highland" @56.4,40.4 -- dungeon quest, hold it for the run
+  accept 95810 "Lost Relic Carry" item 270865 "Titan Relic" -- dungeon quest, hold it for the run
+
+step Turn in
+  zone map 1437
+  task "Turn in everything" optional -- Menethil · Whelgar's Excavation · Rethiel · Lakeshire (Dorin)
+
+step 🛡️ BiS gear pickups
+  zone map 1437
+  tip Boss in this dungeon. · Shadow BiS: drops Glinteye Slippers (Lv 40 feet).
+  task "Saltspine (boss)" optional
+

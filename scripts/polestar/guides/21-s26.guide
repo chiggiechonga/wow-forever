@@ -1,0 +1,249 @@
+guide hearthbound/s26
+title Western Plaguelands
+faction Alliance
+levels 57-58
+zone map 1435
+author Brownie
+keywords Hearthbound, Chillwind Camp
+next hearthbound/s29
+
+step Sunken Temple first: fly to Nethergarde Keep, ride north into the Swamp of Sorrows (70, 51)
+  zone map 1435
+  tip Quests from Feralas (The Sunken Temple) and Un'Goro. · Holy BiS: Shade of Hakkar drops Embrace of the Wind Serpent (Lv 50 chest). · Outside the dungeon. · Grab it if you're going to the Sunken Temple anyway. · Range 50-60. · Kill the Shade of Eranikus.
+  task "Sunken Temple (50-60)" optional
+  accept 8257 "Blood of Morphaz" map 1447 @42.4,42.6
+  task "Sanguine Sorcery (optional)" optional
+  task "Legacy: Temple of Atal'Hakkar (Sunken Temple)" optional
+
+step Blood of Morphaz
+  zone map 1447
+  tip Priest only. · Morphaz is a green drake that shows up in the middle chamber of the Sunken Temple after Jammal'an dies. · Loot the Blood of Morphaz from him and take it to Greta Mosshoof in Felwood (Emerald Sanctuary, 51.2, 82.1). · ~6,350 XP. · Shadow BiS: reward Woestave (wand you keep to 60).
+  complete 8257 "Blood of Morphaz"
+  turnin 8257 "Blood of Morphaz" npc 10922 "Greta Mosshoof" map 1448 @51.2,82.1
+
+step Chillwind Camp, Western Plaguelands (43, 84)
+  zone map 1422
+  tip Bring the Filled Gahrron's Withering Bottle to High Priestess MacDonnell at Chillwind Camp, Western Plaguelands. · Hand in: High Priestess MacDonnell, Western Plaguelands (43, 84.5). ~3,100 XP. · You need the Skeleton Key to open the door. · The chain starts with Commander Ashlam Valorfist at Chillwind Camp, then Alchemist Arbington: Skeletal Fragments (WPL skeletons) → Mold Rhymes With... · Wear the commission (trinket), then turn in Scourgestones for Argent Dawn rep.
+  accept 5092 "Clear the Way" @42.7,84.0
+  accept 5216 "Target: Felstone Field" @43.0,84.5
+  accept 5217 "Return to Chillwind Camp" @37.3,56.8
+  accept 5222 "Target: Writhing Haunt" @43.0,84.5
+  accept 5219 "Target: Dalson's Tears" @43.0,84.5
+  accept 5225 "Target: Gahrron's Withering" @43.0,84.5
+  task "Return to Chillwind Point" optional
+  accept 5903 "A Plague Upon Thee" @43.4,84.8
+  task "Scholomance (58-60)" optional
+  accept 5343 "Barov Family Fortune" @43.5,83.7
+  accept 5382 "Doctor Theolen Krastinov, the Butcher" @70.2,73.7
+  task "Argent Dawn Commission + Scourgestones" optional
+
+step Clear the Way
+  zone map 1422
+  tip Kill 10 Skeletal Flayers and 10 Slavering Ghouls in Sorrow Hill. · Needs A Call to Arms: The Plaguelands! done first. ~5,100 XP.
+  complete 5092 "Clear the Way" @47.3,84.3
+  turnin 5092 "Clear the Way" @42.7,84.0
+
+step Target: Felstone Field
+  zone map 1422
+  tip Go to Felstone Field in Western Plaguelands to locate and defeat the Cauldron Lord present there. · Hand in: Scourge Cauldron, Western Plaguelands (37.2, 56.8). ~5,250 XP.
+  complete 5216 "Target: Felstone Field" @36.9,57.4
+  turnin 5216 "Target: Felstone Field" @37.3,56.8
+
+step Return to Chillwind Camp
+  zone map 1422
+  tip Bring the Filled Felstone Field Bottle to High Priestess MacDonnell at Chillwind Camp, Western Plaguelands. · Hand in: High Priestess MacDonnell, Western Plaguelands (43, 84.5). ~2,650 XP.
+  turnin 5217 "Return to Chillwind Camp" @43.0,84.5
+
+step Target: Writhing Haunt
+  zone map 1422
+  tip Go to the Writhing Haunt in Western Plaguelands to locate and defeat the Cauldron Lord present there, and use its key to gain access to the cauldron. · Hand in: Scourge Cauldron, Western Plaguelands (53, 65.6). ~5,650 XP.
+  complete 5222 "Target: Writhing Haunt" @52.9,66.1
+  turnin 5222 "Target: Writhing Haunt" @53.0,65.6
+
+step Target: Dalson's Tears
+  zone map 1422
+  tip Go to Dalson's Tears in Western Plaguelands to locate and defeat the Cauldron Lord present there, and use its key to gain access to the cauldron. · Hand in: Scourge Cauldron, Western Plaguelands (46.2, 51.9). ~5,650 XP.
+  complete 5219 "Target: Dalson's Tears" @46.1,52.6
+  turnin 5219 "Target: Dalson's Tears" @46.2,51.9
+
+step Target: Gahrron's Withering
+  zone map 1422
+  tip Go to Gahrron's Withering in Western Plaguelands to locate and defeat the Cauldron Lord present there, and use its key to gain access to the cauldron. · Hand in: Scourge Cauldron, Western Plaguelands (62.5, 58.5). ~6,200 XP.
+  complete 5225 "Target: Gahrron's Withering" @62.2,59.1
+  turnin 5225 "Target: Gahrron's Withering" @62.5,58.5
+
+step A Plague Upon Thee
+  zone map 1422
+  tip Use the Empty Termite Jar on the Termite Mounds in Eastern Plaguelands. ~5,650 XP.
+  complete 5903 "A Plague Upon Thee" @98.3,21.5
+  turnin 5903 "A Plague Upon Thee" @43.4,84.8
+
+step Barov Family Fortune
+  zone map 1422
+  tip The 4 deeds are papers on tables inside Scholomance. · Brill: the Laboratory, halfway down on the right. · Tarren Mill: the room right after the Chamber of Summoning, on a table at the far right end. · Southshore: The Reliquary, on a table in the north-east corner. · Caer Darrow: the Barov Family Vault, next to Lord Alexei Barov. · Take them back to Weldon Barov at Chillwind Camp.
+  complete 5343 "Barov Family Fortune"
+  turnin 5343 "Barov Family Fortune" @43.5,83.7
+
+step Doctor Theolen Krastinov, the Butcher
+  zone map 1422
+  tip Krastinov is in the Butcher's Sanctum in Scholomance. · Kill him, then click the Remains of Eva Sarkhoff and the Remains of Lucien Sarkhoff in his room to burn them. · Turn in to Eva Sarkhoff's ghost at Caer Darrow. · ~6,600 XP.
+  complete 5382 "Doctor Theolen Krastinov, the Butcher"
+  turnin 5382 "Doctor Theolen Krastinov, the Butcher" @70.2,73.7
+
+step Chillwind Camp, Western Plaguelands (43, 84) · round 2
+  zone map 1422
+  accept 5097 "All Along the Watchtowers" @42.7,84.0
+  accept 5215 "The Scourge Cauldrons" @42.7,84.0
+  accept 5220 "Return to Chillwind Camp" @46.2,51.9
+  accept 5904 "A Plague Upon Thee" @43.4,84.8
+
+step All Along the Watchtowers
+  zone map 1422
+  tip Using the Beacon Torch, mark each tower in Andorhal; you will need to stand in the doorway of the tower to successfully mark it. ~5,800 XP.
+  complete 5097 "All Along the Watchtowers" @40.1,71.6
+  turnin 5097 "All Along the Watchtowers" @42.7,84.0
+
+step The Scourge Cauldrons
+  zone map 1422
+  tip Speak with High Priestess MacDonnell at Chillwind Point, Western Plaguelands. · Hand in: High Priestess MacDonnell, Western Plaguelands (43, 84.5). ~530 XP.
+  turnin 5215 "The Scourge Cauldrons" @43.0,84.5
+
+step Return to Chillwind Camp
+  zone map 1422
+  tip Bring the Filled Dalson's Tears Bottle to High Priestess MacDonnell at Chillwind Camp, Western Plaguelands. · Hand in: High Priestess MacDonnell, Western Plaguelands (43, 84.5). ~2,800 XP.
+  turnin 5220 "Return to Chillwind Camp" @43.0,84.5
+
+step A Plague Upon Thee
+  zone map 1422
+  tip Find someplace suitable in the center of the Northridge Lumber Mill in Western Plaguelands to place the Barrel of Plagueland Termites. · Hand in: Termite Barrel, Western Plaguelands (48.3, 32). ~2,800 XP.
+  turnin 5904 "A Plague Upon Thee" @48.3,32.0
+
+step Chillwind Camp, Western Plaguelands (43, 84) · round 3
+  zone map 1422
+  accept 211 "Alas, Andorhal" @42.7,84.0
+  accept 5223 "Return to Chillwind Camp" @53.0,65.6
+  accept 6389 "A Plague Upon Thee" @48.3,32.0
+  accept 5533 "Scholomance" @42.7,84.0
+
+step Alas, Andorhal
+  zone map 1422
+  tip Bring Araj's Phylactery Shard to Commander Ashlam Valorfist at Chillwind Camp, Western Plaguelands. ~8,300 XP.
+  complete 211 "Alas, Andorhal" @45.3,69.2
+  turnin 211 "Alas, Andorhal" @42.7,84.0
+
+step Return to Chillwind Camp
+  zone map 1422
+  tip Bring the Filled Writhing Haunt Bottle to High Priestess MacDonnell at Chillwind Camp, Western Plaguelands. · Hand in: High Priestess MacDonnell, Western Plaguelands (43, 84.5). ~5,650 XP.
+  turnin 5223 "Return to Chillwind Camp" @43.0,84.5
+
+step A Plague Upon Thee
+  zone map 1422
+  tip Release the Plagueland Termites in the Northridge Lumber Mill, then return with the Barrel of Plagueland Termites to Nathaniel Dumah at Chillwind Camp in Western Plaguelands. · Hand in: Nathaniel Dumah, Western Plaguelands (43.4, 84.8). ~5,650 XP.
+  turnin 6389 "A Plague Upon Thee" @43.4,84.8
+
+step Scholomance
+  zone map 1422
+  tip Speak with Alchemist Arbington at Chillwind Point, Western Plaguelands. · Hand in: Alchemist Arbington, Western Plaguelands (42.7, 83.8). ~560 XP.
+  turnin 5533 "Scholomance" @42.7,83.8
+
+step Chillwind Camp, Western Plaguelands (43, 84) · round 4
+  zone map 1422
+  accept 5237 "Mission Accomplished!" @42.7,84.0
+  accept 5537 "Skeletal Fragments" @42.7,83.8
+
+step Mission Accomplished!
+  zone map 1422
+  tip ~9,300 XP.
+  turnin 5237 "Mission Accomplished!" @42.7,84.0
+
+step Skeletal Fragments
+  zone map 1422
+  tip 15 Skeletal Fragments drop from the skeletons in Western Plaguelands (Skeletal Terrors, Warlords, Flayers, Executioners, Sorcerers and Acolytes, mostly around Andorhal). · This is part 2 of the Scholomance key chain. · Next you take the Imbued Skeletal Fragments plus 15 gold to Krinkle Goodsteel in Gadgetzan (Mold Rhymes With...). · Then use the mold with 2 Thorium Bars on the shore of the lava lake in front of Blazerunner's cave on Fire Plume Ridge, Un'Goro, out of combat (Fire Plume Forged). · Last, kill Araj the Summoner in Andorhal for Araj's Scarab and turn it in for the Skeleton Key. · ~4,500 XP.
+  complete 5537 "Skeletal Fragments" @47.3,84.3
+  turnin 5537 "Skeletal Fragments" @42.7,83.8
+
+step Felstone + Dalson's Tears
+  zone map 1422
+  accept 5021 "Better Late Than Never" @38.4,54.1
+  accept 5060 "Locked Away" @47.4,49.6
+  task "Undead Potatoes" optional
+
+step Better Late Than Never
+  zone map 1422
+  tip The ramblings of the ghostly woman indicated that she needed a package delivered. · Hand in: Janice's Parcel, Western Plaguelands (38.7, 55.2). ~2,550 XP.
+  turnin 5021 "Better Late Than Never" @38.7,55.2
+
+step Locked Away
+  zone map 1422
+  tip ~7,050 XP.
+  complete 5060 "Locked Away" @48.2,49.7
+  turnin 5060 "Locked Away" @47.4,49.6
+
+step Felstone + Dalson's Tears · round 2
+  zone map 1422
+  accept 5022 "Better Late Than Never" @38.7,55.2
+
+step Around WPL
+  zone map 1422
+  accept 4984 "The Wildlife Suffers Too" @53.7,64.7
+  accept 4971 "A Matter of Time" @39.5,66.8
+  accept 6004 "Unfinished Business" @51.9,28.1
+  accept 5142 "Little Pamela" @49.2,78.6
+
+step The Wildlife Suffers Too
+  zone map 1422
+  tip Destroy 8 Diseased Wolves, and then return to Mulgris Deepriver at the Writhing Haunt, Western Plaguelands. ~4,100 XP.
+  complete 4984 "The Wildlife Suffers Too" @52.5,70.5
+  turnin 4984 "The Wildlife Suffers Too" @53.7,64.7
+
+step A Matter of Time
+  zone map 1422
+  tip Use the Temporal Displacer near one of Andorhal's silos and uncover Temporal Parasites. ~5,800 XP.
+  complete 4971 "A Matter of Time" @49.0,69.3
+  turnin 4971 "A Matter of Time" @39.5,66.8
+
+step Unfinished Business
+  zone map 1422
+  tip Kill 2 Scarlet Medics, 2 Scarlet Hunters, 2 Scarlet Magi and 2 Scarlet Knights before returning to Kirsta Deepshadow in Western Plaguelands. ~5,800 XP.
+  complete 6004 "Unfinished Business" @43.7,67.8
+  turnin 6004 "Unfinished Business" @51.9,28.1
+
+step Around WPL · round 2
+  zone map 1422
+  accept 4985 "The Wildlife Suffers Too" @53.7,64.7
+  accept 4972 "Counting Out Time" @39.5,66.8
+  accept 6023 "Unfinished Business" @51.9,28.1
+
+step The Wildlife Suffers Too
+  zone map 1422
+  tip Destroy 8 Diseased Grizzlies, and then return to Mulgris Deepriver at the Writhing Haunt, Western Plaguelands. ~4,350 XP.
+  complete 4985 "The Wildlife Suffers Too" @55.2,64.5
+  turnin 4985 "The Wildlife Suffers Too" @53.7,64.7
+
+step Counting Out Time
+  zone map 1422
+  tip Locate 5 Andorhal Watches, found in lockboxes amongst the rubble of the city. ~5,800 XP.
+  complete 4972 "Counting Out Time" @42.8,73.9
+  turnin 4972 "Counting Out Time" @39.5,66.8
+
+step Unfinished Business
+  zone map 1422
+  tip Kill Huntsman Radley and Cavalier Durgen before returning to Kirsta Deepshadow in Western Plaguelands. ~6,000 XP.
+  complete 6023 "Unfinished Business" @57.8,36.1
+  turnin 6023 "Unfinished Business" @51.9,28.1
+
+step Around WPL · round 3
+  zone map 1422
+  accept 4986 "Glyphed Oaken Branch" @53.7,64.7
+  accept 6025 "Unfinished Business" @51.9,28.1
+
+step Unfinished Business
+  zone map 1422
+  tip Enter Hearthglen and find a high vantage point from which you can see the town and gauge the Scarlet Crusade's forces, then return to Kirsta Deepshadow in Western Plaguelands. ~6,200 XP.
+  complete 6025 "Unfinished Business"
+  turnin 6025 "Unfinished Business" @51.9,28.1
+
+step Scholomance
+  zone map 1422
+  task "Necromancy 101" optional
+

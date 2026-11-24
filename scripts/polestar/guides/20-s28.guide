@@ -1,0 +1,223 @@
+guide hearthbound/s28
+title Winterspring
+faction Alliance
+levels 56-57
+zone map 1452
+author Brownie
+keywords Hearthbound, Everlook
+next hearthbound/s26
+
+step Everlook, Winterspring (61, 38)
+  zone map 1452
+  task "Ka-Boom!" optional
+  accept 6603 "Trouble in Winterspring!" @60.7,38.2
+  accept 3783 "Are We There, Yeti?" @60.9,37.6
+  accept 6028 "The Everlook Report" @61.4,39.0
+  accept 6030 "Duke Nicholas Zverenhoff" @61.4,39.0
+  accept 5601 "Sister Pamela" @61.3,39.0
+
+step Trouble in Winterspring!
+  zone map 1452
+  tip Find Donova Snowden near the hot springs in Winterspring. · Hand in: Donova Snowden, Winterspring (31.3, 45.2). ~580 XP.
+  turnin 6603 "Trouble in Winterspring!" @31.3,45.2
+
+step Are We There, Yeti?
+  zone map 1452
+  tip Collect 10 Thick Yeti Furs for Umi Rumplesnicker in Everlook. ~4,350 XP.
+  complete 3783 "Are We There, Yeti?" @49.0,46.8
+  turnin 3783 "Are We There, Yeti?" @60.9,37.6
+
+step Everlook, Winterspring (61, 38) · round 2
+  zone map 1452
+  accept 977 "Are We There, Yeti?" @60.9,37.6
+
+step Are We There, Yeti?
+  zone map 1452
+  tip Collect 2 Pristine Yeti Horns for Umi Rumplesnicker in Everlook. ~4,650 XP.
+  complete 977 "Are We There, Yeti?" @65.9,43.6
+  turnin 977 "Are We There, Yeti?" @60.9,37.6
+
+step Everlook, Winterspring (61, 38) · round 3
+  zone map 1452
+  accept 5163 "Are We There, Yeti?" @60.9,37.6
+
+step Are We There, Yeti?
+  zone map 1452
+  tip Take Umi's Mechanical Yeti and scare her friends with it: ~7,750 XP.
+  complete 5163 "Are We There, Yeti?" @61.5,38.6
+  turnin 5163 "Are We There, Yeti?" @60.9,37.6
+
+step Mount Hyjal side trip: free 18-slot bag + 5% speed trinket (~30 min)
+  zone map 2482
+  tip Do this first. · Bluebell flies to Everlook, so you never have to sneak through the gorge again.
+  accept 93269 "Top of the Post" npc 11118 "Innkeeper Vizzie" map 1452 @61.4,38.8 -- you should already have this one
+  turnin 93269 "Top of the Post" @70.9,51.6 -- Mount Hyjal · Summit of Eternity · Sebelia (70.8, 51.4)
+  accept 92859 "Shroud of the Winter Wilds" map 1452 @60.8,37.8
+  task "Mount Hyjal: grab both flight paths" optional
+  accept 93197 "Mending Communications" @70.9,51.6
+
+step Shroud of the Winter Wilds
+  zone map 1452
+  tip Lv 55+. · Get 5 Chillwind Chimaera Fur + 5 Winterspring Owl Feathers (owls and chimaeras all over east Winterspring). · Reward: Potion of Winterspring Shrouding. · Drink it right before Darkwhisper Gorge (south Winterspring) and stay as far from the demons as you can: it is not full invisibility.
+  complete 92859 "Shroud of the Winter Wilds"
+  turnin 92859 "Shroud of the Winter Wilds" @60.8,37.8
+
+step Mending Communications
+  zone map 2482
+  tip Lv 56+. · Deliver the mail to Innkeeper Vizzie in Everlook (61.2, 38.8). · Fly Fayran → Bluebell → Everlook.
+  turnin 93197 "Mending Communications" npc 11118 "Innkeeper Vizzie" map 1452 @61.4,38.8
+
+step Mount Hyjal side trip: free 18-slot bag + 5% speed trinket (~30 min) · round 2
+  zone map 1452
+  accept 93406 "Unfrozen Deliveries" @61.4,38.8
+
+step Unfrozen Deliveries
+  zone map 1452
+  tip Get 4 Missing Mail from the Ice Thistle Yetis south-east of Everlook (Ice Thistle Hills). · Then fly back to Sebelia.
+  complete 93406 "Unfrozen Deliveries"
+  turnin 93406 "Unfrozen Deliveries" @61.4,38.8
+
+step Donova Snowden (31, 45)
+  zone map 1452
+  accept 5082 "Threat of the Winterfall" @31.3,45.2
+  accept 5083 "Winterfall Firewater" item 12771 "Empty Firewater Flask"
+  accept 4842 "Strange Sources" @31.3,45.2
+  accept 3909 "The Videre Elixir" @31.3,45.2
+
+step Threat of the Winterfall
+  zone map 1452
+  tip Donova Snowden in Winterspring wants you to kill 8 Winterfall Pathfinders, 8 Winterfall Den Watchers, and 8 Winterfall Totemics. ~5,800 XP.
+  complete 5082 "Threat of the Winterfall" @41.9,44.8
+  turnin 5082 "Threat of the Winterfall" @31.3,45.2
+
+step Winterfall Firewater
+  zone map 1452
+  tip Bring the Empty Firewater Flask to Donova Snowden in Winterspring. · Hand in: Donova Snowden, Winterspring (31.3, 45.2). ~2,900 XP.
+  turnin 5083 "Winterfall Firewater" @31.3,45.2
+
+step Strange Sources
+  zone map 1452
+  tip Follow Donova Snowden's instructions, then report back. ~5,800 XP.
+  complete 4842 "Strange Sources"
+  turnin 4842 "Strange Sources" @31.3,45.2
+
+step The Videre Elixir
+  zone map 1452
+  tip Seek out Gregan Brewspewer in northern Feralas. ~5,100 XP.
+  complete 3909 "The Videre Elixir"
+  turnin 3909 "The Videre Elixir" @31.3,45.2
+
+step Donova Snowden (31, 45) · round 2
+  zone map 1452
+  accept 5084 "Falling to Corruption" @31.3,45.2
+  accept 3912 "Meet at the Grave" @31.3,45.2
+
+step Meet at the Grave
+  zone map 1452
+  tip Go to the graveyard outside Gadgetzan, and use the Videre Elixir. · Hand in: Gaeriyan, Tanaris (53.9, 23.3). · Gaeriyan is in Tanaris (Gadgetzan graveyard). · Only continue the Linken chain if you go back to Kalimdor's south. ~5,100 XP.
+  turnin 3912 "Meet at the Grave" npc 9299 "Gaeriyan" map 1446 @53.9,23.3
+
+step Donova Snowden (31, 45) · round 3
+  zone map 1448
+  accept 5085 "Mystery Goo" @60.2,5.8
+
+step Mystery Goo
+  zone map 1448
+  tip Report back to Donova Snowden with your findings. · Hand in: Donova Snowden, Winterspring (31.3, 45.2). ~4,350 XP.
+  turnin 5085 "Mystery Goo" npc 9298 "Donova Snowden" @72.7,19.2
+
+step Donova Snowden (31, 45) · round 4
+  zone map 1452
+  accept 5086 "Toxic Horrors" @31.3,45.2
+
+step Toxic Horrors
+  zone map 1452
+  tip Collect 3 Toxic Horror Droplets for Donova Snowden in Winterspring. ~4,350 XP.
+  complete 5086 "Toxic Horrors" @12.7,51.8
+  turnin 5086 "Toxic Horrors" @31.3,45.2
+
+step Donova Snowden (31, 45) · round 5
+  zone map 1452
+  accept 5087 "Winterfall Runners" @31.3,45.2
+
+step Winterfall Runners
+  zone map 1452
+  tip Find the Winterfall Runners and stop them from delivering their shipment to Winterfall Village. ~6,000 XP.
+  complete 5087 "Winterfall Runners" @27.9,34.5
+  turnin 5087 "Winterfall Runners" @31.3,45.2
+
+step Starfall Village + Kel'Theril (52, 30)
+  zone map 1452
+  accept 5244 "The Ruins of Kel'Theril" @52.0,30.4
+  accept 4861 "Enraged Wildkin" @52.1,30.4
+
+step The Ruins of Kel'Theril
+  zone map 1452
+  tip Speak with Jaron Stoneshaper in Starfall Village. · Hand in: Jaron Stoneshaper, Winterspring (52.1, 30.4). ~580 XP.
+  turnin 5244 "The Ruins of Kel'Theril" @52.1,30.4
+
+step Enraged Wildkin
+  zone map 1452
+  tip Locate Jaron Stoneshaper's wrecked camp and supplies in southern Winterspring. · Hand in: Damaged Crate, Winterspring (59, 59.8). ~3,200 XP.
+  turnin 4861 "Enraged Wildkin" @59.0,59.8
+
+step Starfall Village + Kel'Theril (52, 30) · round 2
+  zone map 1452
+  accept 5245 "Troubled Spirits of Kel'Theril" @52.1,30.4
+  accept 4863 "Enraged Wildkin" @59.0,59.8
+
+step Troubled Spirits of Kel'Theril
+  zone map 1452
+  tip Use Jaron's Pick to find the four Highborne Relic Fragments. · Hand in: Aurora Skycaller, Eastern Plaguelands (46.5, 16). · Hold it for the Eastern Plaguelands (Aurora Skycaller, north). ~5,800 XP.
+  complete 5245 "Troubled Spirits of Kel'Theril" @55.1,43.0
+  note Keep it: you hand this in later on the route.
+
+step Enraged Wildkin
+  zone map 1452
+  tip Find Jaron Stoneshaper's wrecked wagon. · Hand in: Jaron's Wagon, Winterspring (61.4, 60.7). ~3,200 XP.
+  turnin 4863 "Enraged Wildkin" @61.4,60.7
+
+step Starfall Village + Kel'Theril (52, 30) · round 3
+  zone map 1452
+  accept 4864 "Enraged Wildkin" @61.4,60.7
+
+step Enraged Wildkin
+  zone map 1452
+  tip Pick up Jaron's Supplies from the snow, then find the wildkin that stole the amulet Jaron spoke of. · Hand in: Jaron Stoneshaper, Winterspring (52.1, 30.4). ~6,400 XP.
+  complete 4864 "Enraged Wildkin" @61.4,60.7
+  turnin 4864 "Enraged Wildkin" @52.1,30.4
+
+step Timbermaw side
+  zone map 1452
+  accept 8465 "Speak to Salfa" map 1448 @64.8,8.1
+  accept 8464 "Winterfall Activity" @27.7,34.5
+
+step Winterfall Activity
+  zone map 1452
+  tip Salfa wants you to kill 8 Winterfall Shaman, 8 Winterfall Den Watchers, and 8 Winterfall Ursa. ~6,200 XP.
+  complete 8464 "Winterfall Activity" @67.5,39.8
+  turnin 8464 "Winterfall Activity" @27.7,34.5
+
+step Only with a group
+  zone map 1452
+  accept 5121 "High Chief Winterfall" @31.3,45.2
+
+step High Chief Winterfall
+  zone map 1452
+  tip Donova Snowden in Winterspring wants you to defeat High Chief Winterfall. · Elite. · Group up. ~6,400 XP.
+  complete 5121 "High Chief Winterfall" @69.6,38.3
+  turnin 5121 "High Chief Winterfall" @31.3,45.2
+
+step Only with a group · round 2
+  zone map 1452
+  accept 5123 "The Final Piece" item 12842 "Crudely-written Log"
+
+step The Final Piece
+  zone map 1452
+  tip Only after you kill High Chief Winterfall: his Crudely-written Log starts it · Bring the Crudely-written Log to Donova Snowden in Winterspring. · Hand in: Donova Snowden, Winterspring (31.3, 45.2). ~3,200 XP.
+  turnin 5123 "The Final Piece" @31.3,45.2
+
+step Only with a group · round 3
+  zone map 1452
+  accept 5128 "Words of the High Chief" @31.3,45.2
+

@@ -1,0 +1,507 @@
+guide hearthbound/s14
+title Theramore + Desolace
+faction Alliance
+levels 35-37
+zone map 1453
+author Brownie
+keywords Hearthbound, Stormwind → Ironforge → Menethil → Theramore → Stonetalon → Desolace
+next hearthbound/s15
+
+step Stormwind errands
+  zone map 1453
+  tip Lv 30+ with 25 books = the last reward (Crest of Elucidation, Researcher's Night Light or Truthseeker's Bow). · For you it's the off-hand/shield, so hover them. · A library book you may have missed in Westfall. · Quick flight to Sentinel Hill, then ride south.
+  accept 1274 "The Missing Diplomat" @49.6,44.5
+  accept 538 "Southshore" @77.1,30.2
+  accept 690 "Malin's Request" @50.5,87.5
+  accept 6141 "Brother Anton" @52.6,43.2
+  accept 2923 "Tinkmaster Overspark" @51.1,48.4
+  task "Turn in library books" optional
+  task "Bewitchments and Glamours (optional)" optional
+  accept 92456 "A Green Sample" @31.5,62.6 -- dungeon quest, hold it for the run
+  accept 92489 "Power Overwhelming" @48.7,87.6 -- dungeon quest, hold it for the run
+  accept 1947 "Journey to the Marsh" @49.6,85.8
+
+step The Missing Diplomat
+  zone map 1453
+  tip Find Bishop DeLavey in Stormwind Keep. · Hand in: Bishop DeLavey, Stormwind (80.2, 44.1). ~230 XP.
+  turnin 1274 "The Missing Diplomat" @80.2,44.1
+
+step Malin's Request
+  zone map 1453
+  tip Find Skuerto at Refuge Pointe in the Arathi Highlands. · Hand in: Skuerto, Arathi (46.6, 47). ~1,950 XP.
+  turnin 690 "Malin's Request" npc 2789 "Skuerto" map 1417 @46.6,47.0
+
+step Journey to the Marsh
+  zone map 1453
+  tip Mage only, Lv 30+. · Your mage friend grabs this: it starts the Mage's Wand chain (talk to Tabetha in Dustwallow).
+  turnin 1947 "Journey to the Marsh" npc 6546 "Tabetha" map 1441 @67.3,2.2
+
+step Stormwind errands · round 2
+  zone map 1453
+  accept 1241 "The Missing Diplomat" @80.2,44.1
+
+step The Missing Diplomat
+  zone map 1453
+  tip Find Jorgen in Stormwind City. · Hand in: Jorgen, Stormwind (76.3, 85.1). ~230 XP.
+  turnin 1241 "The Missing Diplomat" @76.3,85.1
+
+step Stormwind errands · round 3
+  zone map 1453
+  accept 1242 "The Missing Diplomat" @76.3,85.1
+
+step The Missing Diplomat
+  zone map 1453
+  tip Delivery Jorgen's Sealed Note to Elling Trias in Stormwind City. · Hand in: Elling Trias, Stormwind (66, 74.1). ~230 XP.
+  turnin 1242 "The Missing Diplomat" @66.0,74.1
+
+step Stormwind errands · round 4
+  zone map 1453
+  accept 1243 "The Missing Diplomat" @66.0,74.1
+
+step The Missing Diplomat
+  zone map 1453
+  tip Give the Sealed Note to Watcher Backus in Duskwood. · Hand in: Watcher Backus, Duskwood (74.8, 44.2). ~230 XP.
+  turnin 1243 "The Missing Diplomat" npc 840 "Watcher Backus" map 1430 @14.1,38.8
+
+step Stormwind errands · round 5
+  zone map 1453
+  accept 1248 "The Missing Diplomat" @66.0,74.1
+
+step The Missing Diplomat
+  zone map 1453
+  tip Speak to Mikhail in the Wetlands. · Hand in: Mikhail, Wetlands (10.6, 60.8). ~660 XP.
+  turnin 1248 "The Missing Diplomat" npc 4963 "Mikhail" map 1437 @10.6,60.8
+
+step Stormwind errands · round 6
+  zone map 1437
+  accept 1264 "The Missing Diplomat" @10.6,60.8
+
+step The Missing Diplomat
+  zone map 1437
+  tip Subdue Tapoke Jahn before he escapes, and then return to Mikhail in Menethil. ~1,300 XP.
+  turnin 1264 "The Missing Diplomat" npc 4964 "Commander Samaul" map 1445 @68.0,48.7
+
+step Stormwind errands · round 7
+  zone map 1437
+  accept 1250 "The Missing Diplomat" @10.5,60.3
+
+step The Missing Diplomat
+  zone map 1437
+  tip Speak to Mikhail in the Wetlands. · Hand in: Mikhail, Wetlands (10.6, 60.8). ~265 XP.
+  turnin 1250 "The Missing Diplomat" @10.6,60.8
+
+step Stormwind errands · round 8
+  zone map 1437
+  accept 1264 "The Missing Diplomat" @10.6,60.8
+
+step The Missing Diplomat
+  zone map 1437
+  tip Find Commander Samaul in Dustwallow Marsh. · Hand in: Commander Samaul, Dustwallow Marsh (68, 48.7). · Samaul is in Theramore, right after the boat. ~1,300 XP.
+  turnin 1264 "The Missing Diplomat" npc 4964 "Commander Samaul" map 1445 @68.0,48.7
+
+step Stormwind errands · round 9
+  zone map 1445
+  accept 1265 "The Missing Diplomat" @68.0,48.7
+
+step The Missing Diplomat
+  zone map 1445
+  tip Search Sentry Point for any sign of Private Hendel. · Hand in: Archmage Tervosh, Dustwallow Marsh (66.4, 49.3). ~275 XP.
+  complete 1265 "The Missing Diplomat"
+  turnin 1265 "The Missing Diplomat" @66.4,49.3
+
+step Stormwind errands · round 10
+  zone map 1445
+  accept 1266 "The Missing Diplomat" @66.4,49.3
+
+step The Missing Diplomat
+  zone map 1445
+  tip Find Private Hendel in Dustwallow Marsh. · Hand in: Private Hendel, Dustwallow Marsh (45.2, 24.6). ~700 XP.
+  turnin 1266 "The Missing Diplomat" @45.2,24.7
+
+step Stormwind errands · round 11
+  zone map 1445
+  accept 1324 "The Missing Diplomat" @45.2,24.7
+
+step The Missing Diplomat
+  zone map 1445
+  tip Defeat Private Hendel in Dustwallow Marsh. · Hand in: Archmage Tervosh, Dustwallow Marsh (66.4, 49.3). · Hendel and his two guards fight you. · Heal through it, then they surrender. ~2,150 XP.
+  complete 1324 "The Missing Diplomat" @45.2,24.6
+  turnin 1324 "The Missing Diplomat" @66.4,49.3
+
+step Stormwind errands · round 12
+  zone map 1445
+  accept 1267 "The Missing Diplomat" @66.3,49.0
+
+step The Missing Diplomat
+  zone map 1445
+  tip Speak to Jaina Proudmore in Dustwallow Swamp. · Hand in: Lady Jaina Proudmoore, Dustwallow Marsh (66.3, 49). ~4,300 XP.
+  turnin 1267 "The Missing Diplomat" @66.3,49.0
+
+step Quick Duskwood detour (fly to Darkshire)
+  zone map 1431
+  accept 1245 "The Missing Diplomat" @74.8,44.2
+
+step The Missing Diplomat
+  zone map 1431
+  tip Find the Defias Docket and return it to Watcher Backus in Duskwood. ~2,450 XP.
+  turnin 1245 "The Missing Diplomat" npc 482 "Elling Trias" map 1453 @66.0,74.1
+
+step Quick Duskwood detour (fly to Darkshire) · round 2
+  zone map 1431
+  accept 1245 "The Missing Diplomat" @74.8,44.2
+
+step The Missing Diplomat
+  zone map 1431
+  tip Bring the Defias Docket to Elling Trias in Stormwind. · Hand in: Elling Trias, Stormwind (66, 74.1). ~245 XP.
+  turnin 1245 "The Missing Diplomat" npc 482 "Elling Trias" map 1453 @66.0,74.1
+
+step Back in Stormwind, then the tram to Ironforge
+  zone map 1455
+  turnin 971 "Knowledge in the Deeps" @50.8,5.6 -- Ironforge · Hall of Explorers · Gerrig Bonegrip (50.8, 5.6)
+  accept 1246 "The Missing Diplomat" map 1453 @66.0,74.1
+  accept 1453 "Reclaimers' Business in Desolace" @70.0,21.3
+  accept 1050 "Mythology of the Titans" @75.0,12.5
+  accept 5641 "A Lack of Fear" @24.7,8.2
+
+step The Missing Diplomat
+  zone map 1453
+  tip Speak to Dashel Stonefist in Stormwind. · Hand in: Dashel Stonefist, Stormwind (74.3, 59.2). ~250 XP.
+  turnin 1246 "The Missing Diplomat" @74.3,59.2
+
+step Mythology of the Titans
+  zone map 1455
+  tip The book is in the Scarlet Monastery Library wing. · It's a single book lying in the halls on the way to Arcanist Doan. · It's easy to run past, so watch the floor and side tables as you clear (it sparkles when you hover over it). · Loot it and hand it to Librarian Mae Paledust in the Hall of Explorers, Ironforge. · ~3,550 XP.
+  complete 1050 "Mythology of the Titans"
+  note Keep it: you hand this in later on the route.
+
+step A Lack of Fear
+  zone map 1455
+  tip Dwarf priest quest from Lv 20 that teaches Fear Ward. · Check your spellbook: if Fear Ward is already there, skip it.
+  turnin 5641 "A Lack of Fear" @24.7,8.2
+
+step Back in Stormwind, then the tram to Ironforge · round 2
+  zone map 1453
+  accept 1447 "The Missing Diplomat" @74.3,59.2
+
+step The Missing Diplomat
+  zone map 1453
+  tip Defeat Dashel Stonefist in Stormwind. ~1,250 XP.
+  complete 1447 "The Missing Diplomat" @74.3,59.2
+  turnin 1447 "The Missing Diplomat" @74.3,59.2
+
+step Back in Stormwind, then the tram to Ironforge · round 3
+  zone map 1453
+  accept 1247 "The Missing Diplomat" @74.3,59.2
+
+step The Missing Diplomat
+  zone map 1453
+  tip Speak to Elling Trias in Stormwind. · Hand in: Elling Trias, Stormwind (66, 74.1). ~250 XP.
+  turnin 1247 "The Missing Diplomat" @66.0,74.1
+
+step Gnomeregan: grab in Ironforge + Dun Morogh, then run it (entrance 24, 39)
+  zone map 1426
+  tip Range 29-38. · Kill Mekgineer Thermaplugg.
+  accept 2922 "Save Techbot's Brain!" map 1455 @69.6,50.3
+  accept 2924 "Essential Artificials" map 1455 @67.9,46.1
+  accept 2930 "Data Rescue" map 1455 @69.8,48.1
+  accept 2929 "The Grand Betrayal" map 1455 @68.8,49.0
+  accept 2928 "Gyrodrillmatic Excavationators" map 1453 @62.6,34.1
+  accept 2927 "The Day After" map 1455 @69.2,50.6
+  task "Legacy: Gnomeregan" optional
+
+step Save Techbot's Brain!
+  zone map 1455
+  tip Techbot is in the outer (non-instanced) part of Gnomeregan, so you don't need a group. · Go in from Dun Morogh. · At the junction before the instance portal, go right toward the Train Depot / punch-card area. · Go through the big room full of troggs; Techbot (a small robot) wanders in the room on the east side, by the Workshop door. · He nets you, so fight him away from other mobs. · Loot Techbot's Memory Core and take it to Tinkmaster Overspark in Ironforge.
+  complete 2922 "Save Techbot's Brain!" map 1426 @19.8,31.9
+  turnin 2922 "Save Techbot's Brain!" @69.6,50.3
+
+step Essential Artificials
+  zone map 1455
+  tip These don't drop from mobs. · In the deeper parts of Gnomeregan you'll see Artificial Extrapolators: tall steam-powered closets along the walls. · Click one for 1 Essential Artificial. · You need 12, and one full clear usually gives everyone enough. · Turn in to Klockmort in Ironforge. · ~3,050 XP.
+  complete 2924 "Essential Artificials"
+  turnin 2924 "Essential Artificials" @67.9,46.1
+
+step Data Rescue
+  zone map 1455
+  tip A punch-card chain. · Outside the instance (in the outer tunnels and around the entrance), kill Caverndeep Looters, Caverndeep Invaders, Caverndeep Pillagers, Addled Lepers or Irradiated Invaders until a White Punch Card drops. · Use it at a Matrix Punchograph 3005-A in the Train Depot (on the raised platform in the middle, or by the Workshop door) to get a Yellow card. · Inside the instance: 3005-B in the Dormitory, just past the Clean Zone, gives Blue. · 3005-C is further in, on a raised platform, and gives Red. · 3005-D on the lower floor of the Engineering Labs (near the end) gives the Prismatic Punch Card.
+  complete 2930 "Data Rescue"
+  turnin 2930 "Data Rescue" @69.8,48.1
+
+step The Grand Betrayal
+  zone map 1455
+  tip Just kill Mekgineer Thermaplugg, the last boss of Gnomeregan. · When he's low, bombs come out of the wall vents. · Someone has to click the buttons on the walls to shut the vents, and you keep healing. · ~2,750 XP. · Holy BiS: reward Civinad Robes (Lv 40 chest). · Gnomeregan quest.
+  complete 2929 "The Grand Betrayal"
+  turnin 2929 "The Grand Betrayal" @68.8,49.0
+
+step Gyrodrillmatic Excavationators
+  zone map 1453
+  tip Bring twenty-four Robo-mechanical Guts to Shoni in Stormwind. · You already have this one in your log. ~2,450 XP.
+  complete 2928 "Gyrodrillmatic Excavationators" map 1426 @18.1,39.3
+  turnin 2928 "Gyrodrillmatic Excavationators" @62.6,34.1
+
+step The Day After
+  zone map 1455
+  tip Speak with Ozzie Togglevolt in Kharanos. · Hand in: Ozzie Togglevolt, Dun Morogh (45.9, 49.4). ~220 XP.
+  turnin 2927 "The Day After" npc 1268 "Ozzie Togglevolt" map 1426 @45.9,49.4
+
+step Gnomeregan: grab in Ironforge + Dun Morogh, then run it (entrance 24, 39) · round 2
+  zone map 1426
+  accept 2926 "Gnogaine" @45.9,49.4
+
+step Gnogaine
+  zone map 1426
+  tip Ozzie gives you an Empty Leaden Collection Phial. · Go to the Gnomeregan entrance area in west Dun Morogh (the airfield, ~24, 39) and use the phial on Irradiated Invaders or Irradiated Pillagers (troggs) while they're alive. · It fills up over a few uses. · Bring the Full Leaden Collection Phial back to Ozzie in Kharanos, and he hands you The Only Cure is More Green Glow. · ~2,200 XP.
+  complete 2926 "Gnogaine"
+  turnin 2926 "Gnogaine" @45.9,49.4
+
+step Gnomeregan: grab in Ironforge + Dun Morogh, then run it (entrance 24, 39) · round 3
+  zone map 1426
+  accept 2962 "The Only Cure is More Green Glow" @45.9,49.4
+
+step The Only Cure is More Green Glow
+  zone map 1426
+  tip Ozzie gives you a Heavy Leaden Collection Phial. · Inside the Gnomeregan instance, go to the bottom floor of the Hall of Gears (the first big round room; you get down through the Clean Zone). · Use the phial on a living Irradiated Slime, Lurker or Horror. · It can fail, so keep trying. · Keep a free bag slot: the High Potency Radioactive Fallout goes in your bags and only lasts 2 hours, so turn it in to Ozzie before it expires. · If it runs out, you still have the phial and can go get more.
+  complete 2962 "The Only Cure is More Green Glow"
+  turnin 2962 "The Only Cure is More Green Glow" @45.9,49.4
+
+step Theramore (boat from Menethil)
+  zone map 1445
+  tip Missing Diplomat continues in Theramore right off the boat. · Mage hands in Journey to the Marsh and gets Hidden Secrets (go see Magus Tirth in the Shimmering Flats) and Items of Power (bring 1 Jade + a Bolt Charged Bramble). · Tabetha is also the Tiara of the Deep NPC later.
+  task "Boat Menethil → Theramore" optional
+  task "Mage: Hidden Secrets + Items of Power" optional
+
+step Mage friend detour: Shimmering Flats (on the way west)
+  zone map 1441
+  accept 1950 "Get the Scoop" @78.3,75.7
+  accept 1951 "Rituals of Power" @78.3,75.7
+
+step Get the Scoop
+  zone map 1441
+  tip From Theramore, ride the Barrens south to the Great Lift, then east to the Raceway. · Mage hands in Hidden Secrets, then does Get the Scoop (find the phrase for Tirth's strongbox) and gets Rituals of Power.
+  complete 1950 "Get the Scoop"
+  turnin 1950 "Get the Scoop" @78.3,75.7
+
+step Rituals of Power
+  zone map 1441
+  tip Hold it: the book Rituals of Power is in the Scarlet Monastery Library (your Lv 40 SM run). · Then back to Tabetha in Dustwallow.
+  complete 1951 "Rituals of Power"
+  note Keep it: you hand this in later on the route.
+
+step Stonetalon on the way
+  zone map 1442
+  tip On the walk through Stonetalon. · The camp is in the hills near Sun Rock Retreat (Horde town), so don't go into the town itself. · Start Scramble, then click the Mound of Dirt on the hillside just east · That hands in Scramble and gives you Wet Job, which points you to the Loch Modan dam · Walk through Stonetalon to the Peak, then south into Desolace. · You pass it entering Stonetalon from the Barrens side. · Lv 16-18 mobs, so it's free.
+  task "Cozy Sleeping Bag · step 3" optional
+  task "Cozy Sleeping Bag · step 4 (Scramble → Wet Job)" optional
+  task "Stonetalon Peak flight path" optional
+  task "Fury of the Land" optional
+
+step Nijel's Point (66, 10)
+  zone map 1443
+  task "Set hearth + flight path" optional
+  accept 1387 "Centaur Bounty" @66.7,10.9
+  accept 1385 "Brutal Politics" @66.7,10.9
+  accept 1458 "Reagents for Reclaimers Inc." @66.2,9.6
+  accept 1437 "Vahlarriel's Search" @66.4,11.8
+  accept 1454 "The Karnitol Shipwreck" @66.2,9.6
+  accept 261 "Down the Scarlet Path" @66.5,7.9
+  accept 93443 "Lost Shipping Crate" object 658116 "Lost Shipping Crate" map 1431 @38.4,87.8
+
+step Centaur Bounty
+  zone map 1443
+  tip Bring 15 Centaur Ears to Corporal Melkins at Nijel's Point in Desolace. ~3,750 XP.
+  complete 1387 "Centaur Bounty" @68.5,52.2
+  turnin 1387 "Centaur Bounty" @66.7,10.9
+
+step Brutal Politics
+  zone map 1443
+  tip Kicks off the Magram chain. · Walk it to Warug. · Hand in: Warug, Magram Village (75.0, 68.2) · You need Friendly with Magram to talk business: kill Gelkis centaurs (Gelkis Village, ~37, 80) or buy it
+  complete 1385 "Brutal Politics"
+  turnin 1385 "Brutal Politics" @75.0,68.2
+
+step Reagents for Reclaimers Inc.
+  zone map 1443
+  tip Bring 10 Hatefury Claws, and 10 Hatefury Horns to Kreldig Ungor in Desolace. ~2,650 XP.
+  complete 1458 "Reagents for Reclaimers Inc." @73.6,25.5
+  turnin 1458 "Reagents for Reclaimers Inc." @66.2,9.6
+
+step Vahlarriel's Search
+  zone map 1443
+  tip Find and search Tyranis and Dalinda Malem's wagon in Desolace. · Hand in: Malem Chest, Desolace (56.5, 17.8). ~1,950 XP.
+  turnin 1437 "Vahlarriel's Search" @56.5,17.8
+
+step The Karnitol Shipwreck
+  zone map 1443
+  tip Find Karnitol's Chest in Desolace. · Hand in: Karnitol's Chest, Desolace (36.1, 30.4). ~3,000 XP.
+  turnin 1454 "The Karnitol Shipwreck" @36.1,30.5
+
+step Down the Scarlet Path
+  zone map 1443
+  tip Destroy 30 Undead Ravagers, then return to Brother Anton at Nijel's Point. ~3,000 XP.
+  complete 261 "Down the Scarlet Path" @63.0,92.1
+  note Keep it: you hand this in later on the route.
+
+step Nijel's Point (66, 10) · round 2
+  zone map 1443
+  accept 1459 "Reagents for Reclaimers Inc." @66.2,9.6
+  accept 1465 "Vahlarriel's Search" @56.5,17.8
+  accept 1455 "The Karnitol Shipwreck" @36.1,30.5
+  accept 1052 "Down the Scarlet Path" @66.5,7.9
+
+step Reagents for Reclaimers Inc.
+  zone map 1443
+  tip Bring 7 vials of Scorpashi Venom and 3 Aged Kodo Hides to Kreldig Ungor in Desolace. ~2,750 XP.
+  complete 1459 "Reagents for Reclaimers Inc." @53.1,68.9
+  turnin 1459 "Reagents for Reclaimers Inc." @66.2,9.6
+
+step Vahlarriel's Search
+  zone map 1443
+  tip Return the Malem Pendant to Vahlarriel Demonslayer in Desolace. · Hand in: Vahlarriel Demonslayer, Desolace (66.4, 11.8). ~1,950 XP.
+  turnin 1465 "Vahlarriel's Search" @66.4,11.8
+
+step The Karnitol Shipwreck
+  zone map 1443
+  tip Return to Kreldig Ungor in Desolace. · Hand in: Kreldig Ungor, Desolace (66.2, 9.6). ~1,500 XP.
+  turnin 1455 "The Karnitol Shipwreck" @66.2,9.6
+
+step Nijel's Point (66, 10) · round 3
+  zone map 1443
+  accept 1438 "Vahlarriel's Search" @66.4,11.8
+  accept 1457 "The Karnitol Shipwreck" @66.2,9.6
+  accept 1466 "Reagents for Reclaimers Inc." @66.2,9.6
+
+step Vahlarriel's Search
+  zone map 1443
+  tip Find Dalinda Malem in Desolace. · Hand in: Dalinda Malem, Desolace (54.9, 26.1). ~2,650 XP.
+  turnin 1438 "Vahlarriel's Search" @54.9,26.1
+
+step The Karnitol Shipwreck
+  zone map 1443
+  tip Find Karnitol's Satchel and return it to Kreldig Ungor in Desolace. ~3,000 XP.
+  turnin 1457 "The Karnitol Shipwreck" npc 5637 "Roetten Stonehammer" map 1455 @69.9,21.3
+
+step Reagents for Reclaimers Inc.
+  zone map 1443
+  tip Bring 10 Felhound Brains, 10 Nether Wings, and 10 vials of Doomwarder Blood to Kreldig Ungor in Desolace. ~3,150 XP.
+  complete 1466 "Reagents for Reclaimers Inc." @52.9,68.1
+  turnin 1466 "Reagents for Reclaimers Inc." @66.2,9.6
+
+step Nijel's Point (66, 10) · round 4
+  zone map 1443
+  accept 1439 "Search for Tyranis" @54.9,26.1
+  accept 1457 "The Karnitol Shipwreck" @66.2,9.6
+
+step Search for Tyranis
+  zone map 1443
+  tip Find Tyranis Malem in Desolace. ~2,650 XP.
+  complete 1439 "Search for Tyranis" @53.0,29.1
+  turnin 1439 "Search for Tyranis" @54.9,26.1
+
+step Nijel's Point (66, 10) · round 5
+  zone map 1443
+  accept 1440 "Return to Vahlarriel" @54.9,26.1
+
+step Return to Vahlarriel
+  zone map 1443
+  tip Escort Dalinda Malem from Thunder Axe Fortress and then return to Vahlarriel Demonslayer in Desolace. · Hand in: Vahlarriel Demonslayer, Desolace (66.4, 11.8). ~3,300 XP.
+  complete 1440 "Return to Vahlarriel"
+  turnin 1440 "Return to Vahlarriel" @66.4,11.8
+
+step West Desolace
+  zone map 1443
+  accept 5741 "Sceptre of Light" @38.9,27.2
+  accept 6161 "Claim Rackmore's Treasure!" @36.1,30.4
+
+step Sceptre of Light
+  zone map 1443
+  tip Get the Sceptre of Light and then return it to Azore Aldamort at the tower in Ethel Rethor. ~2,650 XP.
+  complete 5741 "Sceptre of Light" @55.2,30.2
+  turnin 5741 "Sceptre of Light" @38.9,27.2
+
+step Claim Rackmore's Treasure!
+  zone map 1443
+  tip Find Rackmore's Silver Key. · Hand in: Rackmore's Chest, Desolace (30, 8.7). ~2,800 XP.
+  complete 6161 "Claim Rackmore's Treasure!" @22.9,84.1
+  turnin 6161 "Claim Rackmore's Treasure!" @30.0,8.7
+
+step West Desolace · round 2
+  zone map 1443
+  accept 6027 "Book of the Ancients" @38.9,27.2
+
+step Book of the Ancients
+  zone map 1443
+  tip Get the Book of the Ancients and return it to Azore Aldamort at the tower in Ethel Rethor. ~3,550 XP.
+  complete 6027 "Book of the Ancients" @28.2,6.7
+  turnin 6027 "Book of the Ancients" @38.9,27.2
+
+step Kodo Graveyard + south
+  zone map 1443
+  tip Demons + Burning Blade cultists. · Pull carefully.
+  accept 5561 "Kodo Roundup" @60.9,61.9
+  accept 5821 "Bodyguard for Hire" @66.5,37.5
+  accept 5943 "Gizelton Caravan" @45.4,75.3
+  accept 5501 "Bone Collector" @62.3,39.0
+  accept 6134 "Ghost-o-plasm Round Up" @47.8,61.8
+  accept 6132 "Get Me Out of Here!" @34.0,53.5
+  task "Demons and You" optional
+
+step Kodo Roundup
+  zone map 1443
+  tip Bring five Tamed Kodos and the Kodo Kombobulator back to Smeed Scrabblescrew at Scrabblescrew's Camp. ~2,000 XP.
+  complete 5561 "Kodo Roundup" @56.8,83.0
+  turnin 5561 "Kodo Roundup" @60.9,61.9
+
+step Bodyguard for Hire
+  zone map 1443
+  tip Escort the Gizelton Caravan past the Kolkar Centaur village. · Hand in: Smeed Scrabblescrew, Desolace (60.9, 61.9). ~2,750 XP.
+  complete 5821 "Bodyguard for Hire"
+  turnin 5821 "Bodyguard for Hire" @60.9,61.9
+
+step Gizelton Caravan
+  zone map 1443
+  tip Escort the Gizelton Caravan through Mannoroc Coven. · Hand in: Smeed Scrabblescrew, Desolace (60.9, 61.9). ~2,850 XP.
+  complete 5943 "Gizelton Caravan"
+  turnin 5943 "Gizelton Caravan" @60.9,61.9
+
+step Bone Collector
+  zone map 1443
+  tip Bring 10 Kodo Bones from the Kodo Graveyard to Bibbly F'utzbuckle at Kormek's Hut. ~2,250 XP.
+  complete 5501 "Bone Collector" @54.4,63.8
+  turnin 5501 "Bone Collector" @62.3,39.0
+
+step Ghost-o-plasm Round Up
+  zone map 1443
+  tip Bring 8 Ghost-o-plasms and the Crate of Ghost Magnets to Hornizz Brimbuzzle in Desolace. ~2,250 XP.
+  complete 6134 "Ghost-o-plasm Round Up" @64.2,91.6
+  turnin 6134 "Ghost-o-plasm Round Up" @47.8,61.8
+
+step Get Me Out of Here!
+  zone map 1443
+  tip Escort Melizza Brimbuzzle, then speak with Hornizz Brimbuzzle at the Kodo Graveyard in Desolace. · Hand in: Hornizz Brimbuzzle, Desolace (47.8, 61.8). ~2,250 XP.
+  complete 6132 "Get Me Out of Here!"
+  turnin 6132 "Get Me Out of Here!" @47.8,61.8
+
+step Magram Village, Warug's camp (75, 68)
+  zone map 1443
+  tip Step 2 of the chain, needs Friendly with Magram · Not Friendly yet? pay Gorhak (quartermaster by the lake) for Buying Friendship: Magram, or kill Gelkis centaurs at Gelkis Village (~37, 80)
+  task "Magram Alliance" optional
+  accept 92743 "A Conqueror's Crown" @75.0,68.2 -- hold it
+
+step Magram Village, Warug's camp (75, 68) · round 2
+  zone map 1443
+  accept 1369 "Broken Tears" npc 5398 "Warug" @75.0,68.2
+
+step Broken Tears
+  zone map 1443
+  tip Loot 3 Broken Tears off the Tear of Theradras crystals, south Desolace (~39.7, 93.7) · Hand in: Warug · unlocks A Conqueror's Crown
+  complete 1369 "Broken Tears" @40.6,95.9
+  turnin 1369 "Broken Tears" npc 5398 "Warug" @75.0,68.2
+
+step Last trip to Nijel's Point
+  zone map 1443
+  accept 1467 "Reagents for Reclaimers Inc." @66.2,9.6
+
+step Later
+  zone map 1443
+  tip 46+. · Just note where it is for now.
+  task "Maraudon (later)" optional
+

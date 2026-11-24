@@ -1,0 +1,53 @@
+guide hearthbound/d3
+title Legacy: Maraudon + Alcaz
+faction Alliance
+levels 53-53
+zone map 1443
+author Brownie
+keywords Hearthbound, Desolace · Dustwallow Marsh
+next hearthbound/s27
+
+step Maraudon quests: grab around the entrance (Desolace)
+  zone map 1443
+  accept 7028 "Twisted Evils" @62.2,39.6
+  accept 7041 "Vyletongue Corruption" @68.5,8.9
+  accept 7067 "The Pariah's Instructions" @50.4,86.7
+  accept 7044 "Legends of Maraudon" @31.9,63.8
+  accept 7065 "Corruption of Earth and Seed" @63.8,10.7
+
+step Twisted Evils
+  zone map 1443
+  tip 15 Theradric Crystal Carvings drop from most Maraudon mobs, so you'll finish it on a normal run. · Fastest: the Nameless Prophet (a centaur ghost) always drops one and respawns quickly, and the group of imps just inside the purple entrance drops plenty. · Willow, who takes it, is in Kormek's Hut north-east of the Kodo Graveyard in Desolace. · ~5,250 XP.
+  complete 7028 "Twisted Evils" @30.4,60.2
+  turnin 7028 "Twisted Evils" @62.2,39.6
+
+step Vyletongue Corruption
+  zone map 1443
+  tip Two parts. · OUTSIDE the instance, take the orange (right-hand) path in the Maraudon cave. · Use the Coated Cerulean Vial at any pool with orange crystals to get a Filled Cerulean Vial. · INSIDE the orange side, stand within 10 yards of a corrupted Vylestem Vine and use the filled vial. 1-3 Noxxious Scions pop out. · Kill them to heal the vine, and repeat until 8 vines are healed. · Turn in to Talendria at Nijel's Point.
+  complete 7041 "Vyletongue Corruption"
+  turnin 7041 "Vyletongue Corruption" @68.5,8.9
+
+step The Pariah's Instructions
+  zone map 1443
+  tip Read the Pariah's Instructions. ~5,450 XP.
+  complete 7067 "The Pariah's Instructions"
+  turnin 7067 "The Pariah's Instructions" @50.4,86.7
+
+step Legends of Maraudon
+  zone map 1443
+  tip Cavindra (a dryad in a pool in the orange part of the outer cave) gives this. · Noxxion (orange side) drops the Celebrian Rod, and Lord Vyletongue (purple side) drops the Celebrian Diamond. · Then find Celebras the Cursed on the bridge between the orange and purple areas. · You have to KILL him first: his ghost, Celebras the Redeemed, stays behind. · Talk to the ghost to finish it. · ~3,400 XP.
+  complete 7044 "Legends of Maraudon"
+  turnin 7044 "Legends of Maraudon"
+
+step Corruption of Earth and Seed
+  zone map 1443
+  tip Slay Princess Theradras and return to Keeper Marandis at Nijel's Point in Desolace. ~6,100 XP.
+  complete 7065 "Corruption of Earth and Seed"
+  turnin 7065 "Corruption of Earth and Seed" @63.8,10.7
+
+step Legacy runs
+  zone map 1445
+  tip Range 46-55. · Kill Princess Theradras. · Range 48-53. · Already done it at Stop 22? Tick this off.
+  task "Legacy: Maraudon" optional
+  task "Legacy: Alcaz Island Prison" optional
+

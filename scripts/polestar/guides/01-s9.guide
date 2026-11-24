@@ -1,0 +1,63 @@
+guide hearthbound/s9
+title Duskwood part 2 + Morganth
+faction Alliance
+levels 27-30
+zone map 1431
+author Brownie
+keywords Hearthbound, Duskwood · Elwynn · Redridge
+next hearthbound/s10
+
+step In Darkshire
+  zone map 1431
+  tip Fly from Menethil → Stormwind → Darkshire.
+  task "Set hearth" optional
+
+step Grab in Darkshire
+  zone map 1431
+  accept 173 "Worgen in the Woods" @75.8,47.6
+
+step Worgen in the Woods
+  zone map 1431
+  tip Worgen around the west + south.
+  complete 173 "Worgen in the Woods" @67.2,75.6
+  turnin 173 "Worgen in the Woods" @75.8,47.6
+
+step Do, in this order
+  zone map 1431
+  tip Kicks off the Shadowy Figure chain. · Ends in Wetlands, so it lines up with the next stop. · Skeleton Fingers + Rot Blossoms for the Night Watch and Zombie Juice chains. · Shackle (Shift+X) the 2nd skeleton. · Packed with Lv 27-28 undead. · Shackle (Shift+X) one, kill the other. · Ghoul Ribs + Fangs at the NE mausoleum.
+  task "Sven's Camp → The Shadowy Figure" optional
+  task "Proving Your Worth → Seeking Wisdom → The Doomed Fleet" optional
+  task "Raven Hill skeletons + Rot Blossoms" optional
+  task "Crimes Against Anatomy" optional
+  task "Ghoulish Effigy → Ogre Thieves" optional
+  accept 57 "The Night Watch" @73.5,46.8
+
+step The Night Watch
+  zone map 1431
+  tip Kill Nightbane Shadow Weavers. · Climb the cliff to skip the long walk.
+  complete 57 "The Night Watch" @21.8,47.4
+  turnin 57 "The Night Watch" @73.5,46.8
+
+step Stormwind trip
+  zone map 1453
+  tip 30 = Mind Control, Prayer of Healing, Shadow Protection. · Lv 20+ with 20 books = Greater Friend of the Library (ring: Field Researcher's Loop or Philanthropist's Ring).
+  accept 66 "The Legend of Stalvan" npc 265 "Madame Eva" map 1430 @15.2,40.0
+  task "Train Lv 28 / 30" optional
+  task "Turn in library books" optional
+
+step The Legend of Stalvan
+  zone map 1453
+  tip Long run-around chain, but big XP. · The Forlorn Spirit spawns at the Stormwind crate, so be ready.
+  turnin 66 "The Legend of Stalvan" npc 267 "Clerk Daltry" map 1430 @11.7,41.6
+
+step Redridge trip
+  zone map 1433
+  turnin 95772 "Songblade Search" -- Redridge · Lakeshire · Dorin Songblade
+  accept 249 "Morganth" @79.4,46.8
+
+step Morganth
+  zone map 1433
+  tip Lv 27 elite. · Shield, DoTs, wand, and Fade if it gets hairy. · Bring a friend if you can.
+  complete 249 "Morganth" @75.0,49.5
+  turnin 249 "Morganth" npc 313 "Theocritus" map 1429 @65.2,69.7
+

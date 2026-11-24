@@ -1,0 +1,326 @@
+guide hearthbound/s29
+title Eastern Plaguelands → 60
+faction Alliance
+levels 58-60
+zone map 1423
+author Brownie
+keywords Hearthbound, Light's Hope Chapel
+next hearthbound/d4
+
+step Light's Hope Chapel, Eastern Plaguelands (75, 53)
+  zone map 1423
+  accept 6021 "Zaeldarr the Outcast" @69.9,53.7
+  accept 5529 "Plagued Hatchlings" @71.7,49.9
+  accept 6026 "That's Asking A Lot" @70.9,48.4
+  task "A Study of the Light" optional
+
+step Zaeldarr the Outcast
+  zone map 1423
+  tip Bring Zaeldarr's Head to Caretaker Alen at Light's Hope Chapel. ~4,200 XP.
+  complete 6021 "Zaeldarr the Outcast" @23.1,72.6
+  turnin 6021 "Zaeldarr the Outcast" @69.9,53.7
+
+step Plagued Hatchlings
+  zone map 1423
+  tip Kill 20 Plagued Hatchlings, then return to Betina Bigglezink at the Light's Hope Chapel. ~6,200 XP.
+  complete 5529 "Plagued Hatchlings"
+  turnin 5529 "Plagued Hatchlings" @71.7,49.9
+
+step That's Asking A Lot
+  zone map 1423
+  tip Smokey LaRue wants you to get 2 Thorium Bars, 1 Golden Rod, 8 Hi-Explosive Bombs, and 8 Unstable Triggers. ~6,200 XP.
+  complete 6026 "That's Asking A Lot"
+  turnin 6026 "That's Asking A Lot" @70.9,48.4
+
+step Light's Hope Chapel, Eastern Plaguelands (75, 53) · round 2
+  zone map 1423
+  accept 6041 "When Smokey Sings, I Get Violent" @70.9,48.4
+
+step When Smokey Sings, I Get Violent
+  zone map 1423
+  tip Travel to Plaguewood, northwest of Light's Hope. ~6,200 XP.
+  complete 6041 "When Smokey Sings, I Get Violent" @35.0,31.0
+  turnin 6041 "When Smokey Sings, I Get Violent" @70.9,48.4
+
+step Darrowshire chain (back and forth with WPL)
+  zone map 1423
+  accept 5149 "Pamela's Doll" @31.2,78.0
+
+step Pamela's Doll
+  zone map 1423
+  tip Find Pamela's doll. ~2,800 XP.
+  complete 5149 "Pamela's Doll"
+  turnin 5149 "Pamela's Doll" @31.2,78.0
+
+step Darrowshire chain (back and forth with WPL) · round 2
+  zone map 1423
+  accept 5241 "Uncle Carlin" @31.2,78.0
+  accept 5152 "Auntie Marlene" @31.2,78.0
+
+step Uncle Carlin
+  zone map 1423
+  tip Find Carlin Redpath. · Hand in: Carlin Redpath, Eastern Plaguelands (71.7, 50). ~2,900 XP.
+  turnin 5241 "Uncle Carlin" @71.7,50.0
+
+step Auntie Marlene
+  zone map 1423
+  tip Speak with Marlene, south of the Ruins of Andorhal. · Hand in: Marlene Redpath, Western Plaguelands (49.2, 78.6). · Marlene is at Sorrow Hill, Western Plaguelands (49.2, 78.6): ride over, then come back. ~2,900 XP.
+  turnin 5152 "Auntie Marlene" npc 10927 "Marlene Redpath" map 1416 @88.6,20.7
+
+step Darrowshire chain (back and forth with WPL) · round 3
+  zone map 1422
+  accept 5211 "Defenders of Darrowshire" map 1423 @71.7,50.0
+  accept 5153 "A Strange Historian" @49.2,78.6
+
+step Defenders of Darrowshire
+  zone map 1423
+  tip Free 15 Darrowshire Spirits and return to Carlin Redpath. ~5,650 XP.
+  complete 5211 "Defenders of Darrowshire"
+  turnin 5211 "Defenders of Darrowshire" @71.7,50.0
+
+step A Strange Historian
+  zone map 1422
+  tip Bring Joseph's Wedding Ring to Chromie. · Hand in: Chromie, Western Plaguelands (39.5, 66.8). · Chromie is in the Western Plaguelands (39.5, 66.8). ~4,350 XP.
+  complete 5153 "A Strange Historian" @49.7,76.8
+  turnin 5153 "A Strange Historian" @39.5,66.8
+
+step Darrowshire chain (back and forth with WPL) · round 4
+  zone map 1422
+  accept 5154 "The Annals of Darrowshire" @39.5,66.8
+
+step The Annals of Darrowshire
+  zone map 1422
+  tip Bring the Annals of Darrowshire to Chromie in Andorhal. · Chromie, Western Plaguelands. ~5,800 XP.
+  complete 5154 "The Annals of Darrowshire" @43.4,70.0
+  turnin 5154 "The Annals of Darrowshire" @39.5,66.8
+
+step Darrowshire chain (back and forth with WPL) · round 5
+  zone map 1422
+  accept 5210 "Brother Carlin" @39.5,66.8
+
+step Brother Carlin
+  zone map 1422
+  tip Bring the Extended Annals of Darrowshire to Carlin Redpath in Eastern Plaguelands. · Hand in: Carlin Redpath, Eastern Plaguelands (71.7, 50). · Back to Carlin at Light's Hope. ~2,900 XP.
+  turnin 5210 "Brother Carlin" npc 11063 "Carlin Redpath" map 1423 @71.7,50.0
+
+step Darrowshire chain (back and forth with WPL) · round 6
+  zone map 1423
+  accept 5168 "Heroes of Darrowshire" @71.7,50.0
+  accept 5181 "Villains of Darrowshire" @71.7,50.0
+
+step Heroes of Darrowshire
+  zone map 1423
+  tip Bring Davil's Libram and Redpath's Shield to Carlin Redpath. ~5,800 XP.
+  complete 5168 "Heroes of Darrowshire" map 1422 @42.5,19.0
+  turnin 5168 "Heroes of Darrowshire" @71.7,50.0
+
+step Villains of Darrowshire
+  zone map 1423
+  tip Bring the Skull of Horgus and the Shattered Sword of Marduk to Carlin Redpath at Light's Hope Chapel. ~6,000 XP.
+  complete 5181 "Villains of Darrowshire" @44.3,41.2
+  turnin 5181 "Villains of Darrowshire" @71.7,50.0
+
+step Darrowshire chain (back and forth with WPL) · round 7
+  zone map 1423
+  accept 5206 "Marauders of Darrowshire" @71.7,50.0
+
+step Marauders of Darrowshire
+  zone map 1423
+  tip Bring 5 Resonating Skulls and the Mystic Crystal to Carlin Redpath in Eastern Plaguelands. ~6,600 XP.
+  complete 5206 "Marauders of Darrowshire"
+  turnin 5206 "Marauders of Darrowshire" @71.7,50.0
+
+step Darrowshire chain (back and forth with WPL) · round 8
+  zone map 1423
+  accept 5941 "Return to Chromie" @71.7,50.0
+
+step Return to Chromie
+  zone map 1423
+  tip Take the Bundle of Relics to Chromie in Andorhal. · Hand in: Chromie, Western Plaguelands (39.5, 66.8). · Chromie again (Western Plaguelands). ~3,300 XP.
+  turnin 5941 "Return to Chromie" npc 10667 "Chromie" map 1416 @73.7,2.5
+
+step Darrowshire chain (back and forth with WPL) · round 9
+  zone map 1422
+  accept 5721 "The Battle of Darrowshire" @39.5,66.8
+
+step The Battle of Darrowshire
+  zone map 1422
+  tip Place the Relic Bundle at the Darrowshire town square. · Hand in: Pamela Redpath, Eastern Plaguelands (31.1, 78). · Pamela, Darrowshire. ~8,300 XP.
+  complete 5721 "The Battle of Darrowshire" @95.8,67.1
+  turnin 5721 "The Battle of Darrowshire" npc 10926 "Pamela Redpath" @93.3,66.7
+
+step Darrowshire chain (back and forth with WPL) · round 10
+  zone map 1423
+  accept 5942 "Hidden Treasures" @31.2,78.0
+
+step Hidden Treasures
+  zone map 1423
+  tip Bring Joseph's Key to Joseph's Chest. · Hand in: Joseph's Chest, Eastern Plaguelands (30.9, 77.8). · Rewards a ring/neck/staff choice. ~9,950 XP.
+  turnin 5942 "Hidden Treasures" @30.9,77.8
+
+step Tirion Fordring's hut (west, 5, 36)
+  zone map 1423
+  accept 5542 "Demon Dogs" @5.2,35.6
+  accept 5543 "Blood Tinged Skies" @5.2,35.6
+  accept 5544 "Carrion Grubbage" @5.2,35.6
+
+step Demon Dogs
+  zone map 1423
+  tip Slay 20 Plaguehound Runts, 5 Plaguehounds and 5 Frenzied Plaguehounds. ~5,800 XP.
+  complete 5542 "Demon Dogs" @20.9,76.0
+  turnin 5542 "Demon Dogs" @5.2,35.6
+
+step Blood Tinged Skies
+  zone map 1423
+  tip Slay 30 Plaguebats and return to Tirion Fordring. ~5,800 XP.
+  complete 5543 "Blood Tinged Skies" @21.9,80.3
+  turnin 5543 "Blood Tinged Skies" @5.2,35.6
+
+step Carrion Grubbage
+  zone map 1423
+  tip Seek out the Carrion Grubs and Devourers of the region. ~5,800 XP.
+  complete 5544 "Carrion Grubbage" @21.0,82.5
+  turnin 5544 "Carrion Grubbage" @5.2,35.6
+
+step Tirion Fordring's hut (west, 5, 36) · round 2
+  zone map 1423
+  accept 5742 "Redemption" @5.2,35.6
+
+step Redemption
+  zone map 1423
+  tip Listen to what Tirion Fordring has to say. ~580 XP.
+  complete 5742 "Redemption"
+  turnin 5742 "Redemption" @5.2,35.6
+
+step Tirion Fordring's hut (west, 5, 36) · round 3
+  zone map 1423
+  accept 5781 "Of Forgotten Memories" @5.2,35.6
+
+step Of Forgotten Memories
+  zone map 1423
+  tip Travel to the Undercroft - at the southernmost section of the Eastern Plaguelands - and recover Taelan's Hammer. ~6,000 XP.
+  complete 5781 "Of Forgotten Memories" @23.9,74.2
+  turnin 5781 "Of Forgotten Memories" @5.2,35.6
+
+step Tirion Fordring's hut (west, 5, 36) · round 4
+  zone map 1423
+  accept 5845 "Of Lost Honor" @5.2,35.6
+
+step Of Lost Honor
+  zone map 1423
+  tip Travel to Northdale, in the northeastern region of the Eastern Plaguelands, and recover the Symbol of Lost Honor. ~6,200 XP.
+  complete 5845 "Of Lost Honor" @62.5,26.8
+  turnin 5845 "Of Lost Honor" @5.2,35.6
+
+step Tirion Fordring's hut (west, 5, 36) · round 5
+  zone map 1423
+  accept 5846 "Of Love and Family" @5.2,35.6
+
+step Of Love and Family
+  zone map 1423
+  tip Travel to island of Caer Darrow, in the south-central region of the Plaguelands, and look for any clues as to the whereabouts of the painting. · Hand in: Artist Renfray, Western Plaguelands (65.8, 75.4). · Artist Renfray is in the Western Plaguelands at Caer Darrow (65.8, 75.4). · Long Tirion chain: stop here unless you love it. ~6,200 XP.
+  turnin 5846 "Of Love and Family" npc 11936 "Artist Renfray" @3.6,86.7
+
+step Around EPL
+  zone map 1423
+  accept 6024 "Hameya's Plea" @22.9,73.0
+  accept 6164 "Augustus' Receipt Book" @11.4,26.4
+  accept 5246 "Fragments of the Past" @46.5,16.0
+  task "The Knight and the Lady" optional
+  task "Scourge: Undead Menace or Misunderstood?" optional
+
+step Hameya's Plea
+  zone map 1423
+  tip Kill Infiltrator Hameya. · Hand in: Mound of Dirt, Eastern Plaguelands (23.6, 73.8). ~6,600 XP.
+  complete 6024 "Hameya's Plea" @62.0,11.1
+  turnin 6024 "Hameya's Plea" @23.6,73.8
+
+step Augustus' Receipt Book
+  zone map 1423
+  tip Bring Augustus' Receipt Book to Augustus the Touched in Terrordale. ~1,400 XP.
+  complete 6164 "Augustus' Receipt Book" @14.0,24.2
+  turnin 6164 "Augustus' Receipt Book" @11.4,26.4
+
+step Fragments of the Past
+  zone map 1423
+  tip Find the Sacred Highborne Writings in the Temple of Zin-Malor in Azshara, and bring them to Aurora Skycaller near the Northpass Tower in Eastern Plaguelands. ~5,800 XP.
+  complete 5246 "Fragments of the Past" map 1447 @41.5,52.5
+  turnin 5246 "Fragments of the Past" @46.5,16.0
+
+step Around EPL · round 2
+  zone map 1423
+  accept 5247 "Fragments of the Past" @46.5,16.0
+
+step Fragments of the Past
+  zone map 1423
+  tip Bring an Enchanted Thorium Bar, 5 Crystal Restore, and a Vial of Dire Water to Aurora Skycaller near the Northpass Tower in Eastern Plaguelands. ~6,000 XP.
+  complete 5247 "Fragments of the Past"
+  turnin 5247 "Fragments of the Past" @46.5,16.0
+
+step Around EPL · round 3
+  zone map 1423
+  accept 5248 "Tormented By the Past" @46.5,16.0
+
+step Tormented By the Past
+  zone map 1423
+  tip Take the Crystal of Zin-Malor to Lake Kel'Theril in Winterspring and find a highborne spirit that will speak to you. · Hand in: Remorseful Highborne, Winterspring (56.1, 44.4). ~4,650 XP.
+  turnin 5248 "Tormented By the Past" npc 10684 "Remorseful Highborne" map 1452 @56.1,44.4
+
+step Stratholme: grab at Light's Hope, then run it
+  zone map 1423
+  tip Live side: at the first fork go left, then left again at the second fork. · Look up for the tobacco shop sign. · Healer dungeon. · Grab quests at Light's Hope.
+  accept 5212 "The Flesh Does Not Lie" @71.7,49.9
+  accept 5243 "Houses of the Holy" @71.9,48.3
+  accept 5251 "The Archivist" @71.6,50.1
+  task "The Great Fras Siabi" optional
+  task "Stratholme (58-60)" optional
+
+step The Flesh Does Not Lie
+  zone map 1423
+  tip Recover 10 Plagued Flesh Samples from Stratholme and return them to Betina Bigglezink. · For Stratholme. ~6,600 XP.
+  complete 5212 "The Flesh Does Not Lie"
+  turnin 5212 "The Flesh Does Not Lie" @71.7,49.9
+
+step Houses of the Holy
+  zone map 1423
+  tip Click the Supply Crates lying around Stratholme (mostly on the Live/Scarlet side) for Stratholme Holy Water. · Some crates have bugs (rats) in them instead, so open them away from other mobs. · You need 5. · ~6,600 XP.
+  complete 5243 "Houses of the Holy"
+  turnin 5243 "Houses of the Holy" @71.9,48.3
+
+step The Archivist
+  zone map 1423
+  tip Archivist Galford is in the last corridor of the Scarlet Bastion (Live side), just before Balnazzar. · Kill him, then click the book on his desk to set the Archive on fire. · Do this one first: it's what makes Balnazzar drop his head for the next chain. · ~8,300 XP.
+  complete 5251 "The Archivist"
+  turnin 5251 "The Archivist" @71.6,50.1
+
+step Stratholme: grab at Light's Hope, then run it · round 2
+  zone map 1423
+  accept 5213 "The Active Agent" @71.7,49.9
+
+step The Active Agent
+  zone map 1423
+  tip The Scourge Data is a tiny box on the floor inside ONE of the three ziggurats on the Undead side of Stratholme (it can spawn in any of them). · Check the floor of each ziggurat as you clear it. · Turn in to Betina Bigglezink at Light's Hope. · ~6,600 XP.
+  complete 5213 "The Active Agent"
+  turnin 5213 "The Active Agent" @71.7,49.9
+
+step Priest: Benediction staff chain (at 60, optional)
+  zone map 1423
+  accept 7621 "A Warning" @17.2,12.8
+  accept 7622 "The Balance of Light and Shadow" @17.2,12.8
+
+step A Warning
+  zone map 1423
+  tip Priest only, Lv 60. · Eris Havenfire stands near the Stratholme road (EPL 20.8, 18.4); only priests can see her.
+  turnin 7621 "A Warning" @17.2,12.8
+
+step The Balance of Light and Shadow
+  zone map 1423
+  tip Save 50 Peasants before 15 are slain. · Hard solo event: save 50 peasants before 15 die (Renew + Prayer of Healing spam). · Starts the chain for Benediction, the priest staff. ~9,950 XP.
+  complete 7622 "The Balance of Light and Shadow"
+  turnin 7622 "The Balance of Light and Shadow" @17.2,12.8
+
+step The end
+  zone map 1455
+  tip Journeyman Riding (1,000g) for the fast mount. · Then Mount Hyjal for endgame.
+  task "DING 60" optional
+

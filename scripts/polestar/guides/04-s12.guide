@@ -1,0 +1,125 @@
+guide hearthbound/s12
+title Thousand Needles + Booty Bay
+faction Alliance
+levels 32-33
+zone map 1413
+author Brownie
+keywords Hearthbound, Ashenvale → Barrens → Thousand Needles → Ratchet → Booty Bay
+next hearthbound/s13
+
+step On the way: north Barrens
+  zone map 1413
+  tip Right on the road south from Ashenvale. · Climb the rig, and it's on the chair behind the goblin supervisor. · On your way south. · It's at the mouth of the cave, so you don't go into the dungeon. · On your way south to the Great Lift. · Click the remains to finish '…and that note you found'.
+  task "Arcanic Systems Manual" optional
+  task "Secrets of the Dreamers" optional
+  task "Cozy Sleeping Bag · step 2" optional
+
+step South Barrens, next to the Great Lift
+  zone map 1413
+  accept 6626 "A Host of Evil" @49.0,94.9
+
+step A Host of Evil
+  zone map 1413
+  tip Kill 8 Razorfen Battleguard, 8 Razorfen Thornweavers, and 8 Death's Head Cultists and return to Myriam Moonsinger near the entrance to Razorfen Downs. · Mobs are 33-35 around the Razorfen Downs entrance, so pull one at a time. ~3,450 XP.
+  complete 6626 "A Host of Evil" @48.9,95.6
+  turnin 6626 "A Host of Evil" @49.0,94.9
+
+step Thousand Needles: Mirage Raceway (78, 77)
+  zone map 1441
+  tip Grimtotem tauren around. · Go up the path carefully, and it's in the biggest hut on the left side.
+  accept 1105 "Hardened Shells" @78.1,77.1
+  accept 1104 "Salt Flat Venom" @78.1,77.1
+  accept 1176 "Load Lightening" @80.2,75.9
+  accept 1110 "Rocket Car Parts" @77.8,77.3
+  accept 1175 "A Bump in the Road" @81.6,78.0
+  accept 5762 "Hemet Nesingwary" @77.8,77.3
+  accept 1111 "Wharfmaster Dizzywig" @77.8,77.3
+  task "Geomancy: The Stone-Cold Truth" optional
+  accept 98156 "Packaged Pristine Pelts" npc 11826 "Kristy Grant" @7.6,18.4
+
+step Hardened Shells
+  zone map 1441
+  tip Bring 9 Hardened Tortoise Shells to Wizzle Brassbolts in the Shimmering Flats. ~2,450 XP.
+  complete 1105 "Hardened Shells" @72.7,68.7
+  turnin 1105 "Hardened Shells" @78.1,77.1
+
+step Salt Flat Venom
+  zone map 1441
+  tip Bring 6 Salty Scorpid Venoms to Fizzle Brassbolts in the Shimmering Flats. ~1,850 XP.
+  complete 1104 "Salt Flat Venom" @73.5,89.8
+  turnin 1104 "Salt Flat Venom" @78.1,77.1
+
+step Load Lightening
+  zone map 1441
+  tip Get 10 Hollow Vulture Bones for Pozzik in the Shimmering Flats. ~1,850 XP.
+  complete 1176 "Load Lightening" @70.4,69.0
+  turnin 1176 "Load Lightening" @80.2,75.9
+
+step Rocket Car Parts
+  zone map 1441
+  tip Bring 30 Rocket Car Parts to Kravel Koalbeard in the Shimmering Flats. ~2,500 XP.
+  complete 1110 "Rocket Car Parts" @77.5,90.5
+  turnin 1110 "Rocket Car Parts" @77.8,77.3
+
+step A Bump in the Road
+  zone map 1441
+  tip Kill 10 Saltstone Basilisks, 10 Saltstone Crystalhides and 6 Saltstone Gazers for Trackmaster Zherin on the Shimmering Flats. ~2,650 XP.
+  complete 1175 "A Bump in the Road" @70.7,67.7
+  turnin 1175 "A Bump in the Road" @81.6,78.0
+
+step Wharfmaster Dizzywig
+  zone map 1441
+  tip Bring Kravel's Parts Order to Wharfmaster Dizzywig in Ratchet. · Hand in: Wharfmaster Dizzywig, The Barrens (63.4, 38.5). · Hand it in when you reach Ratchet. ~1,400 XP.
+  turnin 1111 "Wharfmaster Dizzywig" npc 3453 "Wharfmaster Dizzywig" map 1411 @34.7,79.3
+
+step Packaged Pristine Pelts
+  zone map 1441
+  tip New in Forever (Alliance).
+  turnin 98156 "Packaged Pristine Pelts" npc 11827 "Kimberly Grant" map 1453 @37.8,64.8
+
+step Thousand Needles: Mirage Raceway (78, 77) · round 2
+  zone map 1441
+  accept 1107 "Encrusted Tail Fins" @78.1,77.1
+  accept 1106 "Martek the Exiled" @78.1,77.1
+  accept 1178 "Goblin Sponsorship" @80.2,75.9
+
+step Encrusted Tail Fins
+  zone map 1441
+  tip Bring 10 Encrusted Tail Fins to Wizzle Brassbolts in the Shimmering Flats. ~3,450 XP.
+  complete 1107 "Encrusted Tail Fins" map 1434 @25.2,29.6
+  turnin 1107 "Encrusted Tail Fins" @78.1,77.1
+
+step Goblin Sponsorship
+  zone map 1441
+  tip Speak to Gazlowe in Ratchet. · Hand in: Gazlowe, The Barrens (62.7, 36.2). ~710 XP.
+  turnin 1178 "Goblin Sponsorship" npc 3391 "Gazlowe" map 1411 @33.4,75.0
+
+step Ratchet, then the boat
+  zone map 1413
+  tip Grab the flight path. · Stay off the Crossroads road, since it's Horde. · Neutral town, safe. · Grab the Booty Bay flight path (top floor).
+  task "Ride to Ratchet" optional
+  task "Baxtan: On Destructive Magics" optional
+  accept 1180 "Goblin Sponsorship" @62.7,36.2
+  task "Boat to Booty Bay" optional
+
+step Goblin Sponsorship
+  zone map 1413
+  tip Speak with Wharfmaster Lozgil in Booty Bay. · Hand in: Wharfmaster Lozgil, Stranglethorn (26.4, 73.6). · Hand it in as soon as you step off the boat. ~710 XP.
+  turnin 1180 "Goblin Sponsorship" npc 4631 "Wharfmaster Lozgil" map 1434 @26.3,73.6
+
+step Arrive in Booty Bay
+  zone map 1434
+  tip Lv 20 + fishing 125. · Lets you fish past 150.
+  accept 1181 "Goblin Sponsorship" @26.4,73.6
+  task "Expert Fishing book" optional
+
+step Goblin Sponsorship
+  zone map 1434
+  tip Speak with Baron Revilgaz in Booty Bay. · Hand in: Baron Revilgaz, Stranglethorn (27.2, 76.9). ~285 XP.
+  turnin 1181 "Goblin Sponsorship" @27.2,76.9
+
+step 🛡️ BiS gear pickups
+  zone map 1413
+  tip Range ~30-40. · Optional run while you're down here.
+  task "Razorfen Kraul: Roogug" optional
+

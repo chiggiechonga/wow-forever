@@ -1,0 +1,42 @@
+guide hearthbound/s10
+title Wetlands part 2
+faction Alliance
+levels 29-31
+zone map 1437
+author Brownie
+keywords Hearthbound, Wetlands
+next hearthbound/s11
+
+step In Menethil Harbor
+  zone map 1437
+  accept 270 "The Doomed Fleet" npc 1212 "Bishop Farthing" map 1453 @49.9,46.0 -- you should already have this one
+  turnin 270 "The Doomed Fleet" @10.6,60.6 -- Wetlands · Menethil Harbor
+  task "Set hearth" optional
+
+step Grab
+  zone map 1437
+  tip Cursed sailors + First Mate Snellig.
+  task "The Cursed Crew → Lifting the Curse" optional
+
+step Do, in this order
+  zone map 1437
+  tip Click the crates in each camp. · Gives a staff option. · Last step gives a staff/rod choice.
+  task "Reclaiming Goods → The Search Continues → Search More Hovels → Return the Statuette" optional
+  task "Ormer's Revenge (2 + 3)" optional
+  accept 299 "Uncovering the Past" @38.8,52.4
+
+step Uncovering the Past
+  zone map 1437
+  tip Gives the Silk Mantle of Gamn.
+  complete 299 "Uncovering the Past" @34.7,52.5
+  turnin 299 "Uncovering the Past" @38.8,52.4
+
+step Only with a group
+  zone map 1437
+  accept 303 "The Dark Iron War" @49.7,18.2 -- hold it
+
+step Skip
+  zone map 1437
+  tip Orc + elite area near Horde travel routes. · Only with a group.
+  task "Fall of Dun Modr · War Banners · Nek'rosh" optional
+

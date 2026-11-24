@@ -1,0 +1,269 @@
+guide hearthbound/s23
+title Searing Gorge + Blasted Lands
+faction Alliance
+levels 50-52
+zone map 1427
+author Brownie
+keywords Hearthbound, Thorium Point · Nethergarde Keep
+next hearthbound/s25
+
+step Thorium Point, Searing Gorge (38, 28)
+  zone map 1427
+  accept 7723 "Curse These Fat Fingers" @38.6,27.8
+  accept 7724 "Fiery Menace!" @38.6,27.8
+  accept 7727 "Incendosaurs? Whateverosaur is More Like It" @38.6,27.8
+  accept 7722 "What the Flux?" @38.8,28.5
+  accept 7728 "STOLEN: Smithing Tuyere and Lookout's Spyglass" @37.7,26.5
+  accept 7729 "JOB OPPORTUNITY: Culling the Competition" @37.7,26.5
+  accept 7701 "WANTED: Overseer Maltorius" @37.7,26.5
+  task "A Mind of Metal" optional
+
+step Curse These Fat Fingers
+  zone map 1427
+  tip Hansel Heavyhands wants you to kill 20 Heavy War Golems. ~4,550 XP.
+  complete 7723 "Curse These Fat Fingers" @44.8,63.8
+  turnin 7723 "Curse These Fat Fingers" @38.6,27.8
+
+step Fiery Menace!
+  zone map 1427
+  tip Hansel Heavyhands wants you to kill 20 Greater Lava Spiders in the Searing Gorge. ~4,550 XP.
+  complete 7724 "Fiery Menace!" @22.0,77.3
+  turnin 7724 "Fiery Menace!" @38.6,27.8
+
+step Incendosaurs? Whateverosaur is More Like It
+  zone map 1427
+  tip Hansel Heavyhands wants you to kill 20 Incendosaurs. ~4,550 XP.
+  complete 7727 "Incendosaurs? Whateverosaur is More Like It" @49.9,39.0
+  turnin 7727 "Incendosaurs? Whateverosaur is More Like It" @38.6,27.8
+
+step What the Flux?
+  zone map 1427
+  tip Somewhere in the Slag Pit of the Cauldron you will find the Secret Plans: Fiery Flux that Overseer Maltorius stole. ~4,700 XP.
+  complete 7722 "What the Flux?" @40.5,35.7
+  turnin 7722 "What the Flux?" @38.8,28.5
+
+step STOLEN: Smithing Tuyere and Lookout's Spyglass
+  zone map 1427
+  tip Find and return the Smithing Tuyere and Lookout's Spyglass to Taskmaster Scrange in the Searing Gorge. · Hand in: Taskmaster Scrange, Searing Gorge (39, 27.5). ~4,400 XP.
+  complete 7728 "STOLEN: Smithing Tuyere and Lookout's Spyglass" @43.0,51.7
+  turnin 7728 "STOLEN: Smithing Tuyere and Lookout's Spyglass" @39.0,27.5
+
+step JOB OPPORTUNITY: Culling the Competition
+  zone map 1427
+  tip Slay 15 Dark Iron Taskmasters and 15 Dark Iron Slavers. · Hand in: Taskmaster Scrange, Searing Gorge (39, 27.5). ~4,400 XP.
+  complete 7729 "JOB OPPORTUNITY: Culling the Competition" @39.9,54.5
+  turnin 7729 "JOB OPPORTUNITY: Culling the Competition" @39.0,27.5
+
+step WANTED: Overseer Maltorius
+  zone map 1427
+  tip Deep within the Slag Pit of the Cauldron, in the Searing Gorge, you will find the traitorous Dark Iron dwarf named Overseer Maltorius. · Hand in: Lookout Captain Lolo Longstriker, Searing Gorge (37.7, 26.6). ~4,700 XP. · Shadow BiS: reward Singed Cloth Robe (Lv 50 chest).
+  complete 7701 "WANTED: Overseer Maltorius" @40.8,35.9
+  turnin 7701 "WANTED: Overseer Maltorius" @37.7,26.6
+
+step Kalaran Windblade (39, 39)
+  zone map 1427
+  accept 3441 "Divine Retribution" @39.1,39.0
+
+step Divine Retribution
+  zone map 1427
+  tip Listen as Kalaran Windblade tells his story. ~440 XP.
+  complete 3441 "Divine Retribution"
+  turnin 3441 "Divine Retribution" @39.1,39.0
+
+step Kalaran Windblade (39, 39) · round 2
+  zone map 1427
+  accept 3442 "The Flawless Flame" @39.1,39.0
+
+step The Flawless Flame
+  zone map 1427
+  tip Collect 4 Hearts of Flame and 4 globes of Golem Oil and return the items to Kalaran Windblade. ~4,400 XP.
+  complete 3442 "The Flawless Flame" @58.3,77.0
+  turnin 3442 "The Flawless Flame" @39.1,39.0
+
+step Kalaran Windblade (39, 39) · round 3
+  zone map 1427
+  accept 3443 "Forging the Shaft" @39.1,39.0
+
+step Forging the Shaft
+  zone map 1427
+  tip Bring 8 Thorium Plated Daggers to Kalaran Windblade. ~4,400 XP.
+  complete 3443 "Forging the Shaft" @62.7,62.3
+  turnin 3443 "Forging the Shaft" @39.1,39.0
+
+step Kalaran Windblade (39, 39) · round 4
+  zone map 1427
+  accept 3452 "The Flame's Casing" @39.1,39.0
+
+step The Flame's Casing
+  zone map 1427
+  tip Find and return a Symbol of Ragnaros to Kalaran Windblade. ~4,700 XP.
+  complete 3452 "The Flame's Casing" @23.4,41.1
+  turnin 3452 "The Flame's Casing" @39.1,39.0
+
+step Kalaran Windblade (39, 39) · round 5
+  zone map 1427
+  accept 3453 "The Torch of Retribution" @39.1,39.0
+
+step The Torch of Retribution
+  zone map 1427
+  tip Wait for Kalaran Windblade to complete the Torch of Retribution. ~470 XP.
+  complete 3453 "The Torch of Retribution"
+  turnin 3453 "The Torch of Retribution" @39.1,39.0
+
+step Kalaran Windblade (39, 39) · round 6
+  zone map 1427
+  accept 3454 "The Torch of Retribution" @39.1,39.0
+
+step The Torch of Retribution
+  zone map 1427
+  tip Take the Torch of Retribution. · Hand in: Torch of Retribution, Searing Gorge (39.1, 39.1). ~4,700 XP.
+  turnin 3454 "The Torch of Retribution" @39.1,39.1
+
+step Kalaran Windblade (39, 39) · round 7
+  zone map 1427
+  accept 3462 "Squire Maltrake" @39.1,39.0
+
+step Squire Maltrake
+  zone map 1427
+  tip Speak with Squire Maltrake. · Hand in: Squire Maltrake, Searing Gorge (39.2, 39). ~470 XP.
+  turnin 3462 "Squire Maltrake" @39.2,39.0
+
+step Kalaran Windblade (39, 39) · round 8
+  zone map 1427
+  accept 3463 "Set Them Ablaze!" @39.2,39.0
+
+step Set Them Ablaze!
+  zone map 1427
+  tip Set the North, South, East, and West Sentry Towers on fire by using the Torch of Retribution inside each of the buildings. ~7,600 XP.
+  complete 3463 "Set Them Ablaze!" @35.7,60.7
+  turnin 3463 "Set Them Ablaze!" @39.2,39.0
+
+step Kalaran Windblade (39, 39) · round 9
+  zone map 1427
+  accept 3481 "Trinkets..." @38.9,39.0
+
+step Trinkets...
+  zone map 1427
+  tip Open the chest. ~470 XP.
+  turnin 3481 "Trinkets..." @38.9,39.0
+
+step Around Searing Gorge
+  zone map 1427
+  accept 3367 "Suntara Stones" @63.9,61.0
+  accept 3377 "Prayer to Elune" @29.6,26.3
+
+step Suntara Stones
+  zone map 1427
+  tip Help Dorius get back to Ironforge. · Hand in: Singed Letter, Searing Gorge (74.5, 19.3). ~4,400 XP.
+  complete 3367 "Suntara Stones"
+  turnin 3367 "Suntara Stones" @74.5,19.3
+
+step Prayer to Elune
+  zone map 1427
+  tip Hear Zamael tell his tale. ~470 XP.
+  complete 3377 "Prayer to Elune"
+  turnin 3377 "Prayer to Elune" @29.6,26.3
+
+step Around Searing Gorge · round 2
+  zone map 1427
+  accept 3368 "Suntara Stones" @74.5,19.3
+  accept 3378 "Prayer to Elune" @29.6,26.3
+
+step Prayer to Elune
+  zone map 1427
+  tip Find the Prayer to Elune and take it to Astarii Starseeker in Darnassus. · Hand in: Astarii Starseeker, Darnassus (38.3, 81). · Hold it for Darnassus (whenever you pass). ~5,900 XP.
+  complete 3378 "Prayer to Elune" @23.4,41.1
+  note Keep it: you hand this in later on the route.
+
+step Nethergarde Keep, Blasted Lands (66, 19)
+  zone map 1419
+  accept 2991 "Nekrum's Medallion" @66.9,19.5
+  accept 2581 "Snickerfang Jowls" @50.6,14.2
+  accept 2583 "A Boar's Vitality" @50.6,14.2
+  accept 2585 "The Decisive Striker" @50.6,14.2
+  accept 2601 "The Basilisk's Bite" @50.6,14.3
+  accept 2603 "Vulture's Vigor" @50.6,14.3
+  accept 2521 "To Serve Kum'isha" @52.0,35.7
+  task "Conjurer's Codex" optional
+
+step Nekrum's Medallion
+  zone map 1419
+  tip Nekrum Gutchewer drops it. · He comes out at the end of the Zul'Farrak pyramid stairs event (after the Executioner's Key opens the cages). · Do this on your Legacy ZF run in the Un'Goro stop, then bring it to Thadius Grimshade in the Blasted Lands. · ~5,250 XP.
+  complete 2991 "Nekrum's Medallion"
+  turnin 2991 "Nekrum's Medallion" @66.9,19.5
+
+step Snickerfang Jowls
+  zone map 1419
+  tip Bring three Snickerfang Jowls, two Blasted Boar Lungs, and one Scorpok Pincer to Bloodmage Drazial. ~4,700 XP.
+  complete 2581 "Snickerfang Jowls" @50.8,28.1
+  turnin 2581 "Snickerfang Jowls" @50.6,14.2
+
+step A Boar's Vitality
+  zone map 1419
+  tip Bring three Blasted Boar Lungs, two Scorpok Pincers, and one Basilisk Brain to Bloodmage Drazial. ~4,700 XP.
+  complete 2583 "A Boar's Vitality" @59.3,36.0
+  turnin 2583 "A Boar's Vitality" @50.6,14.2
+
+step The Decisive Striker
+  zone map 1419
+  tip Bring three Scorpok Pincers, two Vulture Gizzards, and one Blasted Boar Lung to Bloodmage Drazial. ~4,700 XP.
+  complete 2585 "The Decisive Striker" @60.4,44.8
+  turnin 2585 "The Decisive Striker" @50.6,14.2
+
+step The Basilisk's Bite
+  zone map 1419
+  tip Bring ten Basilisk Brains and two Vulture Gizzards to Bloodmage Lynnore. ~4,700 XP.
+  complete 2601 "The Basilisk's Bite" @60.1,35.1
+  turnin 2601 "The Basilisk's Bite" @50.6,14.3
+
+step Vulture's Vigor
+  zone map 1419
+  tip Bring ten Vulture Gizzards and two Snickerfang Jowls to Bloodmage Lynnore. ~4,700 XP.
+  complete 2603 "Vulture's Vigor" @54.8,45.8
+  turnin 2603 "Vulture's Vigor" @50.6,14.3
+
+step To Serve Kum'isha
+  zone map 1419
+  tip In your journeys throughout the Blasted Lands, should you ever come across a Flawless Draenethyst Sphere, take the item back to Kum'isha the Collector. ~8,450 XP.
+  complete 2521 "To Serve Kum'isha" @43.3,15.4
+  turnin 2521 "To Serve Kum'isha" @52.0,35.7
+
+step Nethergarde Keep, Blasted Lands (66, 19) · round 2
+  zone map 1419
+  accept 2992 "The Divination" @66.9,19.5
+
+step The Divination
+  zone map 1419
+  tip Wait until Grimshade performs the ritual of divination. ~1,050 XP.
+  complete 2992 "The Divination"
+  turnin 2992 "The Divination" @66.9,19.5
+
+step Nethergarde Keep, Blasted Lands (66, 19) · round 3
+  zone map 1419
+  accept 2993 "Return to the Hinterlands" @66.9,19.5
+
+step Return to the Hinterlands
+  zone map 1419
+  tip Speak with Gryphon Master Talonaxe. · Hand in: Gryphon Master Talonaxe, The Hinterlands (9.8, 44.5). · Opens Saving Sharpbeak (elite) back in the Hinterlands. · Only if you have a group. ~2,100 XP.
+  turnin 2993 "Return to the Hinterlands" npc 5636 "Gryphon Master Talonaxe" map 1416 @97.7,62.9
+
+step Fly to Stormwind
+  zone map 1453
+  tip Nethergarde → fly to Stormwind. · By now you should have 25 books = the last reward (Crest of Elucidation, Researcher's Nightlight or Truthseeker's Bow).
+  task "Turn in library books" optional
+  accept 5066 "A Call to Arms: The Plaguelands!" @56.4,74.1
+  accept 1475 "Into The Temple of Atal'Hakkar" @69.5,40.4
+  accept 96772 "The Dragon's Journal" map 1416 @15.3,73.9 -- dungeon quest, hold it for the run
+  accept 8254 "Cenarion Aid" @49.5,45.2
+
+step Into The Temple of Atal'Hakkar
+  zone map 1453
+  tip The 10 Atal'ai Tablets are glowing stone tablets lying around inside the Sunken Temple. · Two easy ones: once you're in, swim down through the water; when you come up in The Broken Hall, one is on the right and one is under the water. · They respawn every ~7.5 min, and the rest are spread around the balconies, so you'll pick most up on a normal run. · ~7,100 XP.
+  complete 1475 "Into The Temple of Atal'Hakkar" map 1435 @76.7,51.3
+  turnin 1475 "Into The Temple of Atal'Hakkar" @69.5,40.4
+
+step Legacy dungeon · once, for points
+  zone map 1418
+  tip Range 41-51. · Kill Archaedas at the end.
+  task "Legacy: Uldaman" optional
+

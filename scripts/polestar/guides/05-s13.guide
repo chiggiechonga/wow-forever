@@ -1,0 +1,276 @@
+guide hearthbound/s13
+title Stranglethorn part 1
+faction Alliance
+levels 33-35
+zone map 1434
+author Brownie
+keywords Hearthbound, Booty Bay → Stranglethorn Vale
+next hearthbound/s14
+
+step Booty Bay: grab these
+  zone map 1434
+  accept 575 "Supply and Demand" @28.3,77.6
+  accept 189 "Bloodscalp Ears" @27.0,77.1
+  accept 213 "Hostile Takeover" @27.0,77.1
+  accept 605 "Singing Blue Shards" @27.1,77.2
+  accept 1183 "Goblin Sponsorship" @27.2,76.9
+  accept 616 "The Haunted Isle" @27.0,77.2
+  accept 198 "Supplies to Private Thorsen" @27.0,77.2
+  accept 95789 "Shady Saltseers" @27.0,77.2 -- dungeon quest, hold it for the run
+  accept 95791 "The Saltseer Captain" @27.0,77.2 -- dungeon quest, hold it for the run
+
+step Supply and Demand
+  zone map 1434
+  tip Bring 2 Large River Crocolisk Skins to Drizzlik in Booty Bay. ~1,250 XP.
+  complete 575 "Supply and Demand" @39.9,14.4
+  turnin 575 "Supply and Demand" @28.3,77.6
+
+step Bloodscalp Ears
+  zone map 1434
+  tip Acquire 15 Bloodscalp Ears and return them to Kebok in Booty Bay. ~2,050 XP.
+  complete 189 "Bloodscalp Ears" @29.8,21.6
+  turnin 189 "Bloodscalp Ears" @27.0,77.1
+
+step Hostile Takeover
+  zone map 1434
+  tip Retrieve 8 Tumbled Crystals and return them to Kebok in Booty Bay. ~2,800 XP.
+  complete 213 "Hostile Takeover" @46.5,23.9
+  turnin 213 "Hostile Takeover" @27.0,77.1
+
+step Singing Blue Shards
+  zone map 1434
+  tip Bring 10 Singing Crystal Shards to Crank Fizzlebub. ~2,750 XP.
+  complete 605 "Singing Blue Shards" @36.6,8.3
+  turnin 605 "Singing Blue Shards" @27.1,77.2
+
+step Goblin Sponsorship
+  zone map 1434
+  tip Bring the Fuel Regulator Blueprints to Baron Revilgaz in Booty Bay. · The blueprints drop from Venture Co. in the north-west STV camps. ~2,850 XP.
+  turnin 1183 "Goblin Sponsorship" npc 4630 "Pozzik" map 1441 @80.2,75.9
+
+step The Haunted Isle
+  zone map 1434
+  tip Speak with Baron Revilgaz in Booty Bay. · Hand in: Baron Revilgaz, Stranglethorn (27.2, 76.9). ~285 XP.
+  turnin 616 "The Haunted Isle" @27.2,76.9
+
+step Supplies to Private Thorsen
+  zone map 1434
+  tip Deliver the Miscellaneous Goblin Supplies to Private Thorsen. · Hand in: Private Thorsen, Stranglethorn (38, 3.4). ~640 XP.
+  turnin 198 "Supplies to Private Thorsen" @40.3,8.4
+
+step Booty Bay: grab these · round 2
+  zone map 1434
+  accept 578 "The Stone of the Tides" @27.2,76.9
+
+step The Stone of the Tides
+  zone map 1434
+  tip Find the haunted island for Baron Revilgaz in Booty Bay. ~2,850 XP.
+  complete 578 "The Stone of the Tides"
+  turnin 578 "The Stone of the Tides" @27.2,76.9
+
+step Nesingwary's camp (35, 10)
+  zone map 1434
+  accept 583 "Welcome to the Jungle" @35.7,10.5
+
+step Welcome to the Jungle
+  zone map 1434
+  tip Speak with Hemet Nesingwary Hand in: Hemet Nesingwary, Stranglethorn (35.7, 10.8). ~245 XP.
+  turnin 583 "Welcome to the Jungle" @35.7,10.8
+
+step Nesingwary's camp (35, 10) · round 2
+  zone map 1434
+  accept 185 "Tiger Mastery" @35.6,10.6
+  accept 190 "Panther Mastery" @35.6,10.6
+  accept 194 "Raptor Mastery" @35.7,10.8
+
+step Tiger Mastery
+  zone map 1434
+  tip Ajeck Rouack of Nesingwary's Expedition wants you to kill 10 Young Stranglethorn Tigers. ~1,250 XP.
+  complete 185 "Tiger Mastery" @34.7,17.5
+  turnin 185 "Tiger Mastery" @35.6,10.6
+
+step Panther Mastery
+  zone map 1434
+  tip Sir S. · J. · Erlgadin of Nesingwary's Expedition wants you to kill 10 Young Panthers. ~1,250 XP.
+  complete 190 "Panther Mastery" @35.1,15.1
+  turnin 190 "Panther Mastery" @35.6,10.6
+
+step Raptor Mastery
+  zone map 1434
+  tip Hemet Nesingwary wants you to kill 10 Stranglethorn Raptors. ~1,350 XP.
+  complete 194 "Raptor Mastery" @27.5,17.7
+  turnin 194 "Raptor Mastery" @35.7,10.8
+
+step Nesingwary's camp (35, 10) · round 3
+  zone map 1434
+  accept 186 "Tiger Mastery" @35.6,10.6
+  accept 191 "Panther Mastery" @35.6,10.6
+  accept 195 "Raptor Mastery" @35.7,10.8
+
+step Tiger Mastery
+  zone map 1434
+  tip Ajeck Rouack of Nesingwary's Expedition wants you to kill 10 Stranglethorn Tigers. ~1,300 XP.
+  complete 186 "Tiger Mastery" @47.2,18.5
+  turnin 186 "Tiger Mastery" @35.6,10.6
+
+step Panther Mastery
+  zone map 1434
+  tip Sir S. · J. · Erlgadin of Nesingwary's Expedition wants you to kill 10 Panthers. ~1,300 XP.
+  complete 191 "Panther Mastery" @38.2,35.4
+  turnin 191 "Panther Mastery" @35.6,10.6
+
+step Raptor Mastery
+  zone map 1434
+  tip Hemet Nesingwary wants you to kill 10 Lashtail Raptors. ~1,400 XP.
+  complete 195 "Raptor Mastery" @37.6,27.9
+  turnin 195 "Raptor Mastery" @35.7,10.8
+
+step Nesingwary's camp (35, 10) · round 4
+  zone map 1434
+  accept 187 "Tiger Mastery" @35.6,10.6
+
+step Tiger Mastery
+  zone map 1434
+  tip Ajeck Rouack of Nesingwary's Expedition wants you to kill 10 Elder Stranglethorn Tigers. ~2,050 XP.
+  complete 187 "Tiger Mastery" @31.5,20.1
+  turnin 187 "Tiger Mastery" @35.6,10.6
+
+step Rebel Camp (38, 3)
+  zone map 1434
+  accept 203 "The Second Rebellion" @38.0,3.3
+  accept 204 "Bad Medicine" @38.0,3.3
+  accept 215 "Jungle Secrets" @40.3,8.4
+  accept 210 "Krazek's Cookery" @37.7,3.3
+
+step The Second Rebellion
+  zone map 1434
+  tip Kill 15 Kurzen Jungle Fighters. ~1,950 XP.
+  complete 203 "The Second Rebellion" @46.2,12.6
+  turnin 203 "The Second Rebellion" @38.0,3.3
+
+step Bad Medicine
+  zone map 1434
+  tip Bring 7 Jungle Remedies and 1 Venom Fern Extract to Sergeant Yohwa at the Rebel Camp. ~2,700 XP.
+  complete 204 "Bad Medicine" @46.2,12.6
+  turnin 204 "Bad Medicine" @38.0,3.3
+
+step Jungle Secrets
+  zone map 1434
+  tip Speak with Lieutenant Doren at the Rebel Camp. · Hand in: Lieutenant Doren, Stranglethorn (38, 3). ~1,300 XP.
+  turnin 215 "Jungle Secrets" @38.0,3.0
+
+step Krazek's Cookery
+  zone map 1434
+  tip Bring Krazek's Crock Pot to Krazek the goblin. · Hand in: Krazek, Stranglethorn (26.9, 77.2). ~1,400 XP.
+  turnin 210 "Krazek's Cookery" @27.0,77.2
+
+step Rebel Camp (38, 3) · round 2
+  zone map 1434
+  accept 200 "Bookie Herod" @38.0,3.0
+
+step Bookie Herod
+  zone map 1434
+  tip Find Bookie Herod's Records. · Hand in: Bookie Herod's Records, Stranglethorn (43.7, 9.4). ~1,350 XP.
+  turnin 200 "Bookie Herod" @43.7,9.4
+
+step Rebel Camp (38, 3) · round 3
+  zone map 1434
+  accept 328 "The Hidden Key" @43.7,9.4
+
+step The Hidden Key
+  zone map 1434
+  tip Use the Small Brass Key to open Bookie Herod's Strongbox. · Hand in: Bookie Herod's Strongbox, Stranglethorn (49.6, 7.6). ~1,400 XP.
+  turnin 328 "The Hidden Key" @49.6,7.6
+
+step Rebel Camp (38, 3) · round 4
+  zone map 1434
+  accept 329 "The Spy Revealed!" @49.6,7.6
+
+step The Spy Revealed!
+  zone map 1434
+  tip Take the Muddy Note to Lieutenant Doren at the Rebel Camp. · Hand in: Lieutenant Doren, Stranglethorn (38, 3). ~1,400 XP.
+  turnin 329 "The Spy Revealed!" @38.0,3.0
+
+step Rebel Camp (38, 3) · round 5
+  zone map 1434
+  accept 330 "Patrol Schedules" @38.0,3.0
+
+step Patrol Schedules
+  zone map 1434
+  tip Speak with Corporal Sethman. · Hand in: Corporal Sethman, Stranglethorn (37.7, 3.4). ~285 XP.
+  turnin 330 "Patrol Schedules" @37.7,3.4
+
+step Rebel Camp (38, 3) · round 6
+  zone map 1434
+  accept 331 "Report to Doren" @37.7,3.4
+
+step Report to Doren
+  zone map 1434
+  tip Speak with Lieutenant Doren. · Hand in: Lieutenant Doren, Stranglethorn (38, 3). ~2,850 XP.
+  turnin 331 "Report to Doren" @38.0,3.0
+
+step Middle STV
+  zone map 1434
+  tip On the big table outside the cave.
+  task "Basilisks: Should Petrification be Feared?" optional
+
+step Back in Booty Bay
+  zone map 1434
+  accept 577 "Some Assembly Required" @28.3,77.6
+  accept 601 "Water Elementals" @27.2,76.9
+  accept 627 "Favor for Krazek" @27.0,77.2 -- hold it
+
+step Some Assembly Required
+  zone map 1434
+  tip Bring 5 Snapjaw Crocolisks Skins to Drizzlik in Booty Bay. ~1,400 XP.
+  complete 577 "Some Assembly Required" @37.9,32.6
+  turnin 577 "Some Assembly Required" @28.3,77.6
+
+step Water Elementals
+  zone map 1434
+  tip Acquire 6 Water Elemental Bracers for Baron Revilgaz in Booty Bay. ~2,850 XP.
+  complete 601 "Water Elementals" @21.5,24.7
+  turnin 601 "Water Elementals" @27.2,76.9
+
+step Back in Booty Bay · round 2
+  zone map 1434
+  accept 602 "Magical Analysis" @27.2,76.9
+  accept 628 "Excelsior" @28.3,77.6
+
+step Excelsior
+  zone map 1434
+  tip Bring an Elder Crocolisk Skin to Drizzlik in Booty Bay. ~2,850 XP.
+  complete 628 "Excelsior" @33.4,32.5
+  turnin 628 "Excelsior" @28.3,77.6
+
+step Heading north to leave STV
+  zone map 1434
+  accept 188 "Tiger Mastery" @35.6,10.6
+  accept 192 "Panther Mastery" @35.6,10.6
+  accept 574 "Special Forces" @38.0,3.3
+  accept 207 "Kurzen's Mystery" @37.8,3.6
+
+step Tiger Mastery
+  zone map 1434
+  tip Ajeck Rouack of Nesingwary's Expedition wants you to kill Sin'Dall and return with her paw. ~2,850 XP.
+  complete 188 "Tiger Mastery" @32.2,17.4
+  turnin 188 "Tiger Mastery" @35.6,10.6
+
+step Panther Mastery
+  zone map 1434
+  tip Sir S. · J. · Erlgadin of Nesingwary's Expedition wants you to kill 10 Shadowmaw Panthers. ~2,150 XP.
+  complete 192 "Panther Mastery" @37.3,45.3
+  turnin 192 "Panther Mastery" @35.6,10.6
+
+step Special Forces
+  zone map 1434
+  tip Kill 10 Kurzen Commandoes and 6 Kurzen Headshrinkers. · Hand in: Lieutenant Doren, Stranglethorn (38, 3). ~2,850 XP.
+  complete 574 "Special Forces" @46.0,8.7
+  turnin 574 "Special Forces" @38.0,3.0
+
+step Kurzen's Mystery
+  zone map 1434
+  tip Find the 4 tablets and bring their legends back to Brother Nimetz. · The 4 tablets are spread around STV's troll ruins and the Kurzen camp. ~3,550 XP.
+  complete 207 "Kurzen's Mystery" @29.5,19.1
+  turnin 207 "Kurzen's Mystery" @37.8,3.6
+

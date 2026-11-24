@@ -1,0 +1,209 @@
+guide hearthbound/s24
+title Felwood + Azshara
+faction Alliance
+levels 55-56
+zone map 1448
+author Brownie
+keywords Hearthbound, Talonbranch Glade · Azshara
+next hearthbound/s28
+
+step Emerald Sanctuary, Felwood (51, 82)
+  zone map 1448
+  accept 4421 "The Corruption of the Jadefire" @51.4,81.5
+  accept 5155 "Forces of Jaedenar" @51.2,82.1
+  accept 5156 "Verifying the Corruption" @50.9,81.6
+  accept 939 "Flute of Xavaric" item 11668 "Flute of Xavaric"
+  accept 4101 "Cleansing Felwood" @54.2,86.8
+
+step The Corruption of the Jadefire
+  zone map 1448
+  tip Kill 11 Jadefire Felsworns, 9 Jadefire Shadowstalkers, 9 Jadefire Rogues, and Xavathras. ~5,450 XP.
+  complete 4421 "The Corruption of the Jadefire" @44.0,88.9
+  turnin 4421 "The Corruption of the Jadefire" @51.4,81.5
+
+step Forces of Jaedenar
+  zone map 1448
+  tip Enter Jaedenar and slay 4 Jaedenar Hounds, 4 Jaedenar Guardsmen, 6 Jaedenar Adepts, and 6 Jaedenar Cultists before returning to Greta Mosshoof in Felwood. ~4,900 XP.
+  complete 5155 "Forces of Jaedenar" @38.7,61.9
+  turnin 5155 "Forces of Jaedenar" @51.2,82.1
+
+step Verifying the Corruption
+  zone map 1448
+  tip Seek out and destroy 2 Entropic Beasts and 2 Entropic Horrors while exploring Shatter Scar Vale. ~6,800 XP.
+  complete 5156 "Verifying the Corruption" @41.2,43.8
+  turnin 5156 "Verifying the Corruption" @50.9,81.6
+
+step Flute of Xavaric
+  zone map 1448
+  tip Bring the Flute of Xavaric and 5 Jadefire Felbind samples to Eridan Bluewind in southern Felwood. · Hand in: Eridan Bluewind, Felwood (51.4, 81.5). ~5,450 XP.
+  complete 939 "Flute of Xavaric" @43.3,88.9
+  turnin 939 "Flute of Xavaric" @51.4,81.5
+
+step Cleansing Felwood
+  zone map 1448
+  tip Bring 15 Blood Amber to Arathandris Silversky in Felwood. ~5,650 XP.
+  complete 4101 "Cleansing Felwood" @58.0,22.4
+  turnin 4101 "Cleansing Felwood" @54.2,86.8
+
+step Emerald Sanctuary, Felwood (51, 82) · round 2
+  zone map 1448
+  accept 4906 "Further Corruption" @51.4,81.5
+  accept 5157 "Collection of the Corrupt Water" @51.2,82.1
+  accept 4441 "Felbound Ancients" @51.4,81.5
+
+step Further Corruption
+  zone map 1448
+  tip Eridan Bluewind in Felwood wants you to kill 8 Jadefire Hellcallers, 8 Jadefire Betrayers, 8 Jadefire Tricksters, and Xavaric. ~5,450 XP.
+  complete 4906 "Further Corruption" @36.8,56.5
+  turnin 4906 "Further Corruption" @51.4,81.5
+
+step Collection of the Corrupt Water
+  zone map 1448
+  tip Take the Empty Canteen to the Moon Well in the center of Jaedenar and fill it before returning to Greta Mosshoof in Felwood. ~3,800 XP.
+  complete 5157 "Collection of the Corrupt Water"
+  turnin 5157 "Collection of the Corrupt Water" @51.2,82.1
+
+step Felbound Ancients
+  zone map 1448
+  tip Travel to Darnassus and use Eridan's Vial to collect a Vial of Blessed Water from the Temple of the Moon. ~5,450 XP.
+  complete 4441 "Felbound Ancients"
+  turnin 4441 "Felbound Ancients" @51.4,81.5
+
+step Emerald Sanctuary, Felwood (51, 82) · round 3
+  zone map 1448
+  accept 4442 "Purified!" @51.4,81.5
+
+step Purified!
+  zone map 1448
+  tip Speak to Eridan again in a moment. ~5,450 XP.
+  turnin 4442 "Purified!" @51.4,81.5
+
+step Emerald Sanctuary, Felwood (51, 82) · round 4
+  zone map 1448
+  accept 4261 "Ancient Spirit" @49.6,29.6
+
+step Ancient Spirit
+  zone map 1448
+  tip Escort Arei to safety, then speak with Kayneth Stillwind in Forest Song, in eastern Ashenvale. · Hand in: Kayneth Stillwind, Ashenvale (85.2, 44.7). · Arei walks to the Irontree Woods. · Hand-in is Kayneth Stillwind in Ashenvale (Forest Song): fly there after. · Rewards a cloak. ~7,300 XP.
+  complete 4261 "Ancient Spirit"
+  turnin 4261 "Ancient Spirit" npc 3848 "Kayneth Stillwind" map 1440 @85.2,44.7
+
+step Jaedenar (west Felwood)
+  zone map 1448
+  accept 5202 "A Strange Red Key" item 13140 "Blood Red Key"
+
+step A Strange Red Key
+  zone map 1448
+  tip Search through Jaedenar to discover what the Blood Red Key is used for. · Hand in: Captured Arko'narin, Felwood (36.2, 55.5). ~5,650 XP.
+  turnin 5202 "A Strange Red Key" @36.2,55.5
+
+step Jaedenar (west Felwood) · round 2
+  zone map 1448
+  accept 5203 "Rescue From Jaedenar" @36.2,55.5
+
+step Rescue From Jaedenar
+  zone map 1448
+  tip Escort Arko'narin to where Lightforge and her equipment are being held, and then protect her as you escape Shadow Hold. · Hand in: Jessir Moonbow, Felwood (51.4, 82). ~5,650 XP.
+  complete 5203 "Rescue From Jaedenar"
+  note Keep it: you hand this in later on the route.
+
+step Jaedenar (west Felwood) · round 3
+  zone map 1448
+  accept 5204 "Retribution of the Light" @51.4,82.0
+
+step Retribution of the Light
+  zone map 1448
+  tip Return to Jaedenar and kill the succubus Rakaiah before finding the Remains of Trey Lightforge. · Hand in: Remains of Trey Lightforge, Felwood (38.5, 50.4). ~4,500 XP.
+  complete 5204 "Retribution of the Light" @38.3,50.5
+  turnin 5204 "Retribution of the Light" @38.5,50.4
+
+step Jaedenar (west Felwood) · round 4
+  zone map 1448
+  accept 5385 "The Remains of Trey Lightforge" @38.5,50.4
+
+step The Remains of Trey Lightforge
+  zone map 1448
+  tip Return the Remains of Trey Lightforge to Jessir Moonbow in Felwood. · Hand in: Jessir Moonbow, Felwood (51.4, 82). ~7,550 XP.
+  turnin 5385 "The Remains of Trey Lightforge" @51.4,82.0
+
+step Timbermaw Hold (north)
+  zone map 1448
+  accept 8460 "Timbermaw Ally" @50.9,85.0
+  accept 8461 "Deadwood of the North" @64.8,8.1
+  task "Northern Kalimdor – A Comprehensive Guide" optional
+
+step Timbermaw Ally
+  zone map 1448
+  tip Grazle wants you to prove yourself by killing 6 Deadwood Warriors, 6 Deadwood Pathfinders, and 6 Deadwood Gardeners. ~4,400 XP.
+  complete 8460 "Timbermaw Ally" @47.8,94.0
+  turnin 8460 "Timbermaw Ally" @50.9,85.0
+
+step Deadwood of the North
+  zone map 1448
+  tip Nafien would like you to kill 6 Deadwood Den Watchers, 6 Deadwood Avengers, and 6 Deadwood Shamans. ~5,650 XP.
+  complete 8461 "Deadwood of the North" @62.5,13.2
+  turnin 8461 "Deadwood of the North" @64.8,8.1
+
+step Timbermaw Hold (north) · round 2
+  zone map 1448
+  accept 8462 "Speak to Nafien" @50.9,85.0
+
+step Speak to Nafien
+  zone map 1448
+  tip Travel north along the main road in Felwood and speak with the furbolg named Nafien. · Hand in: Nafien, Felwood (64.8, 8.1). ~560 XP.
+  turnin 8462 "Speak to Nafien" @64.8,8.1
+
+step Azshara
+  zone map 1447
+  accept 3601 "Kim'jael Indeed!" @53.5,21.8
+  accept 6804 "Poisoned Water" @79.3,73.7
+  accept 6805 "Stormers and Rumblers" @79.3,73.7
+  task "Everyday Etiquette" optional
+  accept 8255 "Of Coursers We Know" @42.4,42.6
+
+step Kim'jael Indeed!
+  zone map 1447
+  tip Search the Thalassian Base Camp for Kim'jael's Compass, Scope, Stuffed Chicken and Wizzlegoober, then return them to him in Azshara. ~6,550 XP.
+  complete 3601 "Kim'jael Indeed!" @59.6,30.9
+  turnin 3601 "Kim'jael Indeed!" @53.5,21.8
+
+step Poisoned Water
+  zone map 1447
+  tip Use the Aspect of Neptulon on poisoned elementals of Eastern Plaguelands. ~4,350 XP.
+  complete 6804 "Poisoned Water" map 1423 @44.3,40.3
+  turnin 6804 "Poisoned Water" @79.3,73.7
+
+step Stormers and Rumblers
+  zone map 1447
+  tip Kill 15 Dust Stormers and 15 Desert Rumblers and then return to Duke Hydraxis in Azshara. ~6,000 XP.
+  complete 6805 "Stormers and Rumblers" map 1451 @18.2,32.4
+  turnin 6805 "Stormers and Rumblers" @79.3,73.7
+
+step Of Coursers We Know
+  zone map 1447
+  tip Acquire 4 Healthy Courser Glands and bring them to Ogtinc in Azshara. · Priest only. ~5,100 XP.
+  complete 8255 "Of Coursers We Know" @57.3,88.6
+  turnin 8255 "Of Coursers We Know" @42.4,42.6
+
+step Azshara · round 2
+  zone map 1447
+  accept 5534 "Kim'jael's 'Missing' Equipment" @53.5,21.8
+  accept 8256 "The Ichor of Undeath" @42.4,42.6
+
+step Kim'jael's 'Missing' Equipment
+  zone map 1447
+  tip Find Some Rune that the naga have in their possession in the Ruins of Eldarath and return it to Kim'jael in Azshara. ~6,550 XP.
+  complete 5534 "Kim'jael's 'Missing' Equipment" @48.8,66.7
+  turnin 5534 "Kim'jael's 'Missing' Equipment" @53.5,21.8
+
+step The Ichor of Undeath
+  zone map 1447
+  tip Acquire an Ichor of Undeath for Ogtinc in Azshara. · Priest only. · Then Ogtinc gives Blood of Morphaz for the Sunken Temple. ~5,100 XP.
+  complete 8256 "The Ichor of Undeath" map 1434 @40.8,59.1
+  turnin 8256 "The Ichor of Undeath" @42.4,42.6
+
+step Dungeon
+  zone map 1447
+  tip New Forever dungeon (55-60).
+  task "Blackmaw Hold" optional
+

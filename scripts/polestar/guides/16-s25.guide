@@ -1,0 +1,173 @@
+guide hearthbound/s25
+title Burning Steppes
+faction Alliance
+levels 52-53
+zone map 1428
+author Brownie
+keywords Hearthbound, Morgan's Vigil
+next hearthbound/d3
+
+step Morgan's Vigil, Burning Steppes (85, 69)
+  zone map 1428
+  accept 3823 "Extinguish the Firegut" @84.6,68.7
+  accept 4283 "FIFTY! YEP!" @84.6,68.7
+  accept 4286 "The Good Stuff" @84.6,68.7
+  accept 4262 "Overmaster Pyron" @85.4,70.1
+  accept 4182 "Dragonkin Menace" @85.8,69.0
+
+step Extinguish the Firegut
+  zone map 1428
+  tip Slay 15 Firegut Ogre-Mages, 7 Firegut Ogres, and 7 Firegut Ogre Brutes, and return to Oralius when you are finished. ~5,100 XP.
+  complete 3823 "Extinguish the Firegut" @83.5,52.2
+  turnin 3823 "Extinguish the Firegut" @84.6,68.7
+
+step FIFTY! YEP!
+  zone map 1428
+  tip Oralius wants 50 Blackrock Medallions. ~5,800 XP.
+  complete 4283 "FIFTY! YEP!" @48.8,59.2
+  turnin 4283 "FIFTY! YEP!" @84.6,68.7
+
+step The Good Stuff
+  zone map 1428
+  tip Travel to Blackrock Depths and recover 20 Dark Iron Fanny Packs. ~5,800 XP.
+  complete 4286 "The Good Stuff" @25.6,21.6
+  turnin 4286 "The Good Stuff" @84.6,68.7
+
+step Overmaster Pyron
+  zone map 1428
+  tip Slay Overmaster Pyron and return to Jalinda Sprig. ~5,100 XP.
+  complete 4262 "Overmaster Pyron" @7.3,71.3
+  turnin 4262 "Overmaster Pyron" @85.4,70.1
+
+step Dragonkin Menace
+  zone map 1428
+  tip Slay 15 Black Broodlings, 10 Black Dragonspawn, 4 Black Wyrmkin and 1 Black Drake. ~5,450 XP.
+  complete 4182 "Dragonkin Menace" @84.6,62.1
+  turnin 4182 "Dragonkin Menace" @85.8,69.0
+
+step Morgan's Vigil, Burning Steppes (85, 69) · round 2
+  zone map 1428
+  accept 3824 "Gor'tesh the Brute Lord" @84.6,68.7
+  accept 4263 "Incendius!" @85.4,70.1
+
+step Gor'tesh the Brute Lord
+  zone map 1428
+  tip Find Gor'tesh, somewhere to the west of Dreadmaul Rock. ~5,250 XP.
+  complete 3824 "Gor'tesh the Brute Lord" @39.3,55.3
+  turnin 3824 "Gor'tesh the Brute Lord" @84.6,68.7
+
+step Incendius!
+  zone map 1428
+  tip Lord Incendius guards the Black Anvil in Shadowforge City (Blackrock Depths). · He's immune to stuns. · Kill him to finish it. · ~5,800 XP.
+  complete 4263 "Incendius!"
+  turnin 4263 "Incendius!" @85.4,70.1
+
+step Morgan's Vigil, Burning Steppes (85, 69) · round 3
+  zone map 1428
+  accept 3825 "Ogre Head On A Stick = Party" @84.6,68.7
+
+step Ogre Head On A Stick = Party
+  zone map 1428
+  tip Take Gor'tesh's Lopped Off Head and place it at the top of Dreadmaul Rock. · Rewards a ring choice. ~5,250 XP.
+  complete 3825 "Ogre Head On A Stick = Party" @81.0,46.8
+  turnin 3825 "Ogre Head On A Stick = Party" @84.6,68.7
+
+step The True Masters (Redridge + Stormwind runs)
+  zone map 1428
+  accept 4183 "The True Masters" @85.8,69.0
+
+step The True Masters
+  zone map 1428
+  tip Travel to Lakeshire and deliver Helendis Riverhorn's Letter to Magistrate Solomon. · Hand in: Magistrate Solomon, Redridge Mountains (24.9, 44.5). · Lakeshire is next door: ride west into Redridge. ~4,100 XP.
+  turnin 4183 "The True Masters" npc 344 "Magistrate Solomon" map 1433 @24.9,44.4
+
+step The True Masters (Redridge + Stormwind runs) · round 2
+  zone map 1433
+  accept 4184 "The True Masters" @24.9,44.5
+
+step The True Masters
+  zone map 1433
+  tip Travel to Stormwind and deliver Solomon's Plea to Highlord Bolvar Fordragon. · Hand in: Highlord Bolvar Fordragon, Stormwind (80.2, 38.4). · Fly to Stormwind. ~4,100 XP.
+  turnin 4184 "The True Masters" npc 1748 "Highlord Bolvar Fordragon" map 1453 @80.2,38.3
+
+step The True Masters (Redridge + Stormwind runs) · round 3
+  zone map 1453
+  accept 4186 "The True Masters" @80.2,38.4
+
+step The True Masters
+  zone map 1453
+  tip Speak with Highlord Bolvar Fordragon after speaking with Lady Katrana Prestor. ~540 XP.
+  turnin 4186 "The True Masters" npc 344 "Magistrate Solomon" map 1433 @24.9,44.4
+
+step The True Masters (Redridge + Stormwind runs) · round 4
+  zone map 1453
+  accept 4186 "The True Masters" @80.2,38.4
+
+step The True Masters
+  zone map 1453
+  tip Take Bolvar's Decree to Magistrate Solomon in Lakeshire. · Hand in: Magistrate Solomon, Redridge Mountains (24.9, 44.5). · Fly back to Redridge. ~5,450 XP.
+  turnin 4186 "The True Masters" npc 344 "Magistrate Solomon" map 1433 @24.9,44.4
+
+step The True Masters (Redridge + Stormwind runs) · round 5
+  zone map 1433
+  accept 4223 "The True Masters" @24.9,44.5
+
+step The True Masters
+  zone map 1433
+  tip Speak with Marshal Maxwell in the Burning Steppes. · Hand in: Marshal Maxwell, Burning Steppes (84.7, 69). ~540 XP.
+  turnin 4223 "The True Masters" npc 9560 "Marshal Maxwell" map 1428 @84.7,69.0
+
+step The True Masters (Redridge + Stormwind runs) · round 6
+  zone map 1428
+  accept 4224 "The True Masters" @84.7,69.0
+
+step The True Masters
+  zone map 1428
+  tip Speak with Ragged John to learn of Marshal Windsor's fate and return to Marshal Maxwell when you have completed this task. ~540 XP.
+  complete 4224 "The True Masters"
+  turnin 4224 "The True Masters" @84.7,69.0
+
+step The True Masters (Redridge + Stormwind runs) · round 7
+  zone map 1428
+  accept 4241 "Marshal Windsor" @84.7,69.0
+
+step Marshal Windsor
+  zone map 1428
+  tip Windsor is locked in a cell in the Detention Block of Blackrock Depths, at the start of the instance. · You only need to talk to him, not free him. · A rogue can pick the lock, or loot the Prison Cell Key from High Interrogator Gerstahn (the first boss, in the same area) and open the door. · ~5,450 XP.
+  turnin 4241 "Marshal Windsor"
+
+step Flame Crest goblins (65, 24)
+  zone map 1428
+  accept 4726 "Broodling Essence" @65.2,24.0
+  accept 4296 "Tablet of the Seven" @65.2,23.9
+  accept 4123 "The Heart of the Mountain" @65.2,23.9
+
+step Broodling Essence
+  zone map 1428
+  tip Bring 8 Broodling Essence and the Draco-Incarcinatrix 900 to Tinkee Steamboil at the Flame Crest in the Burning Steppes. ~5,100 XP.
+  complete 4726 "Broodling Essence" @23.3,70.6
+  turnin 4726 "Broodling Essence" @65.2,24.0
+
+step Tablet of the Seven
+  zone map 1428
+  tip Bring the Tablet Transcript to Maxwort Uberglint in the Burning Steppes. ~2,350 XP.
+  complete 4296 "Tablet of the Seven"
+  turnin 4296 "Tablet of the Seven" @65.2,23.9
+
+step The Heart of the Mountain
+  zone map 1428
+  tip Bring the Heart of the Mountain to Maxwort Uberglint in the Burning Steppes. ~5,650 XP.
+  complete 4123 "The Heart of the Mountain"
+  turnin 4123 "The Heart of the Mountain" @65.2,23.9
+
+step Flame Crest goblins (65, 24) · round 2
+  zone map 1428
+  accept 4808 "Felnok Steelspring" @65.2,24.0
+
+step Dungeons (Blackrock Mountain is between here and Searing Gorge)
+  zone map 1427
+  tip 52-60. · One run now for XP while you're next door (Marshal Windsor + Incendius are in here). · Both are inside the mountain on the way to BRD. · Grab them on your first BRD/LBRS run. · 55-60, so save the full run for the Lv 60 sweep. · Grab the LBRS quests at Morgan's Vigil when you're back.
+  task "Blackrock Depths (52-60)" optional
+  task "Magma or Lava? + Stonewrought Design" optional
+  task "Lower Blackrock Spire (55-60)" optional
+

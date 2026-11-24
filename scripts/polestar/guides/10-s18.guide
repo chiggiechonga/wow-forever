@@ -1,0 +1,775 @@
+guide hearthbound/s18
+title The Riverglades
+faction Alliance
+levels 40-45
+zone map 1433
+author Brownie
+keywords Hearthbound, East coast · between Redridge, Swamp of Sorrows + Badlands
+next hearthbound/s19
+
+step Getting there
+  zone map 1433
+  tip New Forever zone (35-45). · Grab the flight path right away (60.6, 81.6, next to Demar Brant's town).
+  task "Get there" optional
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6)
+  zone map 2548
+  accept 94613 "My Kingdom for a Horse" @66.7,81.0
+  accept 94877 "Saving Sunnyglade" @66.7,81.0
+  accept 94894 "The Twilight Threat" @66.7,81.0
+  accept 94881 "Curious Trinkets" @66.8,81.1
+  accept 94879 "Scraps of Knowledge" @66.8,81.1
+  accept 95603 "Bats in the Belfry" @61.8,83.1
+  accept 95943 "Foreman's Plight" @63.4,80.6
+  accept 95156 "Stuff 'Em and Stick 'Em" @66.2,79.6
+  accept 95330 "Love Thy Neighbor" @64.7,82.9
+  accept 95912 "WANTED: Blademaster Kaijo" @65.9,81.1
+  accept 95991 "WANTED: Ghostmaw" @65.6,80.8
+
+step My Kingdom for a Horse
+  zone map 2548
+  tip New Forever quest.
+  turnin 94613 "My Kingdom for a Horse" @54.9,73.0
+
+step Saving Sunnyglade
+  zone map 2548
+  tip Get: 8 Twilight Raider slain, 8 Twilight Shadowmancer slain, 8 Twilight Neophyte slain.
+  complete 94877 "Saving Sunnyglade" @52.0,60.3
+  turnin 94877 "Saving Sunnyglade" @66.7,81.0
+
+step The Twilight Threat
+  zone map 2548
+  tip New Forever quest.
+  turnin 94894 "The Twilight Threat" npc 1748 "Highlord Bolvar Fordragon" map 1453 @80.2,38.3
+
+step Curious Trinkets
+  zone map 2548
+  tip Get: 25 Twilight Charm.
+  complete 94881 "Curious Trinkets"
+  turnin 94881 "Curious Trinkets" @66.8,81.1
+
+step Scraps of Knowledge
+  zone map 2548
+  tip Get: 5 Twilight Page.
+  complete 94879 "Scraps of Knowledge"
+  turnin 94879 "Scraps of Knowledge" @66.8,81.1
+
+step Bats in the Belfry
+  zone map 2548
+  tip Get: 5 Roosting Duskbat slain.
+  complete 95603 "Bats in the Belfry" @60.2,86.0
+  turnin 95603 "Bats in the Belfry" @61.8,83.1
+
+step Foreman's Plight
+  zone map 2548
+  tip Get: 1 Foreman's Crate.
+  complete 95943 "Foreman's Plight"
+  turnin 95943 "Foreman's Plight" @63.4,80.6
+
+step Stuff 'Em and Stick 'Em
+  zone map 2548
+  tip Get: 3 Bundle of Hay.
+  complete 95156 "Stuff 'Em and Stick 'Em"
+  turnin 95156 "Stuff 'Em and Stick 'Em" @66.2,79.6
+
+step Love Thy Neighbor
+  zone map 2548
+  tip New Forever quest.
+  turnin 95330 "Love Thy Neighbor" @41.2,62.9
+
+step WANTED: Blademaster Kaijo
+  zone map 2548
+  tip Get: 1 Blademaster's Banner.
+  complete 95912 "WANTED: Blademaster Kaijo"
+  turnin 95912 "WANTED: Blademaster Kaijo" @66.2,79.6
+
+step WANTED: Ghostmaw
+  zone map 2548
+  tip Get: 1 Ghostmaw's Fang.
+  complete 95991 "WANTED: Ghostmaw"
+  turnin 95991 "WANTED: Ghostmaw" @63.5,85.1
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6) · round 2
+  zone map 2548
+  accept 95329 "Out in the Field" @66.7,81.0
+  accept 94907 "A Small Favor" @66.8,81.1
+  accept 94886 "The Western Front" @66.7,81.0
+  accept 95561 "Apple of My Eye" @63.9,82.2
+  accept 95613 "Keeping the Light On" @61.8,83.1
+  accept 96081 "Wound Dressings" @65.6,79.0
+  accept 96009 "High Stakes" @63.4,80.6
+  accept 95184 "The Sharpest of Blades" @66.2,79.6
+
+step Out in the Field
+  zone map 2548
+  tip New Forever quest.
+  turnin 95329 "Out in the Field" @59.5,64.0
+
+step A Small Favor
+  zone map 2548
+  tip Get: 1 Twilight Thrall.
+  complete 94907 "A Small Favor" @26.6,47.8
+  turnin 94907 "A Small Favor" @66.8,81.1
+
+step The Western Front
+  zone map 2548
+  tip New Forever quest.
+  turnin 94886 "The Western Front" @30.7,49.1
+
+step Apple of My Eye
+  zone map 2548
+  tip Get: 6 Fresh Apple.
+  complete 95561 "Apple of My Eye"
+  turnin 95561 "Apple of My Eye" @63.9,82.2
+
+step Keeping the Light On
+  zone map 2548
+  tip Get: 5 Holy Candle.
+  complete 95613 "Keeping the Light On"
+  turnin 95613 "Keeping the Light On" @61.8,83.1
+
+step Wound Dressings
+  zone map 2548
+  tip Get: 20 Mageweave Cloth.
+  complete 96081 "Wound Dressings" map 1416 @27.8,98.7
+  turnin 96081 "Wound Dressings" @65.6,79.0
+
+step High Stakes
+  zone map 2548
+  tip Get: 10 Wood Bundle.
+  complete 96009 "High Stakes"
+  turnin 96009 "High Stakes" @63.4,80.6
+
+step The Sharpest of Blades
+  zone map 2548
+  tip Get: 8 Solid Sharpening Stone.
+  complete 95184 "The Sharpest of Blades"
+  turnin 95184 "The Sharpest of Blades" @66.2,79.6
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6) · round 3
+  zone map 2548
+  accept 95913 "Fit for a Princess" @63.9,82.2
+  accept 95615 "In Memoriam" @61.8,83.1
+  accept 96082 "Doctor's Orderly" @65.6,79.0
+
+step Fit for a Princess
+  zone map 2548
+  tip Get: 3 Coyote Pelt.
+  complete 95913 "Fit for a Princess"
+  turnin 95913 "Fit for a Princess" @63.9,82.2
+
+step In Memoriam
+  zone map 2548
+  tip Get: 3 Candles replaced.
+  complete 95615 "In Memoriam"
+  turnin 95615 "In Memoriam" @61.8,83.1
+
+step Doctor's Orderly
+  zone map 2548
+  tip Get: 3 Wounded Soldier treated.
+  complete 96082 "Doctor's Orderly" @65.8,79.6
+  turnin 96082 "Doctor's Orderly" @65.6,79.0
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6) · round 4
+  zone map 2548
+  accept 95961 "Stepped Out" @63.9,82.2
+  accept 96083 "Clerical Quarantine" @65.6,79.0
+
+step Stepped Out
+  zone map 2548
+  tip New Forever quest.
+  turnin 95961 "Stepped Out" @78.9,54.2
+
+step Clerical Quarantine
+  zone map 2548
+  tip New Forever quest.
+  turnin 96083 "Clerical Quarantine" @61.8,83.1
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6) · round 5
+  zone map 2548
+  accept 96084 "Something's in the Water" @61.8,83.1
+
+step Something's in the Water
+  zone map 2548
+  tip Get: 1 Filled Freshwater Phial, 1 Empty Phial.
+  complete 96084 "Something's in the Water"
+  turnin 96084 "Something's in the Water" @61.8,83.1
+
+step Demar Brant's town, Riverglades (66, 81) · flight path (60.6, 81.6) · round 6
+  zone map 2548
+  accept 96085 "Upstream Contamination" @61.8,83.1
+
+step Upstream Contamination
+  zone map 2548
+  tip Get: 1 Contaminant eliminated.
+  complete 96085 "Upstream Contamination" @58.8,34.9
+  turnin 96085 "Upstream Contamination" @61.8,83.1
+
+step Krol'dok quests (grab in town)
+  zone map 2548
+  accept 94982 "Eye of Mugg" @66.7,81.0 -- dungeon quest, hold it for the run
+  accept 94984 "Tome of Twilight" @66.8,81.1 -- dungeon quest, hold it for the run
+  accept 94980 "Krol'dok Moulding" item 267138 "Krol'dok Moulding" -- dungeon quest, hold it for the run
+  accept 94981 "Key Ingredients" @64.5,82.0 -- dungeon quest, hold it for the run
+
+step The Holmsbys (43.5, 82.5)
+  zone map 2548
+  accept 94999 "Eyes for the Watchman" @43.4,82.4
+  accept 94923 "Hats Off" @43.3,82.7
+
+step Eyes for the Watchman
+  zone map 2548
+  tip New Forever quest.
+  turnin 94999 "Eyes for the Watchman" @36.4,75.8
+
+step Hats Off
+  zone map 2548
+  tip Get: 1 Robbie's Hat.
+  complete 94923 "Hats Off"
+  turnin 94923 "Hats Off" @43.3,82.7
+
+step Wheeler's Grange (54.6, 72.8)
+  zone map 2548
+  accept 94614 "Freshwater Fiends" @54.9,73.0
+  accept 94615 "Foal Play" @54.9,73.0
+
+step Freshwater Fiends
+  zone map 2548
+  tip Get: 8 Mudfin Warrior slain, 8 Mudfin Oracle slain.
+  complete 94614 "Freshwater Fiends" @49.5,84.0
+  turnin 94614 "Freshwater Fiends" @54.9,73.0
+
+step Foal Play
+  zone map 2548
+  tip Get: 1 Pawprint Tracing.
+  complete 94615 "Foal Play"
+  turnin 94615 "Foal Play" @54.9,73.0
+
+step Wheeler's Grange (54.6, 72.8) · round 2
+  zone map 2548
+  accept 94618 "Wheeler's Fleeing Steeds" @54.9,73.0
+  accept 94617 "Coyote Huntin'" @54.9,73.0
+
+step Wheeler's Fleeing Steeds
+  zone map 2548
+  tip New Forever quest.
+  turnin 94618 "Wheeler's Fleeing Steeds" @54.9,73.0
+
+step Coyote Huntin'
+  zone map 2548
+  tip Get: 1 Sootfur's Pelt.
+  complete 94617 "Coyote Huntin'"
+  turnin 94617 "Coyote Huntin'" @54.9,73.0
+
+step Wheeler's Grange (54.6, 72.8) · round 3
+  zone map 2548
+  accept 94992 "Rescue Roundup" @54.9,73.0
+
+step Rescue Roundup
+  zone map 2548
+  tip New Forever quest.
+  complete 94992 "Rescue Roundup"
+  turnin 94992 "Rescue Roundup" @54.9,73.0
+
+step Watcher Cornelius (59.5, 63.9)
+  zone map 2548
+  accept 94925 "A Fur Trade" @59.5,64.0
+  accept 94924 "Hunting the Hunters" @59.5,64.0
+  accept 95983 "A Feast for Buzzards" @61.6,58.8
+
+step A Fur Trade
+  zone map 2548
+  tip Get: 8 Prized Lion Hide.
+  complete 94925 "A Fur Trade"
+  turnin 94925 "A Fur Trade" @59.5,64.0
+
+step Hunting the Hunters
+  zone map 2548
+  tip Get: 12 Rog'mar Poacher slain.
+  complete 94924 "Hunting the Hunters" @57.3,64.0
+  turnin 94924 "Hunting the Hunters" @59.5,64.0
+
+step A Feast for Buzzards
+  zone map 2548
+  tip New Forever quest.
+  turnin 95983 "A Feast for Buzzards" @59.5,64.0
+
+step Watcher Cornelius (59.5, 63.9) · round 2
+  zone map 2548
+  accept 96125 "In Need of Relief" @59.5,64.0
+  accept 95064 "Preventative Measures" @59.5,64.0
+  accept 95426 "Rog'mar Supplies" @59.5,64.0
+  accept 95984 "Song of the Strider" @59.5,64.0
+
+step In Need of Relief
+  zone map 2548
+  tip New Forever quest.
+  turnin 96125 "In Need of Relief" @68.6,12.7
+
+step Preventative Measures
+  zone map 2548
+  tip Get: 12 Rog'mar Trainee slain.
+  complete 95064 "Preventative Measures" @58.9,43.3
+  turnin 95064 "Preventative Measures" @59.5,64.0
+
+step Rog'mar Supplies
+  zone map 2548
+  tip Get: 8 Rog'mar Supply Crate.
+  complete 95426 "Rog'mar Supplies"
+  turnin 95426 "Rog'mar Supplies" @59.5,64.0
+
+step Song of the Strider
+  zone map 2548
+  tip Get: 1 Intact Tallstrider Beak.
+  complete 95984 "Song of the Strider"
+  turnin 95984 "Song of the Strider" @59.5,64.0
+
+step Watcher Cornelius (59.5, 63.9) · round 3
+  zone map 2548
+  accept 95066 "The Rog'mar Situation" @59.5,64.0
+  accept 95986 "King of the Wild Plains" @59.5,64.0
+
+step The Rog'mar Situation
+  zone map 2548
+  tip Get: 1 Rog'mar Report.
+  turnin 95066 "The Rog'mar Situation" @66.7,81.0
+
+step King of the Wild Plains
+  zone map 2548
+  tip Get: 1 Ombassa's Hide.
+  complete 95986 "King of the Wild Plains"
+  turnin 95986 "King of the Wild Plains" @59.5,64.0
+
+step Turner's Logging Camp (41, 63)
+  zone map 2548
+  accept 94931 "Stolen Saws" @41.2,62.9
+  accept 94842 "Unsavory Plant Food" @41.2,62.9
+  accept 94857 "If a Tree Falls, and No One Hears..." @46.1,71.1
+
+step Stolen Saws
+  zone map 2548
+  tip Get: 8 Saw Blade.
+  complete 94931 "Stolen Saws"
+  turnin 94931 "Stolen Saws" @41.2,62.9
+
+step Unsavory Plant Food
+  zone map 2548
+  tip Get: 4 Jumbo Crawfish Shell, 4 Fresh Manure, 8 Mudfin Murloc Head.
+  complete 94842 "Unsavory Plant Food"
+  turnin 94842 "Unsavory Plant Food" @41.2,62.9
+
+step If a Tree Falls, and No One Hears...
+  zone map 2548
+  tip New Forever quest.
+  turnin 94857 "If a Tree Falls, and No One Hears..." @41.4,64.5
+
+step Turner's Logging Camp (41, 63) · round 2
+  zone map 2548
+  accept 94843 "From Seed to Sprout" @41.2,62.9
+  accept 94861 "Helping Hands" @41.4,64.5
+
+step From Seed to Sprout
+  zone map 2548
+  tip Get: 5 Sapling planted.
+  complete 94843 "From Seed to Sprout"
+  turnin 94843 "From Seed to Sprout" @41.2,62.9
+
+step Helping Hands
+  zone map 2548
+  tip New Forever quest.
+  complete 94861 "Helping Hands"
+  turnin 94861 "Helping Hands" @41.2,62.9
+
+step Watch Captain Cedric Dalton (39.5, 74.6) + west
+  zone map 2548
+  accept 94678 "Gnoll Infestation" @39.6,74.7
+  accept 94679 "Snargl's Snout" @39.6,74.7
+  accept 95147 "The Lost Scout" @23.7,67.8
+  accept 95792 "Clear 'em Out" @30.2,69.1
+  accept 95934 "Proof of Profit" @30.2,69.1
+
+step Gnoll Infestation
+  zone map 2548
+  tip Get: 8 Redridge Mystic slain, 8 Redridge Trapper slain, 6 Redridge Brute slain.
+  complete 94678 "Gnoll Infestation" @19.9,74.3
+  turnin 94678 "Gnoll Infestation" @39.6,74.7
+
+step Snargl's Snout
+  zone map 2548
+  tip Get: 1 Snargl's Snout.
+  complete 94679 "Snargl's Snout"
+  turnin 94679 "Snargl's Snout" @39.6,74.7
+
+step The Lost Scout
+  zone map 2548
+  tip Get: 1 Crudely Fashioned Report.
+  turnin 95147 "The Lost Scout" @39.6,74.7
+
+step Clear 'em Out
+  zone map 2548
+  tip Get: 8 Cinderscale Whelp slain, 4 Cinderscale Warrior slain.
+  complete 95792 "Clear 'em Out"
+  turnin 95792 "Clear 'em Out" @30.2,69.1
+
+step Proof of Profit
+  zone map 2548
+  tip Get: 1 Cubic Draconia.
+  complete 95934 "Proof of Profit"
+  turnin 95934 "Proof of Profit" @30.2,69.1
+
+step Watch Captain Cedric Dalton (39.5, 74.6) + west · round 2
+  zone map 2548
+  accept 95148 "Southern Watch Gnoll Report" @39.6,74.7
+
+step Southern Watch Gnoll Report
+  zone map 2548
+  tip Get: 1 Southern Watch Gnoll Report.
+  turnin 95148 "Southern Watch Gnoll Report" @66.7,81.0
+
+step Apprentice Claire (47.6, 47.2) + Elbrim's Farm
+  zone map 2548
+  accept 95642 "Abominable Magics" @47.7,47.3
+  accept 95643 "Indiscriminate Purge" @47.7,47.3
+  accept 94963 "Biting the Hand" @47.3,51.4
+  accept 94963 "Biting the Hand" @47.3,51.4
+  accept 94829 "What We Lost" @52.8,42.4
+
+step Abominable Magics
+  zone map 2548
+  tip Get: 25 Empowered Brute, 1 Twilight Ritual Circle, 1 Twilight Ritualist.
+  complete 95642 "Abominable Magics"
+  turnin 95642 "Abominable Magics" @47.7,47.3
+
+step Indiscriminate Purge
+  zone map 2548
+  tip Get: 5 Empowered Brute slain, 5 Twilight Ritualist slain.
+  complete 95643 "Indiscriminate Purge" @45.2,52.0
+  turnin 95643 "Indiscriminate Purge" @47.7,47.3
+
+step Biting the Hand
+  zone map 2548
+  tip Get: 20 Twilight Finger Bone.
+  complete 94963 "Biting the Hand"
+  turnin 94963 "Biting the Hand" @41.6,47.7
+
+step Biting the Hand
+  zone map 2548
+  tip Get: 1 Fuzzle slain.
+  complete 94963 "Biting the Hand"
+  turnin 94963 "Biting the Hand" @41.6,47.7
+
+step What We Lost
+  zone map 2548
+  tip Get: 5 Farmers' Mementos, 5 Mementos buried.
+  complete 94829 "What We Lost" @48.6,43.8
+  turnin 94829 "What We Lost" @52.8,42.4
+
+step Apprentice Claire (47.6, 47.2) + Elbrim's Farm · round 2
+  zone map 2548
+  accept 95562 "Cut Off the Heads" @47.7,47.3
+  accept 94858 "All That's Left" @52.8,42.4
+
+step Cut Off the Heads
+  zone map 2548
+  tip Get: 1 Chogg's Head, 1 Zac's Head.
+  complete 95562 "Cut Off the Heads"
+  turnin 95562 "Cut Off the Heads" @47.7,47.3
+
+step All That's Left
+  zone map 2548
+  tip Get: 1 Discarded Doll, 1 Damaged Locket.
+  complete 94858 "All That's Left"
+  turnin 94858 "All That's Left" @52.8,42.4
+
+step Apprentice Claire (47.6, 47.2) + Elbrim's Farm · round 3
+  zone map 2548
+  accept 94884 "An Unsettling Discovery" @47.7,47.3
+
+step An Unsettling Discovery
+  zone map 2548
+  tip New Forever quest.
+  turnin 94884 "An Unsettling Discovery" @66.8,81.1
+
+step Sergeant Riftan, west (30.7, 49.1)
+  zone map 2548
+  accept 96015 "A Miner Problem" @30.7,49.1
+  accept 94889 "Carving a Path" @30.7,49.1
+  accept 94888 "No Soldier Left Behind" @30.7,49.1
+  accept 94885 "Field Marshal's Log" item 266427 "Field Marshal's Log"
+  accept 94887 "Saving Marshal Ryan" @66.7,81.0
+
+step A Miner Problem
+  zone map 2548
+  tip Get: 5 Ogre Miner, 5 Twilight Subjugator slain.
+  complete 96015 "A Miner Problem" @26.5,35.6
+  turnin 96015 "A Miner Problem" @30.7,49.1
+
+step Carving a Path
+  zone map 2548
+  tip Get: 8 Twilight Fanatic slain, 8 Twilight Corrupter slain, 8 Twilight Champion slain.
+  complete 94889 "Carving a Path" @31.1,49.8
+  turnin 94889 "Carving a Path" @30.7,49.1
+
+step No Soldier Left Behind
+  zone map 2548
+  tip Get: 5 Farholde Scouts rescued, 5 Twilight Key.
+  complete 94888 "No Soldier Left Behind"
+  turnin 94888 "No Soldier Left Behind" @30.7,49.1
+
+step Field Marshal's Log
+  zone map 2548
+  tip Get: 1 Field Marshal's Log.
+  complete 94885 "Field Marshal's Log"
+  turnin 94885 "Field Marshal's Log" @66.7,81.0
+
+step Saving Marshal Ryan
+  zone map 2548
+  tip Get: 1 Marshal Ryan found, 1 Field Marshal's Log.
+  complete 94887 "Saving Marshal Ryan"
+  turnin 94887 "Saving Marshal Ryan" @26.2,40.8
+
+step Sergeant Riftan, west (30.7, 49.1) · round 2
+  zone map 2548
+  accept 94890 "Bring Me His Head" @30.7,49.1
+  accept 94892 "Dying Wish" @26.2,40.8
+
+step Bring Me His Head
+  zone map 2548
+  tip Get: 1 Kilgar's Head.
+  complete 94890 "Bring Me His Head"
+  turnin 94890 "Bring Me His Head" @30.7,49.1
+
+step Dying Wish
+  zone map 2548
+  tip New Forever quest.
+  turnin 94892 "Dying Wish" @66.7,81.0
+
+step Sergeant Riftan, west (30.7, 49.1) · round 3
+  zone map 2548
+  accept 94891 "News to Farholde" @30.7,49.1
+  accept 94983 "Twilight Mementos" @30.7,49.1 -- dungeon quest, hold it for the run
+  accept 94893 "Delivering Closure" @66.7,81.0
+
+step News to Farholde
+  zone map 2548
+  tip New Forever quest.
+  turnin 94891 "News to Farholde" @66.8,81.1
+
+step Delivering Closure
+  zone map 2548
+  tip New Forever quest.
+  turnin 94893 "Delivering Closure" npc 278088 "Abigail Lawson" map 1453 @50.1,51.6
+
+step Sergeant Riftan, west (30.7, 49.1) · round 4
+  zone map 2548
+  accept 94997 "Lingering Essence" @30.7,49.1 -- dungeon quest, hold it for the run
+
+step Powderfuse Port, goblin town (78, 53)
+  zone map 2548
+  accept 95118 "Saltwater Savages" @79.5,52.7
+  accept 95119 "Unfriendly Competition" @79.5,52.7
+  accept 95121 "A Taste of the Sea" @79.0,54.2
+  accept 95988 "Goes Down Smooth" @78.8,54.0
+  accept 95059 "Frazzlespark's Crate" @77.1,52.9
+  accept 95219 "From Port to Port" @77.1,52.9
+  accept 94928 "A Few Furs for Friz" @59.5,64.0
+  accept 95288 "Smuggler's Paradise" @77.1,52.9
+  accept 95293 "Smuggler's Special" @77.1,52.9
+  accept 95296 "Shipping and Handling" @77.1,52.9
+  accept 95260 "Terrors From the Deep" @72.4,61.9
+  accept 95982 "Not My Circus" @76.0,52.7
+  accept 96063 "Gaseous Gold" @68.2,48.6
+  accept 95120 "WANTED: Old Rot-Chum" @78.5,53.9
+  accept 95254 "WANTED: Trapclaw" @78.5,53.9
+
+step Saltwater Savages
+  zone map 2548
+  tip Get: 8 Murloc Warrior slain, 8 Murloc Oracle slain.
+  complete 95118 "Saltwater Savages" @67.9,78.3
+  turnin 95118 "Saltwater Savages" @79.5,52.7
+
+step Unfriendly Competition
+  zone map 2548
+  tip Get: 10 Eastsea Buccaneer slain, 10 Eastsea Musketeer slain.
+  complete 95119 "Unfriendly Competition" @82.8,47.9
+  turnin 95119 "Unfriendly Competition" @79.5,52.7
+
+step A Taste of the Sea
+  zone map 2548
+  tip Get: 12 Saltwater Murloc Eye, 6 Sand Crawler Meat.
+  complete 95121 "A Taste of the Sea"
+  turnin 95121 "A Taste of the Sea" @79.0,54.2
+
+step Goes Down Smooth
+  zone map 2548
+  tip Get: 3 Crawler Spittle, 1 Fresh Chum, 1 Goblin Degreaser, 1 Expired Poison, 1 Zizplink's Grocery List.
+  complete 95988 "Goes Down Smooth"
+  turnin 95988 "Goes Down Smooth" @78.8,54.0
+
+step Frazzlespark's Crate
+  zone map 2548
+  tip Get: 1 Frazzlespark's Crate.
+  turnin 95059 "Frazzlespark's Crate" @66.7,81.0
+
+step From Port to Port
+  zone map 2548
+  tip Get: 1 Cask of Powderfuse Port.
+  turnin 95219 "From Port to Port" npc 7941 "Mardrack Greenwell" map 1444 @31.0,43.1
+
+step A Few Furs for Friz
+  zone map 2548
+  tip New Forever quest.
+  turnin 94928 "A Few Furs for Friz" @77.1,52.9
+
+step Smuggler's Paradise
+  zone map 2548
+  tip Opens after A Few Furs for Friz · Hand in: Friz Frazzlespark
+  complete 95288 "Smuggler's Paradise"
+  turnin 95288 "Smuggler's Paradise" @77.1,52.9
+
+step Smuggler's Special
+  zone map 2548
+  tip Opens after Smuggler's Paradise · Hand in: Captain Bentcoin (91.3, 39.7), east coast
+  turnin 95293 "Smuggler's Special" @91.3,39.7
+
+step Shipping and Handling
+  zone map 2548
+  tip Opens after Smuggler's Bargain · Part 2 is in Tanaris (later).
+  turnin 95296 "Shipping and Handling" npc 260405 "Wharfmaster Steamfizzle" map 1446 @67.6,23.2
+
+step Terrors From the Deep
+  zone map 2548
+  tip New Forever quest.
+  turnin 95260 "Terrors From the Deep" @80.0,52.5
+
+step Not My Circus
+  zone map 2548
+  tip Get: 10 Briny Seafood Stew.
+  complete 95982 "Not My Circus"
+  turnin 95982 "Not My Circus" @76.0,52.7
+
+step Gaseous Gold
+  zone map 2548
+  tip Get: 8 Marsh Gas Vial.
+  complete 96063 "Gaseous Gold"
+  turnin 96063 "Gaseous Gold" @68.2,48.6
+
+step WANTED: Old Rot-Chum
+  zone map 2548
+  tip Get: 1 Rot-Covered Harpoon.
+  complete 95120 "WANTED: Old Rot-Chum"
+  turnin 95120 "WANTED: Old Rot-Chum" @79.5,52.7
+
+step WANTED: Trapclaw
+  zone map 2548
+  tip Get: 1 Trapclaw's Pincer.
+  complete 95254 "WANTED: Trapclaw"
+  turnin 95254 "WANTED: Trapclaw" @79.0,54.2
+
+step Powderfuse Port, goblin town (78, 53) · round 2
+  zone map 2548
+  accept 95122 "Unchecked Expansion" @79.5,52.7
+  accept 95123 "A Blast Ye Scurvy Dogs!" @79.5,52.7
+  accept 95957 "Drink Up!" @78.8,54.0
+  accept 95294 "Smuggler's Bargain" @91.2,39.8
+  accept 95261 "It Takes Guts" @80.0,52.5
+  accept 96067 "Rock 'em and Sock 'em" @68.2,48.6
+
+step Unchecked Expansion
+  zone map 2548
+  tip Get: 8 Eastsea Raider slain, 8 Eastsea Bombardier slain.
+  complete 95122 "Unchecked Expansion" @90.4,41.7
+  turnin 95122 "Unchecked Expansion" @79.5,52.7
+
+step A Blast Ye Scurvy Dogs!
+  zone map 2548
+  tip Get: 5 Eastsea Powder Keg.
+  complete 95123 "A Blast Ye Scurvy Dogs!"
+  turnin 95123 "A Blast Ye Scurvy Dogs!" @79.5,52.7
+
+step Drink Up!
+  zone map 2548
+  tip New Forever quest.
+  turnin 95957 "Drink Up!" @78.9,54.2
+
+step Smuggler's Bargain
+  zone map 2548
+  tip Opens after Smuggler's Special, right there on the east coast · Hand in: Friz Frazzlespark (77.1, 52.9)
+  complete 95294 "Smuggler's Bargain"
+  turnin 95294 "Smuggler's Bargain" @77.1,52.9
+
+step It Takes Guts
+  zone map 2548
+  tip Get: 15 Beast Entrails, 8 Rotflesh Mushroom.
+  complete 95261 "It Takes Guts"
+  turnin 95261 "It Takes Guts" @80.0,52.5
+
+step Rock 'em and Sock 'em
+  zone map 2548
+  tip New Forever quest.
+  turnin 96067 "Rock 'em and Sock 'em" @68.2,48.6
+
+step Powderfuse Port, goblin town (78, 53) · round 3
+  zone map 2548
+  accept 95165 "See Ya, Scallywags!" @79.5,52.7
+  accept 95124 "Admiral Lamora" @79.5,52.7
+  accept 95975 "Her World" @78.9,54.2
+  accept 95295 "I Know a Guy" @77.1,52.9
+  accept 95267 "The Monster Surfaces" @80.0,52.5
+
+step See Ya, Scallywags!
+  zone map 2548
+  tip Get: 1 First Ship Charge planted, 1 Second Ship Charge planted, 1 Third Ship Charge planted.
+  complete 95165 "See Ya, Scallywags!"
+  turnin 95165 "See Ya, Scallywags!" @79.5,52.7
+
+step Admiral Lamora
+  zone map 2548
+  tip Get: 1 Admiral Lamora slain, 1 Lamora's Loot.
+  complete 95124 "Admiral Lamora" @90.3,32.6
+  turnin 95124 "Admiral Lamora" @79.5,52.7
+
+step Her World
+  zone map 2548
+  tip Get: 20 Wildflower.
+  complete 95975 "Her World"
+  turnin 95975 "Her World" @63.9,82.2
+
+step I Know a Guy
+  zone map 2548
+  tip Opens after Smuggler's Bargain · Hand in: Caravaneer Ruzzgot, Booty Bay (27.4, 74.1) · opens his Booty Bay chain later
+  turnin 95295 "I Know a Guy" npc 3945 "Caravaneer Ruzzgot" map 1434 @27.4,74.1
+
+step The Monster Surfaces
+  zone map 2548
+  tip Get: 1 Sea Monster's Head.
+  complete 95267 "The Monster Surfaces"
+  turnin 95267 "The Monster Surfaces" @80.0,52.5
+
+step North (Dunston Willis, 68.7, 12.6)
+  zone map 2548
+  accept 96126 "An Ogre's Captive" @68.6,12.7
+
+step An Ogre's Captive
+  zone map 2548
+  tip Get: 1 Gronok's Key.
+  complete 96126 "An Ogre's Captive"
+  turnin 96126 "An Ogre's Captive" @68.6,12.7
+
+step Krol'dok Stronghold
+  zone map 2548
+  tip New Forever dungeon (40-47). · Healers get fast invites. · Range 40-45. · Do it at the end of this stop, around Lv 44-45.
+  accept 94998 "Curios of Curiosity" @66.8,81.1 -- dungeon quest, hold it for the run
+  task "Krol'Dok Stronghold" optional
+  task "Legacy: Krol'dok Stronghold" optional
+
+step 🛡️ BiS gear pickups
+  zone map 2548
+  accept 94927 "Dunston Checks Out" @68.6,12.7
+
+step Dunston Checks Out
+  zone map 2548
+  tip Follow-up to An Ogre's Captive, so take it after you free him. · Shadow BiS: reward Prisoner Handwraps (Lv 50 hands).
+  complete 94927 "Dunston Checks Out"
+  turnin 94927 "Dunston Checks Out" @59.5,64.0
+

@@ -1,0 +1,78 @@
+guide hearthbound/s16
+title Lv 40: mount, dual spec + Scarlet Monastery
+faction Alliance
+levels 40-40
+zone map 1426
+author Brownie
+keywords Hearthbound, Dun Morogh · Ironforge · Stormwind · Hillsbrad · Tirisfal
+next hearthbound/s17
+
+step In Ironforge
+  zone map 1455
+  tip Greater Heal! It replaces Heal on Shift+E for your Holy spec. · Unlocks at 40. · Make spec 2 Holy for dungeons, and keep Shadow for questing. · You're in Ironforge anyway!
+  task "Train Lv 40" optional
+  task "Dual spec" optional
+  task "Archmage Antonidas: The Unabridged Autobiography" optional
+
+step Ironforge hand-ins you carried here
+  zone map 1455
+  turnin 514 "Letter to Stormpike" @74.6,11.7 -- Ironforge · Hall of Explorers · Prospector Stormpike (74.6, 11.7)
+  turnin 637 "Sully Balloo's Letter" @63.5,67.3 -- Ironforge · Sara Balloo (63.5, 67.3)
+
+step Get your mount
+  zone map 1426
+  tip 100g for Apprentice Riding (includes your first ram). · Extra colors are 20g each from Veron Amberstill. 10% off at Honored with Ironforge. · Drag the ram onto V (it's been waiting empty). · Your Holy spec has its own bars. · Set them up in naowh for spec 2, then import.
+  task "Riding + your first ram" optional
+  task "Bind your mount" optional
+  task "Re-import naowh" optional
+
+step Tram to Stormwind
+  zone map 1453
+  tip Tram over from Ironforge. · With the books from Desolace, Stonetalon, Alterac, Arathi and Ironforge you should be at 20 = Greater Friend of the Library (ring: Field Researcher's Loop or Philanthropist's Ring).
+  turnin 697 "Malin's Request" @50.5,87.5 -- Stormwind · Archmage Malin, Mage Quarter (50.5, 87.5)
+  task "Turn in library books" optional
+
+step Grab for later, while you're in the cities
+  zone map 1453
+  accept 707 "Ironband Wants You!" map 1455 @74.6,11.7
+  accept 2398 "The Lost Dwarves" map 1455 @74.6,11.7
+  accept 1360 "Reclaimed Treasures" map 1455 @74.2,9.4
+  accept 1260 "Morgan Stern" @51.8,93.6
+  accept 1448 "In Search of The Temple" @69.5,40.4
+
+step The Lost Dwarves
+  zone map 1455
+  tip Baelog and the Lost Dwarves are camped at Dig Two, early in the Uldaman instance. · Just talk to Baelog to finish this and get The Hidden Chamber. · ~315 XP.
+  turnin 2398 "The Lost Dwarves"
+
+step Reclaimed Treasures
+  zone map 1455
+  tip Krom Stoutarm's Chest is in the North Common Hall of Uldaman. · That's the outer cave, before the instance portal, so no group is needed. · Open it for Krom Stoutarm's Treasure and bring it back to Krom in Ironforge. · ~3,600 XP.
+  complete 1360 "Reclaimed Treasures" map 1418 @35.6,23.5
+  turnin 1360 "Reclaimed Treasures" @74.2,9.4
+
+step In Search of The Temple
+  zone map 1453
+  tip Brohann Caskbelly in Stormwind wants you to search for the Temple of Atal'Hakkar. · Read the tablets at the Sunken Temple in the Swamp of Sorrows… or just hand it in after Hinterlands. · It opens To The Hinterlands. ~3,600 XP.
+  complete 1448 "In Search of The Temple"
+  turnin 1448 "In Search of The Temple" @69.5,40.4
+
+step Scarlet Monastery: first long ride on your new mount
+  zone map 1455
+  tip Wings: Graveyard (26-36), Library (29-39), Armory (32-42), Cathedral (35-45). · For In the Name of the Light you need 4 kills across 3 wings: Houndmaster Loksey (Library, the first boss with the dogs), Herod (end of Armory), then Scarlet Commander Mograine and High Inquisitor Whitemane (end of Cathedral; Whitemane comes in when Mograine dies).
+  accept 1053 "In the Name of the Light" npc 3980 "Raleigh the Devout" map 1424 @51.5,58.4 -- you should already have this one
+  turnin 1053 "In the Name of the Light" map 1424 @51.5,58.4 -- Hillsbrad · Southshore · Raleigh the Devout (51.5, 58.4)
+  turnin 1050 "Mythology of the Titans" @75.0,12.5 -- Ironforge · Hall of Explorers · Librarian Mae Paledust (75.0, 12.5)
+  task "Scarlet Monastery (all wings)" optional
+  accept 1951 "Rituals of Power" npc 6548 "Magus Tirth" map 1441 @78.3,75.7
+
+step Rituals of Power
+  zone map 1420
+  tip The book is at the north end of the hallway leading to Arcanist Doan, on the left from the entrance (Scarlet Monastery Library wing). · Only mages on the quest can see it. · Hand it to Tabetha in Dustwallow next stop.
+  complete 1951 "Rituals of Power"
+  turnin 1951 "Rituals of Power" npc 6546 "Tabetha" map 1441 @67.3,2.2
+
+step 🛡️ BiS gear pickups
+  zone map 1453
+  accept 3636 "Bring the Light" @50.3,45.5 -- hold it
+

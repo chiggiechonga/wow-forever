@@ -1,0 +1,442 @@
+guide hearthbound/s21
+title Tanaris + Feralas
+faction Alliance
+levels 45-48
+zone map 1446
+author Brownie
+keywords Hearthbound, Gadgetzan · Feathermoon
+next hearthbound/s22
+
+step Gadgetzan, Tanaris (52, 28)
+  zone map 1446
+  tip Fly from Booty Bay → (boat) Ratchet → Gadgetzan.
+  task "Set hearth" optional
+  accept 1690 "Wastewander Justice" @52.5,28.5
+  accept 1707 "Water Pouch Bounty" @52.5,28.5
+  accept 2781 "WANTED: Caliph Scorpidsting" @51.8,27.0
+  accept 992 "Gadgetzan Water Survey" @50.2,27.5
+  accept 2865 "Scarab Shells" @51.6,26.8
+  accept 2605 "The Thirsty Goblin" @51.8,28.7
+  accept 6610 "Clamlette Surprise" npc 8125 "Dirge Quikcleave" @52.6,28.1
+  accept 3161 "Gahz'ridian" @52.7,45.9
+  accept 5863 "The Dunemaul Compound" @52.8,27.4
+  accept 2768 "Divino-matic Rod" @52.5,28.5
+  accept 3042 "Troll Temper" @51.4,28.8
+  accept 162 "Rise of the Silithid" @50.2,27.5
+
+step Wastewander Justice
+  zone map 1446
+  tip Take down 10 Wastewander Bandits and Thieves east of Gadgetzan, then report back to Chief Engineer Bilgewhizzle. ~3,600 XP.
+  complete 1690 "Wastewander Justice" @63.6,34.1
+  turnin 1690 "Wastewander Justice" @52.5,28.5
+
+step Water Pouch Bounty
+  zone map 1446
+  tip Bring 5 Wastewander Water Pouches to Spigot Operator Luglunket in Gadgetzan. ~2,800 XP.
+  complete 1707 "Water Pouch Bounty" @63.4,40.1
+  turnin 1707 "Water Pouch Bounty" @52.5,28.5
+
+step WANTED: Caliph Scorpidsting
+  zone map 1446
+  tip Bring the head of Caliph Scorpidsting to Chief Engineer Bilgewhizzle in Gadgetzan. · Hand in: Chief Engineer Bilgewhizzle, Tanaris (52.5, 28.5). ~5,050 XP.
+  complete 2781 "WANTED: Caliph Scorpidsting" @61.8,38.2
+  turnin 2781 "WANTED: Caliph Scorpidsting" @52.5,28.5
+
+step Gadgetzan Water Survey
+  zone map 1446
+  tip Use the untapped dowsing widget near the pool of water by Sandsorrow Watch. ~3,050 XP.
+  complete 992 "Gadgetzan Water Survey"
+  turnin 992 "Gadgetzan Water Survey" @50.2,27.5
+
+step Scarab Shells
+  zone map 1446
+  tip Bring 5 Uncracked Scarab Shells to Tran'rek in Gadgetzan. ~3,900 XP.
+  complete 2865 "Scarab Shells"
+  turnin 2865 "Scarab Shells" @51.6,26.8
+
+step The Thirsty Goblin
+  zone map 1446
+  tip Collect a Laden Dew Gland and bring it to Marin Noggenfogger in Gadgetzan. ~4,550 XP.
+  complete 2605 "The Thirsty Goblin" @27.8,69.0
+  turnin 2605 "The Thirsty Goblin" @51.8,28.7
+
+step Clamlette Surprise
+  zone map 1446
+  tip Dirge Quikcleave wants you to get the following items: ~3,900 XP.
+  complete 6610 "Clamlette Surprise" map 1422 @32.3,62.4
+  turnin 6610 "Clamlette Surprise" npc 8125 "Dirge Quikcleave" @52.6,28.1
+
+step Gahz'ridian
+  zone map 1446
+  tip Marvon Rivetseeker in Tanaris wants you to collect 30 Gahz'ridian Ornaments. ~4,400 XP.
+  complete 3161 "Gahz'ridian" @50.4,78.5
+  turnin 3161 "Gahz'ridian" @52.7,45.9
+
+step The Dunemaul Compound
+  zone map 1446
+  tip Andi Lynn in Gadgetzan wants you to destroy the Dunemaul Compound by killing 10 Dunemaul Brutes, 10 Dunemaul Enforcers, and Gor'marok the Ravager. ~4,550 XP.
+  complete 5863 "The Dunemaul Compound" @41.5,74.8
+  turnin 5863 "The Dunemaul Compound" @52.8,27.4
+
+step Divino-matic Rod
+  zone map 1446
+  tip Sergeant Bly drops it. · At the top of the big pyramid, kill the Sandfury Executioner for the Executioner's Key and open the prisoners' cages. · That starts the stairs event: waves of trolls charge up, and you hold the top. · Clear the elites around the base of the pyramid first or they join the waves. · When the waves are done, kill Bly and his crew for the rod. · ~6,300 XP.
+  complete 2768 "Divino-matic Rod"
+  note Keep it: you hand this in later on the route.
+
+step Troll Temper
+  zone map 1446
+  tip Bring 20 Vials of Troll Temper to Trenton Lighthammer in Gadgetzan. · For Zul'Farrak. ~3,900 XP.
+  complete 3042 "Troll Temper"
+  turnin 3042 "Troll Temper" @51.4,28.8
+
+step Gadgetzan, Tanaris (52, 28) · round 2
+  zone map 1446
+  accept 1691 "More Wastewander Justice" @52.5,28.5
+  accept 82 "Noxious Lair Investigation" @50.2,27.5
+  accept 2606 "In Good Taste" @51.8,28.7
+
+step More Wastewander Justice
+  zone map 1446
+  tip Take down 10 Wastewander Shadow Mages, 8 Wastewander Rogues, and 6 Wastewander Assassins for Chief Engineer Bilgewhizzle in Gadgetzan. ~3,750 XP.
+  complete 1691 "More Wastewander Justice" @63.4,40.1
+  turnin 1691 "More Wastewander Justice" @52.5,28.5
+
+step Noxious Lair Investigation
+  zone map 1446
+  tip Bring five Centipaar insect parts from the Noxious Lair to Alchemist Pestlezugg in Gadgetzan. · Hand in: Alchemist Pestlezugg, Tanaris (50.9, 27). ~3,150 XP.
+  complete 82 "Noxious Lair Investigation" @33.0,50.2
+  turnin 82 "Noxious Lair Investigation" @50.9,27.0
+
+step In Good Taste
+  zone map 1446
+  tip Marin Noggenfogger wants you to speak with Sprinkle in Gadgetzan. · Hand in: Sprinkle, Tanaris (51.1, 26.9). ~455 XP.
+  turnin 2606 "In Good Taste" @51.1,26.9
+
+step Gadgetzan, Tanaris (52, 28) · round 3
+  zone map 1446
+  accept 10 "The Scrimshank Redemption" @50.2,27.5
+  accept 2641 "Sprinkle's Secret Ingredient" @51.1,26.9
+
+step The Scrimshank Redemption
+  zone map 1446
+  tip Discover the fate of Junior Surveyor Scrimshank, and bring either him or his surveying equipment to Senior Surveyor Fizzledowser in Gadgetzan. ~4,400 XP.
+  complete 10 "The Scrimshank Redemption" @56.0,71.2
+  turnin 10 "The Scrimshank Redemption" @50.2,27.5
+
+step Sprinkle's Secret Ingredient
+  zone map 1446
+  tip Sprinkle in Gadgetzan wants you to collect a Violet Tragan and return it to her. ~4,550 XP.
+  complete 2641 "Sprinkle's Secret Ingredient" map 1425 @41.0,60.3
+  turnin 2641 "Sprinkle's Secret Ingredient" @51.1,26.9
+
+step Gadgetzan, Tanaris (52, 28) · round 4
+  zone map 1446
+  accept 110 "Insect Part Analysis" @50.2,27.5
+  accept 2661 "Delivery for Marin" @51.1,26.9
+
+step Insect Part Analysis
+  zone map 1446
+  tip Check in Gadgetzan for Alchemist Pestlezugg and his analysis of the insect parts. · Hand in: Alchemist Pestlezugg, Tanaris (50.9, 27). ~440 XP.
+  turnin 110 "Insect Part Analysis" @50.9,27.0
+
+step Delivery for Marin
+  zone map 1446
+  tip Sprinkle wants to you take the Violet Powder to Marin Noggenfogger in Gadgetzan. · Hand in: Marin Noggenfogger, Tanaris (51.8, 28.7). ~455 XP.
+  turnin 2661 "Delivery for Marin" @51.8,28.7
+
+step Gadgetzan, Tanaris (52, 28) · round 5
+  zone map 1446
+  accept 113 "Insect Part Analysis" @50.9,27.0
+
+step Insect Part Analysis
+  zone map 1446
+  tip Deliver the report to Senior Surveyor Fizzledowser in Gadgetzan. · Hand in: Senior Surveyor Fizzledowser, Tanaris (50.2, 27.5). ~440 XP.
+  turnin 113 "Insect Part Analysis" @50.2,27.5
+
+step Steamwheedle Port (67, 23)
+  zone map 1446
+  tip Same pirate cove as Southsea Shakedown, so grab it while you're there.
+  accept 8366 "Southsea Shakedown" @67.1,23.9
+  accept 8365 "Pirate Hats Ahoy!" @66.6,22.3
+  accept 2875 "WANTED: Andre Firebeard" @51.8,27.0
+  accept 2873 "Stoley's Shipment" @67.1,24.0
+  accept 3520 "Screecher Spirits" @67.0,22.4
+  task "Legends of the Tidesages" optional
+  accept 95383 "Shipping and Handling" @67.6,23.2
+  accept 95312 "Coming to Collect" @67.4,24.0
+
+step Southsea Shakedown
+  zone map 1446
+  tip Security Chief Bilgewhizzle of Steamwheedle Port in Tanaris wants you to kill 10 Southsea Pirates, 10 Southsea Freebooters, 10 Southsea Dock Workers and 10 Southsea Swashbucklers. ~3,900 XP. · Shadow BiS: reward Southsea Mojo Boots (Lv 50 feet).
+  complete 8366 "Southsea Shakedown" @73.6,48.4
+  turnin 8366 "Southsea Shakedown" @67.1,23.9
+
+step Pirate Hats Ahoy!
+  zone map 1446
+  tip Haughty Modiste wants you to collect 20 Southsea Pirate Hats and return them to her at Steamwheedle Port in Tanaris. ~3,900 XP.
+  complete 8365 "Pirate Hats Ahoy!" @73.6,48.4
+  turnin 8365 "Pirate Hats Ahoy!" @66.6,22.3
+
+step WANTED: Andre Firebeard
+  zone map 1446
+  tip Bring Andre's Head to Security Chief Bilgewhizzle in Steamwheedle Port. · Hand in: Security Chief Bilgewhizzle, Tanaris (67.1, 23.9). · Elite pirate boss. · Group up. ~3,900 XP.
+  complete 2875 "WANTED: Andre Firebeard" @73.4,47.1
+  turnin 2875 "WANTED: Andre Firebeard" @67.1,23.9
+
+step Stoley's Shipment
+  zone map 1446
+  tip Bring Stoley's Shipment to Stoley in Steamwheedle Port. ~3,900 XP.
+  complete 2873 "Stoley's Shipment" @72.1,46.7
+  turnin 2873 "Stoley's Shipment" @67.1,24.0
+
+step Screecher Spirits
+  zone map 1446
+  tip Capture the spirits of 3 screechers in Feralas, then return to Yeh'kinya in Steamwheedle Port. · Screechers are in Feralas, so hold it till then. ~3,750 XP.
+  complete 3520 "Screecher Spirits" map 1444 @60.2,62.2
+  note Keep it: you hand this in later on the route.
+
+step Shipping and Handling
+  zone map 1446
+  tip New Forever quest.
+  complete 95383 "Shipping and Handling"
+  turnin 95383 "Shipping and Handling" @67.4,24.0
+
+step Coming to Collect
+  zone map 1446
+  tip New Forever quest.
+  complete 95312 "Coming to Collect"
+  turnin 95312 "Coming to Collect" @51.7,27.8
+
+step Steamwheedle Port (67, 23) · round 2
+  zone map 1446
+  accept 95321 "Tazzik's Dues" @51.7,27.8
+
+step Tazzik's Dues
+  zone map 1446
+  tip Get: 1 Tazzik confronted.
+  complete 95321 "Tazzik's Dues"
+  turnin 95321 "Tazzik's Dues" @67.4,24.0
+
+step Steamwheedle Port (67, 23) · round 3
+  zone map 1446
+  accept 95472 "Consolation Prize" @67.4,24.0
+
+step Consolation Prize
+  zone map 1446
+  tip New Forever quest.
+  complete 95472 "Consolation Prize"
+  turnin 95472 "Consolation Prize" map 2548 @77.1,52.9
+
+step South Tanaris
+  zone map 1446
+  accept 1560 "Tooga's Quest" @29.5,60.5
+
+step Tooga's Quest
+  zone map 1446
+  tip Show Tooga the way back to his wife, Torta. · Hand in: Torta, Tanaris (66.6, 25.7). ~5,900 XP.
+  complete 1560 "Tooga's Quest"
+  turnin 1560 "Tooga's Quest" @66.6,25.7
+
+step Dungeon
+  zone map 1446
+  tip Grab the ZF quests in Gadgetzan (Divino-matic Rod) and Dustwallow (Tiara of the Deep). · The stairs event is a healer check, so Renew everyone and Shield whoever's getting swarmed.
+  task "Zul'Farrak" optional
+
+step Feathermoon Stronghold, Feralas (31, 45)
+  zone map 1444
+  accept 4124 "The Missing Courier" @30.4,46.2
+  accept 2866 "The Ruins of Solarsal" @30.3,46.2
+  accept 2821 "The Mark of Quality" @30.6,42.7
+  accept 2982 "The High Wilderness" @31.8,45.6
+
+step The Missing Courier
+  zone map 1444
+  tip Speak with Ginro Hearthkindle in Feathermoon Stronghold. · Hand in: Ginro Hearthkindle, Feralas (31.9, 45.1). ~360 XP.
+  turnin 4124 "The Missing Courier" @31.9,45.1
+
+step The Ruins of Solarsal
+  zone map 1444
+  tip Explore the Ruins of Solarsal and investigate the presence of the naga there. · Hand in: Solarsal Gazebo, Feralas (26.3, 52.3). ~2,700 XP.
+  turnin 2866 "The Ruins of Solarsal" @26.3,52.3
+
+step The Mark of Quality
+  zone map 1444
+  tip Bring 10 Thick Yeti Hides to Pratt McGrubben in Feathermoon Stronghold. ~4,050 XP.
+  complete 2821 "The Mark of Quality" @55.9,58.8
+  turnin 2821 "The Mark of Quality" @30.6,42.7
+
+step The High Wilderness
+  zone map 1444
+  tip Angelas Moonbreeze wants you to kill 8 Gordunni Warlocks, 8 Gordunni Shaman, and 8 Gordunni Brutes. ~3,750 XP.
+  complete 2982 "The High Wilderness" @58.1,73.4
+  turnin 2982 "The High Wilderness" @31.8,45.6
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 2
+  zone map 1444
+  accept 4125 "The Missing Courier" @31.9,45.1
+  accept 2867 "Return to Feathermoon Stronghold" @26.3,52.3
+
+step The Missing Courier
+  zone map 1444
+  tip Locate the courier's boat somewhere along the coast of Feralas. · Hand in: Wrecked Row Boat, Feralas (45.4, 65). ~2,700 XP.
+  turnin 4125 "The Missing Courier" @45.4,65.0
+
+step Return to Feathermoon Stronghold
+  zone map 1444
+  tip Return to Shandris Feathermoon in the Feathermoon Stronghold and report your findings. · Hand in: Shandris Feathermoon, Feralas (30.3, 46.2). ~1,800 XP.
+  turnin 2867 "Return to Feathermoon Stronghold" @30.3,46.2
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 3
+  zone map 1444
+  accept 4127 "Boat Wreckage" @45.4,65.0
+  accept 3130 "Against the Hatecrest" @30.3,46.2
+
+step Boat Wreckage
+  zone map 1444
+  tip Return to Feathermoon Stronghold and show Ginro Hearthkindle the Discarded Knife you have found. · Hand in: Ginro Hearthkindle, Feralas (31.9, 45.1). ~375 XP.
+  turnin 4127 "Boat Wreckage" @31.9,45.1
+
+step Against the Hatecrest
+  zone map 1444
+  tip Report to Latronicus Moonspear in Feathermoon Stronghold. · Hand in: Latronicus Moonspear, Feralas (30.4, 46.2). ~360 XP.
+  turnin 3130 "Against the Hatecrest" @30.4,46.2
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 4
+  zone map 1444
+  accept 4129 "The Knife Revealed" @31.9,45.1
+  accept 2869 "Against the Hatecrest" @30.4,46.2
+
+step The Knife Revealed
+  zone map 1444
+  tip Take the Discarded Knife to Quintis Jonespyre in Feathermoon Stronghold. · Hand in: Quintis Jonespyre, Feralas (32.5, 43.8). ~375 XP.
+  turnin 4129 "The Knife Revealed" @32.5,43.8
+
+step Against the Hatecrest
+  zone map 1444
+  tip Bring 10 Hatecrest Naga Scales to Latronicus Moonspear in Feathermoon Stronghold. ~2,700 XP.
+  complete 2869 "Against the Hatecrest" @29.7,57.5
+  turnin 2869 "Against the Hatecrest" @30.4,46.2
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 5
+  zone map 1444
+  accept 4130 "Psychometric Reading" @32.5,43.8
+  accept 2870 "Against Lord Shalzaru" @30.4,46.2
+
+step Psychometric Reading
+  zone map 1444
+  tip Speak with Ginro Hearthkindle in Feathermoon Stronghold. · Hand in: Ginro Hearthkindle, Feralas (31.9, 45.1). ~375 XP.
+  turnin 4130 "Psychometric Reading" @31.9,45.1
+
+step Against Lord Shalzaru
+  zone map 1444
+  tip Eliminate Lord Shalzaru, and then bring the Mysterious Relic he uncovered to Latronicus Moonspear in Feathermoon Stronghold. ~2,900 XP.
+  complete 2870 "Against Lord Shalzaru" @28.5,70.5
+  turnin 2870 "Against Lord Shalzaru" @30.4,46.2
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 6
+  zone map 1444
+  accept 4131 "The Woodpaw Gnolls" @31.9,45.1
+  accept 2871 "Delivering the Relic" @30.4,46.2
+
+step The Woodpaw Gnolls
+  zone map 1444
+  tip Search the Woodpaw Gnoll camps of southern Feralas for evidence of the courier's belongings or the courier himself. · Hand in: Large Leather Backpacks, Feralas (73.3, 56.3). ~2,800 XP.
+  turnin 4131 "The Woodpaw Gnolls" @73.3,56.3
+
+step Delivering the Relic
+  zone map 1444
+  tip Deliver the Mysterious Relic to Vestia Moonspear in Feathermoon Stronghold. · Hand in: Vestia Moonspear, Feralas (30.1, 45.1). · Vestia is right there in Feathermoon. ~3,900 XP.
+  turnin 2871 "Delivering the Relic" @30.1,45.1
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 7
+  zone map 1444
+  accept 4135 "The Writhing Deep" @73.3,56.3
+
+step The Writhing Deep
+  zone map 1444
+  tip Now that Raschal's last known whereabouts have been discovered, continue your search for him or his remains in the Writhing Deep. · Hand in: Zukk'ash Pod, Feralas (72.1, 63.7). ~3,050 XP.
+  turnin 4135 "The Writhing Deep" @72.1,63.7
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 8
+  zone map 1444
+  accept 4265 "Freed from the Hive" @72.1,63.7
+
+step Freed from the Hive
+  zone map 1444
+  tip Free Raschal from the Zukk'ash hive. · Hand in: Ginro Hearthkindle, Feralas (31.9, 45.1). ~4,050 XP.
+  complete 4265 "Freed from the Hive"
+  turnin 4265 "Freed from the Hive" @31.9,45.1
+
+step Feathermoon Stronghold, Feralas (31, 45) · round 9
+  zone map 1444
+  accept 4266 "A Hero's Welcome" @31.9,45.1
+
+step A Hero's Welcome
+  zone map 1444
+  tip Speak with Shandris Feathermoon in Feathermoon Stronghold. · Hand in: Shandris Feathermoon, Feralas (30.3, 46.2). ~6,050 XP.
+  turnin 4266 "A Hero's Welcome" @30.3,46.2
+
+step East + north Feralas
+  zone map 1444
+  accept 2969 "Freedom for All Creatures" @65.9,45.7
+  accept 7003 "Zapped Giants" @44.8,43.4
+  accept 7721 "Fuel for the Zapping" @44.8,43.4
+  accept 2844 "The Giant Guardian" @42.4,22.0
+  accept 2767 "Rescue OOX-22/FE!" @53.4,55.7
+
+step Freedom for All Creatures
+  zone map 1444
+  tip Using the Bamboo Cage Key, free the Sprite Darters from the pen in the Grimtotem camp. ~3,150 XP.
+  complete 2969 "Freedom for All Creatures"
+  turnin 2969 "Freedom for All Creatures" @65.9,45.7
+
+step Zapped Giants
+  zone map 1444
+  tip Use Zorbin's Ultra-Shrinker to zap any kind of giant found in Feralas into a more manageable form. ~4,400 XP.
+  complete 7003 "Zapped Giants" @45.5,62.3
+  turnin 7003 "Zapped Giants" @44.8,43.4
+
+step Fuel for the Zapping
+  zone map 1444
+  tip Collect 10 Water Elemental Cores from the Sea Elementals and Sea Sprays along the Forgotten Coast of Feralas, and bring them back to Zorbin Fandazzle who is near the dock there. ~4,400 XP.
+  complete 7721 "Fuel for the Zapping" @45.4,67.9
+  turnin 7721 "Fuel for the Zapping" @44.8,43.4
+
+step The Giant Guardian
+  zone map 1444
+  tip Locate the lost night elf girl. · Hand in: Shay Leafrunner, Feralas (38.2, 10.3). · Rockbiter is up north (42.4, 22). ~3,400 XP.
+  turnin 2844 "The Giant Guardian" @38.2,10.3
+
+step Rescue OOX-22/FE!
+  zone map 1444
+  tip Starts from the OOX-22/FE Distress Beacon, a random drop from Feralas mobs: use it for Find OOX-22/FE!, then the escort. · Rewards a cloak.
+  complete 2767 "Rescue OOX-22/FE!"
+  turnin 2767 "Rescue OOX-22/FE!" npc 7406 "Oglethorpe Obnoticus" map 1434 @28.4,76.4
+
+step East + north Feralas · round 2
+  zone map 1444
+  accept 2970 "Doling Justice" @66.0,45.6
+  accept 2845 "Wandering Shay" @38.2,10.3
+
+step Doling Justice
+  zone map 1444
+  tip Kill 12 Grimtotem Naturalists, 10 Grimtotem Raiders, and 6 Grimtotem Shamans before returning to Jer'kai Moonweaver in Feralas. ~3,150 XP.
+  complete 2970 "Doling Justice" @66.4,47.8
+  turnin 2970 "Doling Justice" @66.0,45.6
+
+step Wandering Shay
+  zone map 1444
+  tip Pick up Shay's Bell from the chest. · Hand in: Rockbiter, Feralas (42.4, 22). ~4,550 XP.
+  complete 2845 "Wandering Shay" @38.2,10.3
+  turnin 2845 "Wandering Shay" @42.4,22.0
+
+step East + north Feralas · round 3
+  zone map 1444
+  accept 2972 "Doling Justice" @66.0,45.6
+
+step Later
+  zone map 1444
+  tip 50+.
+  task "Dire Maul + Maraudon (later)" optional
+

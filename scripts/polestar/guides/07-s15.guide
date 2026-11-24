@@ -1,0 +1,451 @@
+guide hearthbound/s15
+title Arathi + Hillsbrad + Alterac
+faction Alliance
+levels 37-40
+zone map 1455
+author Brownie
+keywords Hearthbound, Ironforge → Loch Modan → Arathi → Hillsbrad → Alterac
+next hearthbound/s16
+
+step Ironforge hand-ins (fly from Menethil)
+  zone map 1455
+  turnin 1457 "The Karnitol Shipwreck" @70.0,21.3 -- Ironforge · Roetten Stonehammer (70, 21.3)
+  turnin 1467 "Reagents for Reclaimers Inc." @70.0,21.3 -- Ironforge · Roetten Stonehammer (70, 21.3)
+
+step Loch Modan + quick Badlands hop
+  zone map 1418
+  tip Ride to Stonewrought Dam, jump down onto the ledge with the Carved Figurine · Hand in: Wet Job at the Carved Figurine · reward Hickory Pipe + Rumsey Rum Light
+  turnin 1106 "Martek the Exiled" @42.2,52.7 -- Badlands · Martek the Exiled (42.2, 52.7)
+  task "Cozy Sleeping Bag · step 5 (Wet Job → Eagle's Fist)" optional
+  accept 92743 "A Conqueror's Crown" npc 5398 "Warug" map 1443 @75.0,68.2
+
+step A Conqueror's Crown
+  zone map 1418
+  tip Quick hop while you're in Loch Modan: run south from Thelsamar through the gate into Badlands · Crypt is just NE of Ryedol's dwarf camp, loot the Conqueror's Helm inside · The Mummies library book is in the same crypt, grab it now and tick it off later in the Badlands stop · Run back to Thelsamar and carry on to Arathi, keep the helm in your bags
+  complete 92743 "A Conqueror's Crown"
+  note Keep it: you hand this in later on the route.
+
+step Thandol Span → Arathi
+  zone map 1417
+  accept 647 "MacKreel's Moonshine" @43.2,92.6
+  accept 637 "Sully Balloo's Letter" item 4433 "Waterlogged Envelope"
+
+step MacKreel's Moonshine
+  zone map 1417
+  tip Take MacKreel's Moonshine to Brewmeister Bilger in Southshore. · Hand in: Brewmeister Bilger, Hillsbrad (52.1, 58.7). ~3,050 XP.
+  turnin 647 "MacKreel's Moonshine" npc 2705 "Brewmeister Bilger" map 1424 @52.1,58.7
+
+step Refuge Pointe, Arathi (46, 47)
+  zone map 1417
+  tip You're in Arathi anyway. · Lv 40 with a mount makes it easy.
+  turnin 690 "Malin's Request" @46.7,47.0 -- Arathi · Skuerto, Refuge Pointe (46.6, 47)
+  accept 681 "Northfold Manor" @45.8,47.6
+  task "A Web of Lies: Debunking Myths and Legends" optional
+  accept 95315 "The Riverglades Report" @45.8,47.6
+
+step Northfold Manor
+  zone map 1417
+  tip Kill 10 Syndicate Highwaymen and 6 Syndicate Mercenaries. ~2,500 XP.
+  complete 681 "Northfold Manor" @31.8,33.0
+  turnin 681 "Northfold Manor" @45.8,47.6
+
+step Refuge Pointe, Arathi (46, 47) · round 2
+  zone map 1417
+  accept 691 "Worth Its Weight in Gold" @46.2,47.8
+  accept 682 "Stromgarde Badges" @45.8,47.6
+
+step Worth Its Weight in Gold
+  zone map 1417
+  tip Find 10 Witherbark Tusks, 4 Witherbark Medicine Pouches and a Shadow Hunter Knife for Apprentice Kryten at Refuge Pointe. ~3,500 XP.
+  complete 691 "Worth Its Weight in Gold" @35.6,49.4
+  turnin 691 "Worth Its Weight in Gold" @46.2,47.8
+
+step Stromgarde Badges
+  zone map 1417
+  tip Bring 7 Stromgarde Badges to Captain Nials at Refuge Pointe. ~3,550 XP.
+  complete 682 "Stromgarde Badges" @28.1,66.2
+  turnin 682 "Stromgarde Badges" @45.8,47.6
+
+step Sleeping bag: Thoradin's Wall (on the way west)
+  zone map 1417
+  tip Fly Thelsamar → Refuge Pointe, ride west to Thoradin's Wall · Climb the cart on the Hillsbrad side (87.3, 49.6) to get up top · Click the Hastily Rolled-Up Satchel just below the Messenger Bag · Hand in: This Must Be The Place → Cozy Sleeping Bag + 5 Student Fodder
+  task "Cozy Sleeping Bag · step 6 (Eagle's Fist → This Must Be The Place)" optional
+  task "Cozy Sleeping Bag · step 7 (This Must Be The Place)" optional
+
+step Southshore, Hillsbrad (51, 58)
+  zone map 1424
+  turnin 538 "Southshore" @50.6,57.1 -- Hillsbrad · Loremaster Dibbs, Southshore (50.6, 57.1)
+  turnin 1052 "Down the Scarlet Path" @51.5,58.4 -- Hillsbrad · Raleigh the Devout, Southshore (51.5, 58.4)
+  task "Set hearth + flight path" optional
+  accept 536 "Down the Coast" @51.5,58.4
+  accept 505 "Syndicate Assassins" @48.1,59.1
+  accept 565 "Bartolo's Yeti Fur Cloak" @49.4,55.5
+  accept 564 "Costly Menace" @52.4,56.0
+  accept 659 "Hints of a New Plague?" @50.4,59.1
+  accept 500 "Crushridge Bounty" @49.5,58.7
+  accept 92432 "An Alarming Request" @48.3,60.0 -- dungeon quest, hold it for the run
+
+step Down the Coast
+  zone map 1424
+  tip Kill 10 Torn Fin Tidehunters and 10 Torn Fin Oracles for Lieutenant Farren Orinelle in Southshore. ~1,850 XP.
+  complete 536 "Down the Coast" @39.9,72.8
+  turnin 536 "Down the Coast" @51.5,58.4
+
+step Syndicate Assassins
+  zone map 1424
+  tip Kill 12 Syndicate Footpads and 8 Syndicate Thieves, then return to Magistrate Henry Maleb in Southshore. ~1,950 XP.
+  complete 505 "Syndicate Assassins" @50.6,21.2
+  turnin 505 "Syndicate Assassins" @48.1,59.1
+
+step Bartolo's Yeti Fur Cloak
+  zone map 1424
+  tip Bring Bartolo Ginsetti of Southshore a Bolt of Wool, a Hillman's Cloak, Fine Thread and 10 clumps of Yeti Fur. ~2,700 XP.
+  complete 565 "Bartolo's Yeti Fur Cloak" map 1430 @6.0,74.7
+  turnin 565 "Bartolo's Yeti Fur Cloak" @49.4,55.5
+
+step Costly Menace
+  zone map 1424
+  tip Darren Malvew of Southshore wants you to kill 8 Mountain Lions and 10 Hulking Mountain Lions. ~2,700 XP.
+  complete 564 "Costly Menace" @42.3,28.9
+  turnin 564 "Costly Menace" @52.4,56.0
+
+step Hints of a New Plague?
+  zone map 1424
+  tip Find Quae and Kinelory near the Go'Shek Farm in the Arathi Highlands. · Hand in: Quae, Arathi (60.2, 53.9). ~1,300 XP.
+  turnin 659 "Hints of a New Plague?" npc 2712 "Quae" map 1417 @60.2,53.8
+
+step Crushridge Bounty
+  zone map 1424
+  tip Gather 9 Dirty Knucklebones from Crushridge ogres in the Alterac Mountains. ~3,500 XP.
+  complete 500 "Crushridge Bounty" @50.5,4.1
+  turnin 500 "Crushridge Bounty" @49.5,58.7
+
+step Southshore, Hillsbrad (51, 58) · round 2
+  zone map 1424
+  accept 559 "Farren's Proof" @51.5,58.4
+  accept 540 "Preserving Knowledge" @50.6,57.1
+
+step Farren's Proof
+  zone map 1424
+  tip Collect 10 Murloc Heads from the murlocs on the Western Strand for Lieutenant Farren Orinelle in Southshore. ~2,550 XP.
+  complete 559 "Farren's Proof" @25.6,76.4
+  turnin 559 "Farren's Proof" @51.5,58.4
+
+step Preserving Knowledge
+  zone map 1424
+  tip Bring 5 Recovered Tomes and the Worn Leather Book containing The Arm of Gri'lek to Loremaster Dibbs in Southshore. ~3,550 XP.
+  complete 540 "Preserving Knowledge" @50.5,4.1
+  turnin 540 "Preserving Knowledge" @50.6,57.1
+
+step Southshore, Hillsbrad (51, 58) · round 3
+  zone map 1424
+  accept 560 "Farren's Proof" @51.5,58.4
+  accept 542 "Return to Milton" @50.6,57.1
+
+step Farren's Proof
+  zone map 1424
+  tip Deliver the sack of murloc heads to Marshall Redpath in Southshore. · Hand in: Marshal Redpath, Hillsbrad (49.5, 58.7). ~255 XP.
+  turnin 560 "Farren's Proof" @49.5,58.7
+
+step Southshore, Hillsbrad (51, 58) · round 4
+  zone map 1424
+  accept 561 "Farren's Proof" @49.5,58.7
+
+step Farren's Proof
+  zone map 1424
+  tip Speak with Lieutenant Farren Orinelle in Southshore. · Hand in: Lieutenant Farren Orinelle, Hillsbrad (51.5, 58.4). ~255 XP.
+  turnin 561 "Farren's Proof" @51.5,58.4
+
+step Southshore, Hillsbrad (51, 58) · round 5
+  zone map 1424
+  accept 562 "Stormwind Ho!" @51.5,58.4
+
+step Stormwind Ho!
+  zone map 1424
+  tip Kill 10 Daggerspine Shorehunters and 10 Daggerspine Sirens for Lieutenant Farren Orinelle in Southshore. ~1,950 XP.
+  complete 562 "Stormwind Ho!" @58.9,77.6
+  turnin 562 "Stormwind Ho!" @51.5,58.4
+
+step Southshore, Hillsbrad (51, 58) · round 6
+  zone map 1424
+  accept 563 "Reassignment" @51.5,58.4
+
+step Alterac Mountains
+  zone map 1416
+  tip A Lv 40 ogre guards it. · Try it at 35+, or grab it later with your mount.
+  accept 510 "Foreboding Plans" @58.3,67.9
+  accept 511 "Encrypted Letter" @58.3,67.9
+  accept 504 "Crushridge Warmongers" map 1424 @49.5,58.7
+  accept 95534 "Strahnbrad Mystery" item 213421 "Singed Note"
+  task "Defensive Magics 101 (optional)" optional
+  accept 97130 "Ancient Gurubashi Secrets" @15.4,74.1 -- dungeon quest, hold it for the run
+  accept 96771 "Vengeance of the Highborne" @17.8,66.0 -- dungeon quest, hold it for the run
+
+step Foreboding Plans
+  zone map 1416
+  tip Bring the Foreboding Plans to Magistrate Maleb in Southshore. · Hand in: Magistrate Henry Maleb, Hillsbrad (48.1, 59.1). ~1,350 XP.
+  turnin 510 "Foreboding Plans" npc 2276 "Magistrate Henry Maleb" map 1424 @48.1,59.1
+
+step Encrypted Letter
+  zone map 1416
+  tip Bring the Encrypted Letter to Loremaster Dibbs in Southshore. · Hand in: Loremaster Dibbs, Hillsbrad (50.6, 57.1). ~1,350 XP.
+  turnin 511 "Encrypted Letter" npc 2277 "Loremaster Dibbs" map 1424 @50.6,57.1
+
+step Crushridge Warmongers
+  zone map 1424
+  tip Slay 10 Crushridge Warmongers, then return to Marshal Redpath in Southshore. ~4,700 XP.
+  complete 504 "Crushridge Warmongers" @43.2,0.5
+  turnin 504 "Crushridge Warmongers" @49.5,58.7
+
+step Strahnbrad Mystery
+  zone map 1416
+  tip New in Forever. · Rewards Brilliant Cloak. · Shadow BiS: take Brilliant Cloak (Lv 40 back).
+  complete 95534 "Strahnbrad Mystery"
+  turnin 95534 "Strahnbrad Mystery" npc 2378 "Kundric Zanden" map 1424 @48.6,59.0
+
+step Alterac Mountains · round 2
+  zone map 1424
+  accept 512 "Noble Deaths" @48.1,59.1
+  accept 514 "Letter to Stormpike" @50.6,57.1
+
+step Noble Deaths
+  zone map 1424
+  tip Bring 7 Alterac Signet Rings to Magistrate Maleb in Southshore. ~2,800 XP.
+  complete 512 "Noble Deaths" map 1416 @57.9,48.8
+  turnin 512 "Noble Deaths" @48.1,59.1
+
+step Image of Archmage Modera (Silverpine border, 68.6, 45.2)
+  zone map 1421
+  accept 92458 "Heart of Disruption" @68.6,45.1 -- dungeon quest, hold it for the run
+  accept 92457 "Starving Arcane" @68.6,45.1 -- dungeon quest, hold it for the run
+
+step Archmage Ansirem, outside Dalaran (Alterac 18.8, 78.5)
+  zone map 1421
+  tip Library book. · Just west of Dalaran over the hills, near Modera.
+  turnin 602 "Magical Analysis" map 1416 @18.8,78.5 -- Alterac Mountains · Archmage Ansirem Runeweaver (18.8, 78.5)
+  task "The Dalaran Digest, Vol. 23 (optional)" optional
+
+step Archmage Ansirem, outside Dalaran (Alterac 18.8, 78.5) · round 2
+  zone map 1416
+  accept 603 "Ansirem's Key" @18.8,78.5
+
+step City of Dalaran: run it (west Alterac)
+  zone map 1421
+  tip 28-35 dungeon. · The Mana Elemental (Power Overwhelming), the Fel Infused Blossom (A Green Sample) and the Arcane Mote (Heart of Disruption) are inside. · Kill the last boss for Legacy points, if Dalaran is on your dungeon finder list.
+  task "City of Dalaran: run it" optional
+  task "Legacy: City of Dalaran" optional
+  accept 92459 "Friend of the Kirin Tor" @68.6,45.1 -- dungeon quest, hold it for the run
+
+step Back to Arathi: Go'Shek Farm + Myzrael
+  zone map 1417
+  accept 658 "Hints of a New Plague?" @60.2,53.9
+  accept 642 "The Princess Trapped" @62.5,33.7
+  accept 627 "Favor for Krazek" npc 773 "Krazek" map 1434 @27.0,77.2
+
+step Hints of a New Plague?
+  zone map 1417
+  tip Find the Forsaken Courier and bring back her Sealed Folder to Quae near the Go'Shek Farm. ~2,800 XP.
+  complete 658 "Hints of a New Plague?" @52.5,61.5
+  turnin 658 "Hints of a New Plague?" @60.2,53.9
+
+step The Princess Trapped
+  zone map 1417
+  tip Gather 12 Motes of Myzrael, then bring them to the Iridescent Shards in Drywhisker Gorge. · Hand in: Iridescent Shards, Arathi (84.3, 30.9). ~2,850 XP.
+  complete 642 "The Princess Trapped" @76.0,44.4
+  turnin 642 "The Princess Trapped" @84.3,31.0
+
+step Favor for Krazek
+  zone map 1417
+  tip Click the red Lesser Bloodstone Deposits on the ground (no Mining needed). · Hammerfall is the Horde town right next door, so go around it.
+  complete 627 "Favor for Krazek" @82.9,35.7
+  turnin 627 "Favor for Krazek" npc 773 "Krazek" map 1434 @27.0,77.2
+
+step Back to Arathi: Go'Shek Farm + Myzrael · round 2
+  zone map 1417
+  accept 657 "Hints of a New Plague?" @60.2,53.9
+  accept 651 "Stones of Binding" @84.3,31.0
+
+step Hints of a New Plague?
+  zone map 1417
+  tip Speak to Kinelory. · Hand in: Kinelory, Arathi (60.2, 53.9).
+  turnin 657 "Hints of a New Plague?" @60.2,53.9
+
+step Stones of Binding
+  zone map 1417
+  tip Gather the Burning Key, the Cresting Key and the Thundering Key from the Stone of West Binding, the Stone of East Binding and the Stone of Outer Binding. · Hand in: Stone of Inner Binding, Arathi (36.2, 57.4). ~2,850 XP.
+  complete 651 "Stones of Binding" @24.6,32.8
+  turnin 651 "Stones of Binding" @36.2,57.4
+
+step Back to Arathi: Go'Shek Farm + Myzrael · round 3
+  zone map 1417
+  accept 660 "Hints of a New Plague?" @60.2,53.9
+
+step Hints of a New Plague?
+  zone map 1417
+  tip Protect Kinelory until she returns to Quae. · Hand in: Quae, Arathi (60.2, 53.9). ~2,850 XP.
+  complete 660 "Hints of a New Plague?"
+  turnin 660 "Hints of a New Plague?" @60.2,53.9
+
+step Back to Arathi: Go'Shek Farm + Myzrael · round 4
+  zone map 1417
+  accept 661 "Hints of a New Plague?" @60.2,53.9
+
+step Hints of a New Plague?
+  zone map 1417
+  tip Find Phin Odelic in Southshore. · Hand in: Phin Odelic, Hillsbrad (50.4, 59). ~3,550 XP.
+  turnin 661 "Hints of a New Plague?" npc 2711 "Phin Odelic" map 1424 @50.3,59.0
+
+step Stromgarde (Refuge Pointe chain)
+  zone map 1417
+  accept 693 "Wand over Fist" @46.7,47.0
+  accept 684 "WANTED: Marez Cowl" @46.0,47.8
+  accept 685 "WANTED: Otto and Falconcrest" @46.0,47.8
+
+step Wand over Fist
+  zone map 1417
+  tip Find Trelane's Wand of Invocation and return it to Skuerto at Refuge Pointe. · Stromgarde elites around: pull carefully or bring a friend. ~3,000 XP.
+  complete 693 "Wand over Fist" @54.7,81.9
+  turnin 693 "Wand over Fist" @46.7,47.0
+
+step WANTED: Marez Cowl
+  zone map 1417
+  tip Bring Marez's head to Captain Nials at Refuge Pointe. · Hand in: Captain Nials, Arathi (45.8, 47.6). · Elite: group up. ~3,750 XP.
+  complete 684 "WANTED: Marez Cowl" @29.5,64.1
+  turnin 684 "WANTED: Marez Cowl" @45.8,47.6
+
+step WANTED: Otto and Falconcrest
+  zone map 1417
+  tip Bring Otto's Head and Falconcrest's Head to Captain Nials at Refuge Pointe. · Hand in: Captain Nials, Arathi (45.8, 47.6). · Elites: group up. ~3,900 XP.
+  complete 685 "WANTED: Otto and Falconcrest" @26.2,65.5
+  turnin 685 "WANTED: Otto and Falconcrest" @45.8,47.6
+
+step Stromgarde (Refuge Pointe chain) · round 2
+  zone map 1417
+  accept 694 "Trelane's Defenses" @46.7,47.0
+
+step Trelane's Defenses
+  zone map 1417
+  tip Find an Azure Agate and bring it to Apprentice Kryten at Refuge Pointe. · Hand in: Apprentice Kryten, Arathi (46.2, 47.8). ~3,000 XP.
+  complete 694 "Trelane's Defenses" @20.2,69.1
+  turnin 694 "Trelane's Defenses" @46.2,47.8
+
+step Stromgarde (Refuge Pointe chain) · round 3
+  zone map 1417
+  accept 695 "An Apprentice's Enchantment" @46.2,47.8
+
+step An Apprentice's Enchantment
+  zone map 1417
+  tip Speak to Skuerto. · Hand in: Skuerto, Arathi (46.6, 47). ~300 XP.
+  turnin 695 "An Apprentice's Enchantment" @46.7,47.0
+
+step Stromgarde (Refuge Pointe chain) · round 4
+  zone map 1417
+  accept 696 "Attack on the Tower" @46.7,47.0
+
+step Attack on the Tower
+  zone map 1417
+  tip Find Trelane's Phylactery, Trelane's Orb, and Trelane's Ember Agate, and return them to Skuerto at Refuge Pointe. · Elite tower fight: group up if you can. ~3,000 XP.
+  complete 696 "Attack on the Tower" @18.2,68.1
+  turnin 696 "Attack on the Tower" @46.7,47.0
+
+step Stromgarde (Refuge Pointe chain) · round 5
+  zone map 1417
+  accept 697 "Malin's Request" @46.7,47.0
+
+step Faldir's Cove (south-west coast, 32, 81)
+  zone map 1417
+  accept 663 "Land Ho!" @31.8,82.7
+  accept 665 "Sunken Treasure" @33.9,80.6
+
+step Land Ho!
+  zone map 1417
+  tip Talk to Captain O'Breen in Faldir's Cove. · Hand in: Shakes O'Breen, Arathi (32.3, 81.4). ~690 XP.
+  turnin 663 "Land Ho!" @32.3,81.4
+
+step Sunken Treasure
+  zone map 1417
+  tip Escort Professor Phizzlethorpe to the cave and back. · Hand in: Doctor Draxlegauge, Arathi (33.9, 80.5). ~3,150 XP.
+  complete 665 "Sunken Treasure"
+  turnin 665 "Sunken Treasure" @33.9,80.5
+
+step Faldir's Cove (south-west coast, 32, 81) · round 2
+  zone map 1417
+  accept 664 "Drowned Sorrows" @34.0,80.8
+  accept 668 "Sunken Treasure" @33.9,80.5
+  accept 662 "Deep Sea Salvage" @32.8,81.5
+
+step Drowned Sorrows
+  zone map 1417
+  tip Captain Steelgut in Faldir's Cove wants you to kill 10 Daggerspine Raiders and 3 Daggerspine Sorceresses. ~3,150 XP.
+  complete 664 "Drowned Sorrows" @25.5,91.2
+  turnin 664 "Drowned Sorrows" @34.0,80.8
+
+step Sunken Treasure
+  zone map 1417
+  tip Doctor Draxlegauge in Faldir's Cove wants you to collect 10 Elven Gems and return the Goggles of Gem Hunting once you are done. ~3,900 XP.
+  turnin 668 "Sunken Treasure" @32.3,81.4
+
+step Deep Sea Salvage
+  zone map 1417
+  tip First Mate Nilzlix wants you to retrieve the Charts and Logs from the Maiden's Folly and the Spirit of Silverpine. ~3,150 XP.
+  complete 662 "Deep Sea Salvage" @23.1,84.5
+  turnin 662 "Deep Sea Salvage" @32.8,81.5
+
+step Faldir's Cove (south-west coast, 32, 81) · round 3
+  zone map 1417
+  accept 668 "Sunken Treasure" @33.9,80.5
+
+step Sunken Treasure
+  zone map 1417
+  tip Take the Elven Gems to Captain O'Breen. · Hand in: Shakes O'Breen, Arathi (32.3, 81.4). ~1,550 XP.
+  turnin 668 "Sunken Treasure" @32.3,81.4
+
+step Drowned City lead-in: Rebel Camp, STV (fly to Darkshire)
+  zone map 1434
+  accept 95786 "An Acquaintance in Southshore" @37.8,3.6
+
+step Back to Southshore: Loremaster Dibbs
+  zone map 1424
+  turnin 95786 "An Acquaintance in Southshore" @50.6,57.1 -- Hillsbrad · Loremaster Dibbs, Southshore (50.6, 57.1)
+
+step Back to Southshore: Loremaster Dibbs · round 2
+  zone map 1424
+  accept 95788 "Magics of the Drowned City" @50.6,57.1 -- dungeon quest, hold it for the run
+  accept 95787 "Take Two With Water" @50.6,57.1 -- dungeon quest, hold it for the run
+
+step Fly to Booty Bay for The Drowned City
+  zone map 1434
+  tip New Forever dungeon (35-42). · Grab any quests you see for it in Booty Bay and the Rebel Camp. · Range 35-40. · You're a few levels over, so it should be quick.
+  turnin 627 "Favor for Krazek" @27.0,77.2 -- Stranglethorn · Booty Bay · Krazek (26.9, 77.2)
+  accept 622 "Return to Corporal Kaleb" @27.0,77.2 -- hold it
+  task "The Drowned City" optional
+  task "Legacy: The Drowned City" optional
+
+step After the run: Booty Bay → Southshore → Dalaran → Ironforge
+  zone map 1416
+  turnin 95789 "Shady Saltseers" map 1434 @27.0,77.2 -- Stranglethorn · Booty Bay · Krazek (26.9, 77.2)
+  turnin 95791 "The Saltseer Captain" map 1434 @27.0,77.2 -- Stranglethorn · Booty Bay · Krazek (26.9, 77.2)
+  turnin 95788 "Magics of the Drowned City" map 1424 @50.6,57.1 -- Hillsbrad · Loremaster Dibbs, Southshore (50.6, 57.1)
+  turnin 95787 "Take Two With Water" map 1424 @50.6,57.1 -- Hillsbrad · Loremaster Dibbs, Southshore (50.6, 57.1)
+  turnin 97130 "Ancient Gurubashi Secrets" @15.4,74.1 -- Alterac Mountains · Archmage Timear, Dalaran (15.4, 74)
+
+step After the run: Booty Bay → Southshore → Dalaran → Ironforge · round 2
+  zone map 1424
+  accept 95798 "The Web of Magic" @50.6,57.1
+  accept 95799 "Findings for the Explorer's League" @50.6,57.1
+
+step The Web of Magic
+  zone map 1424
+  tip Delivery quest, take it to Abra Cadabra in Dalaran (west Alterac) · Hand in: Abra Cadabra, Dalaran · Shadow BiS: reward Apprentice Sorcerer's Slacks (legs you keep from 40 to 50)
+  turnin 95798 "The Web of Magic" npc 252019 "Abra Cadabra" @19.4,10.1
+
+step Findings for the Explorer's League
+  zone map 1424
+  tip Delivery quest, take it to Historian Karnik in the Hall of Explorers, Ironforge · Do it when you head to Ironforge/Stormwind next stop · Hand in: Historian Karnik, Ironforge (Hall of Explorers)
+  turnin 95799 "Findings for the Explorer's League" npc 2916 "Historian Karnik" map 1455 @77.5,11.8
+
+step 🛡️ BiS gear pickups
+  zone map 1416
+  tip Mob drop, not a quest, so grind them while you do the Alterac quests. · Shadow BiS: Ephemeral Grips (Lv 40 hands).
+  task "Arcane Anomaly farm" optional
+

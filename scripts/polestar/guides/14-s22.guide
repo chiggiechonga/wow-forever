@@ -1,0 +1,107 @@
+guide hearthbound/s22
+title Hinterlands + Alcaz
+faction Alliance
+levels 47-50
+zone map 1453
+author Brownie
+keywords Hearthbound, Aerie Peak · Dustwallow
+next hearthbound/s23
+
+step Stormwind first
+  zone map 1453
+  accept 1449 "To The Hinterlands" @69.5,40.4
+
+step To The Hinterlands
+  zone map 1453
+  tip Speak with High Thane Falstad Wildhammer at Aerie Peak in the Hinterlands. · Hand in: Falstad Wildhammer, The Hinterlands (11.8, 46.8). ~1,800 XP.
+  turnin 1449 "To The Hinterlands" npc 5635 "Falstad Wildhammer" map 1424 @96.8,6.3
+
+step Aerie Peak, Hinterlands (14, 44)
+  zone map 1425
+  accept 1450 "Gryphon Master Talonaxe" @11.8,46.8
+  accept 2988 "Witherbark Cages" @9.8,44.5
+  accept 2880 "Troll Necklace Bounty" @14.8,44.6
+  accept 2877 "Skulk Rock Clean-up" @14.8,44.6
+
+step Gryphon Master Talonaxe
+  zone map 1425
+  tip Speak with Gryphon Master Talonaxe inside the Aerie Peak Aviary. · Hand in: Gryphon Master Talonaxe, The Hinterlands (9.8, 44.5). ~890 XP.
+  turnin 1450 "Gryphon Master Talonaxe" @9.8,44.5
+
+step Witherbark Cages
+  zone map 1425
+  tip Check the cages at the two Witherbark villages, then return to Gryphon Master Talonaxe. ~3,900 XP.
+  complete 2988 "Witherbark Cages" @23.3,58.8
+  turnin 2988 "Witherbark Cages" @9.8,44.5
+
+step Troll Necklace Bounty
+  zone map 1425
+  tip Bring 5 Troll Tribal Necklaces to Fraggar Thundermantle in Aerie Peak. ~3,900 XP.
+  complete 2880 "Troll Necklace Bounty" @45.3,69.5
+  turnin 2880 "Troll Necklace Bounty" @14.8,44.6
+
+step Skulk Rock Clean-up
+  zone map 1425
+  tip Kill 10 Green Sludges and 10 Jade Oozes, and then report back to Fraggar Thundermantle in Aerie Peak. ~4,400 XP.
+  complete 2877 "Skulk Rock Clean-up" @48.9,55.4
+  turnin 2877 "Skulk Rock Clean-up" @14.8,44.6
+
+step Aerie Peak, Hinterlands (14, 44) · round 2
+  zone map 1425
+  accept 1451 "Rhapsody Shindigger" @9.8,44.5
+  accept 2989 "The Altar of Zul" @9.8,44.5
+
+step Rhapsody Shindigger
+  zone map 1425
+  tip Seek out Rhapsody Shindigger in The Hinterlands. · Hand in: Rhapsody Shindigger, The Hinterlands (26.9, 48.6). ~1,800 XP.
+  turnin 1451 "Rhapsody Shindigger" @26.9,48.6
+
+step The Altar of Zul
+  zone map 1425
+  tip Check the top of the Altar of Zul, then return to Gryphon Master Talonaxe. ~4,400 XP.
+  complete 2989 "The Altar of Zul"
+  turnin 2989 "The Altar of Zul" @9.8,44.5
+
+step Aerie Peak, Hinterlands (14, 44) · round 3
+  zone map 1425
+  accept 1452 "Rhapsody's Kalimdor Kocktail" @26.9,48.6
+  accept 2990 "Thadius Grimshade" @9.8,44.5
+
+step Rhapsody's Kalimdor Kocktail
+  zone map 1425
+  tip Rhapsody Shindigger in The Hinterlands wants you to bring him 3 Roc Gizzards, 3 Groddoc Livers and 3 Ironfur Livers. ~3,600 XP.
+  complete 1452 "Rhapsody's Kalimdor Kocktail" map 1446 @49.2,37.1
+  turnin 1452 "Rhapsody's Kalimdor Kocktail" @26.9,48.6
+
+step Aerie Peak, Hinterlands (14, 44) · round 4
+  zone map 1425
+  accept 1469 "Rhapsody's Tale" @26.9,48.6
+
+step Around the Hinterlands
+  zone map 1425
+  tip There's a mob on top of the wall.
+  task "Venomous Journeys" optional
+  accept 836 "Rescue OOX-09/HL!" @49.4,37.7
+  accept 1446 "Jammal'an the Prophet" @33.8,75.2
+
+step Rescue OOX-09/HL!
+  zone map 1425
+  tip Starts from the OOX-09/HL Distress Beacon, a random drop from Hinterlands mobs: use it for Find OOX-09/HL!, then the escort.
+  complete 836 "Rescue OOX-09/HL!"
+  turnin 836 "Rescue OOX-09/HL!" npc 7406 "Oglethorpe Obnoticus" map 1434 @28.4,76.4
+
+step Jammal'an the Prophet
+  zone map 1425
+  tip Jammal'an is a boss in the Sunken Temple, in the Lair of the Chosen with Ogom the Wretched. · Kill them both and loot the Head of Jammal'an. · Hold it until you're back in the Hinterlands to give it to the Atal'ai Exile. · ~6,550 XP.
+  complete 1446 "Jammal'an the Prophet"
+  note Keep it: you hand this in later on the route.
+
+step Only with a group
+  zone map 1425
+  accept 2994 "Saving Sharpbeak" @9.8,44.5 -- hold it
+
+step Dungeon
+  zone map 1445
+  tip New Forever dungeon (48-55). · No quest needed: you just need the final boss for Legacy.
+  task "Alcaz Island Prison" optional
+

@@ -208,7 +208,14 @@ const BUFFFOOD=[
  ['Briny Seafood Stew','+14 spell damage','sd',14],['Sagefish Delight','+7 spell damage','sd',7],['Smoked Sagefish','+4 spell damage','sd',4],['Rainbow Fin Albacore','+1 spell damage','sd',1],
  ['Sunrise Omelette','+25 spell damage, +55 healing, +10 Stamina','both',25],
  ["Sage's Tea",'+44 healing','heal',44],['Sunny Tea','+33 healing','heal',33],['Lobster Stew','+28 healing','heal',28],['Triage Tea','+22 healing','heal',22],
- ['Root Tea','+11 healing','heal',11],['Royal Tea','+7 healing','heal',7],['Peace Tea','+2 healing','heal',2]];
+ ['Root Tea','+11 healing','heal',11],['Royal Tea','+7 healing','heal',7],['Peace Tea','+2 healing','heal',2],
+ // mana drinks: restore mana while you sit, then Well Fed with Spirit (wow.gg Forever cooking guide; Mrrggl/Calcified Spirit not published yet)
+ ['Wicked Smoothie','restores mana · +20 Spirit (Lv 45)','mana',20],['Spicy Smoothie','restores ~4,000 mana over 30s · +15 Spirit (Lv 35)','mana',15],
+ ['Calcified Smoothie','restores mana · + Spirit, check tooltip (Lv 25)','mana',8],['Mrrggl Smrrthle','restores mana · + Spirit, check tooltip','mana',5],
+ ['Slimy Smoothie','restores 1,292 mana over 27s · +3 Spirit (Lv 5)','mana',3],['Venomous Smoothie','restores 803 mana over 24s · +1 Spirit','mana',1],
+ // bigger mana pool: Intellect Well Fed
+ ['Bat Hachee','+20 Intellect','int',20],['Soaring Pamplona','+20 Intellect (Lv 45)','int',20],['Prehistoric Pulled Raptor','+20 Intellect','int',20],
+ ['Runn Tum Tuber Surprise','+15 Intellect (Lv 35)','int',15],['Spiced Chili Crab','+10 Intellect (Lv 25)','int',10]];
 const VENDOR_ONLY=n=>vendor(n)!=null;
 // where an Alliance player learns each recipe (QuestieDB vendor spawns; newer Forever recipes from wow.gg / wow-professions)
 const FOODSRC={
@@ -224,14 +231,16 @@ const FOODSRC={
  'Root Tea':'Cooking trainer at 125 (Stormwind: Stephen Ryback, Pig and Whistle ~78, 53) · one site lists a drop from Torn Fin Oracles, Hillsbrad ~42, 69',
  'Royal Tea':'Drop: Windshear Geomancer, Stonetalon Mountains ~74, 59 (very rare, ~0.05%) · one site lists it at Kendor Kabonka, Stormwind 77.5, 52.7: check him first',
  'Peace Tea':'Drop: Frostmane Seer, Dun Morogh (troll camps ~42, 39)',
- 'Sunrise Omelette':'No Forever source found yet, and none listed on the AH'};
+ 'Sunrise Omelette':'No Forever source found yet, and none listed on the AH',
+ 'Venomous Smoothie':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×30",'Slimy Smoothie':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×30",'Mrrggl Smrrthle':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×30",
+ 'Calcified Smoothie':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×60",'Spicy Smoothie':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×60",'Wicked Smoothie':"Vendor: Kalsey Sanden, Three Corners (Redridge) · costs Merchant's Favor ×90"};
 function foodCost(r,farm){let c=0,ok=true;const farmList=[];
  r.m.forEach(([q,n])=>{if(farm&&!VENDOR_ONLY(n)){farmList.push(q+'× '+n);return}
   const v=vendor(n),a=sell(n),one=v!=null?v:a;if(one==null)ok=false;else c+=q*one});
  const y=r.y||1;return {c:ok?c/y:null,farm:farmList}}
 function renderFood(){
  const el=$('[data-p=food]');if(!el)return;
- const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing']];
+ const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing (teas also restore mana while you drink)'],['mana','Mana drinks: restore mana + Well Fed Spirit'],['int','Intellect: bigger mana pool']];
  const rows=g=>BUFFFOOD.filter(f=>f[2]===g).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
   const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
   const pr=ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null;const pc=pr==null?'':pr>=0?'up':'down';
@@ -242,10 +251,10 @@ function renderFood(){
    <td class="n">${money(ah)}${qtyOf(n)!=null?`<div class="psub">${qtyOf(n)} on AH</div>`:''}</td>
    <td class="n ${pc}">${money(buy.c)}</td>
    <td class="n ${fc}" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
- el.innerHTML=`<h2>Caster food: spell damage &amp; healing</h2>
- <p class="sub">Every 15-minute Well Fed buff with spell damage or healing (any level), strongest first. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
+ el.innerHTML=`<h2>Caster food: spell damage, healing &amp; mana</h2>
+ <p class="sub">Every 15-minute Well Fed buff with spell damage, healing, Spirit or Intellect (any level), strongest first. The smoothies and teas are drinks: they refill your mana while you sit and then give Well Fed, so they replace water. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
  ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
- <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only.</div>`;
+ <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only. In Forever, Nightfin Soup and the Sagefish foods give spell damage instead of the old mana regen. Smoothie recipes cost Merchant's Favor (from Waylaid Crates), not gold.</div>`;
 }
 
 /* ---------- 4. shopping list ---------- */

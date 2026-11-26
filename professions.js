@@ -209,12 +209,12 @@ const BUFFFOOD=[
  ['Sunrise Omelette','+25 spell damage, +55 healing, +10 Stamina','both',25],
  ["Sage's Tea",'+44 healing','heal',44],['Sunny Tea','+33 healing','heal',33],['Lobster Stew','+28 healing','heal',28],['Triage Tea','+22 healing','heal',22],
  ['Root Tea','+11 healing','heal',11],['Royal Tea','+7 healing','heal',7],['Peace Tea','+2 healing','heal',2],
- // mana drinks: restore mana while you sit, then Well Fed with Spirit (wow.gg Forever cooking guide; Mrrggl/Calcified Spirit not published yet)
- ['Wicked Smoothie','restores mana · +20 Spirit (Lv 45)','mana',20],['Spicy Smoothie','restores ~4,000 mana over 30s · +15 Spirit (Lv 35)','mana',15],
- ['Calcified Smoothie','restores mana · + Spirit, check tooltip (Lv 25)','mana',8],['Mrrggl Smrrthle','restores mana · + Spirit, check tooltip','mana',5],
- ['Slimy Smoothie','restores 1,292 mana over 27s · +3 Spirit (Lv 5)','mana',3],['Venomous Smoothie','restores 803 mana over 24s · +1 Spirit','mana',1],
+ // mana drinks: restore mana while you sit, then Well Fed with Spirit (numbers from the Forever item tooltips)
+ ['Wicked Smoothie','restores 2,821 mana over 30s · +20 Spirit (Lv 45)','mana',20],['Spicy Smoothie','restores 1,915 mana over 30s · +15 Spirit (Lv 35)','mana',15],
+ ['Calcified Smoothie','restores 1,344 mana · +10 Spirit (Lv 25)','mana',10],['Mrrggl Smrrthle','restores 835 mana · +5 Spirit (Lv 15)','mana',5],
+ ['Slimy Smoothie','restores 436 mana · +3 Spirit (Lv 5)','mana',3],['Venomous Smoothie','restores 151 mana · +1 Spirit','mana',1],
  // bigger mana pool: Intellect Well Fed
- ['Bat Hachee','+20 Intellect','int',20],['Soaring Pamplona','+20 Intellect (Lv 45)','int',20],['Prehistoric Pulled Raptor','+20 Intellect','int',20],
+ ['Bat Hachee','+20 Intellect (Lv 45)','int',20],['Soaring Pamplona','+20 Intellect (Lv 45)','int',20],['Prehistoric Pulled Raptor','+20 Intellect (Lv 45)','int',20],
  ['Runn Tum Tuber Surprise','+15 Intellect (Lv 35)','int',15],['Spiced Chili Crab','+10 Intellect (Lv 25)','int',10]];
 const VENDOR_ONLY=n=>vendor(n)!=null;
 // where an Alliance player learns each recipe (QuestieDB vendor spawns; newer Forever recipes from wow.gg / wow-professions)
@@ -238,6 +238,20 @@ function foodCost(r,farm){let c=0,ok=true;const farmList=[];
  r.m.forEach(([q,n])=>{if(farm&&!VENDOR_ONLY(n)){farmList.push(q+'× '+n);return}
   const v=vendor(n),a=sell(n),one=v!=null?v:a;if(one==null)ok=false;else c+=q*one});
  const y=r.y||1;return {c:ok?c/y:null,farm:farmList}}
+
+// item ids (Forever) for icons + hover tooltips, pulled live from Wowhead's tooltip service and cached in this browser
+const FOODID={"Baked Salmon": 13935, "Spotted Yellowtail": 6887, "Nightfin Soup": 13931, "Briny Seafood Stew": 274971, "Sagefish Delight": 21217, "Smoked Sagefish": 21072, "Rainbow Fin Albacore": 5095, "Sunrise Omelette": 238639, "Sage's Tea": 249870, "Sunny Tea": 249869, "Lobster Stew": 13933, "Triage Tea": 249868, "Root Tea": 249867, "Royal Tea": 249866, "Peace Tea": 249865, "Wicked Smoothie": 249876, "Spicy Smoothie": 249875, "Calcified Smoothie": 249874, "Mrrggl Smrrthle": 249873, "Slimy Smoothie": 249872, "Venomous Smoothie": 249871, "Bat Hachee": 250067, "Soaring Pamplona": 250066, "Prehistoric Pulled Raptor": 250075, "Runn Tum Tuber Surprise": 18254, "Spiced Chili Crab": 12216};
+const FTT={};const QCOL=['#9d9d9d','#fff','#1eff00','#0070dd','#a335ee','#ff8000'];
+function fttParse(html){const t=String(html).replace(/<br\s*\/?>/gi,'\n').replace(/<\/(tr|div|td|th|table|p)>/gi,'\n').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+ return t.split('\n').map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean).filter(x=>!/^Sell Price/.test(x)).slice(0,14)}
+function fttPaint(id){const d=FTT[id];if(!d)return;document.querySelectorAll(`[data-fid="${id}"]`).forEach(el=>{
+ el.querySelector('.fic').innerHTML=d.icon?`<img src="https://wow.zamimg.com/images/wow/icons/medium/${d.icon}.jpg" alt="" loading="lazy" onerror="this.remove()">`:'🍲';
+ el.querySelector('.fic').style.borderColor=QCOL[d.q]||'#444';
+ el.querySelector('.ftip').innerHTML=d.lines.map((l,i)=>`<div class="${i===0?'t':/^(Use|Equip):/.test(l)?'u':/^Requires/.test(l)?'r':''}" ${i===0?`style="color:${QCOL[d.q]||'#fff'}"`:''}>${esc(l)}</div>`).join('')+`<a href="https://www.wowhead.com/forever/item=${id}" target="_blank" rel="noopener">wowhead ↗</a>`})}
+function fttLoad(id){if(FTT[id]){fttPaint(id);return}
+ try{const c=JSON.parse(localStorage.getItem('ftt-'+id)||'null');if(c&&Date.now()-c.at<7*864e5){FTT[id]=c;fttPaint(id);return}}catch(e){}
+ fetch('https://nether.wowhead.com/forever/tooltip/item/'+id).then(r=>r.json()).then(j=>{if(!j||!j.tooltip)return;FTT[id]={icon:j.icon,q:j.quality,lines:fttParse(j.tooltip),at:Date.now()};try{localStorage.setItem('ftt-'+id,JSON.stringify(FTT[id]))}catch(e){};fttPaint(id)}).catch(()=>{})}
+const foodName=n=>{const id=FOODID[n];return id?`<span class="fitem" data-fid="${id}" tabindex="0"><span class="fic">🍲</span><span style="font-weight:700">${esc(n)}</span><span class="ftip"><div class="t">${esc(n)}</div><div class="r">loading…</div></span></span>`:`<span style="font-weight:700">${esc(n)}</span>`};
 function renderFood(){
  const el=$('[data-p=food]');if(!el)return;
  const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing (teas also restore mana while you drink)'],['mana','Mana drinks: restore mana + Well Fed Spirit'],['int','Intellect: bigger mana pool']];
@@ -245,7 +259,7 @@ function renderFood(){
   const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
   const pr=ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null;const pc=pr==null?'':pr>=0?'up':'down';
   const pf=ah!=null&&farm.c!=null?ah*AH_CUT-farm.c:null;const fc=pf==null?'':pf>=0?'up':'down';
-  return `<tr><td style="font-size:15px"><span style="font-weight:700">${esc(n)}</span><div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}</div><div class="psub">📍 ${esc(FOODSRC[n]||r.src)}</div>
+  return `<tr><td style="font-size:15px">${foodName(n)}<div class="psub">Cooking ${r.sk}${canMake(r)?'':' · you need '+r.sk}</div><div class="psub">📍 ${esc(FOODSRC[n]||r.src)}</div>
    ${pr!=null?`<div class="psub">Buy mats, cook &amp; sell: <b class="${pc}">${pr>=0?'+':''}${money(pr)}</b> each</div>`:''}</td>
    <td>${esc(buff)}</td>
    <td class="n">${money(ah)}${qtyOf(n)!=null?`<div class="psub">${qtyOf(n)} on AH</div>`:''}</td>
@@ -254,7 +268,8 @@ function renderFood(){
  el.innerHTML=`<h2>Caster food: spell damage, healing &amp; mana</h2>
  <p class="sub">Every 15-minute Well Fed buff with spell damage, healing, Spirit or Intellect (any level), strongest first. The smoothies and teas are drinks: they refill your mana while you sit and then give Well Fed, so they replace water. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
  ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
- <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only. In Forever, Nightfin Soup and the Sagefish foods give spell damage instead of the old mana regen. Smoothie recipes cost Merchant's Favor (from Waylaid Crates), not gold.</div>`;
+ <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only. In Forever, Nightfin Soup and the Sagefish foods give spell damage instead of the old mana regen. Smoothie recipes cost Merchant's Favor (from Waylaid Crates), not gold. Hover a food for its tooltip.</div>`;
+ BUFFFOOD.forEach(([n])=>FOODID[n]&&fttLoad(FOODID[n]));
 }
 
 /* ---------- 4. shopping list ---------- */

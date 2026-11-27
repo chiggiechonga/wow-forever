@@ -264,7 +264,17 @@ const foodName=n=>{const id=FOODID[n];return id?`<span class="fitem" data-fid="$
 function renderFood(){
  const el=$('[data-p=food]');if(!el)return;
  const groups=[['sd','Spell damage'],['both','Spell damage + healing'],['heal','Healing (teas also restore mana while you drink)'],['mana','Mana drinks: restore mana + Well Fed Spirit'],['int','Intellect: bigger mana pool']];
- const rows=g=>BUFFFOOD.filter(f=>f[2]===g).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
+ const FS=load(K('foodsort'),{by:'buff',grp:'all',dir:-1});
+ // numbers to sort by, per food
+ const num=n=>{const r=RECIPE[n];if(!r)return {};const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);const f=BUFFFOOD.find(x=>x[0]===n);
+  const lv=+((/Lv (\d+)/.exec(f[1])||[])[1]||0);
+  return {buff:f[3],ah,buy:buy.c,farm:farm.c,profit:ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null,profitf:ah!=null&&farm.c!=null?ah*AH_CUT-farm.c:null,skill:r.sk,lv,
+   save:ah!=null&&farm.c!=null?ah-farm.c:null,name:n}};
+ const SORTS=[['buff','Strongest buff'],['ah','Cheapest on the AH'],['buy','Cheapest to cook (buying mats)'],['farm','Cheapest to cook (farming mats)'],['profit','Most profit: buy mats, cook, sell'],['profitf','Most profit: farm mats, cook, sell'],['skill','Cooking skill needed'],['name','Name (A-Z)']];
+ const LOWFIRST={ah:1,buy:1,farm:1,skill:1,name:1};
+ const order=list=>{const by=FS.by;const k=list.map(f=>[f,num(f[0])[by]]);const dir=(LOWFIRST[by]?1:-1)*(FS.dir===1?-1:1);
+  k.sort((a,b)=>{const x=a[1],y=b[1];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*dir});return k.map(z=>z[0])};
+ const rows=g=>order(BUFFFOOD.filter(f=>g==='*'||f[2]===g)).map(([n,buff])=>{const r=RECIPE[n];if(!r)return '';
   const buy=foodCost(r,false),farm=foodCost(r,true),ah=sell(n);
   const pr=ah!=null&&buy.c!=null?ah*AH_CUT-buy.c:null;const pc=pr==null?'':pr>=0?'up':'down';
   const pf=ah!=null&&farm.c!=null?ah*AH_CUT-farm.c:null;const fc=pf==null?'':pf>=0?'up':'down';
@@ -278,9 +288,15 @@ function renderFood(){
    <td class="n ${pc}">${money(buy.c)}</td>
    <td class="n ${fc}" style="font-weight:700">${money(farm.c)}<div class="psub">${farm.farm.length?'farm: '+farm.farm.map(esc).join(', '):'all vendor'}</div></td></tr>`}).join('');
  el.innerHTML=`<h2>Caster food: spell damage, healing &amp; mana</h2>
- <p class="sub">Every 15-minute Well Fed buff with spell damage, healing, Spirit or Intellect (any level), strongest first. The smoothies and teas are drinks: they refill your mana while you sit and then give Well Fed, so they replace water. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
- ${groups.map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
+ <p class="sub">Every 15-minute Well Fed buff with spell damage, healing, Spirit or Intellect (any level), sorted however you like. The smoothies and teas are drinks: they refill your mana while you sit and then give Well Fed, so they replace water. Compare buying one ready-made, cooking it with bought mats, or cooking it with mats you fish/gather yourself (you only pay for the vendor stuff). Costs are per piece of food.</p>
+ <div class="fsort"><label class="small">Sort by <select id="fsBy">${SORTS.map(([k,t])=>`<option value="${k}" ${FS.by===k?'selected':''}>${t}</option>`).join('')}</select></label>
+  <button class="chip" id="fsDir" title="Flip the order">${FS.dir===1?'⇅ flipped':'⇅ best first'}</button>
+  <span class="small" style="margin-left:6px">Show</span>${[['all','All, by buff type'],['flat','All in one list'],['sd','Spell damage'],['heal','Healing'],['mana','Mana'],['int','Intellect']].map(([k,t])=>`<button class="chip" data-fg="${k}" aria-pressed="${FS.grp===k}">${t}</button>`).join('')}</div>
+ ${(FS.grp==='flat'?[['*','All caster food']]:groups.filter(([g])=>FS.grp==='all'||g===FS.grp||(FS.grp==='sd'&&g==='both')||(FS.grp==='heal'&&g==='both'))).map(([g,t])=>`<div class="lbl" style="margin:14px 0 6px">${t.toUpperCase()}</div><div class="box" style="overflow-x:auto"><table><thead><tr><th>FOOD</th><th>BUFF (15 MIN)</th><th class="n">BUY IT ON AH</th><th class="n">COOK · BUY MATS</th><th class="n">COOK · FARM MATS</th></tr></thead><tbody>${rows(g)}</tbody></table></div>`).join('')}
  <div class="note">Prices in green = you'd make money cooking it that way and selling it on the AH (after the 5% cut); red = you'd lose money. Recipe spots are for Alliance. One food buff at a time: a new Well Fed replaces the old one. Buff numbers are from the Forever beta and may have changed, so check the tooltip. Sunrise Omelette's numbers come from one source only. In Forever, Nightfin Soup and the Sagefish foods give spell damage instead of the old mana regen. Smoothie recipes cost Merchant's Favor (from Waylaid Crates), not gold. Hover a food for its tooltip.</div>`;
+ const sv=()=>{store(K('foodsort'),FS);renderFood()};
+ $('#fsBy').onchange=e=>{FS.by=e.target.value;FS.dir=-1;sv()};$('#fsDir').onclick=()=>{FS.dir=FS.dir===1?-1:1;sv()};
+ el.querySelectorAll('[data-fg]').forEach(b=>b.onclick=()=>{FS.grp=b.dataset.fg;sv()});
  BUFFFOOD.forEach(([n])=>{FOODID[n]&&fttLoad(FOODID[n]);const r=RECIPE[n];r&&r.m.forEach(([,m])=>MATID[m]&&fttLoad(MATID[m]))});
 }
 
